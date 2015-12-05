@@ -1,0 +1,316 @@
+fileFormatVersion: 2
+guid: 990a41f2ac51e3a40b9209a24257b6df
+timeCreated: 1449267443
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: arm_left_1
+    100002: arm_left_1_001
+    100004: arm_left_1_002
+    100006: arm_left_1_004
+    100008: Armature
+    100010: Base
+    100012: //RootNode
+    100014: Feet_left
+    100016: Feet_right
+    100018: fingers_left
+    100020: fingers_right
+    100022: hand_left
+    100024: hand_right
+    100026: Head
+    100028: Hip
+    100030: Leg_Left_1
+    100032: Leg_Left_1_001
+    100034: Leg_Left_1_002
+    100036: Leg_Left_1_004
+    100038: Leg_left_2
+    100040: Leg_left_2_002
+    100042: pCube1
+    100044: pCube2
+    100046: pCube3
+    100048: Shoulder_left
+    100050: Shoulder_right
+    100052: Toes_left
+    100054: Toes_right
+    100056: transform1
+    100058: transform2
+    100060: Waist
+    400000: arm_left_1
+    400002: arm_left_1_001
+    400004: arm_left_1_002
+    400006: arm_left_1_004
+    400008: Armature
+    400010: Base
+    400012: //RootNode
+    400014: Feet_left
+    400016: Feet_right
+    400018: fingers_left
+    400020: fingers_right
+    400022: hand_left
+    400024: hand_right
+    400026: Head
+    400028: Hip
+    400030: Leg_Left_1
+    400032: Leg_Left_1_001
+    400034: Leg_Left_1_002
+    400036: Leg_Left_1_004
+    400038: Leg_left_2
+    400040: Leg_left_2_002
+    400042: pCube1
+    400044: pCube2
+    400046: pCube3
+    400048: Shoulder_left
+    400050: Shoulder_right
+    400052: Toes_left
+    400054: Toes_right
+    400056: transform1
+    400058: transform2
+    400060: Waist
+    4300000: pCube3
+    7400000: Default Take
+    7400002: Idle
+    7400004: Walk
+    7400006: Idle0
+    9500000: //RootNode
+    13700000: pCube3
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Idle
+      firstFrame: 0
+      lastFrame: 119
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Base
+        weight: 1
+      - path: Armature/Head
+        weight: 1
+      - path: Armature/Shoulder_left
+        weight: 1
+      - path: Armature/Shoulder_left/arm_left_1
+        weight: 1
+      - path: Armature/Shoulder_left/arm_left_1/arm_left_1_001
+        weight: 1
+      - path: Armature/Shoulder_left/arm_left_1/arm_left_1_001/hand_left
+        weight: 1
+      - path: Armature/Shoulder_left/arm_left_1/arm_left_1_001/hand_left/fingers_left
+        weight: 1
+      - path: Armature/Shoulder_right
+        weight: 1
+      - path: Armature/Shoulder_right/arm_left_1_004
+        weight: 1
+      - path: Armature/Shoulder_right/arm_left_1_004/arm_left_1_002
+        weight: 1
+      - path: Armature/Shoulder_right/arm_left_1_004/arm_left_1_002/hand_right
+        weight: 1
+      - path: Armature/Shoulder_right/arm_left_1_004/arm_left_1_002/hand_right/fingers_right
+        weight: 1
+      - path: Armature/Waist
+        weight: 1
+      - path: Armature/Waist/Hip
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1/Leg_Left_1_001
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1/Leg_Left_1_001/Leg_left_2
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1/Leg_Left_1_001/Leg_left_2/Feet_left
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1/Leg_Left_1_001/Leg_left_2/Feet_left/Toes_left
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1_004
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1_004/Leg_Left_1_002
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1_004/Leg_Left_1_002/Leg_left_2_002
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1_004/Leg_Left_1_002/Leg_left_2_002/Feet_right
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1_004/Leg_Left_1_002/Leg_left_2_002/Feet_right/Toes_right
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube1/transform2
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: pCube3
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Walk
+      takeName: Walk
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Base
+        weight: 1
+      - path: Armature/Head
+        weight: 1
+      - path: Armature/Shoulder_left
+        weight: 1
+      - path: Armature/Shoulder_left/arm_left_1
+        weight: 1
+      - path: Armature/Shoulder_left/arm_left_1/arm_left_1_001
+        weight: 1
+      - path: Armature/Shoulder_left/arm_left_1/arm_left_1_001/hand_left
+        weight: 1
+      - path: Armature/Shoulder_left/arm_left_1/arm_left_1_001/hand_left/fingers_left
+        weight: 1
+      - path: Armature/Shoulder_right
+        weight: 1
+      - path: Armature/Shoulder_right/arm_left_1_004
+        weight: 1
+      - path: Armature/Shoulder_right/arm_left_1_004/arm_left_1_002
+        weight: 1
+      - path: Armature/Shoulder_right/arm_left_1_004/arm_left_1_002/hand_right
+        weight: 1
+      - path: Armature/Shoulder_right/arm_left_1_004/arm_left_1_002/hand_right/fingers_right
+        weight: 1
+      - path: Armature/Waist
+        weight: 1
+      - path: Armature/Waist/Hip
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1/Leg_Left_1_001
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1/Leg_Left_1_001/Leg_left_2
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1/Leg_Left_1_001/Leg_left_2/Feet_left
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1/Leg_Left_1_001/Leg_left_2/Feet_left/Toes_left
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1_004
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1_004/Leg_Left_1_002
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1_004/Leg_Left_1_002/Leg_left_2_002
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1_004/Leg_Left_1_002/Leg_left_2_002/Feet_right
+        weight: 1
+      - path: Armature/Waist/Hip/Leg_Left_1_004/Leg_Left_1_002/Leg_left_2_002/Feet_right/Toes_right
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube1/transform2
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform1
+        weight: 1
+      - path: pCube3
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
