@@ -54,7 +54,7 @@ public class GameUI : MonoBehaviour {
 
     public static void ShowStatUI(bool on)
     {
-        statObject.SetActive(on);
+        //statObject.SetActive(on);
     }
 
     public void AbilityMenu(GameObject panel)

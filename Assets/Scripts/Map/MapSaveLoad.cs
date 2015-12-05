@@ -29,6 +29,9 @@ public class TileXml{
     [XmlAttribute("tileCharacter")]
     public int characterID;
 
+    [XmlAttribute("tileObject")]
+    public int objectID;
+
     [XmlAttribute("tileCharacterFacing")]
     public int characterFacing;
 }
@@ -71,6 +74,7 @@ public static class MapSaveLoad{
             height = tile.height,
             tileStat = tile.tileStat,
             characterID = tile.charaId,
+            objectID = tile.objectId,
             characterFacing = (int)tile.characterFacing
 		};
 	}

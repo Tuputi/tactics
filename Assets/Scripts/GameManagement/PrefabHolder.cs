@@ -31,6 +31,8 @@ public class PrefabHolder : MonoBehaviour {
     [Header ("All Characters")]
     public List<Character> characters;
 
+    public List<MapObject> MapObjects;
+
 
 
     void Awake() {

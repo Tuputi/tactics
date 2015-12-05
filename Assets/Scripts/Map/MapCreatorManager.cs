@@ -158,6 +158,35 @@ public class MapCreatorManager : MonoBehaviour {
         }
     }
 
+    public void createObject(int objectID){
+        if (SelectionManager.selectedTile != null)
+        {
+            Tile tempTile = SelectionManager.selectedTile;
+          
+                GameObject objectBase = null;
+                foreach (MapObject obj in PrefabHolder.instance.MapObjects)
+                {
+                    if (obj.ObjectId == objectID)
+                    {
+                        objectBase = obj.gameObject;
+                        break;
+                    }
+                }
+                if (objectBase == null)
+                {
+                    Debug.Log("ObjectID not found. Looking for ID" + objectID);
+                }
+                GameObject newObject = (GameObject)Instantiate(objectBase);
+                tempTile.objectId = newObject.GetComponent<MapObject>().ObjectId;
+                newObject.transform.position = new Vector3(tempTile.positionRow, tempTile.height+newObject.transform.position.y, tempTile.positionColumn);
+                Debug.Log("object created");
+       
+        }
+        else
+        {
+            Debug.Log("No tile selected");
+    }
+}
 
 	public void LoadMapFromXML(string loadMapName){
 		if (!(loadMapName.Equals(""))) {
@@ -185,6 +214,7 @@ public class MapCreatorManager : MonoBehaviour {
 						tile.height = container.tiles.Where (x => x.locX == i && x.locY == j).First ().height;
                         tile.tileStat = container.tiles.Where(x => x.locX == i && x.locY == j).First().tileStat;
                         tile.charaId = container.tiles.Where(x => x.locX == i && x.locY == j).First().characterID;
+                        tile.objectId = container.tiles.Where(x => x.locX == i && x.locY == j).First().objectID;
                         tile.characterFacing = (Facing)container.tiles.Where(x => x.locX == i && x.locY == j).First().characterFacing;
                         tile.transform.position = new Vector3 (tile.positionRow, tile.height, tile.positionColumn);
 						tile.transform.parent = this.transform.FindChild ("Map").transform;
@@ -210,8 +240,13 @@ public class MapCreatorManager : MonoBehaviour {
                             break;
                         default: break;
                     }
+                    if (tile.objectId > 0)
+                    {
+                        SelectionManager.SetSelection(tile);
+                        createObject(tile.objectId);
+                    }
 
-                    if(tile.tileType == TileType.None)
+                    if(tile.tileType == TileType.None || tile.objectId > 0)
                     {
                         foreach(Tile t in tile.neighbours)
                         {

@@ -45,6 +45,7 @@ public class Tile : MonoBehaviour, IComparable
     //saving
     public int tileStat = 0; //0 - empty, 1 - occupied, 2 - ????
     public int charaId = 0;
+    public int objectId = 0;
     public Facing characterFacing;
 
     // Use this for initialization
