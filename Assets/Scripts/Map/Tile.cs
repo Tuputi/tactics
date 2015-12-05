@@ -11,9 +11,10 @@ public class Tile : MonoBehaviour, IComparable
 {
     public bool walkable = true;
     public Character character;
+    public MapObject mapObject;
     public bool isOccupied {
         get {
-            return (!(character==null));
+            return (!((character == null) && (mapObject == null)));
             }
     }
 
@@ -47,6 +48,7 @@ public class Tile : MonoBehaviour, IComparable
     public int charaId = 0;
     public int objectId = 0;
     public Facing characterFacing;
+    public Facing objectFacing;
 
     // Use this for initialization
     void Start () {
@@ -166,7 +168,25 @@ public class Tile : MonoBehaviour, IComparable
                     case ModeType.Target:
                         if (isOccupied)
                         {
-                            GameUI.UpdateStatUI(this.character);
+                            if (character != null)
+                            {
+                                GameUI.UpdateStatUI(this.character);
+                            }
+                          /* if(mapObject != null)
+                            {
+                                Debug.Log("rotate");
+                                    int currentFacing = (int)this.mapObject.facing;
+                                    if (++currentFacing > 3)
+                                    {
+                                        this.mapObject.ChangeFacing((Facing)0);
+                                    }
+                                    else
+                                    {
+                                        this.mapObject.ChangeFacing((Facing)currentFacing++);
+                                    }
+                                Debug.Log("currentFacing " + currentFacing);
+                                
+                            }*/
 
                             if (SelectionManager.selectedCharacter == null || TurnManager.currentlytakingTurn == null)
                             {

@@ -34,6 +34,9 @@ public class TileXml{
 
     [XmlAttribute("tileCharacterFacing")]
     public int characterFacing;
+
+    [XmlAttribute("tileObjectFacing")]
+    public int objectFacing;
 }
 
 [XmlRoot("MapCollection")]
@@ -75,8 +78,9 @@ public static class MapSaveLoad{
             tileStat = tile.tileStat,
             characterID = tile.charaId,
             objectID = tile.objectId,
-            characterFacing = (int)tile.characterFacing
-		};
+            characterFacing = (int)tile.characterFacing,
+            objectFacing = (int)tile.objectFacing
+        };
 	}
 
 	public static void Save(MapXmlContainer mapContainer, string filename){

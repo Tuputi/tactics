@@ -162,7 +162,8 @@ public class MapCreatorManager : MonoBehaviour {
         if (SelectionManager.selectedTile != null)
         {
             Tile tempTile = SelectionManager.selectedTile;
-          
+            if (!tempTile.isOccupied)
+            {
                 GameObject objectBase = null;
                 foreach (MapObject obj in PrefabHolder.instance.MapObjects)
                 {
@@ -178,9 +179,18 @@ public class MapCreatorManager : MonoBehaviour {
                 }
                 GameObject newObject = (GameObject)Instantiate(objectBase);
                 tempTile.objectId = newObject.GetComponent<MapObject>().ObjectId;
-                newObject.transform.position = new Vector3(tempTile.positionRow, tempTile.height+newObject.transform.position.y, tempTile.positionColumn);
+                newObject.transform.position = new Vector3(tempTile.positionRow, tempTile.height + newObject.transform.position.y, tempTile.positionColumn);
+                newObject.GetComponent<MapObject>().ChangeFacing(tempTile.objectFacing);
+                tempTile.mapObject = newObject.GetComponent<MapObject>();
+                newObject.GetComponent<MapObject>().position = tempTile;
+                Debug.Log(tempTile.name + " has now object " + newObject.name);
                 Debug.Log("object created");
-       
+            }
+            else
+            {
+                Debug.Log("Tile already occupied");
+               
+            }       
         }
         else
         {
@@ -216,6 +226,7 @@ public class MapCreatorManager : MonoBehaviour {
                         tile.charaId = container.tiles.Where(x => x.locX == i && x.locY == j).First().characterID;
                         tile.objectId = container.tiles.Where(x => x.locX == i && x.locY == j).First().objectID;
                         tile.characterFacing = (Facing)container.tiles.Where(x => x.locX == i && x.locY == j).First().characterFacing;
+                        tile.objectFacing = (Facing)container.tiles.Where(x => x.locX == i && x.locY == j).First().objectFacing;
                         tile.transform.position = new Vector3 (tile.positionRow, tile.height, tile.positionColumn);
 						tile.transform.parent = this.transform.FindChild ("Map").transform;
 						row.Add (tile);
