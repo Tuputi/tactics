@@ -98,13 +98,6 @@ public class MapCreatorManager : MonoBehaviour {
             for (int j = 0; j < map[i].Count; j++)
             {
                 map[i][j].SetOverlayType(OverlayType.Empty, map[i][j]);
-                //map[i][j].SetType(TileType.Grass);
-             /*  GameObject overlayContainer = map[i][j].transform.FindChild("Overlay").gameObject;
-               for (int h = 0; h < overlayContainer.transform.childCount; h++)
-               {
-                 Destroy(overlayContainer.transform.GetChild(h).gameObject);
-                 
-              }*/
             }
         }
     }
@@ -166,53 +159,7 @@ public class MapCreatorManager : MonoBehaviour {
     }
 
 
-    public void TargetButton()
-    {
-        Tile.mode = ModeType.Target;
-        paletteSelection = TileType.None;
-    }
-
-    public void GrassButton(){
-        Tile.mode = ModeType.ChangeTileType;
-		paletteSelection = TileType.Grass;
-	}
-	public void RockButton(){
-        Tile.mode = ModeType.ChangeTileType;
-        paletteSelection = TileType.Rock;
-	}
-    public void InpassableButton()
-    {
-        Tile.mode = ModeType.ChangeTileType;
-        paletteSelection = TileType.Inpassable;
-    }
-
-    public void LowerHeightButton(){
-        paletteSelection = TileType.None;
-        Tile.mode = ModeType.ChangeHeight;
-        Tile.changeHeightAmount = -0.2f;
-	}
-
-	public void RaiseHeightButton(){
-        paletteSelection = TileType.None;
-        Tile.mode = ModeType.ChangeHeight;
-        Tile.changeHeightAmount = 0.2f;
-	}
-
-    public void RemoveTile()
-    {
-        Tile.mode = ModeType.Remove;
-    }
-
-	public void Load(){
-		LoadMapFromXML(mapNameField.text);
-	}
-
-	public void Save(){
-		SaveMapToXml ();
-	}
-
-
-	void LoadMapFromXML(string loadMapName){
+	public void LoadMapFromXML(string loadMapName){
 		if (!(loadMapName.Equals(""))) {
 			MapXmlContainer container = MapSaveLoad.Load (loadMapName);
 		if(!(container == null)){
@@ -280,7 +227,7 @@ public class MapCreatorManager : MonoBehaviour {
 		}
 	}
 
-	void SaveMapToXml(){
+	public void SaveMapToXml(){
 		if (!(mapNameField.text.Equals(""))) {
             foreach(Character chara in characterContainer.GetComponentsInChildren<Character>())
             {

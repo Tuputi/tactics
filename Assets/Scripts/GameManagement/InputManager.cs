@@ -324,13 +324,13 @@ public class InputManager : MonoBehaviour {
         }
         //open stat info if occupied
 
-        if (CurrentTile.isOccupied)
+        /*if (CurrentTile.isOccupied)
         {
             GameUI.UpdateStatUI(CurrentTile.character);
         }
         else
         {
             GameUI.ShowStatUI(false);
-        }
+        }*/
     }
 }
