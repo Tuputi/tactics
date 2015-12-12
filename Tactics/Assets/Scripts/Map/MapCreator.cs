@@ -81,7 +81,7 @@ public class MapCreator : MonoBehaviour {
                         tmpList.Add(map[i][j - 1]);
                     }
                 }
-                //currentTile.SetNeighbours(tmpList);
+                currentTile.SetNeighbours(tmpList);
                 tmpList.Clear();
             }
         }

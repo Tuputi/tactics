@@ -6,8 +6,14 @@ public class Tile : MonoBehaviour {
 
     List<Tile> neighbours;
 
-    public void SetNeighbour(List<Tile> tiles)
+    public void SetNeighbours(List<Tile> tiles)
     {
         neighbours = tiles;
     }
+
+    void Update()
+    {
+
+    }
+
 }
