@@ -7,6 +7,7 @@ using BonaJson;
 //enums
 public enum Facing { Up, Right, Down, Left };
 public enum TileType { None, Grass, Rock };
+public enum OverlayType { None, Selected};
 
 public class Tile : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class Tile : MonoBehaviour
     public TileType tileType = TileType.Grass;
     public int height;
     private GameObject prefab;
+
+    public OverlayType overlayType = OverlayType.None;
+    private GameObject overlayPrefab;
 
 
     public Tile()
@@ -51,6 +55,23 @@ public class Tile : MonoBehaviour
         GenerateVisuals();
     }
 
+    public void SetOverlayType(OverlayType type)
+    {
+        overlayType = type;
+        switch (type)
+        {
+            case OverlayType.None:
+                overlayPrefab = PrefabHolder.instance.Overlay_Empty_Prefab;
+                break;
+            case OverlayType.Selected:
+                overlayPrefab = PrefabHolder.instance.Overlay_Selection_Prefab;
+                break;
+            default:
+                break;
+        }
+        GenerateOverlay();
+    }
+
     public void GenerateVisuals()
     {
         GameObject container = transform.FindChild("Visuals").gameObject;
@@ -63,28 +84,24 @@ public class Tile : MonoBehaviour
         newVisual.transform.parent = container.transform;
     }
 
-
-    void OnMouseOver()
+    public void GenerateOverlay()
     {
-        GameObject visual = transform.FindChild("Visuals").GetChild(0).gameObject;
-        visual.gameObject.GetComponent<Renderer>().material.color = Color.black;
-        if (Input.GetMouseButton(0))
+        GameObject container = transform.FindChild("Overlay").gameObject;
+
+        for (int i = 0; i < container.transform.childCount; i++)
         {
-            height += 1;
-            transform.position += new Vector3(0, 1, 0);
+            Destroy(container.transform.GetChild(i).gameObject);
         }
-        if (Input.GetMouseButton(1))
-        {
-            height -= 1;
-            transform.position += new Vector3(0, -1, 0);
-        }
+        GameObject newVisual = (GameObject)Instantiate(overlayPrefab, transform.position + new Vector3(0,1,0), Quaternion.identity);
+        newVisual.transform.parent = container.transform;
     }
 
-    void OnMouseExit()
+
+    void OnMouseDown()
     {
-        GameObject visual = transform.FindChild("Visuals").GetChild(0).gameObject;
-        visual.gameObject.GetComponent<Renderer>().material.color = Color.white;
+        SelectionScript.SetSelectedTile(this);
     }
+
 }
 
 public class TileSave

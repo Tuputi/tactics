@@ -12,6 +12,10 @@ public class PrefabHolder : MonoBehaviour {
     public GameObject Tile_Rock_Prefab;
     public GameObject Tile_Empty_Prefab;
 
+    //overlay
+    public GameObject Overlay_Empty_Prefab;
+    public GameObject Overlay_Selection_Prefab;
+
 
     void Awake()
     {
