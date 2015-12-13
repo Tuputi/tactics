@@ -22,7 +22,7 @@ public class MapCreator : MonoBehaviour {
         {
             generateBlankMap(mapRows, mapColumns);
         }
-        SaveLoad.SaveMap("TestMap", map);
+        //SaveLoad.SaveMap("TestMap", map);
     }
 
     void generateBlankMap(int rows, int columns)
@@ -44,7 +44,8 @@ public class MapCreator : MonoBehaviour {
                 tile.transform.SetParent(mapContainer.transform);
                 tile.name = "tile" + i + "-" + j;
                 tile.SetTileType(TileType.Grass);
-                tile.transform.position = new Vector3(i, 1, j);
+                tile.height = 1;
+                tile.transform.position = new Vector3(i, tile.height, j);
                 row.Add(tile);
             }
             map.Add(row);
@@ -69,7 +70,8 @@ public class MapCreator : MonoBehaviour {
                 t.transform.SetParent(mapContainer.transform);
                 t.name = "Tile" + i + "-" + j;
                 t.SetTileType(loadedMap.MapTiles[i][j].tileType);
-                t.transform.position = new Vector3(i, 1, j);
+                t.height = loadedMap.MapTiles[i][j].height;
+                t.transform.position = new Vector3(i, t.height, j);
                 row.Add(t);
             }
             map.Add(row);

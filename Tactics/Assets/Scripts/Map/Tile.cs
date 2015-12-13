@@ -8,14 +8,16 @@ using BonaJson;
 public enum Facing { Up, Right, Down, Left };
 public enum TileType { None, Grass, Rock };
 
-public class Tile : MonoBehaviour {
+public class Tile : MonoBehaviour
+{
 
     //lists
-    public Dictionary<Facing,Tile> neighbours;
+    public Dictionary<Facing, Tile> neighbours;
 
 
     //tileType/visuals
     public TileType tileType = TileType.Grass;
+    public int height;
     private GameObject prefab;
 
 
@@ -24,7 +26,7 @@ public class Tile : MonoBehaviour {
         tileType = TileType.Grass;
     }
 
-    public void SetNeighbours(Dictionary<Facing,Tile> tiles)
+    public void SetNeighbours(Dictionary<Facing, Tile> tiles)
     {
         neighbours = new Dictionary<Facing, Tile>(tiles);
     }
@@ -52,7 +54,7 @@ public class Tile : MonoBehaviour {
     public void GenerateVisuals()
     {
         GameObject container = transform.FindChild("Visuals").gameObject;
-        //remove children
+
         for (int i = 0; i < container.transform.childCount; i++)
         {
             Destroy(container.transform.GetChild(i).gameObject);
@@ -60,14 +62,29 @@ public class Tile : MonoBehaviour {
         GameObject newVisual = (GameObject)Instantiate(prefab, transform.position, Quaternion.identity);
         newVisual.transform.parent = container.transform;
     }
-    
 
 
+    void OnMouseOver()
+    {
+        GameObject visual = transform.FindChild("Visuals").GetChild(0).gameObject;
+        visual.gameObject.GetComponent<Renderer>().material.color = Color.black;
+        if (Input.GetMouseButton(0))
+        {
+            height += 1;
+            transform.position += new Vector3(0, 1, 0);
+        }
+        if (Input.GetMouseButton(1))
+        {
+            height -= 1;
+            transform.position += new Vector3(0, -1, 0);
+        }
+    }
 
-
-    
-
-
+    void OnMouseExit()
+    {
+        GameObject visual = transform.FindChild("Visuals").GetChild(0).gameObject;
+        visual.gameObject.GetComponent<Renderer>().material.color = Color.white;
+    }
 }
 
 public class TileSave
@@ -76,25 +93,28 @@ public class TileSave
     public TileType tileType;
     public int row;
     public int column;
+    public int height;
 
-    public TileSave(TileType tiletype, int Row, int Column)
+    public TileSave(TileType tiletype, int Row, int Column, int TileHeight)
     {
         tileType = tiletype;
         row = Row;
         column = Column;
+        height = TileHeight;
     }
 
     public TileSave()
     {
 
     }
-    //saving
+   
     public JObject JsonSave(int row, int column)
     {
         var tile = new JObjectCollection();
         tile.Add("TileType", (int)tileType);
         tile.Add("Row", row);
         tile.Add("Column", column);
+        tile.Add("Height", height);
         return tile;
     }
 
@@ -103,5 +123,6 @@ public class TileSave
         this.tileType = jObject["TileType"].Value<TileType>();
         this.row = jObject["Row"].Value<int>();
         this.column = jObject["Column"].Value<int>();
+        this.height = jObject["Height"].Value<int>();
     }
 }
