@@ -13,6 +13,8 @@ public class Map {
     public Map(string name, List<List<Tile>> mapTiles)
     {
         MapName = name;
+        rows = mapTiles.Count-1;
+        columns = rows;
         for(int i = 0; i <= rows; i++)
         {
             List<TileSave> TileRow = new List<TileSave>();
@@ -57,8 +59,8 @@ public class Map {
     public void JsonLoad(JObject jObject)
     {
         this.MapName = jObject["MapName"].Value<string>();
-        //this.rows = jObject["Rows"].Value<int>();
-        //this.rows = jObject["Columns"].Value<int>();
+        this.rows = jObject["Rows"].Value<int>();
+        this.columns = jObject["Columns"].Value<int>();
         for (int i = 0; i <= rows; i++)
         {
             MapTiles.Add(new List<TileSave>());

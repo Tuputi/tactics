@@ -13,14 +13,13 @@ public class MapCreator : MonoBehaviour {
 
     void Start()
     {
-
+        mapContainer = GameObject.Find("Map").gameObject;
         if (!MapName.Equals(""))
         {
             LoadMap(MapName);
         }
         else
         {
-            mapContainer = GameObject.Find("Map").gameObject;
             generateBlankMap(mapRows, mapColumns);
         }
         SaveLoad.SaveMap("TestMap", map);
@@ -55,21 +54,27 @@ public class MapCreator : MonoBehaviour {
 
     void LoadMap(string mapName)
     {
-        map = new List<List<Tile>>();
+        
         Map loadedMap = SaveLoad.LoadMap(MapName);
-        for (int i = 0; i <= loadedMap.rows; i++)
+        mapRows = loadedMap.rows-1;
+        mapColumns = loadedMap.columns-1;
+
+        map = new List<List<Tile>>();
+        for (int i = 0; i <= mapRows; i++)
         {
             List<Tile> row = new List<Tile>();
-            for (int j = 0; j <= loadedMap.columns; j++)
+            for (int j = 0; j <= mapColumns; j++)
             {
                 Tile t = ((GameObject)Instantiate(PrefabHolder.instance.tile_base, new Vector3(i, 0, j), Quaternion.identity)).GetComponent<Tile>();
+                t.transform.SetParent(mapContainer.transform);
                 t.name = "Tile" + i + "-" + j;
                 t.SetTileType(loadedMap.MapTiles[i][j].tileType);
+                t.transform.position = new Vector3(i, 1, j);
                 row.Add(t);
             }
             map.Add(row);
-        }
-        GoThroughNeighbours();
+       }
+       GoThroughNeighbours();
     }
 
     void GoThroughNeighbours()
