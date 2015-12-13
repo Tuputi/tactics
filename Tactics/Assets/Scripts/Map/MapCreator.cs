@@ -8,12 +8,12 @@ public class MapCreator : MonoBehaviour {
     public List<List<Tile>> map = new List<List<Tile>>();
     public int mapRows;
     public int mapColumns;
-    public static GameObject mapContainer;
+    GameObject mapContainer;
 
     void Start()
     {
 
-        mapContainer = this.transform.FindChild("Map").gameObject;
+        mapContainer = GameObject.Find("Map").gameObject;
         generateBlankMap(mapRows, mapColumns);
     }
 
@@ -35,7 +35,7 @@ public class MapCreator : MonoBehaviour {
                 Tile tile = ((GameObject)Instantiate(PrefabHolder.instance.tile_base, new Vector3(i, 0, j), Quaternion.identity)).GetComponent<Tile>();
                 tile.transform.SetParent(mapContainer.transform);
                 tile.name = "tile" + i + "-" + j;
-                //tile.SetType(TileType.Grass);
+                tile.SetTileType(TileType.Grass);
                 tile.transform.position = new Vector3(i, 1, j);
                 row.Add(tile);
             }
@@ -47,7 +47,7 @@ public class MapCreator : MonoBehaviour {
 
     void GoThroughNeighbours()
     {
-        List<Tile> tmpList = new List<Tile>();
+        Dictionary<Facing, Tile> tmpList = new Dictionary<Facing, Tile>();
         for (int i = 0; i <= mapRows; i++)
         {
             for (int j = 0; j <= mapColumns; j++)
@@ -55,31 +55,19 @@ public class MapCreator : MonoBehaviour {
                 Tile currentTile = map[i][j];
                 if (i - 1 >= 0)
                 {
-                    if (!(map[i - 1][j] == null))
-                    {
-                        tmpList.Add(map[i - 1][j]);
-                    }
+                   tmpList.Add(Facing.Up,map[i - 1][j]);
                 }
                 if (i + 1 <= map.Count - 1)
                 {
-                    if (!(map[i + 1][j] == null))
-                    {
-                        tmpList.Add(map[i + 1][j]);
-                    }
+                    tmpList.Add(Facing.Down, map[i + 1][j]);
                 }
                 if (j + 1 <= map[i].Count - 1)
                 {
-                    if (!(map[i][j + 1] == null))
-                    {
-                        tmpList.Add(map[i][j + 1]);
-                    }
+                    tmpList.Add(Facing.Right, map[i][j + 1]);
                 }
                 if (j - 1 >= 0)
                 {
-                    if (!(map[i][j - 1] == null))
-                    {
-                        tmpList.Add(map[i][j - 1]);
-                    }
+                    tmpList.Add(Facing.Left, map[i][j - 1]);
                 }
                 currentTile.SetNeighbours(tmpList);
                 tmpList.Clear();
