@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using BonaJson;
 
 
 //enums
@@ -13,10 +13,16 @@ public class Tile : MonoBehaviour {
     //lists
     public Dictionary<Facing,Tile> neighbours;
 
+
+    //tileType/visuals
     public TileType tileType = TileType.Grass;
     private GameObject prefab;
 
 
+    public Tile()
+    {
+        tileType = TileType.Grass;
+    }
 
     public void SetNeighbours(Dictionary<Facing,Tile> tiles)
     {
@@ -54,6 +60,48 @@ public class Tile : MonoBehaviour {
         GameObject newVisual = (GameObject)Instantiate(prefab, transform.position, Quaternion.identity);
         newVisual.transform.parent = container.transform;
     }
+    
 
 
+
+
+    
+
+
+}
+
+public class TileSave
+{
+
+    public TileType tileType;
+    public int row;
+    public int column;
+
+    public TileSave(TileType tiletype, int Row, int Column)
+    {
+        tileType = tiletype;
+        row = Row;
+        column = Column;
+    }
+
+    public TileSave()
+    {
+
+    }
+    //saving
+    public JObject JsonSave(int row, int column)
+    {
+        var tile = new JObjectCollection();
+        tile.Add("TileType", (int)tileType);
+        tile.Add("Row", row);
+        tile.Add("Column", column);
+        return tile;
+    }
+
+    public void JsonLoad(JObject jObject)
+    {
+        this.tileType = jObject["TileType"].Value<TileType>();
+        this.row = jObject["Row"].Value<int>();
+        this.column = jObject["Column"].Value<int>();
+    }
 }

@@ -1,0 +1,17 @@
+{
+
+	"MapName":"TestMap",
+	"Tiles":[
+
+		{
+
+			"TileType":1,
+			"Row":0,
+			"Column":0
+		}
+
+	]
+,
+	"Rows":1,
+	"Columns":1
+}
