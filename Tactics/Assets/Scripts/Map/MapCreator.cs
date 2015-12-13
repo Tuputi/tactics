@@ -9,7 +9,13 @@ public class MapCreator : MonoBehaviour {
     public int mapRows;
     public int mapColumns;
     public string MapName;
+    public static MapCreator instance;
     GameObject mapContainer;
+
+
+    void Awake(){
+        instance = this;
+    }
 
     void Start()
     {
@@ -25,15 +31,23 @@ public class MapCreator : MonoBehaviour {
         //SaveLoad.SaveMap("TestMap", map);
     }
 
-    void generateBlankMap(int rows, int columns)
+    public void SaveMap(string mapname)
     {
-
+        SaveLoad.SaveMap(mapname, map);
+    }
+    
+    void cleanMap()
+    {
         for (int i = 0; i < mapContainer.transform.childCount; i++)
         {
             Destroy(mapContainer.transform.GetChild(i).gameObject);
         }
+    }
 
+    void generateBlankMap(int rows, int columns)
+    {
 
+        cleanMap();
         map = new List<List<Tile>>();
         for (int i = 0; i <= rows; i++)
         {
@@ -53,10 +67,10 @@ public class MapCreator : MonoBehaviour {
         GoThroughNeighbours();
     }
 
-    void LoadMap(string mapName)
+    public void LoadMap(string mapName)
     {
-        
-        Map loadedMap = SaveLoad.LoadMap(MapName);
+        cleanMap();
+        Map loadedMap = SaveLoad.LoadMap(mapName + ".json");
         mapRows = loadedMap.rows-1;
         mapColumns = loadedMap.columns-1;
 
