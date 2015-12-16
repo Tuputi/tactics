@@ -19,7 +19,7 @@ public class Tile : MonoBehaviour
     //tileType/visuals
     public TileType tileType = TileType.Grass;
     public Facing rotation = Facing.Up;
-    public int height;
+    public float height;
     private GameObject prefab;
 
     public OverlayType overlayType = OverlayType.None;
@@ -136,10 +136,10 @@ public class TileSave
     public TileType tileType;
     public int row;
     public int column;
-    public int height;
+    public float height;
     public Facing rotation;
 
-    public TileSave(TileType tiletype, int Row, int Column, int TileHeight, Facing Rotation)
+    public TileSave(TileType tiletype, int Row, int Column, float TileHeight, Facing Rotation)
     {
         tileType = tiletype;
         row = Row;
@@ -169,7 +169,7 @@ public class TileSave
         this.tileType = jObject["TileType"].Value<TileType>();
         this.row = jObject["Row"].Value<int>();
         this.column = jObject["Column"].Value<int>();
-        this.height = jObject["Height"].Value<int>();
+        this.height = jObject["Height"].GetAsFloat();
         this.rotation = jObject["Rotation"].Value<Facing>();
     }
 }

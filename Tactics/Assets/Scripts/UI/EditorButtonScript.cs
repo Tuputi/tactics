@@ -31,6 +31,17 @@ public class EditorButtonScript : MonoBehaviour {
         }
     }
 
+    public void HigherButton()
+    {
+        SelectionScript.selectedTile.height += 0.5f;
+        SelectionScript.selectedTile.transform.position += new Vector3(0, +0.5f, 0);
+    }
+
+    public void LowerButton()
+    {
+        SelectionScript.selectedTile.height -= 0.5f;
+        SelectionScript.selectedTile.transform.position += new Vector3(0, -0.5f, 0);
+    }
 
     public void RockButton()
     {
@@ -75,6 +86,7 @@ public class EditorButtonScript : MonoBehaviour {
 
     public void UpdateMapList()
     {
+        loadMapDropdown.options.Clear();
         string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "/Tactics/Maps/";
         string[] mapnames = System.IO.Directory.GetFiles(path, "*.json");
 
