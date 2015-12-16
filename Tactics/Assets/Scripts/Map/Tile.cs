@@ -21,6 +21,8 @@ public class Tile : MonoBehaviour
     public Facing rotation = Facing.Up;
     public float height;
     private GameObject prefab;
+    public GameObject tileObject;
+    public int tileObjectId;
 
     public OverlayType overlayType = OverlayType.None;
     private GameObject overlayPrefab;
@@ -78,7 +80,6 @@ public class Tile : MonoBehaviour
                 break;
         }
         gameObject.transform.rotation = Quaternion.Euler(0, rotationInt, 0);
-        Debug.Log("Current rotation is " + rotation);
     }
 
     public void SetOverlayType(OverlayType type)
@@ -96,6 +97,33 @@ public class Tile : MonoBehaviour
                 break;
         }
         GenerateOverlay();
+    }
+
+    public void SetTileObject(int objectID)
+    {
+        foreach(TileObject to in PrefabHolder.instance.tileObjects)
+        {
+            if(to.id == objectID)
+            {
+                
+                tileObjectId = objectID;
+                Vector3 pos = to.gameObject.transform.position;
+                pos += this.transform.position;
+                GameObject go = (GameObject)Instantiate(to.gameObject, pos, Quaternion.identity);
+                tileObject = go;
+                go.transform.SetParent(this.gameObject.transform);
+                return;
+            }
+        }
+    }
+
+    public void RemoveTileObject()
+    {
+        if (tileObject != null)
+        {
+            Destroy(tileObject);
+            tileObjectId = 0;
+        }
     }
 
     public void GenerateVisuals()
@@ -138,14 +166,16 @@ public class TileSave
     public int column;
     public float height;
     public Facing rotation;
+    public int objectId;
 
-    public TileSave(TileType tiletype, int Row, int Column, float TileHeight, Facing Rotation)
+    public TileSave(TileType tiletype, int Row, int Column, float TileHeight, Facing Rotation, int ObjectId)
     {
         tileType = tiletype;
         row = Row;
         column = Column;
         height = TileHeight;
         rotation = Rotation;
+        objectId = ObjectId;
     }
 
     public TileSave()
@@ -161,6 +191,7 @@ public class TileSave
         tile.Add("Column", column);
         tile.Add("Height", height);
         tile.Add("Rotation", (int)rotation);
+        tile.Add("ObjectId", objectId);
         return tile;
     }
 
@@ -171,5 +202,6 @@ public class TileSave
         this.column = jObject["Column"].Value<int>();
         this.height = jObject["Height"].GetAsFloat();
         this.rotation = jObject["Rotation"].Value<Facing>();
+        this.objectId = jObject["ObjectId"].Value<int>();
     }
 }

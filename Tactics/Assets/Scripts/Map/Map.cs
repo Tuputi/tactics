@@ -20,7 +20,7 @@ public class Map {
             List<TileSave> TileRow = new List<TileSave>();
             for(int j = 0; j <= columns; j++)
             {
-                TileSave ts = new TileSave(mapTiles[i][j].tileType, i, j, mapTiles[i][j].height, mapTiles[i][j].rotation);
+                TileSave ts = new TileSave(mapTiles[i][j].tileType, i, j, mapTiles[i][j].height, mapTiles[i][j].rotation, mapTiles[i][j].tileObjectId);
                 TileRow.Add(ts);
             }
             MapTiles.Add(TileRow);

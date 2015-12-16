@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PrefabHolder : MonoBehaviour {
 
@@ -16,6 +17,9 @@ public class PrefabHolder : MonoBehaviour {
     public GameObject Overlay_Empty_Prefab;
     public GameObject Overlay_Selection_Prefab;
 
+
+    //lists
+    public List<TileObject> tileObjects;
 
     void Awake()
     {

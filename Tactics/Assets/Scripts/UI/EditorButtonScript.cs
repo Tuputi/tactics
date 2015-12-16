@@ -43,6 +43,21 @@ public class EditorButtonScript : MonoBehaviour {
         SelectionScript.selectedTile.transform.position += new Vector3(0, -0.5f, 0);
     }
 
+    public void AddObjectButton(int objectId)
+    {
+        if (SelectionScript.selectedTile != null)
+        {
+            if (SelectionScript.selectedTile.tileObject == null)
+            {
+                SelectionScript.selectedTile.SetTileObject(objectId);
+            }
+            else
+            {
+                SelectionScript.selectedTile.RemoveTileObject();
+            }
+        }
+    }
+
     public void RockButton()
     {
         if (SelectionScript.selectedTile != null)
