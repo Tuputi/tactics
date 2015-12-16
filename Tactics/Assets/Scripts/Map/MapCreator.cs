@@ -85,6 +85,7 @@ public class MapCreator : MonoBehaviour {
                 t.name = "Tile" + i + "-" + j;
                 t.SetTileType(loadedMap.MapTiles[i][j].tileType);
                 t.height = loadedMap.MapTiles[i][j].height;
+                t.SetRotation(loadedMap.MapTiles[i][j].rotation);
                 t.transform.position = new Vector3(i, t.height, j);
                 row.Add(t);
             }

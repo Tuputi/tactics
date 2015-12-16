@@ -18,7 +18,7 @@ public class Tile : MonoBehaviour
 
     //tileType/visuals
     public TileType tileType = TileType.Grass;
-    public Facing rotation = Facing.Down;
+    public Facing rotation = Facing.Up;
     public int height;
     private GameObject prefab;
 
@@ -59,19 +59,26 @@ public class Tile : MonoBehaviour
     public void SetRotation(Facing rotate)
     {
         rotation = rotate;
+        int rotationInt = -1;
         switch (rotation)
         {
             case Facing.Up:
+                rotationInt = 0;
                 break;
             case Facing.Right:
+                rotationInt = 270;
                 break;
             case Facing.Down:
+                rotationInt = 180;
                 break;
             case Facing.Left:
+                rotationInt = 90;
                 break;
             default:
                 break;
         }
+        gameObject.transform.rotation = Quaternion.Euler(0, rotationInt, 0);
+        Debug.Log("Current rotation is " + rotation);
     }
 
     public void SetOverlayType(OverlayType type)
@@ -130,13 +137,15 @@ public class TileSave
     public int row;
     public int column;
     public int height;
+    public Facing rotation;
 
-    public TileSave(TileType tiletype, int Row, int Column, int TileHeight)
+    public TileSave(TileType tiletype, int Row, int Column, int TileHeight, Facing Rotation)
     {
         tileType = tiletype;
         row = Row;
         column = Column;
         height = TileHeight;
+        rotation = Rotation;
     }
 
     public TileSave()
@@ -151,6 +160,7 @@ public class TileSave
         tile.Add("Row", row);
         tile.Add("Column", column);
         tile.Add("Height", height);
+        tile.Add("Rotation", (int)rotation);
         return tile;
     }
 
@@ -160,5 +170,6 @@ public class TileSave
         this.row = jObject["Row"].Value<int>();
         this.column = jObject["Column"].Value<int>();
         this.height = jObject["Height"].Value<int>();
+        this.rotation = jObject["Rotation"].Value<Facing>();
     }
 }

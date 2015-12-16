@@ -15,6 +15,22 @@ public class EditorButtonScript : MonoBehaviour {
         UpdateMapList();
     }
 
+    public void RotationButton()
+    {
+        if (SelectionScript.selectedTile != null)
+        {
+            int currentRotation = (int)SelectionScript.selectedTile.rotation;
+            if (++currentRotation > 3)
+            {
+                SelectionScript.selectedTile.SetRotation((Facing)0);
+            }
+            else
+            {
+                SelectionScript.selectedTile.SetRotation((Facing)(currentRotation));
+            }
+        }
+    }
+
 
     public void RockButton()
     {
@@ -45,6 +61,7 @@ public class EditorButtonScript : MonoBehaviour {
     public void Load()
     {
         string mapname = loadMapDropdown.captionText.text;
+        UpdateMapList();
         if (File.Exists(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "/Tactics/Maps/" + mapname + ".json"))
         {
             MapCreator.instance.LoadMap(mapname);
