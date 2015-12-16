@@ -18,6 +18,7 @@ public class Tile : MonoBehaviour
 
     //tileType/visuals
     public TileType tileType = TileType.Grass;
+    public Facing rotation = Facing.Down;
     public int height;
     private GameObject prefab;
 
@@ -53,6 +54,24 @@ public class Tile : MonoBehaviour
                 break;
         }
         GenerateVisuals();
+    }
+
+    public void SetRotation(Facing rotate)
+    {
+        rotation = rotate;
+        switch (rotation)
+        {
+            case Facing.Up:
+                break;
+            case Facing.Right:
+                break;
+            case Facing.Down:
+                break;
+            case Facing.Left:
+                break;
+            default:
+                break;
+        }
     }
 
     public void SetOverlayType(OverlayType type)

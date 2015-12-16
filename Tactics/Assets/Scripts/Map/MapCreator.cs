@@ -70,7 +70,7 @@ public class MapCreator : MonoBehaviour {
     public void LoadMap(string mapName)
     {
         cleanMap();
-        Map loadedMap = SaveLoad.LoadMap(mapName + ".json");
+        Map loadedMap = SaveLoad.LoadMap(mapName);
         mapRows = loadedMap.rows-1;
         mapColumns = loadedMap.columns-1;
 

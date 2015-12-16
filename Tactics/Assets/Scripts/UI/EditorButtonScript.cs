@@ -1,11 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Linq;
+using System.IO;
 
 public class EditorButtonScript : MonoBehaviour {
 
     //references
     public InputField mapnamefield;
+    public Dropdown loadMapDropdown;
+
+    void Start()
+    {
+        UpdateMapList();
+    }
 
 
     public void RockButton()
@@ -29,14 +37,35 @@ public class EditorButtonScript : MonoBehaviour {
         if (!mapnamefield.text.Equals(""))
         {
             MapCreator.instance.SaveMap(mapnamefield.text);
+            mapnamefield.text = "";
+            UpdateMapList();
         }
     }
 
     public void Load()
     {
-        if (!mapnamefield.text.Equals(""))
+        string mapname = loadMapDropdown.captionText.text;
+        if (File.Exists(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "/Tactics/Maps/" + mapname + ".json"))
         {
-            MapCreator.instance.LoadMap(mapnamefield.text);
+            MapCreator.instance.LoadMap(mapname);
         }
+        else
+        {
+            Debug.Log(mapname+" not found");
+        }
+        
+    }
+
+    public void UpdateMapList()
+    {
+        string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "/Tactics/Maps/";
+        string[] mapnames = System.IO.Directory.GetFiles(path, "*.json");
+
+        foreach (var p in mapnames)
+        {
+            string name = Path.GetFileNameWithoutExtension(p);
+            loadMapDropdown.options.Add(new Dropdown.OptionData(name));
+        }
+
     }
 }
