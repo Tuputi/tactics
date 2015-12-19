@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Linq;
 using System.IO;
+using System.Collections.Generic;
 
 public class EditorButtonScript : MonoBehaviour {
 
@@ -13,6 +14,18 @@ public class EditorButtonScript : MonoBehaviour {
     void Start()
     {
         UpdateMapList();
+    }
+
+    public void FindPathButton()
+    {
+        if(SelectionScript.selectedTiles.Count == 2)
+        {
+            List<Tile> path = Pathfinding.GetPath(SelectionScript.selectedTiles[0], SelectionScript.selectedTiles[1]);
+            foreach(Tile t in path)
+            {
+                t.SetOverlayType(OverlayType.Selected);
+            }
+        }
     }
 
     public void RotationButton()

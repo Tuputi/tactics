@@ -39,8 +39,8 @@ public class SelectionScript : MonoBehaviour {
     {
         if (selectedTiles.Contains(tile))
         {
-            selectedTiles.Remove(tile);
             tile.SetOverlayType(OverlayType.None);
+            selectedTiles.Remove(tile);
         }
         else
         {
