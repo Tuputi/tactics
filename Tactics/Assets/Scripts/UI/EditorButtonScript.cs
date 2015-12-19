@@ -91,6 +91,25 @@ public class EditorButtonScript : MonoBehaviour {
         }
     }
 
+    public void AddCharacterButton(int CharaId)
+    {
+
+        if (SelectionScript.selectedTiles.Count > 0)
+        {
+            foreach (Tile t in SelectionScript.selectedTiles)
+            {
+                if (t.tileCharacter == null)
+                {
+                    t.SetCharacter(CharaId);
+                }
+                else
+                {
+                    t.RemoveTileObject();
+                }
+            }
+        }
+    }
+
     public void RockButton()
     {
         if (SelectionScript.selectedTiles.Count > 0)
@@ -125,6 +144,7 @@ public class EditorButtonScript : MonoBehaviour {
 
     public void Load()
     {
+        SelectionScript.ClearSelection();
         string mapname = loadMapDropdown.captionText.text;
         UpdateMapList();
         if (File.Exists(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "/Tactics/Maps/" + mapname + ".json"))

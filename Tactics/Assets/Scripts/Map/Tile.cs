@@ -19,7 +19,7 @@ public class Tile : MonoBehaviour, System.IComparable
     //tileType/visuals
     public TileType tileType = TileType.Grass;
     public Facing rotation = Facing.Up;
-    public float height;
+    public float height = 1;
     private GameObject prefab;
     public GameObject tileObject;
     public int tileObjectId;
@@ -82,7 +82,6 @@ public class Tile : MonoBehaviour, System.IComparable
         }
     }
 
-
     public Tile()
     {
         tileType = TileType.Grass;
@@ -107,7 +106,7 @@ public class Tile : MonoBehaviour, System.IComparable
                 break;
             case TileType.Rock:
                 prefab = PrefabHolder.instance.Tile_Rock_Prefab;
-                movementCost = 4;
+                movementCost = 3;
                 break;
             default:
                 break;
@@ -174,6 +173,23 @@ public class Tile : MonoBehaviour, System.IComparable
         }
     }
 
+    public void SetCharacter(int CharaID)
+    {
+        foreach (Character cha in PrefabHolder.instance.characters)
+        {
+            if (cha.characterID == CharaID)
+            {
+                cha.characterPosition = this;
+                Vector3 pos = cha.gameObject.transform.position;
+                pos += this.transform.position;
+                GameObject go = (GameObject)Instantiate(cha.gameObject, pos, Quaternion.identity);
+                tileCharacter = go.GetComponent<Character>();
+                go.transform.SetParent(this.gameObject.transform);
+                return;
+            }
+        }
+    }
+
     //move somewhere else?
     public void RemoveTileObject()
     {
@@ -181,6 +197,10 @@ public class Tile : MonoBehaviour, System.IComparable
         {
             Destroy(tileObject);
             tileObjectId = 0;
+        }
+        if (tileCharacter != null)
+        {
+            Destroy(tileCharacter.gameObject);
         }
     }
 
@@ -225,6 +245,7 @@ public class TileSave
     public float height;
     public Facing rotation;
     public int objectId;
+   // public CharacterSave character;
 
     public TileSave(TileType tiletype, int Row, int Column, float TileHeight, Facing Rotation, int ObjectId)
     {
@@ -234,6 +255,7 @@ public class TileSave
         height = TileHeight;
         rotation = Rotation;
         objectId = ObjectId;
+
     }
 
     public TileSave()
@@ -261,5 +283,10 @@ public class TileSave
         this.height = jObject["Height"].GetAsFloat();
         this.rotation = jObject["Rotation"].Value<Facing>();
         this.objectId = jObject["ObjectId"].Value<int>();
+       
+        
+        /*CharacterSave tempChara = new CharacterSave();
+        tempChara.JsonLoad(jObject["Character"]);
+        this.character = tempChara;*/
     }
 }

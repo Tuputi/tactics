@@ -60,4 +60,16 @@ public class SelectionScript : MonoBehaviour {
         selectedTiles.Add(tile);
         tile.SetOverlayType(OverlayType.Selected);
     }
+
+    public static void ClearSelection()
+    {
+        if(selectedTiles.Count > 0)
+        {
+            foreach(Tile t in selectedTiles)
+            {
+                t.SetOverlayType(OverlayType.None);
+            }
+            selectedTiles.Clear();
+        }
+    }
 }
