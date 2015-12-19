@@ -106,7 +106,7 @@ public class Tile : MonoBehaviour, System.IComparable
                 break;
             case TileType.Rock:
                 prefab = PrefabHolder.instance.Tile_Rock_Prefab;
-                movementCost = 3;
+                movementCost = 15;
                 break;
             default:
                 break;

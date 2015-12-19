@@ -109,19 +109,31 @@ public class MapCreator : MonoBehaviour {
                 Tile currentTile = map[i][j];
                 if (i - 1 >= 0)
                 {
-                   tmpList.Add(map[i - 1][j]);
+                    if (map[i - 1][j] != null)
+                    {
+                        tmpList.Add(map[i - 1][j]);
+                    }
                 }
                 if (i + 1 <= map.Count - 1)
                 {
-                    tmpList.Add(map[i + 1][j]);
+                    if (map[i + 1][j] != null)
+                    {
+                        tmpList.Add(map[i + 1][j]);
+                    }
                 }
                 if (j + 1 <= map[i].Count - 1)
                 {
-                    tmpList.Add(map[i][j + 1]);
+                    if (map[i][j + 1] != null)
+                    {
+                        tmpList.Add(map[i][j + 1]);
+                    }
                 }
                 if (j - 1 >= 0)
                 {
-                    tmpList.Add(map[i][j - 1]);
+                    if (map[i][j - 1] != null)
+                    {
+                        tmpList.Add(map[i][j - 1]);
+                    }
                 }
                 currentTile.SetNeighbours(tmpList);
                 tmpList.Clear();
