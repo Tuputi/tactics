@@ -10,7 +10,7 @@ public class MapCreator : MonoBehaviour {
     public int mapColumns;
     public string MapName;
     public static MapCreator instance;
-    GameObject mapContainer;
+    public GameObject mapContainer;
 
 
     void Awake(){
