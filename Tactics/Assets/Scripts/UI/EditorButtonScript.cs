@@ -17,60 +17,86 @@ public class EditorButtonScript : MonoBehaviour {
 
     public void RotationButton()
     {
-        if (SelectionScript.selectedTile != null)
+        if (SelectionScript.selectedTiles.Count > 0)
         {
-            int currentRotation = (int)SelectionScript.selectedTile.rotation;
-            if (++currentRotation > 3)
+            foreach (Tile t in SelectionScript.selectedTiles)
             {
-                SelectionScript.selectedTile.SetRotation((Facing)0);
-            }
-            else
-            {
-                SelectionScript.selectedTile.SetRotation((Facing)(currentRotation));
+                int currentRotation = (int)t.rotation;
+                if (++currentRotation > 3)
+                {
+                    t.SetRotation((Facing)0);
+                }
+                else
+                {
+                    t.SetRotation((Facing)(currentRotation));
+                }
             }
         }
     }
 
     public void HigherButton()
     {
-        SelectionScript.selectedTile.height += 0.5f;
-        SelectionScript.selectedTile.transform.position += new Vector3(0, +0.5f, 0);
+
+        if (SelectionScript.selectedTiles.Count > 0)
+        {
+            foreach (Tile t in SelectionScript.selectedTiles)
+            {
+                t.height += 0.5f;
+                t.transform.position += new Vector3(0, +0.5f, 0);
+            }
+        }
     }
 
     public void LowerButton()
     {
-        SelectionScript.selectedTile.height -= 0.5f;
-        SelectionScript.selectedTile.transform.position += new Vector3(0, -0.5f, 0);
+        if (SelectionScript.selectedTiles.Count > 0)
+        {
+            foreach (Tile t in SelectionScript.selectedTiles)
+            {
+                t.height -= 0.5f;
+                t.transform.position += new Vector3(0, -0.5f, 0);
+            }
+        }
     }
 
     public void AddObjectButton(int objectId)
     {
-        if (SelectionScript.selectedTile != null)
+
+        if (SelectionScript.selectedTiles.Count > 0)
         {
-            if (SelectionScript.selectedTile.tileObject == null)
+            foreach (Tile t in SelectionScript.selectedTiles)
             {
-                SelectionScript.selectedTile.SetTileObject(objectId);
-            }
-            else
-            {
-                SelectionScript.selectedTile.RemoveTileObject();
+                if (t.tileObject == null)
+                {
+                    t.SetTileObject(objectId);
+                }
+                else
+                {
+                    t.RemoveTileObject();
+                }
             }
         }
     }
 
     public void RockButton()
     {
-        if (SelectionScript.selectedTile != null)
+        if (SelectionScript.selectedTiles.Count > 0)
         {
-            SelectionScript.selectedTile.SetTileType(TileType.Rock);
+            foreach (Tile t in SelectionScript.selectedTiles)
+            {
+                t.SetTileType(TileType.Rock);
+            }
         }
     }
 
     public void GrassButton()
     {
-        if (SelectionScript.selectedTile != null)
+        if (SelectionScript.selectedTiles.Count > 0)
         {
-            SelectionScript.selectedTile.SetTileType(TileType.Grass);
+            foreach (Tile t in SelectionScript.selectedTiles)
+            {
+                t.SetTileType(TileType.Grass);
+            }
         }
     }
 

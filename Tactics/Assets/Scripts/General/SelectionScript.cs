@@ -1,18 +1,63 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class SelectionScript : MonoBehaviour {
 
-    public static Tile selectedTile = null;
+    public static List<Tile> selectedTiles;
+    public static bool selectMultiple = false;
 
+    void Start()
+    {
+        selectedTiles = new List<Tile>();
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftShift) && !selectMultiple)
+        {
+            selectMultiple = true;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            selectMultiple = false;
+        }
+    }
 
     public static void SetSelectedTile(Tile tile)
     {
-        if (selectedTile != null)
+        if (selectMultiple)
         {
-            selectedTile.SetOverlayType(OverlayType.None);
+            SetMultipleSelectedTile(tile);
         }
-        selectedTile = tile;
+        else
+        {
+            SetSingleSelectedTile(tile);
+        }
+    }
+
+    static void SetMultipleSelectedTile(Tile tile)
+    {
+        if (selectedTiles.Contains(tile))
+        {
+            selectedTiles.Remove(tile);
+            tile.SetOverlayType(OverlayType.None);
+        }
+        else
+        {
+            selectedTiles.Add(tile);
+            tile.SetOverlayType(OverlayType.Selected);
+        }
+    }
+
+    static void SetSingleSelectedTile(Tile tile)
+    {
+        foreach(Tile t in selectedTiles)
+        {
+            t.SetOverlayType(OverlayType.None);
+        }
+        selectedTiles.Clear();
+
+        selectedTiles.Add(tile);
         tile.SetOverlayType(OverlayType.Selected);
     }
 }

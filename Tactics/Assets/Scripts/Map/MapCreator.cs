@@ -59,6 +59,8 @@ public class MapCreator : MonoBehaviour {
                 tile.name = "tile" + i + "-" + j;
                 tile.SetTileType(TileType.Grass);
                 tile.height = 1;
+                tile.xPos = i;
+                tile.yPos = j;
                 tile.transform.position = new Vector3(i, tile.height, j);
                 row.Add(tile);
             }
@@ -88,6 +90,8 @@ public class MapCreator : MonoBehaviour {
                 t.SetRotation(loadedMap.MapTiles[i][j].rotation);
                 t.SetTileObject(loadedMap.MapTiles[i][j].objectId);
                 t.transform.position = new Vector3(i, t.height, j);
+                t.xPos = i;
+                t.yPos = j;
                 row.Add(t);
             }
             map.Add(row);
@@ -97,7 +101,7 @@ public class MapCreator : MonoBehaviour {
 
     void GoThroughNeighbours()
     {
-        Dictionary<Facing, Tile> tmpList = new Dictionary<Facing, Tile>();
+       List<Tile> tmpList = new List<Tile>();
         for (int i = 0; i <= mapRows; i++)
         {
             for (int j = 0; j <= mapColumns; j++)
@@ -105,19 +109,19 @@ public class MapCreator : MonoBehaviour {
                 Tile currentTile = map[i][j];
                 if (i - 1 >= 0)
                 {
-                   tmpList.Add(Facing.Up,map[i - 1][j]);
+                   tmpList.Add(map[i - 1][j]);
                 }
                 if (i + 1 <= map.Count - 1)
                 {
-                    tmpList.Add(Facing.Down, map[i + 1][j]);
+                    tmpList.Add(map[i + 1][j]);
                 }
                 if (j + 1 <= map[i].Count - 1)
                 {
-                    tmpList.Add(Facing.Right, map[i][j + 1]);
+                    tmpList.Add(map[i][j + 1]);
                 }
                 if (j - 1 >= 0)
                 {
-                    tmpList.Add(Facing.Left, map[i][j - 1]);
+                    tmpList.Add(map[i][j - 1]);
                 }
                 currentTile.SetNeighbours(tmpList);
                 tmpList.Clear();

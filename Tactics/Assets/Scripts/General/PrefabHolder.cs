@@ -20,6 +20,7 @@ public class PrefabHolder : MonoBehaviour {
 
     //lists
     public List<TileObject> tileObjects;
+    public List<Character> characters;
 
     void Awake()
     {

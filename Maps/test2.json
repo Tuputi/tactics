@@ -1,6 +1,6 @@
 {
 
-	"MapName":"cube",
+	"MapName":"test2",
 	"Tiles":[
 
 		{
@@ -135,7 +135,7 @@
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":1,
 			"Column":2,
 			"Height":1,
@@ -235,7 +235,7 @@
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":2,
 			"Column":1,
 			"Height":1,
@@ -250,12 +250,12 @@
 			"Column":2,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":1
+			"ObjectId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":2,
 			"Column":3,
 			"Height":1,
@@ -355,7 +355,7 @@
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":3,
 			"Column":2,
 			"Height":1,

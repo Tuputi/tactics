@@ -9,11 +9,11 @@ public enum Facing { Up, Right, Down, Left };
 public enum TileType { None, Grass, Rock };
 public enum OverlayType { None, Selected};
 
-public class Tile : MonoBehaviour
+public class Tile : MonoBehaviour, System.IComparable
 {
 
     //lists
-    public Dictionary<Facing, Tile> neighbours;
+    public List<Tile> neighbours;
 
 
     //tileType/visuals
@@ -23,9 +23,64 @@ public class Tile : MonoBehaviour
     private GameObject prefab;
     public GameObject tileObject;
     public int tileObjectId;
+    public Character tileCharacter;
 
     public OverlayType overlayType = OverlayType.None;
     private GameObject overlayPrefab;
+
+    //pathfinding variables
+    public float gCost;
+    public float pathfindingCost;
+    public Tile cameFrom;
+    public float movementCost = 1;
+    public bool isOccupied
+    {
+        get
+        {
+            return (!((tileCharacter == null) && (tileObject == null)));
+        }
+    }
+    public bool isWalkable = true;
+    public int xPos;
+    public int yPos;
+
+
+    //compartors
+    bool Equals(Tile other)
+    {
+        if (other.xPos == this.xPos)
+        {
+            if (other.yPos == this.yPos)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int CompareTo(object other)
+    {
+        Tile otherTile = (Tile)other;
+        if (otherTile != null)
+        {
+            if (otherTile.pathfindingCost > this.pathfindingCost)
+            {
+                return -1;
+            }
+            else if (otherTile.pathfindingCost < this.pathfindingCost)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            throw new System.ArgumentException("Object is not a Tile");
+        }
+    }
 
 
     public Tile()
@@ -33,9 +88,9 @@ public class Tile : MonoBehaviour
         tileType = TileType.Grass;
     }
 
-    public void SetNeighbours(Dictionary<Facing, Tile> tiles)
+    public void SetNeighbours(List<Tile> tiles)
     {
-        neighbours = new Dictionary<Facing, Tile>(tiles);
+        neighbours = new List<Tile>(tiles);
     }
 
     public void SetTileType(TileType type)
@@ -117,6 +172,7 @@ public class Tile : MonoBehaviour
         }
     }
 
+    //move somewhere else?
     public void RemoveTileObject()
     {
         if (tileObject != null)
