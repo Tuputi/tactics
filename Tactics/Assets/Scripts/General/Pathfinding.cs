@@ -49,7 +49,7 @@ public class Pathfinding : MonoBehaviour {
                 float newCost = t.gCost + GetHeuristic(t, endTile);
                 if (!(closedList.Contains(t)))
                 {
-                    if (openList.Contains(t) && newCost < t.pathfindingCost)
+                    if (openList.Contains(t) && (newCost < t.pathfindingCost))
                     {
                         openList.Remove(t);
                         t.pathfindingCost = newCost;
@@ -59,6 +59,7 @@ public class Pathfinding : MonoBehaviour {
                     else if (!openList.Contains(t))
                     {
                         t.pathfindingCost = newCost;
+                        t.cameFrom = current;
                         openList.Add(t);
                     }
 
