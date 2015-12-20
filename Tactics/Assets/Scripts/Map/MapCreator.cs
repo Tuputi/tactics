@@ -22,7 +22,7 @@ public class MapCreator : MonoBehaviour {
         mapContainer = GameObject.Find("Map").gameObject;
         if (!MapName.Equals(""))
         {
-            LoadMap(MapName);
+           LoadMap(MapName);
         }
         else
         {

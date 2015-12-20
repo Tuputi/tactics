@@ -147,21 +147,42 @@ public class EditorButtonScript : MonoBehaviour {
         SelectionScript.ClearSelection();
         string mapname = loadMapDropdown.captionText.text;
         UpdateMapList();
-        if (File.Exists(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "/Tactics/Maps/" + mapname + ".json"))
+        if (Application.platform == RuntimePlatform.Android)
         {
-            MapCreator.instance.LoadMap(mapname);
+            if (File.Exists(Application.persistentDataPath + "/Tactics/Maps/" + mapname + ".json"))
+            {
+                MapCreator.instance.LoadMap(mapname);
+            }
+            else
+            {
+                Debug.Log(mapname + " not found");
+            }
         }
         else
         {
-            Debug.Log(mapname+" not found");
+            if(File.Exists(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "/Tactics/Maps/" + mapname + ".json"))
+            {
+                MapCreator.instance.LoadMap(mapname);
+            }
+            else
+            {
+                Debug.Log(mapname + " not found");
+            }
         }
-        
     }
 
     public void UpdateMapList()
     {
         loadMapDropdown.options.Clear();
-        string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "/Tactics/Maps/";
+        string path = "";
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            path = Application.persistentDataPath + "/Tactics/Maps/";
+        }
+        else
+        {
+            path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "/Tactics/Maps/";
+        }
         string[] mapnames = System.IO.Directory.GetFiles(path, "*.json");
 
         foreach (var p in mapnames)

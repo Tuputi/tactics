@@ -10,13 +10,22 @@ public class SaveLoad : MonoBehaviour {
     {
         Map map = new Map(MapName, mapTiles);
         var mapData = map.JsonSave();
-        string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+        string path = "";
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            path = Application.persistentDataPath;
+        }
+        else
+        {
+            path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+        }
+        
         if (!Directory.Exists(path + "/Tactics/Maps/"))
         {
             System.IO.Directory.CreateDirectory(path + "/Tactics/Maps/");
         }
         File.WriteAllText(path + "/Tactics/Maps/" + map.MapName + ".json", mapData.PrettyPrint());
-        Debug.Log("Saved file " + map.MapName + ".json");
+        Debug.Log("Saved file " + map.MapName + ".json at location "+ path + "/Tactics/Maps/");
     }
 
     public static Map LoadMap(string filename)
@@ -25,7 +34,15 @@ public class SaveLoad : MonoBehaviour {
         {
             filename += ".json";
         }
-        string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+        string path = "";
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            path = Application.persistentDataPath;
+        }
+        else
+        {
+            path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+        }
         var fileContent = File.ReadAllText(path + "/Tactics/Maps/" + filename);
         var mapJson = JObject.Parse(fileContent);
         var map = new Map();
