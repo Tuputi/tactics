@@ -6,16 +6,20 @@ public class TurnManager : MonoBehaviour {
 
     public static OrderedBag<Character> characters;
     public float EnergyThreshold = 50f;
+    public Character CurrentlyTakingTurn;
+
+    void Awake()
+    {
+        characters = new OrderedBag<Character>();
+    }
 
 	public void CreateCharacterList()
     {
-        characters = new OrderedBag<Character>();
         GameObject characterHolder = GameObject.Find("Characters");
         for(int i = 0; i < characterHolder.transform.childCount; i++)
         {
             characters.Add(characterHolder.transform.GetChild(i).GetComponent<Character>());
         }
-        NextInTurn();
     }
 
     void AddEnergy()
@@ -31,6 +35,11 @@ public class TurnManager : MonoBehaviour {
 
     public void NextInTurn()
     {
+        if(!(characters.Count > 0))
+        {
+            CreateCharacterList();
+        }
+
         Character nextCharacter = null;
         while(nextCharacter == null)
         {
@@ -44,5 +53,14 @@ public class TurnManager : MonoBehaviour {
             }
         }
         Debug.Log("Next in turn is " + nextCharacter.characterName);
+        CurrentlyTakingTurn = nextCharacter;
+        TakeTurn();
+    }
+
+    public void TakeTurn()
+    {
+        CurrentlyTakingTurn.characterPosition.SelectThis();
+        CameraScript.instance.SetMoveTarget(CurrentlyTakingTurn.gameObject);
+        CurrentlyTakingTurn.characterEnergy = 0;
     }
 }

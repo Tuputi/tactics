@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using BonaJson;
+using UnityEngine.EventSystems;
 
 
 //enums
@@ -220,9 +221,27 @@ public class Tile : MonoBehaviour, System.IComparable
 
     void OnMouseDown()
     {
+        if (!IsPointerOverUIObject())
+        {
+            SelectThis();
+        }
+    }
+
+    public void SelectThis()
+    {
         SelectionScript.SetSelectedTile(this);
     }
 
+    //code by mwk888
+    private bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
 }
 
 public class TileSave

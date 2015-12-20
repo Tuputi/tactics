@@ -61,9 +61,6 @@ public class Character : MonoBehaviour, System.IComparable
         }
     }
 
-
-
-
     public static void CreateCharacter(int CharaID, Tile tilePos)
     {
         foreach (Character cha in PrefabHolder.instance.characters)
