@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraScript : MonoBehaviour {
     
     float speed = 1f;
-    bool MoveToTarget = false;
+    bool MoveToTargetBool = false;
     public GameObject target = null;
     public static CameraScript instance;
 
@@ -16,22 +16,32 @@ public class CameraScript : MonoBehaviour {
 
     void Update()
     {
-        if (MoveToTarget)
+        if (MoveToTargetBool)
         {
-            float step = speed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
-            if(this.gameObject.transform.position.magnitude - target.transform.position.magnitude < 1f)
-            {
-                Debug.Log("Arrived");
-                MoveToTarget = false;
-                target = null;
-            }
+
+            StartCoroutine(MoveToTarget(target.transform));
         }
     }
 
     public void SetMoveTarget(GameObject Target)
     {
         target = Target;
-        MoveToTarget = true;
+        MoveToTargetBool = true;
+    }
+
+    float viewDistance = 5f;
+    IEnumerator MoveToTarget(Transform target)
+    {
+        Vector3 targetPos = new Vector3(target.transform.position.x, this.gameObject.transform.position.y, target.transform.position.z);
+        Vector3 sourcePos = this.gameObject.transform.position;
+        Vector3 destPos = targetPos - transform.forward * viewDistance;
+        float i = 0.0f;
+        while (i < 1.0f)
+        {
+            transform.position = Vector3.Lerp(sourcePos, destPos, Mathf.SmoothStep(0, 1f, i));
+            i += Time.deltaTime;
+            yield return 0;
+            MoveToTargetBool = false;
+        }
     }
 }

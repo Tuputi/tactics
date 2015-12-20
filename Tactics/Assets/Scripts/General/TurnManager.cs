@@ -61,6 +61,7 @@ public class TurnManager : MonoBehaviour {
     {
         CurrentlyTakingTurn.characterPosition.SelectThis();
         CameraScript.instance.SetMoveTarget(CurrentlyTakingTurn.gameObject);
+        //CameraScript.instance.MoveToTargetFunc(CurrentlyTakingTurn.gameObject.transform);
         CurrentlyTakingTurn.characterEnergy = 0;
     }
 }
