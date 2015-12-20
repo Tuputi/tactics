@@ -2,7 +2,8 @@
 using System.Collections;
 using BonaJson;
 
-public class Character : MonoBehaviour {
+public class Character : MonoBehaviour, System.IComparable
+{
 
     public string characterName = "tempName";
     public int characterID = 0;
@@ -25,6 +26,42 @@ public class Character : MonoBehaviour {
     public int hp = 100;
     public int mp = 100;
     public int speed = 10;
+
+    //compartors
+    public bool Equals(Character other)
+    {
+        if (other.characterName.Equals(this.characterName))
+        {
+           return true;
+        }
+        return false;
+    }
+
+    public int CompareTo(object other)
+    {
+        Character otherCharacter = (Character)other;
+        if (otherCharacter != null)
+        {
+            if (otherCharacter.characterEnergy < this.characterEnergy)
+            {
+                return -1;
+            }
+            else if (otherCharacter.characterEnergy > this.characterEnergy)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            throw new System.ArgumentException("Object is not a Character");
+        }
+    }
+
+
 
 
     public static void CreateCharacter(int CharaID, Tile tilePos)
