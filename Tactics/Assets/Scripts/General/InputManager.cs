@@ -13,10 +13,13 @@ public class InputManager : MonoBehaviour {
     //touch
     private Vector2 touchStartPos;
 
-    private float minZoom = 1f;
-    private float maxZoom = 5f;
+    private float minZoom = 2f;
+    private float maxZoom = 10f;
     private float moveSpeed = 0.05f;
     private float zoomSpeed = 0.05f;
+    private float mapRangeX = 10f;
+    private float mapRangeY = 10f;
+
 
     void Update()
     {      
@@ -36,9 +39,6 @@ public class InputManager : MonoBehaviour {
                     {
                         Vector2 touchDeltaPos = Input.GetTouch(0).deltaPosition;
                         Vector3 move = new Vector3(-touchDeltaPos.x * moveSpeed, 0, -touchDeltaPos.y * moveSpeed);
-                        Vector3 pos = CentrePoint.gameObject.transform.position;
-                        pos.x = Mathf.Clamp(pos.x, -5, 10);
-                        pos.z = Mathf.Clamp(pos.z, -5, 10);
                         CentrePoint.transform.Translate(move, Space.Self);
 
 
@@ -71,6 +71,12 @@ public class InputManager : MonoBehaviour {
                     }
                 }
             }
+        }
+        //touch not supported ie on computer
+        else
+        {
+            var move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            CentrePoint.transform.position += move * moveSpeed;
         }
     }
 }
