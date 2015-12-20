@@ -157,7 +157,7 @@ public class Pathfinding : MonoBehaviour {
                             t.cameFrom = current;
                             if (ignoreMoveCost)
                             {
-                                t.gCost = t.cameFrom.gCost;
+                                t.gCost = 1 + t.cameFrom.gCost;
                             }
                             else
                             {
@@ -171,7 +171,7 @@ public class Pathfinding : MonoBehaviour {
                         }
                         else
                         {
-                            float newCost = t.cameFrom.gCost;
+                            float newCost = 1 + t.cameFrom.gCost;
                             if (!ignoreMoveCost)
                             {
                                 float heightcost = System.Math.Abs(t.cameFrom.height - t.height);

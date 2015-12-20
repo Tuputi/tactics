@@ -4,12 +4,22 @@ using Wintellect.PowerCollections;
 
 public class TurnManager : MonoBehaviour {
 
+    public enum TurnMode {  start, move, action, end};
+
+    public static TurnManager instance;
     public static OrderedBag<Character> characters;
     public float EnergyThreshold = 50f;
     public Character CurrentlyTakingTurn;
 
+
+    public static TurnMode mode;
+    public bool hasMoved = false;
+    public bool hasActed = false;
+    
+
     void Awake()
     {
+        instance = this;
         characters = new OrderedBag<Character>();
     }
 
@@ -59,6 +69,8 @@ public class TurnManager : MonoBehaviour {
 
     public void TakeTurn()
     {
+        hasActed = false;
+        hasMoved = false;
         SelectionScript.ClearAll();
         CurrentlyTakingTurn.characterPosition.SelectThis();
         CameraScript.instance.SetMoveTarget(CurrentlyTakingTurn.gameObject);
@@ -68,10 +80,31 @@ public class TurnManager : MonoBehaviour {
 
     public void Move()
     {
-        List<Tile> posRange = Pathfinding.GetPossibleRange(CurrentlyTakingTurn.characterPosition, CurrentlyTakingTurn.characterWalkEnergy, false);
-        foreach(Tile t in posRange)
+        CurrentlyTakingTurn.possibleRange.Clear();
+        SelectionScript.ClearAll();
+        if (!hasMoved)
         {
-            t.SetOverlayType(OverlayType.Selected);
+            mode = TurnMode.move;
+            CurrentlyTakingTurn.Move();
+        }
+        else
+        {
+            Debug.Log("Has already moved");
+        }
+    }
+
+    public void Action()
+    {
+        CurrentlyTakingTurn.possibleRange.Clear();
+        SelectionScript.ClearAll();
+        if (!hasActed)
+        {
+            mode = TurnMode.action;
+            CurrentlyTakingTurn.Action();
+        }
+        else
+        {
+            Debug.Log("Has already acted");
         }
     }
 

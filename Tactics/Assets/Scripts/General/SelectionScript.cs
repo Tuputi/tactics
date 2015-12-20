@@ -25,13 +25,33 @@ public class SelectionScript : MonoBehaviour {
 
     public static void SetSelectedTile(Tile tile)
     {
-        if (selectMultiple)
+        if (TurnManager.mode == TurnManager.TurnMode.move || TurnManager.mode == TurnManager.TurnMode.action)
         {
-            SetMultipleSelectedTile(tile);
+            SetSingleSelectedTile(tile);
+            if (TurnManager.instance.CurrentlyTakingTurn.possibleRange.Contains(tile))
+            {
+                ClearAll();
+                SetSingleSelectedTile(tile);
+                if (TurnManager.mode == TurnManager.TurnMode.move)
+                {
+                    TurnManager.instance.CurrentlyTakingTurn.CompleteMove(selectedTiles[0]);
+                }
+                if(TurnManager.mode == TurnManager.TurnMode.action)
+                {
+                    TurnManager.instance.CurrentlyTakingTurn.CompleteAction(selectedTiles[0]);
+                }
+            }
         }
         else
         {
-            SetSingleSelectedTile(tile);
+            if (selectMultiple)
+            {
+                SetMultipleSelectedTile(tile);
+            }
+            else
+            {
+                SetSingleSelectedTile(tile);
+            }
         }
     }
 
@@ -75,6 +95,7 @@ public class SelectionScript : MonoBehaviour {
 
     public static void ClearAll()
     {
+        selectedTiles.Clear();
        int rows = MapCreator.instance.map.Count;
        for(int i = 0; i < rows; i++)
        {

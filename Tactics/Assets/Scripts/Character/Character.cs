@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using BonaJson;
 
 public class Character : MonoBehaviour, System.IComparable
@@ -26,6 +26,9 @@ public class Character : MonoBehaviour, System.IComparable
     public int hp = 100;
     public int mp = 100;
     public int speed = 10;
+
+    //lists
+    public List<Tile> possibleRange;
 
     //compartors
     public bool Equals(Character other)
@@ -61,6 +64,7 @@ public class Character : MonoBehaviour, System.IComparable
         }
     }
 
+    //create
     public static void CreateCharacter(int CharaID, Tile tilePos)
     {
         foreach (Character cha in PrefabHolder.instance.characters)
@@ -81,6 +85,42 @@ public class Character : MonoBehaviour, System.IComparable
         {
             Debug.Log("Character Id not found");
         }
+    }
+
+
+    //actions
+    public void Move()
+    {
+        possibleRange = Pathfinding.GetPossibleRange(characterPosition, characterWalkEnergy, false);
+        foreach (Tile t in possibleRange)
+        {
+            t.SetOverlayType(OverlayType.Selected);
+        }
+    }
+
+    public void CompleteMove(Tile tile)
+    {
+        Debug.Log("move to "+ tile);
+        possibleRange.Clear();
+        TurnManager.mode = TurnManager.TurnMode.end;
+        TurnManager.instance.hasMoved = true;
+    }
+
+    public void Action()
+    {
+        possibleRange = Pathfinding.GetPossibleRange(characterPosition, 2f, true);
+        foreach(Tile t in possibleRange)
+        {
+            t.SetOverlayType(OverlayType.Selected);
+        }
+    }
+
+    public void CompleteAction(Tile tile)
+    {
+        Debug.Log("Action completed");
+        possibleRange.Clear();
+        TurnManager.mode = TurnManager.TurnMode.end;
+        TurnManager.instance.hasActed = true;
     }
 
 }
