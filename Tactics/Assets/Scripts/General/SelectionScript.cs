@@ -72,4 +72,17 @@ public class SelectionScript : MonoBehaviour {
             selectedTiles.Clear();
         }
     }
+
+    public static void ClearAll()
+    {
+       int rows = MapCreator.instance.map.Count;
+       for(int i = 0; i < rows; i++)
+       {
+            List<Tile> tempList = MapCreator.instance.map[i];
+            foreach(Tile t in tempList)
+            {
+                t.SetOverlayType(OverlayType.None);
+            }
+       }
+    }
 }

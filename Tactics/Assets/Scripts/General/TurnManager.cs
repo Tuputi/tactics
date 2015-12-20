@@ -59,9 +59,20 @@ public class TurnManager : MonoBehaviour {
 
     public void TakeTurn()
     {
+        SelectionScript.ClearAll();
         CurrentlyTakingTurn.characterPosition.SelectThis();
         CameraScript.instance.SetMoveTarget(CurrentlyTakingTurn.gameObject);
         //CameraScript.instance.MoveToTargetFunc(CurrentlyTakingTurn.gameObject.transform);
         CurrentlyTakingTurn.characterEnergy = 0;
     }
+
+    public void Move()
+    {
+        List<Tile> posRange = Pathfinding.GetPossibleRange(CurrentlyTakingTurn.characterPosition, CurrentlyTakingTurn.characterWalkEnergy, false);
+        foreach(Tile t in posRange)
+        {
+            t.SetOverlayType(OverlayType.Selected);
+        }
+    }
+
 }

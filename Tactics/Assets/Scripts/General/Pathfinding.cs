@@ -131,7 +131,7 @@ public class Pathfinding : MonoBehaviour {
         return path;
     }
 
-    public static List<Tile> GetPossibleRange(Tile startTile, float energy)
+    public static List<Tile> GetPossibleRange(Tile startTile, float energy, bool ignoreMoveCost)
     {
         List<Tile> closedList = new List<Tile>();
         List<Tile> openList = new List<Tile>();
@@ -155,8 +155,15 @@ public class Pathfinding : MonoBehaviour {
                         if (!openList.Contains(t))
                         {
                             t.cameFrom = current;
-                            float heightcost = System.Math.Abs(t.cameFrom.height - t.height);
-                            t.gCost = t.cameFrom.gCost + t.movementCost + heightcost;
+                            if (ignoreMoveCost)
+                            {
+                                t.gCost = t.cameFrom.gCost;
+                            }
+                            else
+                            {
+                                float heightcost = System.Math.Abs(t.cameFrom.height - t.height);
+                                t.gCost = t.cameFrom.gCost + t.movementCost + heightcost;
+                            }
                             if (t.gCost > energy)
                             {
                                 remove.Add(t);
@@ -164,8 +171,13 @@ public class Pathfinding : MonoBehaviour {
                         }
                         else
                         {
-                            float heightcost = System.Math.Abs(t.cameFrom.height - t.height);
-                            float newCost = heightcost + t.movementCost + t.cameFrom.gCost;
+                            float newCost = t.cameFrom.gCost;
+                            if (!ignoreMoveCost)
+                            {
+                                float heightcost = System.Math.Abs(t.cameFrom.height - t.height);
+                                newCost += heightcost + t.movementCost;
+                            }
+                            
                             if (newCost < t.gCost)
                             {
                                 t.gCost = newCost;

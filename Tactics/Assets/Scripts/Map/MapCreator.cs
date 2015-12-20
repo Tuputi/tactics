@@ -28,7 +28,6 @@ public class MapCreator : MonoBehaviour {
         {
             generateBlankMap(mapRows, mapColumns);
         }
-        //SaveLoad.SaveMap("TestMap", map);
     }
 
     public void SaveMap(string mapname)

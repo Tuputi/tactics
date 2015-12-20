@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CameraScript : MonoBehaviour {
     
-    float speed = 1f;
+    float viewDistance = 5f;
     bool MoveToTargetBool = false;
     public GameObject target = null;
     public static CameraScript instance;
@@ -29,7 +29,8 @@ public class CameraScript : MonoBehaviour {
         MoveToTargetBool = true;
     }
 
-    float viewDistance = 5f;
+    
+    //code by aldonaletto 
     IEnumerator MoveToTarget(Transform target)
     {
         Vector3 targetPos = new Vector3(target.transform.position.x, this.gameObject.transform.position.y, target.transform.position.z);
