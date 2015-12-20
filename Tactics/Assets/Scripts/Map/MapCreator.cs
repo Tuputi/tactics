@@ -42,6 +42,12 @@ public class MapCreator : MonoBehaviour {
         {
             Destroy(mapContainer.transform.GetChild(i).gameObject);
         }
+        GameObject characterContainer = GameObject.Find("Characters");
+        for(int i = 0; i < characterContainer.transform.childCount; i++)
+        {
+            GameObject chara = characterContainer.transform.GetChild(i).gameObject;
+            Destroy(chara);
+        }
     }
 
     void generateBlankMap(int rows, int columns)
