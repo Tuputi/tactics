@@ -1,6 +1,6 @@
 {
 
-	"MapName":"labyrinth",
+	"MapName":"characterSaveTest",
 	"Tiles":[
 
 		{
@@ -10,7 +10,8 @@
 			"Column":0,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -20,27 +21,30 @@
 			"Column":1,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
-		}
-,
-		{
-
-			"TileType":2,
-			"Row":0,
-			"Column":2,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
 			"TileType":1,
 			"Row":0,
+			"Column":2,
+			"Height":1,
+			"Rotation":0,
+			"ObjectId":0,
+			"CharacterId":0
+		}
+,
+		{
+
+			"TileType":1,
+			"Row":0,
 			"Column":3,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -50,7 +54,8 @@
 			"Column":4,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -60,27 +65,30 @@
 			"Column":5,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
-		}
-,
-		{
-
-			"TileType":2,
-			"Row":0,
-			"Column":6,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
 			"TileType":1,
 			"Row":0,
+			"Column":6,
+			"Height":1,
+			"Rotation":0,
+			"ObjectId":0,
+			"CharacterId":0
+		}
+,
+		{
+
+			"TileType":1,
+			"Row":0,
 			"Column":7,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -90,7 +98,8 @@
 			"Column":8,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -100,7 +109,8 @@
 			"Column":9,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -110,7 +120,8 @@
 			"Column":10,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -120,7 +131,8 @@
 			"Column":0,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -130,17 +142,19 @@
 			"Column":1,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":1,
 			"Column":2,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -150,7 +164,8 @@
 			"Column":3,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -160,7 +175,8 @@
 			"Column":4,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -170,17 +186,19 @@
 			"Column":5,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":1,
 			"Column":6,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -190,17 +208,19 @@
 			"Column":7,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":1,
 			"Column":8,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -210,7 +230,8 @@
 			"Column":9,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -220,7 +241,8 @@
 			"Column":10,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -230,7 +252,8 @@
 			"Column":0,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -240,17 +263,19 @@
 			"Column":1,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":2,
 			"Column":2,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":1
 		}
 ,
 		{
@@ -260,17 +285,19 @@
 			"Column":3,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":2,
 			"Column":4,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -280,17 +307,19 @@
 			"Column":5,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":2,
 			"Column":6,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -300,17 +329,19 @@
 			"Column":7,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":2,
 			"Column":8,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -320,7 +351,8 @@
 			"Column":9,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -330,7 +362,8 @@
 			"Column":10,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -340,7 +373,8 @@
 			"Column":0,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -350,17 +384,19 @@
 			"Column":1,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":3,
 			"Column":2,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -370,17 +406,19 @@
 			"Column":3,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":3,
 			"Column":4,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -390,17 +428,19 @@
 			"Column":5,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":3,
 			"Column":6,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -410,17 +450,19 @@
 			"Column":7,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":3,
 			"Column":8,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -430,7 +472,8 @@
 			"Column":9,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -440,7 +483,8 @@
 			"Column":10,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -450,7 +494,8 @@
 			"Column":0,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -460,17 +505,19 @@
 			"Column":1,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":4,
 			"Column":2,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -480,17 +527,19 @@
 			"Column":3,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":4,
 			"Column":4,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":1
 		}
 ,
 		{
@@ -500,17 +549,19 @@
 			"Column":5,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":4,
 			"Column":6,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -520,17 +571,19 @@
 			"Column":7,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":4,
 			"Column":8,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -540,7 +593,8 @@
 			"Column":9,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -550,7 +604,8 @@
 			"Column":10,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -560,7 +615,8 @@
 			"Column":0,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -570,17 +626,19 @@
 			"Column":1,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":5,
 			"Column":2,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -590,17 +648,19 @@
 			"Column":3,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":5,
 			"Column":4,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -610,17 +670,19 @@
 			"Column":5,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":5,
 			"Column":6,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -630,17 +692,19 @@
 			"Column":7,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":5,
 			"Column":8,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -650,7 +714,8 @@
 			"Column":9,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -660,7 +725,8 @@
 			"Column":10,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -670,7 +736,8 @@
 			"Column":0,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -680,7 +747,8 @@
 			"Column":1,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":1
 		}
 ,
 		{
@@ -690,7 +758,8 @@
 			"Column":2,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -700,17 +769,19 @@
 			"Column":3,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":6,
 			"Column":4,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -720,7 +791,8 @@
 			"Column":5,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -730,7 +802,8 @@
 			"Column":6,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -740,17 +813,19 @@
 			"Column":7,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":6,
 			"Column":8,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -760,7 +835,8 @@
 			"Column":9,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -770,7 +846,8 @@
 			"Column":10,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -780,87 +857,96 @@
 			"Column":0,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":7,
 			"Column":1,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":7,
 			"Column":2,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":7,
 			"Column":3,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":7,
 			"Column":4,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":7,
 			"Column":5,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":7,
 			"Column":6,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":7,
 			"Column":7,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":2,
+			"TileType":1,
 			"Row":7,
 			"Column":8,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -870,7 +956,8 @@
 			"Column":9,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -880,7 +967,8 @@
 			"Column":10,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -890,7 +978,8 @@
 			"Column":0,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -900,7 +989,8 @@
 			"Column":1,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -910,7 +1000,8 @@
 			"Column":2,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -920,7 +1011,8 @@
 			"Column":3,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -930,7 +1022,8 @@
 			"Column":4,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -940,7 +1033,8 @@
 			"Column":5,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -950,7 +1044,8 @@
 			"Column":6,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -960,7 +1055,8 @@
 			"Column":7,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -970,7 +1066,8 @@
 			"Column":8,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -980,7 +1077,8 @@
 			"Column":9,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -990,7 +1088,8 @@
 			"Column":10,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1000,7 +1099,8 @@
 			"Column":0,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1010,7 +1110,8 @@
 			"Column":1,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1020,7 +1121,8 @@
 			"Column":2,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1030,7 +1132,8 @@
 			"Column":3,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1040,7 +1143,8 @@
 			"Column":4,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1050,7 +1154,8 @@
 			"Column":5,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1060,7 +1165,8 @@
 			"Column":6,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1070,7 +1176,8 @@
 			"Column":7,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1080,7 +1187,8 @@
 			"Column":8,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1090,7 +1198,8 @@
 			"Column":9,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1100,7 +1209,8 @@
 			"Column":10,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1110,7 +1220,8 @@
 			"Column":0,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1120,7 +1231,8 @@
 			"Column":1,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1130,7 +1242,8 @@
 			"Column":2,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1140,7 +1253,8 @@
 			"Column":3,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1150,7 +1264,8 @@
 			"Column":4,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1160,7 +1275,8 @@
 			"Column":5,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1170,7 +1286,8 @@
 			"Column":6,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1180,7 +1297,8 @@
 			"Column":7,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1190,7 +1308,8 @@
 			"Column":8,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1200,7 +1319,8 @@
 			"Column":9,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 ,
 		{
@@ -1210,7 +1330,8 @@
 			"Column":10,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":0
+			"ObjectId":0,
+			"CharacterId":0
 		}
 
 	]

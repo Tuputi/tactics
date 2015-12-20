@@ -173,21 +173,10 @@ public class Tile : MonoBehaviour, System.IComparable
         }
     }
 
-    public void SetCharacter(int CharaID)
+    public void SetCharacter(Character Chara)
     {
-        foreach (Character cha in PrefabHolder.instance.characters)
-        {
-            if (cha.characterID == CharaID)
-            {
-                cha.characterPosition = this;
-                Vector3 pos = cha.gameObject.transform.position;
-                pos += this.transform.position;
-                GameObject go = (GameObject)Instantiate(cha.gameObject, pos, Quaternion.identity);
-                tileCharacter = go.GetComponent<Character>();
-                go.transform.SetParent(this.gameObject.transform);
-                return;
-            }
-        }
+        tileCharacter = Chara;
+        Chara.characterPosition = this;
     }
 
     //move somewhere else?
@@ -245,9 +234,10 @@ public class TileSave
     public float height;
     public Facing rotation;
     public int objectId;
+    public int characterId = 0;
    // public CharacterSave character;
 
-    public TileSave(TileType tiletype, int Row, int Column, float TileHeight, Facing Rotation, int ObjectId)
+    public TileSave(TileType tiletype, int Row, int Column, float TileHeight, Facing Rotation, int ObjectId, Character chara)
     {
         tileType = tiletype;
         row = Row;
@@ -255,6 +245,10 @@ public class TileSave
         height = TileHeight;
         rotation = Rotation;
         objectId = ObjectId;
+        if (chara != null)
+        {
+            characterId = chara.characterID;
+        }
 
     }
 
@@ -272,6 +266,7 @@ public class TileSave
         tile.Add("Height", height);
         tile.Add("Rotation", (int)rotation);
         tile.Add("ObjectId", objectId);
+        tile.Add("CharacterId", characterId);
         return tile;
     }
 
@@ -283,6 +278,7 @@ public class TileSave
         this.height = jObject["Height"].GetAsFloat();
         this.rotation = jObject["Rotation"].Value<Facing>();
         this.objectId = jObject["ObjectId"].Value<int>();
+        this.characterId = jObject["CharacterId"].Value<int>();
        
         
         /*CharacterSave tempChara = new CharacterSave();

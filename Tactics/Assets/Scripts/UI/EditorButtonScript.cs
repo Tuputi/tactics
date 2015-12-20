@@ -100,7 +100,7 @@ public class EditorButtonScript : MonoBehaviour {
             {
                 if (t.tileCharacter == null)
                 {
-                    t.SetCharacter(CharaId);
+                    Character.CreateCharacter(CharaId, t);
                 }
                 else
                 {

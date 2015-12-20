@@ -90,6 +90,7 @@ public class MapCreator : MonoBehaviour {
                 t.SetRotation(loadedMap.MapTiles[i][j].rotation);
                 t.SetTileObject(loadedMap.MapTiles[i][j].objectId);
                 t.transform.position = new Vector3(i, t.height, j);
+                Character.CreateCharacter(loadedMap.MapTiles[i][j].characterId, t);
                 t.xPos = i;
                 t.yPos = j;
                 row.Add(t);

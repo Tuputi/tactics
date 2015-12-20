@@ -4,8 +4,8 @@ using BonaJson;
 
 public class Character : MonoBehaviour {
 
-    public string characterName;
-    public int characterID;
+    public string characterName = "tempName";
+    public int characterID = 0;
     public Tile characterPosition;
 
     //game logic stats
@@ -23,6 +23,31 @@ public class Character : MonoBehaviour {
 
     //stats
     public int hp = 100;
+    public int mp = 100;
+    public int speed = 10;
+
+
+    public static void CreateCharacter(int CharaID, Tile tilePos)
+    {
+        foreach (Character cha in PrefabHolder.instance.characters)
+        {
+            if (cha.characterID == CharaID)
+            {
+                Vector3 pos = tilePos.transform.position + cha.transform.position;
+                GameObject go = (GameObject)Instantiate(cha.gameObject, pos, Quaternion.identity);
+                go.name = cha.characterName;
+                //have reference to characterHolder somewhere
+                GameObject characterHolder = GameObject.Find("Characters");
+                go.transform.SetParent(characterHolder.transform);
+                tilePos.SetCharacter(go.GetComponent<Character>());
+                return;
+            }
+        }
+        if (CharaID != 0)
+        {
+            Debug.Log("Character Id not found");
+        }
+    }
 
 }
 
