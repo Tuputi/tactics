@@ -1,6 +1,6 @@
 {
 
-	"MapName":"characterMap",
+	"MapName":"rocky",
 	"Tiles":[
 
 		{
@@ -105,28 +105,6 @@
 		{
 
 			"TileType":1,
-			"Row":0,
-			"Column":9,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":0,
-			"Column":10,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
 			"Row":1,
 			"Column":0,
 			"Height":1,
@@ -226,28 +204,6 @@
 		{
 
 			"TileType":1,
-			"Row":1,
-			"Column":9,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":1,
-			"Column":10,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
 			"Row":2,
 			"Column":0,
 			"Height":1,
@@ -258,10 +214,10 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":2,
 			"Row":2,
 			"Column":1,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -269,21 +225,10 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":2,
 			"Row":2,
 			"Column":2,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":1
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":2,
-			"Column":3,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -291,10 +236,21 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":2,
+			"Row":2,
+			"Column":3,
+			"Height":1.5,
+			"Rotation":0,
+			"ObjectId":0,
+			"CharacterId":0
+		}
+,
+		{
+
+			"TileType":2,
 			"Row":2,
 			"Column":4,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -347,28 +303,6 @@
 		{
 
 			"TileType":1,
-			"Row":2,
-			"Column":9,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":2,
-			"Column":10,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
 			"Row":3,
 			"Column":0,
 			"Height":1,
@@ -379,10 +313,10 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":2,
 			"Row":3,
 			"Column":1,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -390,10 +324,10 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":2,
 			"Row":3,
 			"Column":2,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -401,10 +335,10 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":2,
 			"Row":3,
 			"Column":3,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -412,10 +346,10 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":2,
 			"Row":3,
 			"Column":4,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -468,28 +402,6 @@
 		{
 
 			"TileType":1,
-			"Row":3,
-			"Column":9,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":3,
-			"Column":10,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
 			"Row":4,
 			"Column":0,
 			"Height":1,
@@ -500,10 +412,10 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":2,
 			"Row":4,
 			"Column":1,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -511,21 +423,10 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":2,
 			"Row":4,
 			"Column":2,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":1
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":4,
-			"Column":3,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -533,10 +434,21 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":2,
+			"Row":4,
+			"Column":3,
+			"Height":1.5,
+			"Rotation":0,
+			"ObjectId":0,
+			"CharacterId":0
+		}
+,
+		{
+
+			"TileType":2,
 			"Row":4,
 			"Column":4,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -589,28 +501,6 @@
 		{
 
 			"TileType":1,
-			"Row":4,
-			"Column":9,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":4,
-			"Column":10,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
 			"Row":5,
 			"Column":0,
 			"Height":1,
@@ -621,10 +511,10 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":2,
 			"Row":5,
 			"Column":1,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -632,10 +522,10 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":2,
 			"Row":5,
 			"Column":2,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -643,10 +533,10 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":2,
 			"Row":5,
 			"Column":3,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -654,10 +544,10 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":2,
 			"Row":5,
 			"Column":4,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -701,28 +591,6 @@
 			"TileType":1,
 			"Row":5,
 			"Column":8,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":5,
-			"Column":9,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":5,
-			"Column":10,
 			"Height":1,
 			"Rotation":0,
 			"ObjectId":0,
@@ -759,7 +627,7 @@
 			"Height":1,
 			"Rotation":0,
 			"ObjectId":0,
-			"CharacterId":1
+			"CharacterId":0
 		}
 ,
 		{
@@ -822,28 +690,6 @@
 			"TileType":1,
 			"Row":6,
 			"Column":8,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":6,
-			"Column":9,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":6,
-			"Column":10,
 			"Height":1,
 			"Rotation":0,
 			"ObjectId":0,
@@ -952,28 +798,6 @@
 		{
 
 			"TileType":1,
-			"Row":7,
-			"Column":9,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":7,
-			"Column":10,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
 			"Row":8,
 			"Column":0,
 			"Height":1,
@@ -1064,270 +888,6 @@
 			"TileType":1,
 			"Row":8,
 			"Column":8,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":8,
-			"Column":9,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":8,
-			"Column":10,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":9,
-			"Column":0,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":9,
-			"Column":1,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":9,
-			"Column":2,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":9,
-			"Column":3,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":9,
-			"Column":4,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":9,
-			"Column":5,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":9,
-			"Column":6,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":9,
-			"Column":7,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":9,
-			"Column":8,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":9,
-			"Column":9,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":9,
-			"Column":10,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":10,
-			"Column":0,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":10,
-			"Column":1,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":10,
-			"Column":2,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":10,
-			"Column":3,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":10,
-			"Column":4,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":10,
-			"Column":5,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":10,
-			"Column":6,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":10,
-			"Column":7,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":10,
-			"Column":8,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":10,
-			"Column":9,
-			"Height":1,
-			"Rotation":0,
-			"ObjectId":0,
-			"CharacterId":0
-		}
-,
-		{
-
-			"TileType":1,
-			"Row":10,
-			"Column":10,
 			"Height":1,
 			"Rotation":0,
 			"ObjectId":0,
@@ -1336,6 +896,6 @@
 
 	]
 ,
-	"Rows":11,
-	"Columns":11
+	"Rows":9,
+	"Columns":9
 }

@@ -6,7 +6,7 @@ using BonaJson;
 public class SaveLoad : MonoBehaviour {
 
 
-	public static void SaveMap(string MapName, List<List<Tile>> mapTiles)
+	public static void SaveMap(string MapName, Tile[,] mapTiles)
     {
         Map map = new Map(MapName, mapTiles);
         var mapData = map.JsonSave();
@@ -45,7 +45,7 @@ public class SaveLoad : MonoBehaviour {
         }
         var fileContent = File.ReadAllText(path + "/Tactics/Maps/" + filename);
         var mapJson = JObject.Parse(fileContent);
-        var map = new Map();
+        var map = new Map(0, 0);
         map.JsonLoad(mapJson);
         return map;
     }

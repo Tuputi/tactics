@@ -1,22 +1,20 @@
 ﻿/*
-    Copyright 2014 Björn Fyrvall
+The MIT License(MIT)
 
-    This file is part of BonaJson
+Copyright(c) 2015 Björn Fyrvall
 
-    BonaJson is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files
+(the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
 
-    BonaJson is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-    You should have received a copy of the GNU General Public License
-    along with BonaJson.  If not, see <http://www.gnu.org/licenses/>.
- * 
- */
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
 
 using System;
 using System.Collections.Generic;
@@ -36,41 +34,43 @@ namespace BonaJson
             m_value = m_collection;
         }
 
-        public override void Add(object element)
+        public override JObject Add(object element)
         {
             if (element == null) {
-                Add(null);
+                return Add(new JNullObject());
             } else if (element is bool) {
-                Add(new JBoolObject((bool)element)); 
+                return Add(new JBoolObject((bool)element)); 
             } else if (element is float) {
-                Add(new JValueObject((float)element));
+                return Add(new JValueObject((float)element));
             } else if (element is int) {
-                Add(new JIntObject((int)element));
+                return Add(new JIntObject((int)element));
             } else if (element is string) {
-                Add(new JStringObject((string)element));
+                return Add(new JStringObject((string)element));
             } else if (element is JObject) {
-                Add((JObject)element);
+                return Add((JObject)element);
             } else if (element is ISavable) {
                 ISavable tmpObject = (ISavable)element;
-                Add(tmpObject.Save());
+                return Add(tmpObject.Save());
             } else {
                 throw new InvalidCastException();
             }
         }
 
-        public override void Add(JObject element)
+        public override JObject Add(JObject element)
         {
             m_collection.Add(element);
+            return element;
         }
 
-        public override void Add(string name, object child)
+        public override JObject Add(string name, object child)
         {
-            Add(child);
+            return Add(child);
         }
 
-        public override void Add(string name, JObject child)
+        public override JObject Add(string name, JObject child)
         {
  	        m_collection.Add(child);
+            return child;
         }
 
         public override bool Remove(string name)

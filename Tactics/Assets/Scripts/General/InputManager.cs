@@ -6,7 +6,7 @@ public class InputManager : MonoBehaviour {
 
     public GameObject CentrePoint;
     public GameObject RotationPoint;
-    CameraRotationState camState = CameraRotationState.forward;
+    //CameraRotationState camState = CameraRotationState.forward;
 
     enum CameraRotationState { forward, right, back, left}
 
@@ -17,8 +17,8 @@ public class InputManager : MonoBehaviour {
     private float maxZoom = 10f;
     private float moveSpeed = 0.05f;
     private float zoomSpeed = 0.05f;
-    private float mapRangeX = 10f;
-    private float mapRangeY = 10f;
+    //private float mapRangeX = 10f;
+    //private float mapRangeY = 10f;
 
 
     void Update()

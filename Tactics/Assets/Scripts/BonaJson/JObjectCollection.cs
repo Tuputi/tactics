@@ -1,22 +1,20 @@
 ﻿/*
-    Copyright 2014 Björn Fyrvall
+The MIT License(MIT)
 
-    This file is part of BonaJson
+Copyright(c) 2015 Björn Fyrvall
 
-    BonaJson is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files
+(the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
 
-    BonaJson is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-    You should have received a copy of the GNU General Public License
-    along with BonaJson.  If not, see <http://www.gnu.org/licenses/>.
- * 
- */
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
 
 using System;
 using System.Collections.Generic;
@@ -38,51 +36,53 @@ namespace BonaJson
             m_value = m_collection;
         }
 
-        public override void Add(object elemet)
+        public override JObject Add(object elemet)
         {
             throw new InvalidOperationException();
         }
-        public override void Add(JObject element)
+        public override JObject Add(JObject element)
         {
             throw new InvalidOperationException();
         }
 
-        public override void Add(string name, JObject child)
+        public override JObject Add(string name, JObject child)
         {
             m_collection.Add(name, child);
             m_keyOrder.Add(name);
+
+            return child;
         }
 
-        public override void Add(string name, object element)
+        public override JObject Add(string name, object element)
         {
             if (element == null)
             {
-                Add(name, null);
+                return Add(name, new JNullObject());
             }
             else if (element is bool)
             {
-                Add(name, new JBoolObject((bool)element));
+                return Add(name, new JBoolObject((bool)element));
             }
             else if(element is float)
             {
-                Add(name, new JValueObject((float)element));
+                return Add(name, new JValueObject((float)element));
             }
             else if (element is int)
             {
-                Add(name, new JIntObject((int)element));
+                return Add(name, new JIntObject((int)element));
             }
             else if (element is string)
             {
-                Add(name, new JStringObject((string)element));
+                return Add(name, new JStringObject((string)element));
             }
             else if (element is JObject)
             {
-                Add(name, (JObject)element);
+                return Add(name, (JObject)element);
             }
             else if (element is ISavable)
             {
                 ISavable tmpObject = (ISavable)element;
-                Add(name, tmpObject.Save());
+                return Add(name, tmpObject.Save());
             }
             else
             {

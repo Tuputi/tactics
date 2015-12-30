@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using BonaJson;
 using UnityEngine.EventSystems;
+using System;
 
 
 //enums
@@ -104,10 +105,12 @@ public class Tile : MonoBehaviour, System.IComparable
             case TileType.Grass:
                 prefab = PrefabHolder.instance.Tile_Grass_Prefab;
                 movementCost = 1;
+                isWalkable = true;
                 break;
             case TileType.Rock:
                 prefab = PrefabHolder.instance.Tile_Rock_Prefab;
                 movementCost = 15;
+                isWalkable = false;
                 break;
             default:
                 break;
@@ -291,13 +294,13 @@ public class TileSave
 
     public void JsonLoad(JObject jObject)
     {
-        this.tileType = jObject["TileType"].Value<TileType>();
-        this.row = jObject["Row"].Value<int>();
-        this.column = jObject["Column"].Value<int>();
+        this.tileType = (TileType)jObject["TileType"].Value<Int64>();
+        this.row = (int)jObject["Row"].Value<Int64>();
+        this.column = (int)jObject["Column"].Value<Int64>();
         this.height = jObject["Height"].GetAsFloat();
-        this.rotation = jObject["Rotation"].Value<Facing>();
-        this.objectId = jObject["ObjectId"].Value<int>();
-        this.characterId = jObject["CharacterId"].Value<int>();
+        this.rotation = (Facing)jObject["Rotation"].Value<Int64>();
+        this.objectId = (int)jObject["ObjectId"].Value<Int64>();
+        this.characterId = (int)jObject["CharacterId"].Value<Int64>();
        
         
         /*CharacterSave tempChara = new CharacterSave();

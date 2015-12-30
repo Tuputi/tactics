@@ -4,22 +4,63 @@ using System.Collections.Generic;
 public class SelectionScript : MonoBehaviour {
 
     public static List<Tile> selectedTiles;
-    public static bool selectMultiple = false;
+
+    private static bool selectMultiple = false;
+    private static bool shiftClick = false;
+
 
     void Start()
     {
         selectedTiles = new List<Tile>();
+        
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift) && !selectMultiple)
+
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !selectMultiple)
         {
             selectMultiple = true;
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             selectMultiple = false;
+        }
+
+        shiftClick = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+    }
+
+
+    public static void BoxSelect(Tile tile)
+    {
+        if (selectedTiles.Count != 1)
+        {
+            return;
+        }
+
+        if (selectedTiles[0] == tile)
+        {
+            return;
+        }
+
+        var selectedTile = selectedTiles[0];
+        var maps = MapCreator.instance.map;
+
+        var minX = Mathf.Min(selectedTile.xPos, tile.xPos);
+        var minY = Mathf.Min(selectedTile.yPos, tile.yPos);
+
+        var countX = minX + Mathf.Abs(selectedTile.xPos - tile.xPos);
+        var countY = minY+ Mathf.Abs(selectedTile.xPos - tile.xPos);
+
+        for (int x = minX; x <= countX; x++)
+        {
+            for (int y = minY; y <= countY; y++)
+            {
+                if(!selectedTiles.Contains(maps[x, y])) {
+                    selectedTiles.Add(maps[x, y]);
+                    maps[x, y].SetOverlayType(OverlayType.Selected);
+                }
+            }
         }
     }
 
@@ -44,7 +85,11 @@ public class SelectionScript : MonoBehaviour {
         }
         else
         {
-            if (selectMultiple)
+            if (shiftClick)
+            {
+                BoxSelect(tile);
+            }
+            else if (selectMultiple)
             {
                 SetMultipleSelectedTile(tile);
             }
@@ -95,13 +140,14 @@ public class SelectionScript : MonoBehaviour {
 
     public static void ClearAll()
     {
-        selectedTiles.Clear();
-       int rows = MapCreator.instance.map.Count;
+       selectedTiles.Clear();
+       int rows = MapCreator.instance.map.GetLength(0);
+       int columns = MapCreator.instance.map.GetLength(1);
        for(int i = 0; i < rows; i++)
        {
-            List<Tile> tempList = MapCreator.instance.map[i];
-            foreach(Tile t in tempList)
+            for (int j = 0; i < columns; i++)
             {
+                Tile t = MapCreator.instance.map[i,j];
                 t.SetOverlayType(OverlayType.None);
             }
        }

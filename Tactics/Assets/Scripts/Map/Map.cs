@@ -2,34 +2,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using BonaJson;
+using System;
 
 public class Map {
 
     public string MapName;
     public int rows;
     public int columns;
-    public List<List<TileSave>> MapTiles = new List<List<TileSave>>();
+    public TileSave[,] MapTiles;
 
-    public Map(string name, List<List<Tile>> mapTiles)
+    public Map(string name, Tile[,] mapTiles)
     {
         MapName = name;
-        rows = mapTiles.Count-1;
-        columns = rows;
-        for(int i = 0; i <= rows; i++)
+        rows = mapTiles.GetLength(0);
+        columns = mapTiles.GetLength(1);
+        MapTiles = new TileSave[rows, columns];
+        for(int i = 0; i < rows; i++)
         {
-            List<TileSave> TileRow = new List<TileSave>();
-            for(int j = 0; j <= columns; j++)
+            for(int j = 0; j < columns; j++)
             {
-                TileSave ts = new TileSave(mapTiles[i][j].tileType, i, j, mapTiles[i][j].height, mapTiles[i][j].rotation, mapTiles[i][j].tileObjectId, mapTiles[i][j].tileCharacter);
-                TileRow.Add(ts);
+                TileSave ts = new TileSave(mapTiles[i,j].tileType, i, j, mapTiles[i,j].height, mapTiles[i,j].rotation, mapTiles[i,j].tileObjectId, mapTiles[i,j].tileCharacter);
+                MapTiles[i, j] = ts;
             }
-            MapTiles.Add(TileRow);
         }
     }
 
-    public Map()
+    public Map(int mrows,int mcolumns)
     {
-        MapTiles = new List<List<TileSave>>();
+        MapTiles = new TileSave[mrows,mcolumns];
     }
 
     public JObject JsonSave()
@@ -40,14 +40,13 @@ public class Map {
         var tileJObject = new JObjectArray();
         map.Add("Tiles",tileJObject);
 
-        rows = MapTiles.Count;
-        for(int i = 0; i < rows; i++)
+        rows = MapTiles.GetLength(0);
+        columns = MapTiles.GetLength(1);
+        for (int i = 0; i < rows; i++)
         {
-            List<TileSave> column = new List<TileSave>(MapTiles[i]);
-            columns = column.Count;
             for(int j = 0; j < columns; j++)
             {
-                tileJObject.Add(column[j].JsonSave(i,j));
+                tileJObject.Add(MapTiles[i,j].JsonSave(i,j));
             }
         }
         map.Add("Rows", rows);
@@ -58,18 +57,16 @@ public class Map {
     public void JsonLoad(JObject jObject)
     {
         this.MapName = jObject["MapName"].Value<string>();
-        this.rows = jObject["Rows"].Value<int>();
-        this.columns = jObject["Columns"].Value<int>();
-        for (int i = 0; i <= rows; i++)
-        {
-            MapTiles.Add(new List<TileSave>());
-        }
+        this.rows = (int)jObject["Rows"].Value<Int64>();
+        this.columns = (int)jObject["Columns"].Value<Int64>();
+
+        MapTiles = new TileSave[this.rows, this.columns]; 
 
         foreach(var tile in jObject["Tiles"])
         {
             TileSave newTile = new TileSave();
             newTile.JsonLoad(tile);
-            MapTiles[newTile.row].Add(newTile);
+            MapTiles[newTile.row, newTile.column] = newTile;
         }
     }
 
