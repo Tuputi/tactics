@@ -5,6 +5,7 @@ using Wintellect.PowerCollections;
 public class TurnManager : MonoBehaviour {
 
     public enum TurnMode {  start, move, action, end};
+    public enum GameMode { Editor, Game};
 
     public static TurnManager instance;
     public static OrderedBag<Character> characters;
@@ -13,6 +14,7 @@ public class TurnManager : MonoBehaviour {
 
 
     public static TurnMode mode;
+    public static GameMode gameMode;
     public bool hasMoved = false;
     public bool hasActed = false;
     
@@ -21,6 +23,7 @@ public class TurnManager : MonoBehaviour {
     {
         instance = this;
         characters = new OrderedBag<Character>();
+        gameMode = GameMode.Game;
     }
 
 	public void CreateCharacterList()
@@ -48,6 +51,14 @@ public class TurnManager : MonoBehaviour {
         if(!(characters.Count > 0))
         {
             CreateCharacterList();
+        }
+
+        if(CurrentlyTakingTurn != null)
+        {
+            foreach (Tile t in CurrentlyTakingTurn.possibleRange)
+            {
+                t.SetOverlayType(OverlayType.None);
+            }
         }
 
         Character nextCharacter = null;
@@ -80,6 +91,10 @@ public class TurnManager : MonoBehaviour {
 
     public void Move()
     {
+        foreach(Tile t in CurrentlyTakingTurn.possibleRange)
+        {
+            t.SetOverlayType(OverlayType.None);
+        }
         CurrentlyTakingTurn.possibleRange.Clear();
         SelectionScript.ClearAll();
         if (!hasMoved)
@@ -95,6 +110,10 @@ public class TurnManager : MonoBehaviour {
 
     public void Action()
     {
+        foreach (Tile t in CurrentlyTakingTurn.possibleRange)
+        {
+            t.SetOverlayType(OverlayType.None);
+        }
         CurrentlyTakingTurn.possibleRange.Clear();
         SelectionScript.ClearAll();
         if (!hasActed)

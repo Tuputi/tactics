@@ -101,6 +101,10 @@ public class Character : MonoBehaviour, System.IComparable
     public void CompleteMove(Tile tile)
     {
         Debug.Log("move to "+ tile);
+        foreach (Tile t in possibleRange)
+        {
+            t.SetOverlayType(OverlayType.None);
+        }
         possibleRange.Clear();
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.hasMoved = true;
@@ -118,6 +122,10 @@ public class Character : MonoBehaviour, System.IComparable
     public void CompleteAction(Tile tile)
     {
         Debug.Log("Action completed");
+        foreach (Tile t in possibleRange)
+        {
+            t.SetOverlayType(OverlayType.None);
+        }
         possibleRange.Clear();
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.hasActed = true;

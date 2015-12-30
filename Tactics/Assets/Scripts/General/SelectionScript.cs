@@ -11,22 +11,18 @@ public class SelectionScript : MonoBehaviour {
 
     void Start()
     {
-        selectedTiles = new List<Tile>();
-        
+        selectedTiles = new List<Tile>();   
     }
 
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.LeftControl) && !selectMultiple)
+        if(TurnManager.gameMode != TurnManager.GameMode.Editor)
         {
-            selectMultiple = true;
-        }
-        if (Input.GetKeyUp(KeyCode.LeftControl))
-        {
-            selectMultiple = false;
+            return;
         }
 
+
+        selectMultiple = Input.GetKey(KeyCode.LeftControl);
         shiftClick = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
     }
 
@@ -140,16 +136,10 @@ public class SelectionScript : MonoBehaviour {
 
     public static void ClearAll()
     {
-       selectedTiles.Clear();
-       int rows = MapCreator.instance.map.GetLength(0);
-       int columns = MapCreator.instance.map.GetLength(1);
-       for(int i = 0; i < rows; i++)
+       foreach(Tile t in selectedTiles)
        {
-            for (int j = 0; i < columns; i++)
-            {
-                Tile t = MapCreator.instance.map[i,j];
-                t.SetOverlayType(OverlayType.None);
-            }
+           t.SetOverlayType(OverlayType.None);
        }
+       selectedTiles.Clear();
     }
 }
