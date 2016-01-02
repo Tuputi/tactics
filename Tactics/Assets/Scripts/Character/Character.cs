@@ -13,6 +13,7 @@ public class Character : MonoBehaviour, System.IComparable
     //game logic stats
     public float characterEnergy = 5f;
     public int characterWalkEnergy = 5;
+    public float characterRangeEnergy = 2f;
 
     //logic
     public bool isAlive
@@ -22,10 +23,12 @@ public class Character : MonoBehaviour, System.IComparable
             return (hp > 0);
         }
     }
+    public bool isAi = false;
 
     //Movement
     int DistanceToGo = 0;
     public float TravelSpeed = 0.2f;
+    public Facing facing = Facing.Up;
 
     //stats
     public int hp = 100;
@@ -92,6 +95,46 @@ public class Character : MonoBehaviour, System.IComparable
         }
     }
 
+    public void ChangeFacing(Tile at, Tile to)
+    {
+        int rowChange = System.Math.Abs(at.xPos - to.xPos);
+        int columnChange = System.Math.Abs(at.yPos - to.yPos);
+
+        GameObject rotateObj = this.transform.FindChild("CharacterObject").gameObject;
+
+        if (rowChange > columnChange)
+        {
+            if (at.xPos < to.xPos)
+            {
+                facing = Facing.Left;
+                float rotation = 180f;
+                rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
+            }
+            else
+            {
+                facing = Facing.Right;
+                float rotation = 0f;
+                rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
+            }
+        }
+        else
+        {
+            if (at.yPos < to.yPos)
+            {
+                facing = Facing.Down;
+                float rotation = 90f;
+                rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
+            }
+            else
+            {
+                facing = Facing.Up;
+                float rotation = 270f;
+                rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
+            }
+        }
+        characterPosition.SetCharacter(this);
+    }
+
 
     //actions
     public void Move()
@@ -103,14 +146,9 @@ public class Character : MonoBehaviour, System.IComparable
         }
     }
 
-    public void CompleteMove(Tile tile)
-    {
-        Debug.Log("move to "+ tile);
-        List<Tile> foundPath = Pathfinding.GetPath(this.characterPosition, tile);
-        if(foundPath.Count > 0)
-        {
-            MoveCharacter(foundPath);
-        }
+    public void CompleteMove(List<Tile> path)
+    {     
+        MoveCharacter(path);
         foreach (Tile t in possibleRange)
         {
             t.SetOverlayType(OverlayType.None);
@@ -120,9 +158,10 @@ public class Character : MonoBehaviour, System.IComparable
         TurnManager.instance.hasMoved = true;
     }
 
-    public void Action()
+    public void Action(AttackBase ab)
     {
-        possibleRange = Pathfinding.GetPossibleRange(characterPosition, 2f, true);
+        //possibleRange = Pathfinding.GetPossibleRange(characterPosition, 2f, true);
+        possibleRange = ab.CalculateAttackRange(characterPosition);
         foreach(Tile t in possibleRange)
         {
             t.SetOverlayType(OverlayType.Selected);
@@ -166,7 +205,6 @@ public class Character : MonoBehaviour, System.IComparable
                DistanceToGo--;
            }
            yield return 0;
-           Debug.Log("WE are done");
        }
     }
 

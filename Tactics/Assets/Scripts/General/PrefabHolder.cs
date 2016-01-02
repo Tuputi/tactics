@@ -27,3 +27,12 @@ public class PrefabHolder : MonoBehaviour {
         instance = this;
     }
 }
+
+
+//enums
+
+public enum Facing { Up, Right, Down, Left };
+public enum TileType { None, Grass, Rock };
+public enum OverlayType { None, Selected };
+public enum AttackType {Meelee, AreaOfEffect, MeeleeReach, Ranged, Self }
+public enum BehaviourType { agressive, teamPlayer, healWhenHurt }

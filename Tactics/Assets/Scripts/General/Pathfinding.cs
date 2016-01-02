@@ -147,6 +147,7 @@ public class Pathfinding : MonoBehaviour {
         List<Tile> remove = new List<Tile>();
         startTile.gCost = 0;
         openList.Add(startTile);
+        ResetGCost();
 
         while (openList.Count > 0)
         {
@@ -227,7 +228,7 @@ public class Pathfinding : MonoBehaviour {
 
     static bool CheckValidity(Tile tile)
     {
-        if (!tile.isWalkable)
+       if (!tile.isWalkable)
         {
             return false;
         }
@@ -235,9 +236,8 @@ public class Pathfinding : MonoBehaviour {
         return true;
     }
 
-    public static Tile FindTarget(Tile tile)
+    public static Tile FindTargetTile(Tile tile, List<Tile> attackPositions)
     {
-
         List<Tile> closedList = new List<Tile>();
         List<Tile> openList = new List<Tile>();
         Tile next = tile;
@@ -253,12 +253,9 @@ public class Pathfinding : MonoBehaviour {
                 {
                     if (!openList.Contains(t))
                     {
-                        if (t.isOccupied)
+                        if (attackPositions.Contains(t))
                         {
-                            if (t.tileCharacter.isAlive)
-                            {
-                                    return t;
-                            }
+                            return t;
                         }
                         openList.Add(t);
                     }
@@ -269,5 +266,31 @@ public class Pathfinding : MonoBehaviour {
         }
         Debug.Log("No possible target found");
         return null;
+    }
+
+    public static Tile FindTarget(Tile tile, bool isAi)
+    {
+        List<Character> templist = new List<Character>();
+        foreach(Character cha in TurnManager.characters)
+        {
+            if (isAi == cha.isAi && !(cha.characterName.Equals(tile.tileCharacter.characterName)))
+            {
+                templist.Add(cha);
+            }
+        }
+
+        Character closest = templist[0];
+        foreach(Character c in templist)
+        {
+            if(Pathfinding.GetHeuristic(tile,c.characterPosition) < Pathfinding.GetHeuristic(tile, closest.characterPosition))
+            {
+                closest = c;
+            }
+        }
+        if(closest == null)
+        {
+            Debug.Log("Couldn't find target");
+        }
+        return closest.characterPosition;
     }
 }

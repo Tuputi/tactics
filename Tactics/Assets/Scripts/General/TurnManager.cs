@@ -87,6 +87,10 @@ public class TurnManager : MonoBehaviour {
         CameraScript.instance.SetMoveTarget(CurrentlyTakingTurn.gameObject);
         //CameraScript.instance.MoveToTargetFunc(CurrentlyTakingTurn.gameObject.transform);
         CurrentlyTakingTurn.characterEnergy = 0;
+        if (CurrentlyTakingTurn.isAi)
+        {
+            CurrentlyTakingTurn.GetComponent<AiModule>().TakeTurn();
+        }
     }
 
     public void Move()
@@ -119,7 +123,7 @@ public class TurnManager : MonoBehaviour {
         if (!hasActed)
         {
             mode = TurnMode.action;
-            CurrentlyTakingTurn.Action();
+            CurrentlyTakingTurn.Action(new MeeleeAttack());
         }
         else
         {

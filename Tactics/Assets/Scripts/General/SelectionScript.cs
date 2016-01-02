@@ -71,7 +71,8 @@ public class SelectionScript : MonoBehaviour {
                 SetSingleSelectedTile(tile);
                 if (TurnManager.mode == TurnManager.TurnMode.move)
                 {
-                    TurnManager.instance.CurrentlyTakingTurn.CompleteMove(selectedTiles[0]);
+                    List<Tile> tempPath = Pathfinding.GetPath(TurnManager.instance.CurrentlyTakingTurn.characterPosition, tile);
+                    TurnManager.instance.CurrentlyTakingTurn.CompleteMove(tempPath);
                 }
                 if(TurnManager.mode == TurnManager.TurnMode.action)
                 {

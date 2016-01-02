@@ -7,9 +7,7 @@ using System;
 
 
 //enums
-public enum Facing { Up, Right, Down, Left };
-public enum TileType { None, Grass, Rock };
-public enum OverlayType { None, Selected};
+
 
 public class Tile : MonoBehaviour, System.IComparable
 {
@@ -31,7 +29,7 @@ public class Tile : MonoBehaviour, System.IComparable
     private GameObject overlayPrefab;
 
     //pathfinding variables
-    public float gCost;
+    public float gCost = 0;
     public float pathfindingCost;
     public Tile cameFrom;
     public float movementCost = 1;
@@ -101,6 +99,7 @@ public class Tile : MonoBehaviour, System.IComparable
         {
             case TileType.None:
                 prefab = PrefabHolder.instance.Tile_Empty_Prefab;
+                isWalkable = false;
                 break;
             case TileType.Grass:
                 prefab = PrefabHolder.instance.Tile_Grass_Prefab;
@@ -109,8 +108,8 @@ public class Tile : MonoBehaviour, System.IComparable
                 break;
             case TileType.Rock:
                 prefab = PrefabHolder.instance.Tile_Rock_Prefab;
-                movementCost = 15;
-                isWalkable = false;
+                movementCost = 3;
+                isWalkable = true;
                 break;
             default:
                 break;
@@ -180,6 +179,10 @@ public class Tile : MonoBehaviour, System.IComparable
     public void SetCharacter(Character Chara)
     {
         tileCharacter = Chara;
+       if (Chara.characterPosition != null)
+        {
+            Chara.characterPosition.tileCharacter = null;
+        }
         Chara.characterPosition = this;
     }
 
