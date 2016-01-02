@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using BonaJson;
+using System.Collections;
 
 public class Character : MonoBehaviour, System.IComparable
 {
@@ -101,6 +102,14 @@ public class Character : MonoBehaviour, System.IComparable
     public void CompleteMove(Tile tile)
     {
         Debug.Log("move to "+ tile);
+        List<Tile> foundPath = Pathfinding.GetPath(this.characterPosition, tile);
+        //foundPath.Reverse();
+        if(foundPath.Count > 0)
+        {
+            MoveCharacter(foundPath);
+        }
+        this.characterPosition = tile;
+        Debug.Log("New charPos is " + this.characterPosition);
         foreach (Tile t in possibleRange)
         {
             t.SetOverlayType(OverlayType.None);
@@ -129,6 +138,31 @@ public class Character : MonoBehaviour, System.IComparable
         possibleRange.Clear();
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.hasActed = true;
+    }
+
+    int DistanceToGo = 0;
+    public void MoveCharacter(List<Tile> path)
+    {
+        DistanceToGo = path.Count-1;
+        StartCoroutine(MovePath(path));
+    }
+
+    IEnumerator MovePath(List<Tile> path)
+    {
+            
+            while (DistanceToGo >= 0)
+            {
+                Tile target = path[DistanceToGo];
+                Vector3 targetPos = new Vector3(target.transform.position.x, this.gameObject.transform.position.y, target.transform.position.z);
+                Vector3 sourcePos = this.gameObject.transform.position;
+                transform.position = Vector3.MoveTowards(sourcePos, targetPos, Mathf.SmoothStep(0, 1f, 0.1f));
+                if(transform.position == targetPos)
+                {
+                    DistanceToGo--;
+                }
+                yield return 0;
+                Debug.Log("WE are done");
+            }
     }
 
 }
