@@ -143,8 +143,7 @@ public class Character : MonoBehaviour, System.IComparable
 
     public void SetCharacterPosition(Tile tile)
     {
-        characterPosition = tile;
-        Debug.Log("New charPos is " + this.characterPosition);
+        tile.SetCharacter(this);
     }
 
     public void MoveCharacter(List<Tile> path)

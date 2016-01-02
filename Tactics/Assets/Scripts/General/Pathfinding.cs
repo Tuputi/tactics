@@ -8,10 +8,19 @@ public class Pathfinding : MonoBehaviour {
     static OrderedBag<Tile> openList = new OrderedBag<Tile>();
     static List<Tile> closedList = new List<Tile>();
 
+    static void ResetGCost()
+    {
+        foreach(Tile t in MapCreator.instance.map)
+        {
+            t.gCost = 0;
+        }
+    }
+
     public static List<Tile> GetPath(Tile starTile, Tile endTile)
     {
         openList = new OrderedBag<Tile>();
         closedList = new List<Tile>();
+        ResetGCost();
 
         starTile.gCost = 0;
         starTile.pathfindingCost = starTile.gCost + GetHeuristic(starTile, endTile);
