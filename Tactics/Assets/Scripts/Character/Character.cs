@@ -23,6 +23,10 @@ public class Character : MonoBehaviour, System.IComparable
         }
     }
 
+    //Movement
+    int DistanceToGo = 0;
+    public float TravelSpeed = 0.2f;
+
     //stats
     public int hp = 100;
     public int mp = 100;
@@ -103,13 +107,10 @@ public class Character : MonoBehaviour, System.IComparable
     {
         Debug.Log("move to "+ tile);
         List<Tile> foundPath = Pathfinding.GetPath(this.characterPosition, tile);
-        //foundPath.Reverse();
         if(foundPath.Count > 0)
         {
             MoveCharacter(foundPath);
         }
-        this.characterPosition = tile;
-        Debug.Log("New charPos is " + this.characterPosition);
         foreach (Tile t in possibleRange)
         {
             t.SetOverlayType(OverlayType.None);
@@ -140,29 +141,34 @@ public class Character : MonoBehaviour, System.IComparable
         TurnManager.instance.hasActed = true;
     }
 
-    int DistanceToGo = 0;
+    public void SetCharacterPosition(Tile tile)
+    {
+        characterPosition = tile;
+        Debug.Log("New charPos is " + this.characterPosition);
+    }
+
     public void MoveCharacter(List<Tile> path)
     {
+        SetCharacterPosition(path[0]);
         DistanceToGo = path.Count-1;
         StartCoroutine(MovePath(path));
     }
 
     IEnumerator MovePath(List<Tile> path)
-    {
-            
-            while (DistanceToGo >= 0)
-            {
-                Tile target = path[DistanceToGo];
-                Vector3 targetPos = new Vector3(target.transform.position.x, this.gameObject.transform.position.y, target.transform.position.z);
-                Vector3 sourcePos = this.gameObject.transform.position;
-                transform.position = Vector3.MoveTowards(sourcePos, targetPos, Mathf.SmoothStep(0, 1f, 0.1f));
-                if(transform.position == targetPos)
-                {
-                    DistanceToGo--;
-                }
-                yield return 0;
-                Debug.Log("WE are done");
-            }
+    {          
+       while (DistanceToGo >= 0)
+       {
+           Tile target = path[DistanceToGo];
+           Vector3 targetPos = new Vector3(target.transform.position.x, target.transform.position.y+1.2f, target.transform.position.z);
+           Vector3 sourcePos = this.gameObject.transform.position;
+           transform.position = Vector3.MoveTowards(sourcePos, targetPos, Mathf.SmoothStep(0, 1f, TravelSpeed));
+           if(transform.position == targetPos)
+           {
+               DistanceToGo--;
+           }
+           yield return 0;
+           Debug.Log("WE are done");
+       }
     }
 
 }
