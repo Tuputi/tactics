@@ -13,6 +13,7 @@ public class Pathfinding : MonoBehaviour {
         foreach(Tile t in MapCreator.instance.map)
         {
             t.gCost = 0;
+            t.pathfindingCost = 0;
         }
     }
 
@@ -174,17 +175,21 @@ public class Pathfinding : MonoBehaviour {
                                 float heightcost = System.Math.Abs(t.cameFrom.height - t.height);
                                 t.gCost = t.cameFrom.gCost + t.movementCost + heightcost;
                             }
-                            if (t.gCost > energy)
+                            if (t.gCost >= energy)
                             {
                                 remove.Add(t);
                             }
                         }
                         else
                         {
-                            float newCost = 1 + t.cameFrom.gCost;
-                            if (!ignoreMoveCost)
+                            float newCost = current.gCost;
+                            if (ignoreMoveCost)
                             {
-                                float heightcost = System.Math.Abs(t.cameFrom.height - t.height);
+                                newCost += 1f;
+                            }
+                            else
+                            {
+                                float heightcost = System.Math.Abs(current.height - t.height);
                                 newCost += heightcost + t.movementCost;
                             }
                             
@@ -194,16 +199,8 @@ public class Pathfinding : MonoBehaviour {
                                 t.cameFrom = current;
                             }
                         }
-                    }
-                    else
-                    {
-                        remove.Add(t);
-                    }
-                }
-                else
-                {
-                    remove.Add(t);
-                }
+                    }else{remove.Add(t);}
+                }else {remove.Add(t);}
             }
             foreach (Tile r in remove)
             {
