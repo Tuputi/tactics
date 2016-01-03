@@ -112,7 +112,7 @@ public class TurnManager : MonoBehaviour {
         }
     }
 
-    public void Action()
+    public void Action(ActionType at)
     {
         foreach (Tile t in CurrentlyTakingTurn.possibleRange)
         {
@@ -123,7 +123,7 @@ public class TurnManager : MonoBehaviour {
         if (!hasActed)
         {
             mode = TurnMode.action;
-            CurrentlyTakingTurn.Action(new MeeleeAttack());
+            CurrentlyTakingTurn.Action(PrefabHolder.instance.actionDictionary[at]);
         }
         else
         {

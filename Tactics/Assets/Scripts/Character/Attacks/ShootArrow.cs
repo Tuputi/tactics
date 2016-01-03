@@ -2,13 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ShootArrow : AttackBase {
+public class ShootArrow : ActionBase {
 
-    void Awake()
+    public override ActionType GetActionType()
     {
-        attackName = "ShootArrow";
+        actionType = ActionType.ShootArrow;
+        return actionType;
     }
 
+    public override string GetName()
+    {
+        attackName = "Shoot Arrow";
+        return attackName;
+    }
 
     public override bool CalculateHitChance()
     {
@@ -36,7 +42,8 @@ public class ShootArrow : AttackBase {
 
     public override List<Tile> CalculateAttackRange(Tile startTile)
     {
-        return Pathfinding.GetPossibleRange(startTile, startTile.tileCharacter.characterRangeEnergy,true);
+        Debug.Log("Shoot arrow range is " + TurnManager.instance.CurrentlyTakingTurn.shootArrowsEnergy);
+        return Pathfinding.GetPossibleRange(startTile, TurnManager.instance.CurrentlyTakingTurn.shootArrowsEnergy, true);
     }
 
     public override void DrawTargetArea(Tile targetTile)

@@ -2,13 +2,24 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class AttackBase{
+public class ActionBase : ScriptableObject{
 
     public double attackBaseProbability; //100 = 100%
-    public string attackName;
+    protected string attackName = "BaseAttack";
     public int likelyDamageLow = 0;
     public int likelyDamageHigh = 0;
-    public AttackType attackType;
+    public ActionType actionType = ActionType.MeeleeAttack;
+
+    public virtual ActionType GetActionType()
+    {
+        actionType = ActionType.MeeleeAttack;
+        return actionType;
+    }
+
+    public virtual string GetName()
+    {
+        return attackName;
+    }
 
 	public virtual bool CalculateHitChance()
     {

@@ -21,10 +21,18 @@ public class PrefabHolder : MonoBehaviour {
     //lists
     public List<TileObject> tileObjects;
     public List<Character> characters;
+    public List<ActionBase> actions;
+
+    public Dictionary<ActionType, ActionBase> actionDictionary;
 
     void Awake()
     {
         instance = this;
+        actionDictionary = new Dictionary<ActionType, ActionBase>();
+        foreach(ActionBase ab in actions)
+        {
+            actionDictionary.Add(ab.GetActionType(), ab);
+        }
     }
 }
 
@@ -34,5 +42,8 @@ public class PrefabHolder : MonoBehaviour {
 public enum Facing { Up, Right, Down, Left };
 public enum TileType { None, Grass, Rock };
 public enum OverlayType { None, Selected };
-public enum AttackType {Meelee, AreaOfEffect, MeeleeReach, Ranged, Self }
-public enum BehaviourType { agressive, teamPlayer, healWhenHurt }
+public enum BehaviourType { agressive, teamPlayer, healWhenHurt}
+public enum ConfirmationType { action, move};
+
+//Names of different actions, used to reference to a dictionary of Actions
+public enum ActionType { MeeleeAttack, FireSpell, ShootArrow}

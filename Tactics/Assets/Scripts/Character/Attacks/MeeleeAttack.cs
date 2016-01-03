@@ -2,11 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MeeleeAttack : AttackBase {
+public class MeeleeAttack : ActionBase {
 
-    void Awake()
+    public override ActionType GetActionType()
     {
-        attackName = "MeeleeAttack";
+        actionType = ActionType.MeeleeAttack;
+        return actionType;
+    }
+
+    public override string GetName()
+    {
+        attackName = "Meelee Attack";
+        return attackName;
     }
 
     public override int CalculateDamage(Tile targetTile, Character chara)

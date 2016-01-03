@@ -13,7 +13,7 @@ public class Character : MonoBehaviour, System.IComparable
     //game logic stats
     public float characterEnergy = 5f;
     public int characterWalkEnergy = 5;
-    public float characterRangeEnergy = 2f;
+    public float shootArrowsEnergy = 5f;
 
     //logic
     public bool isAlive
@@ -24,7 +24,7 @@ public class Character : MonoBehaviour, System.IComparable
         }
     }
     public bool isAi = false;
-    protected AttackBase currentAction = null;
+    public ActionBase currentAction = null;
 
     //Movement
     int DistanceToGo = 0;
@@ -159,7 +159,7 @@ public class Character : MonoBehaviour, System.IComparable
         TurnManager.instance.hasMoved = true;
     }
 
-    public void Action(AttackBase ab)
+    public void Action(ActionBase ab)
     {
         currentAction = ab;
         possibleRange = ab.CalculateAttackRange(characterPosition);

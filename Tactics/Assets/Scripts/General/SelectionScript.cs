@@ -71,12 +71,11 @@ public class SelectionScript : MonoBehaviour {
                 SetSingleSelectedTile(tile);
                 if (TurnManager.mode == TurnManager.TurnMode.move)
                 {
-                    List<Tile> tempPath = Pathfinding.GetPath(TurnManager.instance.CurrentlyTakingTurn.characterPosition, tile);
-                    TurnManager.instance.CurrentlyTakingTurn.CompleteMove(tempPath);
+                    ConfirmationDialogue.instance.Show(ConfirmationType.move, tile);
                 }
                 if(TurnManager.mode == TurnManager.TurnMode.action)
                 {
-                    TurnManager.instance.CurrentlyTakingTurn.CompleteAction(selectedTiles[0]);
+                    ConfirmationDialogue.instance.Show(ConfirmationType.action, tile);
                 }
             }
         }

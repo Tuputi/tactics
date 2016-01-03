@@ -17,9 +17,9 @@ public class Agressive : BehaviourModuleBase {
 
     public override void SetAvailableAttacks(Character currentCharacter)
     {
-        List<AttackBase> temp = new List<AttackBase>();
-        temp.Add(new MeeleeAttack());
-        temp.Add(new ShootArrow());
+        List<ActionBase> temp = new List<ActionBase>();
+        temp.Add(PrefabHolder.instance.actionDictionary[ActionType.MeeleeAttack]);
+        temp.Add(PrefabHolder.instance.actionDictionary[ActionType.ShootArrow]);
         currentCharacter.GetComponent<AiModule>().availableAttacks = temp;
     }
 }

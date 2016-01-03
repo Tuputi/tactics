@@ -11,7 +11,7 @@ public class TeamPlayer : BehaviourModuleBase {
 
     public override bool CheckConditions(Character currentCharacter)
     {
-        List<Tile> reachableArea = Pathfinding.GetPossibleRange(currentCharacter.characterPosition, currentCharacter.characterRangeEnergy, false);
+        List<Tile> reachableArea = Pathfinding.GetPossibleRange(currentCharacter.characterPosition, currentCharacter.characterWalkEnergy, false);
         bool friendsTargetFound = false;
         foreach (Tile t in reachableArea)
         {
@@ -39,7 +39,7 @@ public class TeamPlayer : BehaviourModuleBase {
 
     public override Tile GetTarget(Character currentCharacter)
     {
-        List<Tile> reachableArea = Pathfinding.GetPossibleRange(currentCharacter.characterPosition, currentCharacter.characterRangeEnergy, true);
+        List<Tile> reachableArea = Pathfinding.GetPossibleRange(currentCharacter.characterPosition, currentCharacter.characterWalkEnergy, true);
         List<Character> friendsTargets = new List<Character>();
         foreach (Tile t in reachableArea)
         {
@@ -88,9 +88,9 @@ public class TeamPlayer : BehaviourModuleBase {
 
     public override void SetAvailableAttacks(Character currentCharacter)
     {
-        List<AttackBase> temp = new List<AttackBase>();
-        temp.Add(new MeeleeAttack());
-        temp.Add(new ShootArrow());
+        List<ActionBase> temp = new List<ActionBase>();
+        temp.Add(PrefabHolder.instance.actionDictionary[ActionType.MeeleeAttack]);
+        temp.Add(PrefabHolder.instance.actionDictionary[ActionType.ShootArrow]);
         currentCharacter.GetComponent<AiModule>().availableAttacks = temp;
     }
 }

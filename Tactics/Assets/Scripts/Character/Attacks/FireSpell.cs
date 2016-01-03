@@ -2,7 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class FireSpell : AttackBase {
+public class FireSpell : ActionBase {
+
+
+    public override ActionType GetActionType()
+    {
+        actionType = ActionType.FireSpell;
+        return actionType;
+    }
+
+    public override string GetName()
+    {
+        attackName = "Fire Spell";
+        return attackName;
+    }
 
     public override List<Tile> CalculateAttackRange(Tile startTile)
     {
