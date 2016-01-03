@@ -24,6 +24,7 @@ public class Character : MonoBehaviour, System.IComparable
         }
     }
     public bool isAi = false;
+    protected AttackBase currentAction = null;
 
     //Movement
     int DistanceToGo = 0;
@@ -160,7 +161,7 @@ public class Character : MonoBehaviour, System.IComparable
 
     public void Action(AttackBase ab)
     {
-        //possibleRange = Pathfinding.GetPossibleRange(characterPosition, 2f, true);
+        currentAction = ab;
         possibleRange = ab.CalculateAttackRange(characterPosition);
         foreach(Tile t in possibleRange)
         {
@@ -170,12 +171,14 @@ public class Character : MonoBehaviour, System.IComparable
 
     public void CompleteAction(Tile tile)
     {
-        Debug.Log("Action completed");
-        foreach (Tile t in possibleRange)
+       foreach (Tile t in possibleRange)
         {
             t.SetOverlayType(OverlayType.None);
         }
         possibleRange.Clear();
+        currentAction.DrawTargetArea(tile);
+        Debug.Log("Action completed");
+
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.hasActed = true;
     }

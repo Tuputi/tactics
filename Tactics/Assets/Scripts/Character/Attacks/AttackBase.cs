@@ -29,7 +29,7 @@ public class AttackBase{
 
     public virtual List<Tile> CalculateAttackRange(Tile startTile)
     {
-        return Pathfinding.GetPossibleRange(startTile, 1f, true);
+        return Pathfinding.GetPossibleRange(startTile, 2f, true);
     }
 
     public virtual void DrawTargetArea(Tile targetTile)

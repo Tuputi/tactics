@@ -168,7 +168,7 @@ public class Pathfinding : MonoBehaviour {
                             t.cameFrom = current;
                             if (ignoreMoveCost)
                             {
-                                t.gCost = 1 + t.cameFrom.gCost;
+                                t.gCost = 1f + t.cameFrom.gCost;
                             }
                             else
                             {

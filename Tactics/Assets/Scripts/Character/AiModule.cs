@@ -67,8 +67,9 @@ public class AiModule : Character {
             {
                 if (t.isOccupied)
                 {
-                   if (t.tileCharacter.characterName.Equals(targetCharacter.characterName)) //|| (targetCharacter==null && currentBehaviour.GetTarget(this) == t)
-                    { 
+                   if (t.tileCharacter.characterName.Equals(targetCharacter.characterName))
+                    {
+                        currentAction = ab;
                       CompleteAction(t);
                       return false;
                      }
@@ -88,7 +89,7 @@ public class AiModule : Character {
             return;
         }
 
-        //from witch distance can we attack the target?
+        //from which distance can we attack the target?
         tempTotalAttackRange = new List<Tile>();
         foreach(AttackBase ab in availableAttacks)
         {
