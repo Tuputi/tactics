@@ -3,13 +3,13 @@ using System.Collections;
 
 public class Item : ActionBase {
 
-    public int ItemCount;
+    public int ItemCount = 3;
     public string ItemName = "NaN";
     public ItemType itemType;
 
     public ItemType GetItemType()
     {
-        itemType = ItemType.Bomb;
+        itemType = ItemType.Potion;
         return itemType;
     }
 
@@ -22,8 +22,19 @@ public class Item : ActionBase {
         }
         else
         {
-            Debug.Log("Run ut of items");
+            Debug.Log("Run out of items");
         }
     }
 
+    public override void  CompleteAction(Tile TargetTile)
+    {
+        Use();
+        CalculateDamage(TargetTile);
+    }
+
+    public override int CalculateDamage(Tile targetTile)
+    {
+        int healing = (int)(targetTile.tileCharacter.hp * 0.3); //heal 30%
+        return healing;
+    }
 }

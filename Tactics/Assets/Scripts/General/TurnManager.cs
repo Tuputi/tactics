@@ -130,4 +130,22 @@ public class TurnManager : MonoBehaviour {
         }
     }
 
+    public void Action(ItemType it)
+    {
+        foreach (Tile t in CurrentlyTakingTurn.possibleRange)
+        {
+            t.SetOverlayType(OverlayType.None);
+        }
+        CurrentlyTakingTurn.possibleRange.Clear();
+        SelectionScript.ClearAll();
+        if (!hasActed)
+        {
+            mode = TurnMode.action;
+            CurrentlyTakingTurn.Action(PrefabHolder.instance.itemDictionary[it]);
+        }
+        else
+        {
+            Debug.Log("Has already acted");
+        }
+    }
 }

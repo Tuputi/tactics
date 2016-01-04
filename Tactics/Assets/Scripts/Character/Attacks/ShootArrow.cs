@@ -21,8 +21,9 @@ public class ShootArrow : ActionBase {
         return base.CalculateHitChance();
     }
 
-    public override int CalculateDamage(Tile targetTile, Character chara)
+    public override int CalculateDamage(Tile targetTile)
     {
+        Character chara = TurnManager.instance.CurrentlyTakingTurn;
         int randoR = Random.Range(1,2);
         int damageR = randoR * -2;
         if (targetTile.tileCharacter.facing == chara.facing)
@@ -53,6 +54,9 @@ public class ShootArrow : ActionBase {
         return temp;
     }
 
-
+    public override void CompleteAction(Tile TargetTile)
+    {
+        CalculateDamage(TargetTile);
+    }
 
 }

@@ -32,7 +32,7 @@ public class ActionBase : ScriptableObject{
         return false;
     }
 
-    public virtual int CalculateDamage(Tile t, Character chara)
+    public virtual int CalculateDamage(Tile targetTile)
     {
         int damage = 10;
         return damage;
@@ -55,4 +55,8 @@ public class ActionBase : ScriptableObject{
         chara.GetComponent<Animator>().Play("ShootArrow");
     }
 
+    public virtual void CompleteAction(Tile TargetTile)
+    {
+        CalculateDamage(TargetTile);
+    }
 }

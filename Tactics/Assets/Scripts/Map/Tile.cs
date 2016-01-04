@@ -239,7 +239,7 @@ public class Tile : MonoBehaviour, System.IComparable
     }
 
     //code by mwk888
-    private bool IsPointerOverUIObject()
+    public bool IsPointerOverUIObject()
     {
         PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
         eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);

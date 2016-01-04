@@ -210,6 +210,14 @@ public class Character : MonoBehaviour, System.IComparable
        }
     }
 
+    void OnMouseDown()
+    {
+        if (!characterPosition.IsPointerOverUIObject())
+        {
+            characterPosition.SelectThis();
+        }
+    }
+
 }
 
 public class CharacterSave

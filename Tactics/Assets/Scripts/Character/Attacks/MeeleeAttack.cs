@@ -16,12 +16,13 @@ public class MeeleeAttack : ActionBase {
         return attackName;
     }
 
-    public override int CalculateDamage(Tile targetTile, Character chara)
+    public override int CalculateDamage(Tile targetTile)
     {
+        Character currentChara = TurnManager.instance.CurrentlyTakingTurn;
         int rando = Random.Range(1, 2);
         int damage = rando * -2;
-        chara.ChangeFacing(chara.characterPosition, targetTile);
-        if (targetTile.tileCharacter.facing == chara.facing)
+        currentChara.ChangeFacing(currentChara.characterPosition, targetTile);
+        if (targetTile.tileCharacter.facing == currentChara.facing)
         {
             damage *= 2;
             Debug.Log("backstab");
@@ -33,10 +34,15 @@ public class MeeleeAttack : ActionBase {
         return damage;
     }
 
-    /*public override List<Tile> DrawTargetArea(Tile targetTile)
+    public override List<Tile> DrawTargetArea(Tile targetTile)
     {
         List<Tile> temp = new List<Tile>();
         temp.Add(targetTile);
         return temp;
-    }*/
+    }
+
+    public override void CompleteAction(Tile TargetTile)
+    {
+        CalculateDamage(TargetTile);
+    }
 }

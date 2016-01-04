@@ -22,7 +22,7 @@ public class FireSpell : ActionBase {
         return Pathfinding.GetPossibleRange(startTile, 4f, true);
     }
 
-    public override int CalculateDamage(Tile targetTile, Character chara)
+    public override int CalculateDamage(Tile targetTile)
     {
         List<Tile> hitsOnTiles = new List<Tile>(targetTile.neighbours);
         hitsOnTiles.Add(targetTile);
@@ -48,5 +48,10 @@ public class FireSpell : ActionBase {
         tempList.Add(targetTile);
         return tempList;
 
+    }
+
+    public override void CompleteAction(Tile TargetTile)
+    {
+        CalculateDamage(TargetTile);
     }
 }
