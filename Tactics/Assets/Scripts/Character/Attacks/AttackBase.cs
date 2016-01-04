@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+[CreateAssetMenu]
 public class ActionBase : ScriptableObject{
 
     public double attackBaseProbability; //100 = 100%

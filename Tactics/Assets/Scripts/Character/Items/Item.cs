@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+[CreateAssetMenu]
 public class Item : ActionBase {
 
     public int ItemCount = 3;
@@ -34,7 +34,12 @@ public class Item : ActionBase {
 
     public override int CalculateDamage(Tile targetTile)
     {
-        int healing = (int)(targetTile.tileCharacter.hp * 0.3); //heal 30%
+        int healing = 0;
+        if (targetTile.isOccupied)
+        {
+            healing = (int)(targetTile.tileCharacter.hp * 0.3); //heal 30%
+            targetTile.tileCharacter.hp += healing;
+        }
         return healing;
     }
 }
