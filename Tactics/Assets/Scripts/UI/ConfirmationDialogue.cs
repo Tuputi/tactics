@@ -32,6 +32,7 @@ public class ConfirmationDialogue : MonoBehaviour{
             default:
                 break;
         }
+        CameraScript.instance.SetMoveTarget(target.gameObject);
         DialogueTemplate.gameObject.SetActive(true);
         ConfirmType = type;
         ActionTargetTile = target;
@@ -53,6 +54,8 @@ public class ConfirmationDialogue : MonoBehaviour{
                 }
                 else
                 {
+                    CameraScript.instance.SetMoveTarget(TurnManager.instance.CurrentlyTakingTurn.gameObject);
+                    TurnManager.instance.CurrentlyTakingTurn.Action(TurnManager.instance.CurrentlyTakingTurn.currentAction);             
                     Debug.Log("Action canceled");
                 }
                 break;
@@ -64,6 +67,8 @@ public class ConfirmationDialogue : MonoBehaviour{
                 }
                 else
                 {
+                    CameraScript.instance.SetMoveTarget(TurnManager.instance.CurrentlyTakingTurn.gameObject);
+                    TurnManager.instance.CurrentlyTakingTurn.Move();
                     Debug.Log("Move canceled");
                 }
                 break;

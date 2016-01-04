@@ -64,13 +64,18 @@ public class SelectionScript : MonoBehaviour {
     {
         if (TurnManager.mode == TurnManager.TurnMode.move || TurnManager.mode == TurnManager.TurnMode.action)
         {
+            ClearSelection();
+            foreach (Tile t in TurnManager.instance.CurrentlyTakingTurn.possibleRange)
+            {
+                t.SetOverlayType(OverlayType.None);
+            }
             SetSingleSelectedTile(tile);
             if (TurnManager.instance.CurrentlyTakingTurn.possibleRange.Contains(tile))
             {
                 ClearAll();
                 SetSingleSelectedTile(tile);
                 if (TurnManager.mode == TurnManager.TurnMode.move)
-                {
+                { 
                     ConfirmationDialogue.instance.Show(ConfirmationType.move, tile);
                 }
                 if(TurnManager.mode == TurnManager.TurnMode.action)

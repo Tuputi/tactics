@@ -85,7 +85,6 @@ public class TurnManager : MonoBehaviour {
         SelectionScript.ClearAll();
         CurrentlyTakingTurn.characterPosition.SelectThis();
         CameraScript.instance.SetMoveTarget(CurrentlyTakingTurn.gameObject);
-        //CameraScript.instance.MoveToTargetFunc(CurrentlyTakingTurn.gameObject.transform);
         CurrentlyTakingTurn.characterEnergy = 0;
         if (CurrentlyTakingTurn.isAi)
         {
