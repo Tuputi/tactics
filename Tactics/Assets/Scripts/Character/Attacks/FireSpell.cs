@@ -42,14 +42,11 @@ public class FireSpell : ActionBase {
         return damageA;
     }
 
-    public override void DrawTargetArea(Tile targetTile)
+    public override List<Tile> DrawTargetArea(Tile targetTile)
     {
         List<Tile> tempList = new List<Tile>(targetTile.neighbours);
         tempList.Add(targetTile);
-        foreach(Tile t in tempList)
-        {
-            t.SetOverlayType(OverlayType.Selected);
-        }
+        return tempList;
 
     }
 }

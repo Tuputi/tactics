@@ -45,6 +45,7 @@ public class ConfirmationDialogue : MonoBehaviour{
 
     public void SelectOption(bool selected)
     {
+        SelectionScript.ClearSelection();
         switch (ConfirmType)
         {
             case ConfirmationType.action:

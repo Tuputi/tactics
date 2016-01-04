@@ -33,8 +33,10 @@ public class MeeleeAttack : ActionBase {
         return damage;
     }
 
-    public override void DrawTargetArea(Tile targetTile)
+    /*public override List<Tile> DrawTargetArea(Tile targetTile)
     {
-        targetTile.SetOverlayType(OverlayType.Selected);
-    }
+        List<Tile> temp = new List<Tile>();
+        temp.Add(targetTile);
+        return temp;
+    }*/
 }

@@ -22,16 +22,23 @@ public class PrefabHolder : MonoBehaviour {
     public List<TileObject> tileObjects;
     public List<Character> characters;
     public List<ActionBase> actions;
+    public List<Item> items;
 
     public Dictionary<ActionType, ActionBase> actionDictionary;
+    public Dictionary<ItemType, Item> itemDictionary;
 
     void Awake()
     {
         instance = this;
         actionDictionary = new Dictionary<ActionType, ActionBase>();
+        itemDictionary = new Dictionary<ItemType, Item>();
         foreach(ActionBase ab in actions)
         {
             actionDictionary.Add(ab.GetActionType(), ab);
+        }
+        foreach (var item in items)
+        {
+            itemDictionary.Add(item.GetItemType(),item);
         }
     }
 }
@@ -47,3 +54,5 @@ public enum ConfirmationType { action, move};
 
 //Names of different actions, used to reference to a dictionary of Actions
 public enum ActionType { MeeleeAttack, FireSpell, ShootArrow}
+
+public enum ItemType { Potion, Bomb};

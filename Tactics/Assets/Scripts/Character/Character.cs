@@ -176,7 +176,6 @@ public class Character : MonoBehaviour, System.IComparable
             t.SetOverlayType(OverlayType.None);
         }
         possibleRange.Clear();
-        currentAction.DrawTargetArea(tile);
         Debug.Log("Action completed");
 
         TurnManager.mode = TurnManager.TurnMode.end;

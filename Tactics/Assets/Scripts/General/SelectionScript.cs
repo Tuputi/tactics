@@ -68,18 +68,25 @@ public class SelectionScript : MonoBehaviour {
             foreach (Tile t in TurnManager.instance.CurrentlyTakingTurn.possibleRange)
             {
                 t.SetOverlayType(OverlayType.None);
-            }
-            SetSingleSelectedTile(tile);
+            }         
             if (TurnManager.instance.CurrentlyTakingTurn.possibleRange.Contains(tile))
             {
                 ClearAll();
-                SetSingleSelectedTile(tile);
                 if (TurnManager.mode == TurnManager.TurnMode.move)
-                { 
+                {
+                    SetSingleSelectedTile(tile);
                     ConfirmationDialogue.instance.Show(ConfirmationType.move, tile);
                 }
                 if(TurnManager.mode == TurnManager.TurnMode.action)
                 {
+                    List<Tile> tempList = TurnManager.instance.CurrentlyTakingTurn.currentAction.DrawTargetArea(tile);
+                    if (tempList.Count > 0)
+                    {
+                        foreach (Tile t in tempList)
+                        {
+                            SetMultipleSelectedTile(t);
+                        }
+                    }
                     ConfirmationDialogue.instance.Show(ConfirmationType.action, tile);
                 }
             }

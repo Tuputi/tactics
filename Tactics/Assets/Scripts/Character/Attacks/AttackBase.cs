@@ -43,9 +43,11 @@ public class ActionBase : ScriptableObject{
         return Pathfinding.GetPossibleRange(startTile, 2f, true);
     }
 
-    public virtual void DrawTargetArea(Tile targetTile)
+    public virtual List<Tile> DrawTargetArea(Tile targetTile)
     {
-        targetTile.SetOverlayType(OverlayType.Selected);
+        List<Tile> temp = new List<Tile>();
+        temp.Add(targetTile);
+        return temp;
     }
 
     public virtual void PlayAnimation(Character chara)
