@@ -78,14 +78,22 @@ public class TurnManager : MonoBehaviour {
         TakeTurn();
     }
 
+    public ItemButton itemButton;
     public void TakeTurn()
     {
+        if(CurrentlyTakingTurn.CharacterInventory == null)
+        {
+            CurrentlyTakingTurn.CreateInventory();
+        }
+        itemButton.UpdateButton();
+
         hasActed = false;
         hasMoved = false;
-        SelectionScript.ClearAll();
+        SelectionScript.ClearSelection();
         CurrentlyTakingTurn.characterPosition.SelectThis();
         CameraScript.instance.SetMoveTarget(CurrentlyTakingTurn.gameObject);
         CurrentlyTakingTurn.characterEnergy = 0;
+       
         if (CurrentlyTakingTurn.isAi)
         {
             CurrentlyTakingTurn.GetComponent<AiModule>().TakeTurn();
@@ -99,7 +107,7 @@ public class TurnManager : MonoBehaviour {
             t.SetOverlayType(OverlayType.None);
         }
         CurrentlyTakingTurn.possibleRange.Clear();
-        SelectionScript.ClearAll();
+        SelectionScript.ClearSelection();
         if (!hasMoved)
         {
             mode = TurnMode.move;
@@ -118,7 +126,7 @@ public class TurnManager : MonoBehaviour {
             t.SetOverlayType(OverlayType.None);
         }
         CurrentlyTakingTurn.possibleRange.Clear();
-        SelectionScript.ClearAll();
+        SelectionScript.ClearSelection();
         if (!hasActed)
         {
             mode = TurnMode.action;
@@ -137,7 +145,7 @@ public class TurnManager : MonoBehaviour {
             t.SetOverlayType(OverlayType.None);
         }
         CurrentlyTakingTurn.possibleRange.Clear();
-        SelectionScript.ClearAll();
+        SelectionScript.ClearSelection();
         if (!hasActed)
         {
             mode = TurnMode.action;

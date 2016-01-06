@@ -13,13 +13,28 @@ public class ItemButton : MonoBehaviour {
     {
         this.transform.FindChild("Text").GetComponent<Text>().text = ButtonText;
         CountText = this.transform.FindChild("Count").GetComponent<Text>();
-        CountText.text = "x"+ItemCount.ToString();
+        CountText.text = "?";
+    }
+
+    public void UpdateButton()
+    {
+        if (!TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.Contains(itemType))
+        {
+            this.gameObject.GetComponent<Button>().enabled = false;
+        }
+        else if(TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetItemCount(itemType) < 1)
+        {
+            this.gameObject.GetComponent<Button>().enabled = false;
+            CountText.text = "0";
+        }
+        else
+        {
+            CountText.text = TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetItemCount(itemType).ToString();
+        }
     }
 
     public void SelectAction()
     {
-        ItemCount--;
-        CountText.text = "x"+ItemCount.ToString();
         TurnManager.instance.Action(itemType);
     }
 }

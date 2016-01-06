@@ -9,7 +9,7 @@ public class AiModule : Character {
     public List<BehaviourModuleBase> publicBehaviorList;
     Dictionary<BehaviourType, BehaviourModuleBase> behaviourList;
     public BehaviourModuleBase currentBehaviour;
-    public List<ActionBase> availableAttacks;
+    public List<AttackBase> availableAttacks;
 
     public List<Tile> tempTotalAttackRange;
 
@@ -17,7 +17,7 @@ public class AiModule : Character {
     {
         isAi = true;
         behaviourList = new Dictionary<BehaviourType, BehaviourModuleBase>();
-        availableAttacks = new List<ActionBase>();
+        availableAttacks = new List<AttackBase>();
         foreach (BehaviourModuleBase bmb in publicBehaviorList)
         {
             behaviourList.Add(bmb.behaviorType, bmb);
@@ -59,10 +59,10 @@ public class AiModule : Character {
 
     public bool AttackTarget()
     {
-        foreach (ActionBase ab in availableAttacks)
+        foreach (AttackBase ab in availableAttacks)
         {
             Debug.Log(ab);
-            List<Tile> attackRange = ab.CalculateAttackRange(this.characterPosition);
+            List<Tile> attackRange = ab.CalculateActionRange(this.characterPosition);
             foreach (Tile t in attackRange)
             {
                 if (t.isOccupied)
@@ -91,9 +91,9 @@ public class AiModule : Character {
 
         //from which distance can we attack the target?
         tempTotalAttackRange = new List<Tile>();
-        foreach(ActionBase ab in availableAttacks)
+        foreach(AttackBase ab in availableAttacks)
         {
-            foreach(Tile t in ab.CalculateAttackRange(targetTile))
+            foreach(Tile t in ab.CalculateActionRange(targetTile))
             {
                 if (!tempTotalAttackRange.Contains(t))
                 {

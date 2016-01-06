@@ -21,18 +21,18 @@ public class PrefabHolder : MonoBehaviour {
     //lists
     public List<TileObject> tileObjects;
     public List<Character> characters;
-    public List<ActionBase> actions;
-    public List<Item> items;
+    public List<AttackBase> actions;
+    public List<ItemBase> items;
 
-    public Dictionary<ActionType, ActionBase> actionDictionary;
-    public Dictionary<ItemType, Item> itemDictionary;
+    public Dictionary<ActionType, AttackBase> actionDictionary;
+    public Dictionary<ItemType, ItemBase> itemDictionary;
 
     void Awake()
     {
         instance = this;
-        actionDictionary = new Dictionary<ActionType, ActionBase>();
-        itemDictionary = new Dictionary<ItemType, Item>();
-        foreach(ActionBase ab in actions)
+        actionDictionary = new Dictionary<ActionType, AttackBase>();
+        itemDictionary = new Dictionary<ItemType, ItemBase>();
+        foreach(AttackBase ab in actions)
         {
             actionDictionary.Add(ab.GetActionType(), ab);
         }

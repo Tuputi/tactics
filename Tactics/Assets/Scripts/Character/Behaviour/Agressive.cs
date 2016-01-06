@@ -6,7 +6,6 @@ public class Agressive : BehaviourModuleBase {
 
     public override bool CheckConditions(Character currentCharacter)
     {
-        Debug.Log("Agressive = true" );
         return true;
     }
 
@@ -17,7 +16,7 @@ public class Agressive : BehaviourModuleBase {
 
     public override void SetAvailableAttacks(Character currentCharacter)
     {
-        List<ActionBase> temp = new List<ActionBase>();
+        List<AttackBase> temp = new List<AttackBase>();
         temp.Add(PrefabHolder.instance.actionDictionary[ActionType.MeeleeAttack]);
         temp.Add(PrefabHolder.instance.actionDictionary[ActionType.ShootArrow]);
         currentCharacter.GetComponent<AiModule>().availableAttacks = temp;

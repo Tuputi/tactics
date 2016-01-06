@@ -21,7 +21,6 @@ public class SelectionScript : MonoBehaviour {
             return;
         }
 
-
         selectMultiple = Input.GetKey(KeyCode.LeftControl);
         shiftClick = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
     }
@@ -71,7 +70,7 @@ public class SelectionScript : MonoBehaviour {
             }         
             if (TurnManager.instance.CurrentlyTakingTurn.possibleRange.Contains(tile))
             {
-                ClearAll();
+                ClearSelection();
                 if (TurnManager.mode == TurnManager.TurnMode.move)
                 {
                     SetSingleSelectedTile(tile);
@@ -85,6 +84,7 @@ public class SelectionScript : MonoBehaviour {
                         foreach (Tile t in tempList)
                         {
                             SetMultipleSelectedTile(t);
+                            Debug.Log("SelTileInternCount: "+selectedTiles.Count);
                         }
                     }
                     ConfirmationDialogue.instance.Show(ConfirmationType.action, tile);
@@ -146,12 +146,4 @@ public class SelectionScript : MonoBehaviour {
         }
     }
 
-    public static void ClearAll()
-    {
-       foreach(Tile t in selectedTiles)
-       {
-           t.SetOverlayType(OverlayType.None);
-       }
-       selectedTiles.Clear();
-    }
 }

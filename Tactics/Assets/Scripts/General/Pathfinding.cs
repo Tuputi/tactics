@@ -47,7 +47,7 @@ public class Pathfinding : MonoBehaviour {
 
             if (current == endTile)
             {
-                Debug.Log("Path found!");
+               //ebug.Log("Path found!");
                 return ReturnPath(current, starTile);
             }
 
@@ -276,12 +276,16 @@ public class Pathfinding : MonoBehaviour {
             }
         }
 
-        Character closest = templist[0];
-        foreach(Character c in templist)
+        Character closest = null;
+        if (templist.Count > 0)
         {
-            if(Pathfinding.GetHeuristic(tile,c.characterPosition) < Pathfinding.GetHeuristic(tile, closest.characterPosition))
+            closest = templist[0];
+            foreach (Character c in templist)
             {
-                closest = c;
+                if (Pathfinding.GetHeuristic(tile, c.characterPosition) < Pathfinding.GetHeuristic(tile, closest.characterPosition))
+                {
+                    closest = c;
+                }
             }
         }
         if(closest == null)

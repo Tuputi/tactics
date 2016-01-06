@@ -20,7 +20,6 @@ public class ConfirmationDialogue : MonoBehaviour{
 
     public void Show(ConfirmationType type, Tile target)
     {
-        Debug.Log("Show dialogue");
         switch (type)
         {
             case ConfirmationType.action:
@@ -45,7 +44,6 @@ public class ConfirmationDialogue : MonoBehaviour{
 
     public void SelectOption(bool selected)
     {
-        SelectionScript.ClearSelection();
         switch (ConfirmType)
         {
             case ConfirmationType.action:

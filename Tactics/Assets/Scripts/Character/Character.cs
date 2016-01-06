@@ -24,7 +24,7 @@ public class Character : MonoBehaviour, System.IComparable
         }
     }
     public bool isAi = false;
-    public ActionBase currentAction = null;
+    public ActionBaseClass currentAction = null;
 
     //Movement
     int DistanceToGo = 0;
@@ -32,12 +32,16 @@ public class Character : MonoBehaviour, System.IComparable
     public Facing facing = Facing.Up;
 
     //stats
+    [Header("Stats")]
     public int hp = 100;
     public int mp = 100;
     public int speed = 10;
 
     //lists
+    public List<ItemBase> items;
+    [HideInInspector]
     public List<Tile> possibleRange;
+    public Inventory CharacterInventory;
 
     //compartors
     public bool Equals(Character other)
@@ -101,7 +105,7 @@ public class Character : MonoBehaviour, System.IComparable
         int rowChange = System.Math.Abs(at.xPos - to.xPos);
         int columnChange = System.Math.Abs(at.yPos - to.yPos);
 
-        GameObject rotateObj = this.transform.FindChild("CharacterObject").gameObject;
+        GameObject rotateObj = this.gameObject;
 
         if (rowChange > columnChange)
         {
@@ -136,6 +140,14 @@ public class Character : MonoBehaviour, System.IComparable
         characterPosition.SetCharacter(this);
     }
 
+    public void CreateInventory()
+    {
+        CharacterInventory = new Inventory();
+        foreach (ItemBase item in items) {
+            ItemBase instanceItem = (ItemBase)ScriptableObject.CreateInstance("ItemBase");
+            CharacterInventory.Add(instanceItem);
+        }
+    }
 
     //actions
     public void Move()
@@ -159,10 +171,10 @@ public class Character : MonoBehaviour, System.IComparable
         TurnManager.instance.hasMoved = true;
     }
 
-    public void Action(ActionBase ab)
+    public void Action(ActionBaseClass ab)
     {
         currentAction = ab;
-        possibleRange = ab.CalculateAttackRange(characterPosition);
+        possibleRange = ab.CalculateActionRange(characterPosition);
         foreach(Tile t in possibleRange)
         {
             t.SetOverlayType(OverlayType.Selected);
@@ -176,9 +188,8 @@ public class Character : MonoBehaviour, System.IComparable
             t.SetOverlayType(OverlayType.None);
         }
         possibleRange.Clear();
+        SelectionScript.ClearSelection();
         currentAction.CompleteAction(tile);
-        Debug.Log("Action completed");
-
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.hasActed = true;
     }

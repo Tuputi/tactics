@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MeeleeAttack : ActionBase {
+public class MeeleeAttack : AttackBase {
 
     public override ActionType GetActionType()
     {
@@ -12,16 +12,20 @@ public class MeeleeAttack : ActionBase {
 
     public override string GetName()
     {
-        attackName = "Meelee Attack";
-        return attackName;
+        actionName = "Meelee Attack";
+        return actionName;
     }
 
-    public override int CalculateDamage(Tile targetTile)
+    public override int CalculateEffect(Tile targetTile)
     {
         Character currentChara = TurnManager.instance.CurrentlyTakingTurn;
         int rando = Random.Range(1, 2);
-        int damage = rando * -2;
+        int damage = rando * minDamage;
         currentChara.ChangeFacing(currentChara.characterPosition, targetTile);
+        if(damage > maxDamage)
+        {
+            damage = maxDamage;
+        }
         if (targetTile.tileCharacter.facing == currentChara.facing)
         {
             damage *= 2;
@@ -30,19 +34,19 @@ public class MeeleeAttack : ActionBase {
 
 
         Debug.Log("Did " + damage + " to " + targetTile.tileCharacter.characterName);
-        targetTile.tileCharacter.hp += damage;
+        targetTile.tileCharacter.hp -= damage;
         return damage;
     }
 
     public override List<Tile> DrawTargetArea(Tile targetTile)
     {
-        List<Tile> temp = new List<Tile>();
+        List<Tile> temp = new List<Tile>(targetTile.neighbours);
         temp.Add(targetTile);
         return temp;
     }
 
     public override void CompleteAction(Tile TargetTile)
     {
-        CalculateDamage(TargetTile);
+        CalculateEffect(TargetTile);
     }
 }

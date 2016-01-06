@@ -2,23 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 [CreateAssetMenu]
-public class ActionBase : ScriptableObject{
+public class AttackBase : ActionBaseClass{
 
     public double attackBaseProbability; //100 = 100%
-    protected string attackName = "BaseAttack";
-    public int likelyDamageLow = 0;
-    public int likelyDamageHigh = 0;
+    public int minDamage = 0;
+    public int maxDamage = 0;
     public ActionType actionType = ActionType.MeeleeAttack;
 
     public virtual ActionType GetActionType()
     {
         actionType = ActionType.MeeleeAttack;
         return actionType;
-    }
-
-    public virtual string GetName()
-    {
-        return attackName;
     }
 
 	public virtual bool CalculateHitChance()
@@ -32,31 +26,4 @@ public class ActionBase : ScriptableObject{
         return false;
     }
 
-    public virtual int CalculateDamage(Tile targetTile)
-    {
-        int damage = 10;
-        return damage;
-    }
-
-    public virtual List<Tile> CalculateAttackRange(Tile startTile)
-    {
-        return Pathfinding.GetPossibleRange(startTile, 2f, true);
-    }
-
-    public virtual List<Tile> DrawTargetArea(Tile targetTile)
-    {
-        List<Tile> temp = new List<Tile>();
-        temp.Add(targetTile);
-        return temp;
-    }
-
-    public virtual void PlayAnimation(Character chara)
-    {
-        chara.GetComponent<Animator>().Play("ShootArrow");
-    }
-
-    public virtual void CompleteAction(Tile TargetTile)
-    {
-        CalculateDamage(TargetTile);
-    }
 }

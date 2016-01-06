@@ -1,0 +1,41 @@
+﻿using UnityEngine;
+using System.Collections.Generic;
+
+public class ActionBaseClass : ScriptableObject {
+
+    protected string actionName = "ActionBaseClass";
+
+    public virtual string GetName()
+    {
+        return actionName;
+    }
+
+    public virtual List<Tile> CalculateActionRange(Tile startTile)
+    {
+        return Pathfinding.GetPossibleRange(startTile, 2f, true);
+    }
+
+    public virtual List<Tile> DrawTargetArea(Tile targetTile)
+    {
+        List<Tile> temp = new List<Tile>();
+        temp.Add(targetTile);
+        return temp;
+    }
+
+    public virtual void PlayAnimation(Character chara)
+    {
+        chara.GetComponent<Animator>().Play("ShootArrow");
+    }
+
+    public virtual void CompleteAction(Tile TargetTile)
+    {
+        CalculateEffect(TargetTile);
+    }
+
+    public virtual int CalculateEffect(Tile targetTile)
+    {
+        int damage = 10;
+        return damage;
+    }
+
+}
