@@ -270,7 +270,7 @@ public class Pathfinding : MonoBehaviour {
         List<Character> templist = new List<Character>();
         foreach(Character cha in TurnManager.characters)
         {
-            if (isAi == cha.isAi && !(cha.characterName.Equals(tile.tileCharacter.characterName)))
+            if (isAi == cha.isAi)
             {
                 templist.Add(cha);
             }

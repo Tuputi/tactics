@@ -84,7 +84,6 @@ public class SelectionScript : MonoBehaviour {
                         foreach (Tile t in tempList)
                         {
                             SetMultipleSelectedTile(t);
-                            Debug.Log("SelTileInternCount: "+selectedTiles.Count);
                         }
                     }
                     ConfirmationDialogue.instance.Show(ConfirmationType.action, tile);

@@ -44,6 +44,7 @@ public class ConfirmationDialogue : MonoBehaviour{
 
     public void SelectOption(bool selected)
     {
+        SelectionScript.ClearSelection();
         switch (ConfirmType)
         {
             case ConfirmationType.action:
@@ -54,7 +55,7 @@ public class ConfirmationDialogue : MonoBehaviour{
                 else
                 {
                     CameraScript.instance.SetMoveTarget(TurnManager.instance.CurrentlyTakingTurn.gameObject);
-                    TurnManager.instance.CurrentlyTakingTurn.Action(TurnManager.instance.CurrentlyTakingTurn.currentAction);             
+                    TurnManager.instance.CurrentlyTakingTurn.Action(TurnManager.instance.CurrentlyTakingTurn.currentAction);        
                     Debug.Log("Action canceled");
                 }
                 break;

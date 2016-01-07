@@ -61,7 +61,6 @@ public class AiModule : Character {
     {
         foreach (AttackBase ab in availableAttacks)
         {
-            Debug.Log(ab);
             List<Tile> attackRange = ab.CalculateActionRange(this.characterPosition);
             foreach (Tile t in attackRange)
             {

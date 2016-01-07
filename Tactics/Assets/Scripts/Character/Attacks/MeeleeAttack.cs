@@ -40,7 +40,7 @@ public class MeeleeAttack : AttackBase {
 
     public override List<Tile> DrawTargetArea(Tile targetTile)
     {
-        List<Tile> temp = new List<Tile>(targetTile.neighbours);
+        List<Tile> temp = new List<Tile>();
         temp.Add(targetTile);
         return temp;
     }
