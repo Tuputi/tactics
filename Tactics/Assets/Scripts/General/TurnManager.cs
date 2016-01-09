@@ -33,6 +33,14 @@ public class TurnManager : MonoBehaviour {
         {
             characters.Add(characterHolder.transform.GetChild(i).GetComponent<Character>());
         }
+
+        foreach( Character chara in characters)
+        {
+            if(chara.CharacterInventory == null)
+            {
+                chara.CreateInventory();
+            }
+        }
     }
 
     void AddEnergy()
@@ -78,15 +86,9 @@ public class TurnManager : MonoBehaviour {
         TakeTurn();
     }
 
-    public ItemButton itemButton;
     public void TakeTurn()
     {
-        if(CurrentlyTakingTurn.CharacterInventory == null)
-        {
-            CurrentlyTakingTurn.CreateInventory();
-        }
-        itemButton.UpdateButton();
-
+        UIManager.UpdateButtons();
         hasActed = false;
         hasMoved = false;
         SelectionScript.ClearSelection();

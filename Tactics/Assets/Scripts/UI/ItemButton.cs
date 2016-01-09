@@ -2,38 +2,40 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class ItemButton : MonoBehaviour {
+public class ItemButton : ButtonScript {
 
     public ItemType itemType;
-    public string ButtonText;
     public Text CountText;
     public int ItemCount = 3;
 
     void Awake()
     {
-        this.transform.FindChild("Text").GetComponent<Text>().text = ButtonText;
-        CountText = this.transform.FindChild("Count").GetComponent<Text>();
-        CountText.text = "?";
+        SetUp();
     }
 
-    public void UpdateButton()
+    public override void SetUp()
     {
-        if (!TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.Contains(itemType))
+        this.transform.FindChild("Text").GetComponent<Text>().text = ButtonText;
+        button = this.GetComponent<Button>();
+        CountText = this.transform.FindChild("Count").GetComponent<Text>();
+        CountText.text = ItemCount.ToString();
+
+    }
+
+    public override void UpdateButton()
+    {
+        CountText.text = TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetItemCount(itemType).ToString();
+        if (TurnManager.instance.hasActed || TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetItemCount(itemType) < 1)
         {
-            this.gameObject.GetComponent<Button>().enabled = false;
-        }
-        else if(TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetItemCount(itemType) < 1)
-        {
-            this.gameObject.GetComponent<Button>().enabled = false;
-            CountText.text = "0";
+            button.interactable = false;
         }
         else
         {
-            CountText.text = TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetItemCount(itemType).ToString();
+            button.interactable = true;
         }
     }
 
-    public void SelectAction()
+    public override void SelectAction()
     {
         TurnManager.instance.Action(itemType);
     }
