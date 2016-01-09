@@ -169,6 +169,7 @@ public class Character : MonoBehaviour, System.IComparable
         possibleRange.Clear();
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.hasMoved = true;
+        UIManager.instance.UpdateButtons();
     }
 
     public void Action(ActionBaseClass ab)
@@ -192,6 +193,7 @@ public class Character : MonoBehaviour, System.IComparable
         currentAction.CompleteAction(tile);
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.hasActed = true;
+        UIManager.instance.UpdateButtons();
     }
 
     public void SetCharacterPosition(Tile tile)

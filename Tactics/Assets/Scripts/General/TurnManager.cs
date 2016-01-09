@@ -88,9 +88,9 @@ public class TurnManager : MonoBehaviour {
 
     public void TakeTurn()
     {
-        UIManager.UpdateButtons();
         hasActed = false;
         hasMoved = false;
+        UIManager.instance.UpdateButtons();
         SelectionScript.ClearSelection();
         CurrentlyTakingTurn.characterPosition.SelectThis();
         CameraScript.instance.SetMoveTarget(CurrentlyTakingTurn.gameObject);

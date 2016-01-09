@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class UIManager{
+public class UIManager : MonoBehaviour{
 
     GameObject ButtonHolder;
-    static List<ButtonScript> buttons;
+    List<ButtonScript> buttons;
+    public static UIManager instance;
 
     void Awake()
     {
+        instance = this;
         buttons = new List<ButtonScript>();
-        ButtonHolder = GameObject.Find("ActionButtons");
+        ButtonHolder = GameObject.Find("Canvas").transform.FindChild("ActionButtons").gameObject;
         for(int i = 0; i < ButtonHolder.transform.childCount; i++)
         {
             buttons.Add(ButtonHolder.transform.GetChild(i).GetComponent<ButtonScript>());
@@ -18,11 +20,20 @@ public class UIManager{
         Debug.Log("Buttoncount " + buttons.Count);
     }
 
-    public static void UpdateButtons()
+    public void UpdateButtons()
     {
-        foreach(ButtonScript b in buttons)
+        if (TurnManager.instance.CurrentlyTakingTurn.isAi)
         {
-            b.UpdateButton();
+            ButtonHolder.SetActive(false);
         }
+        else
+        {
+            ButtonHolder.SetActive(true);
+            foreach (ButtonScript b in buttons)
+            {
+                b.UpdateButton();
+            }
+        }
+        
     }
 }

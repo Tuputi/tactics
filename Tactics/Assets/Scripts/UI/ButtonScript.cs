@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public abstract class ButtonScript : MonoBehaviour {
 
     public string ButtonText;
+    [HideInInspector]
     public Button button;
 
     public abstract void SetUp();
