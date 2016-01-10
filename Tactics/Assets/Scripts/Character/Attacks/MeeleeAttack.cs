@@ -26,7 +26,8 @@ public class MeeleeAttack : AttackBase {
         Character currentChara = TurnManager.instance.CurrentlyTakingTurn;
         int rando = Random.Range(1, 2);
         int damage = rando * minDamage;
-        currentChara.ChangeFacing(currentChara.characterPosition, targetTile);
+        //currentChara.ChangeFacing(currentChara.characterPosition, targetTile);
+        CharacterLogic.instance.ChangeFacing(currentChara, currentChara.characterPosition, targetTile);
         if(damage > maxDamage)
         {
             damage = maxDamage;

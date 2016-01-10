@@ -11,7 +11,7 @@ public class TeamPlayer : BehaviourModuleBase {
 
     public override bool CheckConditions(Character currentCharacter)
     {
-        List<Tile> reachableArea = Pathfinding.GetPossibleRange(currentCharacter.characterPosition, currentCharacter.characterWalkEnergy, false);
+        List<Tile> reachableArea = Pathfinding.GetPossibleRange(currentCharacter.characterPosition, currentCharacter.movementRange, false);
         bool friendsTargetFound = false;
         foreach (Tile t in reachableArea)
         {
@@ -39,7 +39,7 @@ public class TeamPlayer : BehaviourModuleBase {
 
     public override Tile GetTarget(Character currentCharacter)
     {
-        List<Tile> reachableArea = Pathfinding.GetPossibleRange(currentCharacter.characterPosition, currentCharacter.characterWalkEnergy, true);
+        List<Tile> reachableArea = Pathfinding.GetPossibleRange(currentCharacter.characterPosition, currentCharacter.movementRange, true);
         List<Character> friendsTargets = new List<Character>();
         foreach (Tile t in reachableArea)
         {

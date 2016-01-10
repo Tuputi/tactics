@@ -69,7 +69,7 @@ public class AiModule : Character {
                    if (t.tileCharacter.characterName.Equals(targetCharacter.characterName))
                     {
                         currentAction = ab;
-                      CompleteAction(t);
+                      CharacterLogic.instance.CompleteAction(this, t);
                       return false;
                      }
                 }
@@ -109,12 +109,12 @@ public class AiModule : Character {
             List<Tile> takePath = new List<Tile>();
             foreach (Tile t in foundPath)
             {
-                if (t.pathfindingCost <= this.characterWalkEnergy)
+                if (t.pathfindingCost <= this.movementRange)
                 {
                     takePath.Add(t);
                 }
             }
-            CompleteMove(foundPath);
+            CharacterLogic.instance.CompleteMove(this, foundPath);
         }
         else
         {

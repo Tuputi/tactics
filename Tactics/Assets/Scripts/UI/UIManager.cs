@@ -9,8 +9,6 @@ public class UIManager : MonoBehaviour{
     List<ButtonScript> buttons;
     public static UIManager instance;
 
-    bool disableButtons = false;
-
     void Awake()
     {
         instance = this;

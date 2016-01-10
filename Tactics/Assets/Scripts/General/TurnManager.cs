@@ -38,7 +38,8 @@ public class TurnManager : MonoBehaviour {
         {
             if(chara.CharacterInventory == null)
             {
-                chara.CreateInventory();
+               // chara.CreateInventory();
+                CharacterLogic.instance.CreateInventory(chara);
             }
         }
     }
@@ -113,7 +114,8 @@ public class TurnManager : MonoBehaviour {
         if (!hasMoved)
         {
             mode = TurnMode.move;
-            CurrentlyTakingTurn.Move();
+            // CurrentlyTakingTurn.Move();
+            CharacterLogic.instance.Move(CurrentlyTakingTurn);
         }
         else
         {
@@ -132,7 +134,8 @@ public class TurnManager : MonoBehaviour {
         if (!hasActed)
         {
             mode = TurnMode.action;
-            CurrentlyTakingTurn.Action(PrefabHolder.instance.actionDictionary[at]);
+            //CurrentlyTakingTurn.Action(PrefabHolder.instance.actionDictionary[at]);
+            CharacterLogic.instance.Action(CurrentlyTakingTurn, PrefabHolder.instance.actionDictionary[at]);
         }
         else
         {
@@ -151,7 +154,8 @@ public class TurnManager : MonoBehaviour {
         if (!hasActed)
         {
             mode = TurnMode.action;
-            CurrentlyTakingTurn.Action(PrefabHolder.instance.itemDictionary[it]);
+           // CurrentlyTakingTurn.Action(PrefabHolder.instance.itemDictionary[it]);
+            CharacterLogic.instance.Action(CurrentlyTakingTurn, PrefabHolder.instance.itemDictionary[it]);
         }
         else
         {

@@ -52,12 +52,14 @@ public class ConfirmationDialogue : MonoBehaviour{
             case ConfirmationType.action:
                 if (selected)
                 {
-                    TurnManager.instance.CurrentlyTakingTurn.CompleteAction(ActionTargetTile);
+                   // TurnManager.instance.CurrentlyTakingTurn.CompleteAction(ActionTargetTile);
+                    CharacterLogic.instance.CompleteAction(TurnManager.instance.CurrentlyTakingTurn, ActionTargetTile);
                 }
                 else
                 {
                     CameraScript.instance.SetMoveTarget(TurnManager.instance.CurrentlyTakingTurn.gameObject);
-                    TurnManager.instance.CurrentlyTakingTurn.Action(TurnManager.instance.CurrentlyTakingTurn.currentAction);        
+                    // TurnManager.instance.CurrentlyTakingTurn.Action(TurnManager.instance.CurrentlyTakingTurn.currentAction);    
+                    CharacterLogic.instance.Action(TurnManager.instance.CurrentlyTakingTurn, TurnManager.instance.CurrentlyTakingTurn.currentAction);    
                     Debug.Log("Action canceled");
                 }
                 break;
@@ -65,12 +67,14 @@ public class ConfirmationDialogue : MonoBehaviour{
                 if (selected)
                 {
                     List<Tile> tempPath = Pathfinding.GetPath(TurnManager.instance.CurrentlyTakingTurn.characterPosition, ActionTargetTile);
-                    TurnManager.instance.CurrentlyTakingTurn.CompleteMove(tempPath);
+                    //TurnManager.instance.CurrentlyTakingTurn.CompleteMove(tempPath);
+                    CharacterLogic.instance.CompleteMove(TurnManager.instance.CurrentlyTakingTurn, tempPath);
                 }
                 else
                 {
                     CameraScript.instance.SetMoveTarget(TurnManager.instance.CurrentlyTakingTurn.gameObject);
-                    TurnManager.instance.CurrentlyTakingTurn.Move();
+                    //TurnManager.instance.CurrentlyTakingTurn.Move();
+                    CharacterLogic.instance.Move(TurnManager.instance.CurrentlyTakingTurn);
                     Debug.Log("Move canceled");
                 }
                 break;

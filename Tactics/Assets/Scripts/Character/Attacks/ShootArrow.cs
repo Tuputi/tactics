@@ -49,7 +49,7 @@ public class ShootArrow : AttackBase {
 
     public override List<Tile> CalculateActionRange(Tile startTile)
     {
-        return Pathfinding.GetPossibleRange(startTile, TurnManager.instance.CurrentlyTakingTurn.shootArrowsEnergy, true);
+        return Pathfinding.GetPossibleRange(startTile, TurnManager.instance.CurrentlyTakingTurn.rangedRange, true);
     }
 
     public override List<Tile> DrawTargetArea(Tile targetTile)
