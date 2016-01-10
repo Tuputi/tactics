@@ -18,6 +18,11 @@ public class MeeleeAttack : AttackBase {
 
     public override int CalculateEffect(Tile targetTile)
     {
+        if (!targetTile.isOccupied)
+        {
+            return 0;
+        }
+
         Character currentChara = TurnManager.instance.CurrentlyTakingTurn;
         int rando = Random.Range(1, 2);
         int damage = rando * minDamage;

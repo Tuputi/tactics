@@ -23,6 +23,12 @@ public class ShootArrow : AttackBase {
 
     public override int CalculateEffect(Tile targetTile)
     {
+
+        if (!targetTile.isOccupied)
+        {
+            return 0;
+        }
+
         Character chara = TurnManager.instance.CurrentlyTakingTurn;
         int randoR = Random.Range(1,2);
         int damageR = randoR * -2;

@@ -5,19 +5,23 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour{
 
     GameObject ButtonHolder;
+    GameObject NextTurnButton;
     List<ButtonScript> buttons;
     public static UIManager instance;
+
+    bool disableButtons = false;
 
     void Awake()
     {
         instance = this;
         buttons = new List<ButtonScript>();
         ButtonHolder = GameObject.Find("Canvas").transform.FindChild("ActionButtons").gameObject;
+        NextTurnButton = GameObject.Find("NextTurn");
         for(int i = 0; i < ButtonHolder.transform.childCount; i++)
         {
             buttons.Add(ButtonHolder.transform.GetChild(i).GetComponent<ButtonScript>());
         }
-        Debug.Log("Buttoncount " + buttons.Count);
+        buttons.Add(NextTurnButton.GetComponent<ButtonScript>());
     }
 
     public void UpdateButtons()
@@ -34,6 +38,14 @@ public class UIManager : MonoBehaviour{
                 b.UpdateButton();
             }
         }
-        
+
+    }
+
+    public void DisableButtons(bool activeStatus)
+    {
+       foreach(ButtonScript b in buttons)
+       { 
+           b.gameObject.GetComponent<Button>().enabled = activeStatus;
+       }
     }
 }

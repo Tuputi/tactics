@@ -35,11 +35,13 @@ public class ConfirmationDialogue : MonoBehaviour{
         DialogueTemplate.gameObject.SetActive(true);
         ConfirmType = type;
         ActionTargetTile = target;
+        UIManager.instance.DisableButtons(false);
     }
 
     public void Close()
     {
         DialogueTemplate.SetActive(false);
+        UIManager.instance.DisableButtons(true);
     }
 
     public void SelectOption(bool selected)

@@ -1088,6 +1088,7 @@ GameObject:
   - 222: {fileID: 1422622169}
   - 114: {fileID: 1422622168}
   - 114: {fileID: 1422622167}
+  - 114: {fileID: 1422622171}
   m_Layer: 5
   m_Name: NextTurn
   m_TagString: Untagged
@@ -1134,8 +1135,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 521359441}
-        m_MethodName: NextInTurn
+      - m_Target: {fileID: 1422622171}
+        m_MethodName: SelectAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1198,6 +1199,19 @@ RectTransform:
   m_AnchoredPosition: {x: -117.079773, y: 90.6000061}
   m_SizeDelta: {x: 160, y: 100}
   m_Pivot: {x: .5, y: .5}
+--- !u!114 &1422622171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1422622166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e343b7d8361e3242b737c43e97de56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonText: End Turn
+  button: {fileID: 0}
 --- !u!224 &1465767990 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22498456, guid: 3e6bad0a5ad0ea94ea260f3324717e70,
