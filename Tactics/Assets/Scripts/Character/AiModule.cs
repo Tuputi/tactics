@@ -33,11 +33,39 @@ public class AiModule : Character {
         {
            //move towards target
            AiMove();
+            waitingToCompleteMove = true;
+           //wait here until movement completed
            //try to attack target
-           AttackTarget();
+           //AttackTarget();
+            //wait here until attack complete
         }
-        Debug.Log("turn done");
+        //Debug.Log("turn done");
     }
+
+    bool waitingToCompleteMove = false;
+    bool waitingToCompleteAttack = false;
+
+    void Update()
+    {
+        if (waitingToCompleteMove)
+        {
+            if (CharacterLogic.instance.MoveCompleted)
+            {
+                waitingToCompleteMove = false;
+                AttackTarget();
+                waitingToCompleteAttack = true;
+            }
+        }
+
+        if (waitingToCompleteAttack)
+        {
+            waitingToCompleteAttack = false;
+            Debug.Log("turn done");
+            TurnManager.instance.NextInTurn();
+        }
+    }
+
+
 
     public void SelectBehaviour()
     {

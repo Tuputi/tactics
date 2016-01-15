@@ -41,7 +41,7 @@ public class MeeleeAttack : AttackBase {
 
         Debug.Log("Did " + damage + " to " + targetTile.tileCharacter.characterName);
         targetTile.tileCharacter.hp -= damage;
-        CharacterLogic.instance.TakeDamage(targetTile.tileCharacter, -damage);
+        CharacterLogic.instance.DisplayEffect(targetTile.tileCharacter, -damage);
         return damage;
     }
 

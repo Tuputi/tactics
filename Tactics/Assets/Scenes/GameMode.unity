@@ -856,7 +856,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22450650, guid: 5ab7b8812c7aaea419cd5c5c589ebe11, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 118
       objectReference: {fileID: 0}
     - target: {fileID: 22450650, guid: 5ab7b8812c7aaea419cd5c5c589ebe11, type: 2}
       propertyPath: m_SizeDelta.x
@@ -1023,6 +1023,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TravelSpeed: .200000003
+  MoveCompleted: 1
+  ActionCompleted: 1
 --- !u!4 &1391845373
 Transform:
   m_ObjectHideFlags: 0

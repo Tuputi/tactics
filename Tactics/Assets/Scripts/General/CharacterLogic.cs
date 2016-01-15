@@ -7,6 +7,8 @@ public class CharacterLogic : MonoBehaviour{
     int DistanceToGo = 0;
     public float TravelSpeed = 0.2f;
     public static CharacterLogic instance;
+    public bool MoveCompleted = true;
+    public bool ActionCompleted = true;
 
     void Awake()
     {
@@ -132,10 +134,15 @@ public class CharacterLogic : MonoBehaviour{
         UIManager.instance.UpdateButtons();
     }
 
-    public void TakeDamage(Character chara, int damageAmount)
+    public void DisplayEffect(Character chara, int damageAmount)
     {
         GameObject damageText = (GameObject)Instantiate(PrefabHolder.instance.DamageText);
         damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = damageAmount.ToString();
+        if(damageAmount > 0)
+        {
+            damageText.GetComponentInChildren<UnityEngine.UI.Text>().color = Color.green;
+        }
+
         damageText.transform.SetParent(chara.gameObject.transform);
         damageText.transform.localPosition = new Vector3(0, 1f, 0);
     }
@@ -145,10 +152,13 @@ public class CharacterLogic : MonoBehaviour{
         tile.SetCharacter(chara);
     }
 
+   
     public void MoveCharacter(Character chara, List<Tile> path)
     {
+        MoveCompleted = false;
         SetCharacterPosition(chara, path[0]);
         DistanceToGo = path.Count - 1;
+        CameraScript.instance.SetMoveTarget(path[0].gameObject);
         StartCoroutine(MovePath(chara, path));
     }
 
@@ -166,5 +176,7 @@ public class CharacterLogic : MonoBehaviour{
             }
             yield return 0;
         }
+        Debug.Log("Move complete");
+        MoveCompleted = true;
     }
 }

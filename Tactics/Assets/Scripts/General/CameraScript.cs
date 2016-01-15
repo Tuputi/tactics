@@ -18,7 +18,6 @@ public class CameraScript : MonoBehaviour {
     {
         if (MoveToTargetBool)
         {
-
             StartCoroutine(MoveToTarget(target.transform));
         }
     }

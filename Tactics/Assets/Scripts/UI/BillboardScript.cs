@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BillboardScript : MonoBehaviour {
 
-    public Camera camera;
+    public new Camera camera;
 
     void Start()
     {

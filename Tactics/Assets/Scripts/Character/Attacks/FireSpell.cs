@@ -39,7 +39,7 @@ public class FireSpell : AttackBase {
             {
                 Debug.Log("Did " + damageA + " to " + t.tileCharacter.characterName);
                 t.tileCharacter.hp -= damageA;
-                CharacterLogic.instance.TakeDamage(targetTile.tileCharacter, -damageA);
+                CharacterLogic.instance.DisplayEffect(t.tileCharacter, -damageA);
                 // t.tileCharacter.CheckIfAlive(); 
             }
         }
