@@ -44,6 +44,7 @@ public class ShootArrow : AttackBase {
         }
         Debug.Log("Did " + damageR + " to " + targetTile.tileCharacter.characterName);
         targetTile.tileCharacter.hp += damageR;
+        CharacterLogic.instance.TakeDamage(targetTile.tileCharacter, damageR);
         return damageR;
     }
 

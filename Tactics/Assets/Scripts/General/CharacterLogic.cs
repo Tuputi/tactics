@@ -132,6 +132,14 @@ public class CharacterLogic : MonoBehaviour{
         UIManager.instance.UpdateButtons();
     }
 
+    public void TakeDamage(Character chara, int damageAmount)
+    {
+        GameObject damageText = (GameObject)Instantiate(PrefabHolder.instance.DamageText);
+        damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = damageAmount.ToString();
+        damageText.transform.SetParent(chara.gameObject.transform);
+        damageText.transform.localPosition = new Vector3(0, 1f, 0);
+    }
+
     public void SetCharacterPosition(Character chara, Tile tile)
     {
         tile.SetCharacter(chara);

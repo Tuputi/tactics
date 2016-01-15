@@ -6,24 +6,32 @@ public class PrefabHolder : MonoBehaviour {
 
     public static PrefabHolder instance;
 
+    //ui-elements
+    [Header("UI-elemnts")]
+    public GameObject DamageText;
 
     //Tiles
+    [Header("Tiles")]
     public GameObject tile_base;
     public GameObject Tile_Grass_Prefab;
     public GameObject Tile_Rock_Prefab;
     public GameObject Tile_Empty_Prefab;
 
     //overlay
+    [Header("Overlays")]
     public GameObject Overlay_Empty_Prefab;
     public GameObject Overlay_Selection_Prefab;
 
 
     //lists
+    [Header("Lists")]
     public List<TileObject> tileObjects;
     public List<Character> characters;
     public List<AttackBase> actions;
     public List<ItemBase> items;
 
+    //dictionaries
+    [HideInInspector]
     public Dictionary<ActionType, AttackBase> actionDictionary;
     public Dictionary<ItemType, ItemBase> itemDictionary;
 
