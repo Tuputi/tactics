@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 public class CharacterLogic : MonoBehaviour{
 
-    int DistanceToGo = 0;
-    public float TravelSpeed = 0.2f;
+   
     public static CharacterLogic instance;
-    public bool MoveCompleted = true;
+ 
     public bool ActionCompleted = true;
 
     void Awake()
@@ -99,7 +98,7 @@ public class CharacterLogic : MonoBehaviour{
 
     public void CompleteMove(Character chara, List<Tile> path)
     {
-        MoveCharacter(chara, path);
+        chara.MoveCharacter(chara, path);
         foreach (Tile t in chara.possibleRange)
         {
             t.SetOverlayType(OverlayType.None);
@@ -153,30 +152,5 @@ public class CharacterLogic : MonoBehaviour{
     }
 
    
-    public void MoveCharacter(Character chara, List<Tile> path)
-    {
-        MoveCompleted = false;
-        SetCharacterPosition(chara, path[0]);
-        DistanceToGo = path.Count - 1;
-        CameraScript.instance.SetMoveTarget(path[0].gameObject);
-        StartCoroutine(MovePath(chara, path));
-    }
-
-    IEnumerator MovePath(Character chara, List<Tile> path)
-    {
-        while (DistanceToGo >= 0)
-        {
-            Tile target = path[DistanceToGo];
-            Vector3 targetPos = new Vector3(target.transform.position.x, target.transform.position.y + 1.2f, target.transform.position.z);
-            Vector3 sourcePos = chara.gameObject.transform.position;
-            chara.transform.position = Vector3.MoveTowards(sourcePos, targetPos, Mathf.SmoothStep(0, 1f, TravelSpeed));
-            if (chara.transform.position == targetPos)
-            {
-                DistanceToGo--;
-            }
-            yield return 0;
-        }
-        Debug.Log("Move complete");
-        MoveCompleted = true;
-    }
+    
 }

@@ -49,7 +49,7 @@ public class AiModule : Character {
     {
         if (waitingToCompleteMove)
         {
-            if (CharacterLogic.instance.MoveCompleted)
+            if (MoveCompleted)
             {
                 waitingToCompleteMove = false;
                 AttackTarget();
