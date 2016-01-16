@@ -36,6 +36,7 @@ public class Character : MonoBehaviour, System.IComparable
     //stats
     [Header("Stats")]
     public int hp = 100;
+    public int hpMax = 100;
     public int mp = 100;
     public int speed = 10;
 

@@ -6,6 +6,13 @@ public class UIManager : MonoBehaviour{
 
     GameObject ButtonHolder;
     GameObject NextTurnButton;
+
+    //statustemplate
+    GameObject StatusTemplate;
+    Text hpValue;
+    Text hpValueMax;
+    Text characterName;
+
     List<ButtonScript> buttons;
     public static UIManager instance;
 
@@ -20,6 +27,22 @@ public class UIManager : MonoBehaviour{
             buttons.Add(ButtonHolder.transform.GetChild(i).GetComponent<ButtonScript>());
         }
         buttons.Add(NextTurnButton.GetComponent<ButtonScript>());
+        StatusTemplate = GameObject.Find("StatusDisplayTemplate");
+        hpValue = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValue").GetComponent<Text>();
+        hpValueMax = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValueMax").GetComponent<Text>();
+        characterName = StatusTemplate.transform.FindChild("Name").GetComponent<Text>();
+    }
+
+    public void UpdateStatus(Character chara)
+    {
+        StatusTemplate.SetActive(true);
+        hpValue.text = chara.hp.ToString();
+        hpValueMax.text = chara.hpMax.ToString();
+        characterName.text = chara.characterName;
+    }
+    public void UpdateStatus(bool visible)
+    {
+        StatusTemplate.SetActive(visible);
     }
 
     public void UpdateButtons()

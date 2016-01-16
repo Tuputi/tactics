@@ -10,10 +10,12 @@ public class EditorButtonScript : MonoBehaviour {
     //references
     public InputField mapnamefield;
     public Dropdown loadMapDropdown;
+    public static EditorButtonScript instance;
 
     void Start()
     {
         UpdateMapList();
+        instance = this;
     }
 
     public void FindPathButton()

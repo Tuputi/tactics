@@ -178,12 +178,12 @@ public class Tile : MonoBehaviour, System.IComparable
 
     public void SetCharacter(Character Chara)
     {
-        tileCharacter = Chara;
        if (Chara.characterPosition != null)
         {
             Chara.characterPosition.tileCharacter = null;
         }
         Chara.characterPosition = this;
+        this.tileCharacter = Chara;
     }
 
     //move somewhere else?

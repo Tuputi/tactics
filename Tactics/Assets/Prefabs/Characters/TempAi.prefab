@@ -91,15 +91,17 @@ MonoBehaviour:
   characterID: 2
   characterPosition: {fileID: 0}
   characterEnergy: 5
-  characterWalkEnergy: 5
-  shootArrowsEnergy: 5
+  movementRange: 5
+  rangedRange: 5
   isAi: 0
   currentAction: {fileID: 0}
   TravelSpeed: .200000003
+  MoveCompleted: 1
   facing: 0
   hp: 100
+  hpMax: 100
   mp: 100
-  speed: 10
+  speed: 5
   items:
   - {fileID: 11400000, guid: a4c7641bd6841d245b1183cc31f0afcf, type: 2}
   possibleRange: []
@@ -129,6 +131,10 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: a4c7641bd6841d245b1183cc31f0afcf,
         type: 2}
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 179750}

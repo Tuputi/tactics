@@ -33,11 +33,15 @@ public class AiModule : Character {
         {
            //move towards target
            AiMove();
-            waitingToCompleteMove = true;
+           waitingToCompleteMove = true;
            //wait here until movement completed
            //try to attack target
            //AttackTarget();
             //wait here until attack complete
+        }
+        else
+        {
+            waitingToCompleteAttack = true;
         }
         //Debug.Log("turn done");
     }
@@ -76,11 +80,12 @@ public class AiModule : Character {
                 currentBehaviour = behaviourList[behaviourType];
                 currentBehaviour.SetAvailableAttacks(this);
                 Tile tempTile = currentBehaviour.GetTarget(this);
-                if (tempTile != null)
+                if (tempTile.tileCharacter != null)
                 {
-                    targetCharacter = currentBehaviour.GetTarget(this).tileCharacter;
+                    targetCharacter = tempTile.tileCharacter;
+                    Debug.Log("tc"+targetCharacter);
+                    return;
                 }
-                break;
             }
         }
     }
@@ -96,10 +101,10 @@ public class AiModule : Character {
                 {
                    if (t.tileCharacter.characterName.Equals(targetCharacter.characterName))
                     {
-                        currentAction = ab;
+                      currentAction = ab;
                       CharacterLogic.instance.CompleteAction(this, t);
                       return false;
-                     }
+                    }
                 }
             }
         }

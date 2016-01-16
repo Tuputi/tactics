@@ -59,6 +59,7 @@ public enum TileType { None, Grass, Rock };
 public enum OverlayType { None, Selected };
 public enum BehaviourType { agressive, teamPlayer, healWhenHurt}
 public enum ConfirmationType { action, move};
+public enum GameMode { Editor, Game };
 
 //Names of different actions, used to reference to a dictionary of Actions
 public enum ActionType { MeeleeAttack, FireSpell, ShootArrow}

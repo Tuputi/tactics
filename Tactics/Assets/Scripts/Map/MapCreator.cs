@@ -20,6 +20,12 @@ public class MapCreator : MonoBehaviour {
     void Start()
     {
         mapContainer = GameObject.Find("Map").gameObject;
+
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            MapName = ChangeSceneScript.MapName;
+        }
+
         if (!MapName.Equals(""))
         {
            LoadMap(MapName);

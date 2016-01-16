@@ -36,12 +36,14 @@ public class ConfirmationDialogue : MonoBehaviour{
         ConfirmType = type;
         ActionTargetTile = target;
         UIManager.instance.DisableButtons(false);
+        SelectionScript.SetNoSelection(true);
     }
 
     public void Close()
     {
         DialogueTemplate.SetActive(false);
         UIManager.instance.DisableButtons(true);
+        SelectionScript.SetNoSelection(false);
     }
 
     public void SelectOption(bool selected)

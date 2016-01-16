@@ -7,6 +7,7 @@ public class SelectionScript : MonoBehaviour {
 
     private static bool selectMultiple = false;
     private static bool shiftClick = false;
+    private static bool noSelection = false;
 
 
     void Start()
@@ -16,7 +17,7 @@ public class SelectionScript : MonoBehaviour {
 
     void Update()
     {
-        if(TurnManager.gameMode != TurnManager.GameMode.Editor)
+        if(TurnManager.gameMode != GameMode.Editor)
         {
             return;
         }
@@ -59,38 +60,24 @@ public class SelectionScript : MonoBehaviour {
         }
     }
 
+    public static void SetNoSelection(bool on)
+    {
+        noSelection = on;
+    }
+
     public static void SetSelectedTile(Tile tile)
     {
-        if (TurnManager.mode == TurnManager.TurnMode.move || TurnManager.mode == TurnManager.TurnMode.action)
+        if (noSelection)
         {
-            ClearSelection();
-            foreach (Tile t in TurnManager.instance.CurrentlyTakingTurn.possibleRange)
-            {
-                t.SetOverlayType(OverlayType.None);
-            }         
-            if (TurnManager.instance.CurrentlyTakingTurn.possibleRange.Contains(tile))
-            {
-                ClearSelection();
-                if (TurnManager.mode == TurnManager.TurnMode.move)
-                {
-                    SetSingleSelectedTile(tile);
-                    ConfirmationDialogue.instance.Show(ConfirmationType.move, tile);
-                }
-                if(TurnManager.mode == TurnManager.TurnMode.action)
-                {
-                    List<Tile> tempList = TurnManager.instance.CurrentlyTakingTurn.currentAction.DrawTargetArea(tile);
-                    if (tempList.Count > 0)
-                    {
-                        foreach (Tile t in tempList)
-                        {
-                            SetMultipleSelectedTile(t);
-                        }
-                    }
-                    ConfirmationDialogue.instance.Show(ConfirmationType.action, tile);
-                }
-            }
+            return;
         }
-        else
+
+        if(TurnManager.gameMode == GameMode.Game)
+        {
+            SetSelectedTileGame(tile);
+        }
+        
+        if(TurnManager.gameMode == GameMode.Editor)
         {
             if (shiftClick)
             {
@@ -103,6 +90,52 @@ public class SelectionScript : MonoBehaviour {
             else
             {
                 SetSingleSelectedTile(tile);
+            }
+        }
+    }
+    
+    static void SetSelectedTileGame(Tile tile)
+    {
+        if (tile.isOccupied)
+        {
+            UIManager.instance.UpdateStatus(tile.tileCharacter);
+        }
+        else
+        {
+            UIManager.instance.UpdateStatus(false);
+        }
+
+        if (TurnManager.mode == TurnManager.TurnMode.move || TurnManager.mode == TurnManager.TurnMode.action)
+        {
+            ClearSelection();
+            foreach (Tile t in TurnManager.instance.CurrentlyTakingTurn.possibleRange)
+            {
+                t.SetOverlayType(OverlayType.None);
+            }
+            if (TurnManager.instance.CurrentlyTakingTurn.possibleRange.Contains(tile))
+            {
+                ClearSelection();
+                if (TurnManager.mode == TurnManager.TurnMode.move)
+                {
+                    SetSingleSelectedTile(tile);
+                    ConfirmationDialogue.instance.Show(ConfirmationType.move, tile);
+                }
+                if (TurnManager.mode == TurnManager.TurnMode.action)
+                {
+                    List<Tile> tempList = TurnManager.instance.CurrentlyTakingTurn.currentAction.DrawTargetArea(tile);
+                    if (tempList.Count > 0)
+                    {
+                        foreach (Tile t in tempList)
+                        {
+                            SetMultipleSelectedTile(t);
+                            if (t.isOccupied)
+                            {
+                                UIManager.instance.UpdateStatus(t.tileCharacter);
+                            }
+                        }
+                    }
+                    ConfirmationDialogue.instance.Show(ConfirmationType.action, tile);
+                }
             }
         }
     }
