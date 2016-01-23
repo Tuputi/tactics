@@ -48,6 +48,11 @@ public class TurnManager : MonoBehaviour {
                 CharacterLogic.instance.CreateInventory(chara);
             }
         }
+
+        foreach(Character cha in characters)
+        {
+            CharacterLogic.instance.ChangeFacing(cha, Facing.Down);
+        }
     }
 
     void AddEnergy()

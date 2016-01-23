@@ -27,7 +27,7 @@ public class Character : MonoBehaviour, System.IComparable
     public bool isAi = false;
     public ActionBaseClass currentAction = null;
     int DistanceToGo = 0;
-    public float TravelSpeed = 0.2f;
+    public float TravelSpeed = 0.1f;
     public bool MoveCompleted = true;
 
     //Movement
@@ -89,9 +89,12 @@ public class Character : MonoBehaviour, System.IComparable
         }
     }
 
+    Tile previousPostition;
     public void MoveCharacter(Character chara, List<Tile> path)
     {
         MoveCompleted = false;
+        CharacterLogic.instance.ChangeFacing(chara, chara.characterPosition, path[path.Count - 1]);
+        previousPostition = chara.characterPosition;
         CharacterLogic.instance.SetCharacterPosition(chara, path[0]);
         DistanceToGo = path.Count - 1;
         // CameraScript.instance.SetMoveTarget(path[0].gameObject);
@@ -108,6 +111,8 @@ public class Character : MonoBehaviour, System.IComparable
             chara.transform.position = Vector3.MoveTowards(sourcePos, targetPos, Mathf.SmoothStep(0, 1f, TravelSpeed));
             if (chara.transform.position == targetPos)
             {
+                CharacterLogic.instance.ChangeFacing(chara, previousPostition, path[DistanceToGo]);
+                previousPostition = path[DistanceToGo];
                 DistanceToGo--;
             }
             yield return 0;

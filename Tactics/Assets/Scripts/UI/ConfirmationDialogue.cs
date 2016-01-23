@@ -39,6 +39,7 @@ public class ConfirmationDialogue : MonoBehaviour{
                 break;
             case ConfirmationType.move:
                 SituationDesc.text = "Move to this tile?";
+                HitChanceText.text = "";
                 break;
             default:
                 break;

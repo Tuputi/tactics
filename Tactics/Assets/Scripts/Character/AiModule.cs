@@ -65,7 +65,10 @@ public class AiModule : Character {
         {
             waitingToCompleteAttack = false;
             Debug.Log("turn done");
-            CharacterLogic.instance.ChangeFacing(this, this.characterPosition, GetClosestEnemy());
+            Tile targetT = GetClosestEnemy();
+            Debug.Log(targetT);
+            CharacterLogic.instance.ChangeFacing(this, this.characterPosition, targetT);
+            Debug.Log(this.facing);
             TurnManager.instance.NextInTurn();
         }
     }

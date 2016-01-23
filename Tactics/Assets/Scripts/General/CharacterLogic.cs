@@ -43,13 +43,13 @@ public class CharacterLogic : MonoBehaviour{
         switch (facing)
         {
             case Facing.Up:
-                rotation = 270f;
+                rotation = 90f;
                 break;
             case Facing.Right:
                 rotation = 0f;
                 break;
             case Facing.Down:
-                rotation = 90f;
+                rotation = 270f;
                 break;
             case Facing.Left:
                 rotation = 180f;
@@ -57,7 +57,7 @@ public class CharacterLogic : MonoBehaviour{
             default:
                 break;
         }
-
+        chara.facing = facing;
         rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
     }
 
@@ -85,16 +85,16 @@ public class CharacterLogic : MonoBehaviour{
         }
         else
         {
-            if (at.yPos < to.yPos)
+            if (at.yPos > to.yPos)
             {
                 chara.facing = Facing.Down;
-                float rotation = 90f;
+                float rotation = 270f;
                 rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
             }
             else
             {
                 chara.facing = Facing.Up;
-                float rotation = 270f;
+                float rotation = 90f;
                 rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
             }
         }
@@ -152,6 +152,8 @@ public class CharacterLogic : MonoBehaviour{
         }
         chara.possibleRange.Clear();
         SelectionScript.ClearSelection();
+
+        ChangeFacing(chara, chara.characterPosition, tile);
 
         int random = Random.Range(1, 100);
         if(random <= chara.currentAction.GetHitChance(tile))
