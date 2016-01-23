@@ -65,11 +65,30 @@ public class AiModule : Character {
         {
             waitingToCompleteAttack = false;
             Debug.Log("turn done");
+            CharacterLogic.instance.ChangeFacing(this, this.characterPosition, GetClosestEnemy());
             TurnManager.instance.NextInTurn();
         }
     }
 
-
+    Tile GetClosestEnemy()
+    {
+        Character closest = null;
+        foreach(Character chara in TurnManager.characters)
+        {
+            if(closest == null && (!chara.isAi))
+            {
+                closest = chara;
+            }
+            else if(closest != null && (!chara.isAi))
+            {
+                if(Pathfinding.GetHeuristic(closest.characterPosition, this.characterPosition) > Pathfinding.GetHeuristic(chara.characterPosition, this.characterPosition))
+                {
+                    closest = chara;
+                }
+            }
+        }
+        return closest.characterPosition;
+    }
 
     public void SelectBehaviour()
     {
