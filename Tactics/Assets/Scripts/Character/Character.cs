@@ -31,7 +31,7 @@ public class Character : MonoBehaviour, System.IComparable
     public bool MoveCompleted = true;
 
     //Movement
-    public Facing facing = Facing.Up;
+    public Facing facing = Facing.Down;
 
     //stats
     [Header("Stats")]
@@ -93,11 +93,11 @@ public class Character : MonoBehaviour, System.IComparable
     public void MoveCharacter(Character chara, List<Tile> path)
     {
         MoveCompleted = false;
-        CharacterLogic.instance.ChangeFacing(chara, chara.characterPosition, path[path.Count - 1]);
-        previousPostition = chara.characterPosition;
-        CharacterLogic.instance.SetCharacterPosition(chara, path[0]);
         DistanceToGo = path.Count - 1;
         // CameraScript.instance.SetMoveTarget(path[0].gameObject);
+        CharacterLogic.instance.ChangeFacing(chara, characterPosition, path[DistanceToGo]);
+        previousPostition = path[DistanceToGo];
+        CharacterLogic.instance.SetCharacterPosition(chara, path[0]);
         StartCoroutine(MovePath(chara, path));
     }
 
