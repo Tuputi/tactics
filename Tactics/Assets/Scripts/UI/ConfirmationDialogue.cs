@@ -85,4 +85,5 @@ public class ConfirmationDialogue : MonoBehaviour{
         }
         Close();
     }
+
 }

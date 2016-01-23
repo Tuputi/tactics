@@ -114,6 +114,11 @@ public class Character : MonoBehaviour, System.IComparable
         }
         Debug.Log("Move complete");
         MoveCompleted = true;
+
+        if (!isAi)
+        {
+            UIManager.instance.SelectFacing(chara);
+        }
     }
 
 }

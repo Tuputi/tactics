@@ -36,6 +36,31 @@ public class CharacterLogic : MonoBehaviour{
         }
     }
 
+    public void ChangeFacing (Character chara, Facing facing)
+    {
+        GameObject rotateObj = chara.gameObject;
+        float rotation = 0f;
+        switch (facing)
+        {
+            case Facing.Up:
+                rotation = 270f;
+                break;
+            case Facing.Right:
+                rotation = 0f;
+                break;
+            case Facing.Down:
+                rotation = 90f;
+                break;
+            case Facing.Left:
+                rotation = 180f;
+                break;
+            default:
+                break;
+        }
+
+        rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
+    }
+
     public void ChangeFacing(Character chara, Tile at, Tile to)
     {
         int rowChange = System.Math.Abs(at.xPos - to.xPos);

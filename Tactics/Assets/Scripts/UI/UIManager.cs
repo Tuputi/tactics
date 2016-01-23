@@ -6,6 +6,8 @@ public class UIManager : MonoBehaviour{
 
     GameObject ButtonHolder;
     GameObject NextTurnButton;
+    GameObject compas;
+    public Camera gameCamera;
 
     //statustemplate
     GameObject StatusTemplate;
@@ -31,6 +33,9 @@ public class UIManager : MonoBehaviour{
         hpValue = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValue").GetComponent<Text>();
         hpValueMax = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValueMax").GetComponent<Text>();
         characterName = StatusTemplate.transform.FindChild("Name").GetComponent<Text>();
+
+        compas = GameObject.Find("compas");
+        compas.SetActive(false);
     }
 
     public void UpdateStatus(Character chara)
@@ -68,5 +73,19 @@ public class UIManager : MonoBehaviour{
        { 
            b.gameObject.GetComponent<Button>().enabled = activeStatus;
        }
+    }
+
+    public void SelectFacing(Character chara)
+    {
+        compas.SetActive(true);
+        Vector3 screenPos = gameCamera.WorldToScreenPoint(chara.gameObject.transform.position);
+        compas.transform.position = screenPos;
+    }
+
+    public void CompleteFacing(int facing)
+    {
+        CharacterLogic.instance.ChangeFacing(TurnManager.instance.CurrentlyTakingTurn, (Facing)facing);
+        Debug.Log("New facing is " + (Facing)facing);
+        compas.SetActive(false);
     }
 }

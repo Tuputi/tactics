@@ -6,7 +6,7 @@ public class ChangeSceneScript : MonoBehaviour {
     public static string MapName;
     void Awake()
     {
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void LoadScene(){
