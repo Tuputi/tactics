@@ -56,4 +56,17 @@ public class MeeleeAttack : AttackBase {
     {
         CalculateEffect(TargetTile);
     }
+
+    public override int GetHitChance(Tile TargetTile)
+    {
+        int hitChance = 100;
+        if (TargetTile.isOccupied)
+        {
+            if (TurnManager.instance.CurrentlyTakingTurn.facing != TargetTile.tileCharacter.facing)
+            {
+                hitChance -= 30;
+            }
+        }
+        return hitChance;
+    }
 }

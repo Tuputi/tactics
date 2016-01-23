@@ -38,4 +38,10 @@ public class ActionBaseClass : ScriptableObject {
         return damage;
     }
 
+    public virtual int GetHitChance(Tile targetTile)
+    {
+        int chance = 100;
+        return chance;
+    }
+
 }

@@ -6,6 +6,7 @@ public class ConfirmationDialogue : MonoBehaviour{
 
     public GameObject DialogueTemplate;
     private Text SituationDesc;
+    private Text HitChanceText;
     public static ConfirmationDialogue instance;
     private ConfirmationType ConfirmType;
     private Tile ActionTargetTile = null;
@@ -15,15 +16,26 @@ public class ConfirmationDialogue : MonoBehaviour{
     {
         instance = this;
         SituationDesc = DialogueTemplate.transform.FindChild("SituationDesc").GetComponent<Text>();
+        HitChanceText = DialogueTemplate.transform.FindChild("HitChangeText").GetComponent<Text>();
+
         DialogueTemplate.SetActive(false);
     }
 
     public void Show(ConfirmationType type, Tile target)
     {
+        
+        CameraScript.instance.SetMoveTarget(target.gameObject);
+        DialogueTemplate.gameObject.SetActive(true);
+        ConfirmType = type;
+        ActionTargetTile = target;
+        UIManager.instance.DisableButtons(false);
+        SelectionScript.SetNoSelection(true);
+
         switch (type)
         {
             case ConfirmationType.action:
                 SituationDesc.text = "Target tile/s with " + TurnManager.instance.CurrentlyTakingTurn.currentAction.GetName() + "?";
+                HitChanceText.text = "The hit chance is " + TurnManager.instance.CurrentlyTakingTurn.currentAction.GetHitChance(ActionTargetTile).ToString()+"%";
                 break;
             case ConfirmationType.move:
                 SituationDesc.text = "Move to this tile?";
@@ -31,12 +43,7 @@ public class ConfirmationDialogue : MonoBehaviour{
             default:
                 break;
         }
-        CameraScript.instance.SetMoveTarget(target.gameObject);
-        DialogueTemplate.gameObject.SetActive(true);
-        ConfirmType = type;
-        ActionTargetTile = target;
-        UIManager.instance.DisableButtons(false);
-        SelectionScript.SetNoSelection(true);
+
     }
 
     public void Close()

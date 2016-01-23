@@ -152,7 +152,16 @@ public class CharacterLogic : MonoBehaviour{
         }
         chara.possibleRange.Clear();
         SelectionScript.ClearSelection();
-        chara.currentAction.CompleteAction(tile);
+
+        int random = Random.Range(1, 100);
+        if(random <= chara.currentAction.GetHitChance(tile))
+        {
+            chara.currentAction.CompleteAction(tile);
+        }
+        else
+        {
+            Debug.Log("Miss");
+        }
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.hasActed = true;
         UIManager.instance.UpdateButtons();

@@ -26,4 +26,6 @@ public class AttackBase : ActionBaseClass{
         return false;
     }
 
+    
+
 }
