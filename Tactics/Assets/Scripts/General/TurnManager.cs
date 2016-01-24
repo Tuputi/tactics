@@ -4,7 +4,7 @@ using Wintellect.PowerCollections;
 
 public class TurnManager : MonoBehaviour {
 
-    public enum TurnMode {  start, move, action, end};
+    public enum TurnMode {  start, move, action, facing, end};
 
     public static TurnManager instance;
     public static OrderedBag<Character> characters;
@@ -100,6 +100,7 @@ public class TurnManager : MonoBehaviour {
 
     public void TakeTurn()
     {
+        mode = TurnMode.start;
         hasActed = false;
         hasMoved = false;
         UIManager.instance.UpdateButtons();
@@ -171,6 +172,16 @@ public class TurnManager : MonoBehaviour {
         else
         {
             Debug.Log("Has already acted");
+        }
+    }
+
+    public void FacingPhase()
+    {
+        if (CurrentlyTakingTurn!=null && !CurrentlyTakingTurn.isAi)
+        {
+            mode = TurnMode.facing;
+            UIManager.instance.SelectFacing(CurrentlyTakingTurn);
+            UIManager.instance.DisableButtons(false);
         }
     }
 }

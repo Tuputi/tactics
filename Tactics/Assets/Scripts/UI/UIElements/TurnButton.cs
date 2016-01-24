@@ -16,7 +16,7 @@ public class TurnButton : ButtonScript {
 
     public override void SelectAction()
     {
-        TurnManager.instance.NextInTurn();
+        TurnManager.instance.FacingPhase();
     }
 
     public override void UpdateButton()

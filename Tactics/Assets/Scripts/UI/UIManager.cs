@@ -87,5 +87,8 @@ public class UIManager : MonoBehaviour{
         CharacterLogic.instance.ChangeFacing(TurnManager.instance.CurrentlyTakingTurn, (Facing)facing);
         Debug.Log("New facing is " + (Facing)facing);
         compas.SetActive(false);
+        DisableButtons(true);
+        TurnManager.mode = TurnManager.TurnMode.end;
+        TurnManager.instance.NextInTurn();
     }
 }
