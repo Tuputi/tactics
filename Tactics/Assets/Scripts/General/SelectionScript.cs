@@ -96,13 +96,14 @@ public class SelectionScript : MonoBehaviour {
     
     static void SetSelectedTileGame(Tile tile)
     {
+        SetSingleSelectedTile(tile);
         if (tile.isOccupied)
         {
             UIManager.instance.UpdateStatus(tile.tileCharacter);
         }
         else
         {
-            UIManager.instance.UpdateStatus(false);
+            UIManager.instance.UpdateStatus(false);  
         }
 
         if (TurnManager.mode == TurnManager.TurnMode.move || TurnManager.mode == TurnManager.TurnMode.action)
@@ -136,6 +137,10 @@ public class SelectionScript : MonoBehaviour {
                     }
                     ConfirmationDialogue.instance.Show(ConfirmationType.action, tile);
                 }
+            }
+            else
+            {
+                TurnManager.mode = TurnManager.TurnMode.start;
             }
         }
     }
