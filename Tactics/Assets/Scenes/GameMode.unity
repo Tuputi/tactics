@@ -537,7 +537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapRows: 10
   mapColumns: 10
-  MapName: bona
+  MapName: Hello
   mapContainer: {fileID: 0}
 --- !u!4 &389061372
 Transform:

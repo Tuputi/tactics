@@ -87,7 +87,7 @@ public class TurnManager : MonoBehaviour {
                 AddEnergy();
             }
         }
-        Debug.Log("Next in turn is " + nextCharacter.characterName);
+        //Debug.Log("Next in turn is " + nextCharacter.characterName);
         CurrentlyTakingTurn = nextCharacter;
         TakeTurn();
     }
@@ -182,7 +182,6 @@ public class TurnManager : MonoBehaviour {
     public void CheckAliveStatus()
     {
         List<Character> deadCharacter = new List<Character>();
-        Debug.Log(characters.Count + "characount");
         foreach(Character chara in characters)
         {
             if(chara.hp <= 0)
@@ -193,11 +192,13 @@ public class TurnManager : MonoBehaviour {
 
         foreach(Character ch in deadCharacter)
         {
-            Debug.Log("Removed");
             characters.Remove(ch);
         }
 
-        Debug.Log(characters.Count + "chara after count");
+        for(int i = deadCharacter.Count-1; i >= 0; i--)
+        {
+            Destroy(deadCharacter[i].gameObject);
+        }
 
         bool teamAi = false;
         bool teamB = false;
@@ -216,7 +217,6 @@ public class TurnManager : MonoBehaviour {
 
         if(teamAi && teamB)
         {
-            Debug.Log("Continue game");
         }
         else
         {
