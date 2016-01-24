@@ -8,12 +8,30 @@ public class OverlayArrow : MonoBehaviour {
     public void SetTile(Tile t)
     {
         myTile = t;
-        Debug.Log(myTile);
+    }
+
+    public void RotateArrow()
+    {
+        Tile curLoc = TurnManager.instance.CurrentlyTakingTurn.characterPosition;
+        if (myTile.xPos > curLoc.xPos)
+        {
+            this.gameObject.transform.Rotate(0, -90, 0, Space.Self);
+        }
+        else if(myTile.xPos < curLoc.xPos)
+        {
+            this.gameObject.transform.Rotate(0, 90, 0, Space.Self);
+        }
+        else if(myTile.yPos > curLoc.yPos)
+        {
+            this.gameObject.transform.Rotate(0, 180, 0, Space.Self);
+        }
+        else
+        {
+        }
     }
 
     void OnMouseDown()
     {
-        Debug.Log("In on mouse down in overlay" + myTile);
         UIManager.instance.CompleteFacing(myTile);
     }
 }

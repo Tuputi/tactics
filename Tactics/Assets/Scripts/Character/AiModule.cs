@@ -68,7 +68,6 @@ public class AiModule : Character {
             Tile targetT = GetClosestEnemy();
             Debug.Log(targetT);
             CharacterLogic.instance.ChangeFacing(this, this.characterPosition, targetT);
-            Debug.Log(this.facing);
             TurnManager.instance.NextInTurn();
         }
     }
@@ -105,7 +104,6 @@ public class AiModule : Character {
                 if (tempTile.tileCharacter != null)
                 {
                     targetCharacter = tempTile.tileCharacter;
-                    Debug.Log("tc"+targetCharacter);
                     return;
                 }
             }

@@ -48,11 +48,6 @@ public class TurnManager : MonoBehaviour {
                 CharacterLogic.instance.CreateInventory(chara);
             }
         }
-
-        foreach(Character cha in characters)
-        {
-            CharacterLogic.instance.ChangeFacing(cha, Facing.Down);
-        }
     }
 
     void AddEnergy()
@@ -66,14 +61,13 @@ public class TurnManager : MonoBehaviour {
         }
     }
 
+
     public void NextInTurn()
     {
-        if(!(characters.Count > 0))
-        {
-            CreateCharacterList();
-        }
 
-        if(CurrentlyTakingTurn != null)
+        CheckAliveStatus();
+
+        if (CurrentlyTakingTurn != null)
         {
             foreach (Tile t in CurrentlyTakingTurn.possibleRange)
             {
@@ -182,6 +176,51 @@ public class TurnManager : MonoBehaviour {
             mode = TurnMode.facing;
             UIManager.instance.SelectFacing(CurrentlyTakingTurn);
             UIManager.instance.DisableButtons(false);
+        }
+    }
+
+    public void CheckAliveStatus()
+    {
+        List<Character> deadCharacter = new List<Character>();
+        Debug.Log(characters.Count + "characount");
+        foreach(Character chara in characters)
+        {
+            if(chara.hp <= 0)
+            {
+                deadCharacter.Add(chara);
+            }
+        }
+
+        foreach(Character ch in deadCharacter)
+        {
+            Debug.Log("Removed");
+            characters.Remove(ch);
+        }
+
+        Debug.Log(characters.Count + "chara after count");
+
+        bool teamAi = false;
+        bool teamB = false;
+
+        foreach(Character chara in characters)
+        {
+            if(chara.isAi)
+            {
+                teamAi = true;
+            }
+            else
+            {
+                teamB = true;
+            }
+        }
+
+        if(teamAi && teamB)
+        {
+            Debug.Log("Continue game");
+        }
+        else
+        {
+            Debug.Log("Game Over");
         }
     }
 }

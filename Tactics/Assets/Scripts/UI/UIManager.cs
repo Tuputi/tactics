@@ -6,7 +6,6 @@ public class UIManager : MonoBehaviour{
 
     GameObject ButtonHolder;
     GameObject NextTurnButton;
-    GameObject compas;
     public Camera gameCamera;
 
     //statustemplate
@@ -34,8 +33,6 @@ public class UIManager : MonoBehaviour{
         hpValueMax = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValueMax").GetComponent<Text>();
         characterName = StatusTemplate.transform.FindChild("Name").GetComponent<Text>();
 
-        compas = GameObject.Find("compas");
-        compas.SetActive(false);
     }
 
     public void UpdateStatus(Character chara)
@@ -82,6 +79,7 @@ public class UIManager : MonoBehaviour{
         foreach(Tile t in places)
         {
             t.SetOverlayType(OverlayType.Arrow);
+            t.GetComponentInChildren<OverlayArrow>().RotateArrow();
         }
         SelectionScript.SetNoSelection(true);
         //Vector3 screenPos = gameCamera.WorldToScreenPoint(chara.gameObject.transform.position);
@@ -91,7 +89,6 @@ public class UIManager : MonoBehaviour{
     public void CompleteFacing(Tile myTile)
     {
         CharacterLogic.instance.ChangeFacing(TurnManager.instance.CurrentlyTakingTurn, TurnManager.instance.CurrentlyTakingTurn.characterPosition, myTile);
-        Debug.Log("New facing is " + TurnManager.instance.CurrentlyTakingTurn.facing);
         DisableButtons(true);
         SelectionScript.SetNoSelection(false);
         foreach(Tile t in TurnManager.instance.CurrentlyTakingTurn.characterPosition.neighbours)

@@ -36,7 +36,7 @@ public class CharacterLogic : MonoBehaviour{
         }
     }
 
-    public void ChangeFacing (Character chara, Facing facing)
+   /* public void ChangeFacing (Character chara, Facing facing)
     {
         GameObject rotateObj = chara.gameObject;
         float rotation = 0f;
@@ -59,7 +59,7 @@ public class CharacterLogic : MonoBehaviour{
         }
         chara.facing = facing;
         rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
-    }
+    }*/
 
     public void ChangeFacing(Character chara, Tile at, Tile to)
     {
