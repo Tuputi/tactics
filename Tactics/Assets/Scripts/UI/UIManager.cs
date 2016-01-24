@@ -77,17 +77,27 @@ public class UIManager : MonoBehaviour{
 
     public void SelectFacing(Character chara)
     {
-        compas.SetActive(true);
-        Vector3 screenPos = gameCamera.WorldToScreenPoint(chara.gameObject.transform.position);
-        compas.transform.position = screenPos;
+        //compas.SetActive(true);
+        List<Tile> places = chara.characterPosition.neighbours;
+        foreach(Tile t in places)
+        {
+            t.SetOverlayType(OverlayType.Arrow);
+        }
+        SelectionScript.SetNoSelection(true);
+        //Vector3 screenPos = gameCamera.WorldToScreenPoint(chara.gameObject.transform.position);
+        //compas.transform.position = screenPos;
     }
 
-    public void CompleteFacing(int facing)
+    public void CompleteFacing(Tile myTile)
     {
-        CharacterLogic.instance.ChangeFacing(TurnManager.instance.CurrentlyTakingTurn, (Facing)facing);
-        Debug.Log("New facing is " + (Facing)facing);
-        compas.SetActive(false);
+        CharacterLogic.instance.ChangeFacing(TurnManager.instance.CurrentlyTakingTurn, TurnManager.instance.CurrentlyTakingTurn.characterPosition, myTile);
+        Debug.Log("New facing is " + TurnManager.instance.CurrentlyTakingTurn.facing);
         DisableButtons(true);
+        SelectionScript.SetNoSelection(false);
+        foreach(Tile t in TurnManager.instance.CurrentlyTakingTurn.characterPosition.neighbours)
+        {
+            t.SetOverlayType(OverlayType.None);
+        }
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.NextInTurn();
     }

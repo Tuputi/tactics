@@ -152,6 +152,10 @@ public class Tile : MonoBehaviour, System.IComparable
             case OverlayType.Selected:
                 overlayPrefab = PrefabHolder.instance.Overlay_Selection_Prefab;
                 break;
+            case OverlayType.Arrow:
+                overlayPrefab = PrefabHolder.instance.Overlay_Arrow_Prefab;
+                overlayPrefab.GetComponent<OverlayArrow>().SetTile(this);
+                break;
             default:
                 break;
         }
