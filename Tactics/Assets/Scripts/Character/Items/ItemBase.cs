@@ -6,6 +6,9 @@ public class ItemBase : ActionBaseClass {
     public int ItemCount = 3;
     public string ItemName = "NaN";
     public ItemType itemType;
+    public Sprite ItemSprite;
+    public Sprite ItemSpriteHighlighted;
+    public int ItemMaxStackSize;
 
     public ItemType GetItemType()
     {
