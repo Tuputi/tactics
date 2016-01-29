@@ -20,7 +20,8 @@ public class ActionButton : ButtonScript {
 
     public override void SelectAction()
     {
-        TurnManager.instance.Action(actionType);
+        //TurnManager.instance.Action(actionType);
+        UIManager.instance.OpenInventory();
     }
 
     public override void UpdateButton()

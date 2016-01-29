@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: 13ce356ee28e27142a1035374e69be5d
-timeCreated: 1452880956
+timeCreated: 1454070383
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ItemSprite: {fileID: 21300000, guid: 900dbf7d315d2874a838c79ff93173a0, type: 3}
+  - ItemSpriteHighlighted: {instanceID: 0}
+  - PotionSprite: {fileID: 21300000, guid: 900dbf7d315d2874a838c79ff93173a0, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

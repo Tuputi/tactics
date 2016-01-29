@@ -36,6 +36,12 @@ public class PrefabHolder : MonoBehaviour {
     public Dictionary<ActionType, AttackBase> actionDictionary;
     public Dictionary<ItemType, ItemBase> itemDictionary;
 
+
+    //sprite fix't
+    [Header("Sprites")]
+    public Sprite PotionSprite;
+
+
     void Awake()
     {
         instance = this;

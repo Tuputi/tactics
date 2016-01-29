@@ -8,4 +8,11 @@ public class Potion : ItemBase {
         ItemName = "Potion";
         return ItemName;
     }
+
+    public override Sprite GetItemSprite()
+    {
+        ItemSprite = PrefabHolder.instance.PotionSprite;
+        return base.GetItemSprite();
+    }
+
 }

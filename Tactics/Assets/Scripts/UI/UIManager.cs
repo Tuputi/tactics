@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour{
 
     GameObject ButtonHolder;
-    GameObject Inventory;
+    GameObject UIInventory;
     GameObject NextTurnButton;
     public Camera gameCamera;
 
@@ -33,8 +33,8 @@ public class UIManager : MonoBehaviour{
         hpValue = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValue").GetComponent<Text>();
         hpValueMax = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValueMax").GetComponent<Text>();
         characterName = StatusTemplate.transform.FindChild("Name").GetComponent<Text>();
-        Inventory = GameObject.Find("Inventory");
-        Inventory.SetActive(false);
+        UIInventory = GameObject.Find("Inventory");
+        UIInventory.SetActive(false);
 
     }
 
@@ -100,5 +100,14 @@ public class UIManager : MonoBehaviour{
         }
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.NextInTurn();
+    }
+
+    public void OpenInventory()
+    {
+        UIInventory.SetActive(true);
+       foreach(ItemBase item in TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetWholeInventory())
+       {
+            UIInventory.GetComponent<UIInventory>().AddItem(item);
+        }
     }
 }

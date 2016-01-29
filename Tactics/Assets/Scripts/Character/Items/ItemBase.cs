@@ -16,6 +16,10 @@ public class ItemBase : ActionBaseClass {
         return itemType;
     }
 
+    public virtual Sprite GetItemSprite(){
+        return ItemSprite;
+    }
+
     public override void  CompleteAction(Tile TargetTile)
     {
         TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.Use(itemType);
