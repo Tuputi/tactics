@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class ActionBaseClass : ScriptableObject {
 
     protected string actionName = "ActionBaseClass";
+    public float BasicRange = 2f;
 
     public virtual string GetName()
     {
@@ -13,6 +14,12 @@ public class ActionBaseClass : ScriptableObject {
     public virtual List<Tile> CalculateActionRange(Tile startTile)
     {
         return Pathfinding.GetPossibleRange(startTile, 2f, true);
+    }
+
+    public virtual List<Tile> CalculateActionRange(Tile startTile, ItemBase ib)
+    {
+       float range = BasicRange + ib.GetRangeEffect();
+       return Pathfinding.GetPossibleRange(startTile, range, true);
     }
 
     public virtual List<Tile> DrawTargetArea(Tile targetTile)

@@ -11,6 +11,9 @@ public class ItemBase : ActionBaseClass {
     public Sprite ItemSpriteHighlighted;
     public int ItemMaxStackSize;
 
+    [Header("Item effects")]
+    public float EffectToRange = 0;
+
     //to distinguish between unique items at some point
     public int ItemInstanceIndex = 0;
 
@@ -41,5 +44,10 @@ public class ItemBase : ActionBaseClass {
             targetTile.tileCharacter.hp += healing;
         }
         return healing;
+    }
+
+    public float GetRangeEffect()
+    {
+        return EffectToRange;
     }
 }

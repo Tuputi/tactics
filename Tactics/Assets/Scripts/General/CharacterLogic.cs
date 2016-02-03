@@ -106,10 +106,13 @@ public class CharacterLogic : MonoBehaviour{
         chara.CharacterInventory = new Inventory();
         foreach (ItemType item in chara.items)
         {
+
+            //create an initiation script
             ItemBase newItem = ScriptableObject.CreateInstance<ItemBase>();
             ItemBase template = ItemList.GetItem(item);
             newItem.ItemName = template.ItemName;
             newItem.ItemSprite = template.ItemSprite;
+            newItem.EffectToRange = template.EffectToRange;
             chara.CharacterInventory.Add(newItem);
         }
 
@@ -146,6 +149,18 @@ public class CharacterLogic : MonoBehaviour{
         {
             t.SetOverlayType(OverlayType.Selected);
         }
+    }
+
+    public void Action(Character chara, ActionBaseClass ab, ItemBase ib)
+    {
+        chara.currentAction = ab;
+        chara.possibleRange = ab.CalculateActionRange(chara.characterPosition, ib);
+        foreach (Tile t in chara.possibleRange)
+        {
+            t.SetOverlayType(OverlayType.Selected);
+        }
+
+        Debug.Log("Action is " + ab + " and item is " + ib.ItemName);
     }
 
     public void CompleteAction(Character chara, Tile tile)

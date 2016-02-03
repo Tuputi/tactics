@@ -34,4 +34,11 @@ public class InventorySlot : MonoBehaviour {
         this.GetComponent<Image>().sprite = EmptySlot;
         this.transform.localScale = new Vector3(1, 1, 1);
     }
+
+    public void SelectItem(ItemBase item)
+    {
+        TurnManager.instance.Action(UIManager.instance.PendingActionType, item);
+        UIManager.instance.CloseInventory();
+    }
+
 }

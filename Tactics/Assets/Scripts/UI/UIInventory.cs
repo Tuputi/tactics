@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class UIInventory : MonoBehaviour {
+
+
 
     public List<GameObject> InventorySlots;
     public GameObject inventoryHolder;
@@ -53,9 +56,23 @@ public class UIInventory : MonoBehaviour {
            {
                 Debug.Log("stack: "+item.ItemMaxStackSize);
                 invSlot.AddItem(item.GetItemSprite(), item.ItemCount);
+                slot.GetComponent<Button>().onClick.AddListener(delegate { invSlot.SelectItem(item); });
                 Debug.Log("Added item to inventory " + item.ItemName + "," + item.ItemCount.ToString());
                 return;
            }
         }
+    }
+
+    public void CloseInventory()
+    {
+        foreach(GameObject slot in InventorySlots)
+        {
+            InventorySlot invSlot = slot.GetComponent<InventorySlot>();
+            if (!invSlot.isEmpty)
+            {
+                invSlot.ClearSlot();
+            }
+        }
+        this.gameObject.SetActive(false);
     }
 }

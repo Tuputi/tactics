@@ -11,9 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 866f388511c79ca43b0e0d2b317ed2e9, type: 3}
   m_Name: Potion
   m_EditorClassIdentifier: 
+  BasicRange: 2
   ItemCount: 3
   ItemName: Potion
+  ItemClassName: NaN
   itemType: 0
   ItemSprite: {fileID: 21300000, guid: 8fefb7362bac7ac40ba51df8a8b83521, type: 3}
   ItemSpriteHighlighted: {fileID: 0}
   ItemMaxStackSize: 10
+  EffectToRange: -3
+  ItemInstanceIndex: 0

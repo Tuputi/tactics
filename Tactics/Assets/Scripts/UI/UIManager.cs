@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour{
 
     GameObject ButtonHolder;
-    GameObject UIInventory;
+    UIInventory UIInventory;
     GameObject NextTurnButton;
     public Camera gameCamera;
 
@@ -17,6 +17,9 @@ public class UIManager : MonoBehaviour{
 
     List<ButtonScript> buttons;
     public static UIManager instance;
+
+    //memory
+    public ActionType PendingActionType;
 
     void Awake()
     {
@@ -33,8 +36,8 @@ public class UIManager : MonoBehaviour{
         hpValue = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValue").GetComponent<Text>();
         hpValueMax = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValueMax").GetComponent<Text>();
         characterName = StatusTemplate.transform.FindChild("Name").GetComponent<Text>();
-        UIInventory = GameObject.Find("Inventory");
-        UIInventory.SetActive(false);
+        UIInventory = GameObject.Find("Inventory").GetComponent<UIInventory>();
+        UIInventory.gameObject.SetActive(false);
 
     }
 
@@ -102,12 +105,19 @@ public class UIManager : MonoBehaviour{
         TurnManager.instance.NextInTurn();
     }
 
-    public void OpenInventory()
+
+    public void OpenInventory(ActionType at)
     {
-        UIInventory.SetActive(true);
+        PendingActionType = at;
+        UIInventory.gameObject.SetActive(true);
        foreach(ItemBase item in TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetWholeInventory())
        {
             UIInventory.GetComponent<UIInventory>().AddItem(item);
         }
+    }
+
+    public void CloseInventory()
+    {
+        UIInventory.CloseInventory();
     }
 }
