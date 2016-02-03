@@ -70,4 +70,4 @@ public enum GameMode { Editor, Game };
 //Names of different actions, used to reference to a dictionary of Actions
 public enum ActionType { MeeleeAttack, FireSpell, ShootArrow}
 
-public enum ItemType { Potion, Bomb, Arrow};
+public enum ItemType { Potion, Bomb, Arrow, ArrowWideHit};

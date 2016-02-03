@@ -21,8 +21,6 @@ public class ActionButton : ButtonScript {
     public override void SelectAction()
     {
         //TurnManager.instance.Action(actionType);
-        TurnManager.instance.CurrentlyTakingTurn.possibleRange.Clear();
-        SelectionScript.ClearSelection();
         UIManager.instance.OpenInventory(actionType);
     }
 

@@ -103,16 +103,18 @@ public class CharacterLogic : MonoBehaviour{
 
     public void CreateInventory(Character chara)
     {
+        int id = 0;
         chara.CharacterInventory = new Inventory();
         foreach (ItemType item in chara.items)
         {
-
-            //create an initiation script
             ItemBase newItem = ScriptableObject.CreateInstance<ItemBase>();
             ItemBase template = ItemList.GetItem(item);
             newItem.ItemName = template.ItemName;
             newItem.ItemSprite = template.ItemSprite;
             newItem.EffectToRange = template.EffectToRange;
+            newItem.EffectToTArgetArea = template.EffectToTArgetArea;
+            newItem.ItemId = id;
+            id++;
             chara.CharacterInventory.Add(newItem);
         }
 
@@ -154,6 +156,7 @@ public class CharacterLogic : MonoBehaviour{
     public void Action(Character chara, ActionBaseClass ab, ItemBase ib)
     {
         chara.currentAction = ab;
+        chara.currentItem = ib;
         chara.possibleRange = ab.CalculateActionRange(chara.characterPosition, ib);
         foreach (Tile t in chara.possibleRange)
         {
@@ -165,6 +168,11 @@ public class CharacterLogic : MonoBehaviour{
 
     public void CompleteAction(Character chara, Tile tile)
     {
+        if (chara.currentItem != null)
+        {
+            chara.CharacterInventory.Use(chara.currentItem.ItemId);
+        }
+
         foreach (Tile t in chara.possibleRange)
         {
             t.SetOverlayType(OverlayType.None);

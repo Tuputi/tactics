@@ -40,8 +40,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 11400000, guid: a4c7641bd6841d245b1183cc31f0afcf, type: 2}
-  - {fileID: 11400000, guid: a4c7641bd6841d245b1183cc31f0afcf, type: 2}
+  - {fileID: 11400000, guid: e5689c3879124cf4ebfb35c025468735, type: 2}
+  - {fileID: 11400000, guid: 41185fb580a59a946b2dbbdc6e55a1f6, type: 2}
+  - {fileID: 11400000, guid: d3f340bfd7241c04b95fa8a90d50e8de, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

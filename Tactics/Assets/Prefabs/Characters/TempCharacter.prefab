@@ -991,7 +991,7 @@ MonoBehaviour:
   hpMax: 100
   mp: 100
   speed: 10
-  items: 0000000002000000
+  items: 0200000003000000
   possibleRange: []
 --- !u!137 &13785698
 SkinnedMeshRenderer:
@@ -1075,9 +1075,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: items.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: e5689c3879124cf4ebfb35c025468735,
-        type: 2}
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalRotation.y
       value: 0
@@ -1092,7 +1091,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: items.Array.data[1]
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

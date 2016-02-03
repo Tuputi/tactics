@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour{
 
     //memory
     public ActionType PendingActionType;
+    public bool InventoryOpen = false;
 
     void Awake()
     {
@@ -108,6 +109,7 @@ public class UIManager : MonoBehaviour{
 
     public void OpenInventory(ActionType at)
     {
+        InventoryOpen = true;
         PendingActionType = at;
         UIInventory.gameObject.SetActive(true);
        foreach(ItemBase item in TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetWholeInventory())
@@ -118,6 +120,7 @@ public class UIManager : MonoBehaviour{
 
     public void CloseInventory()
     {
+        InventoryOpen = false;
         UIInventory.CloseInventory();
     }
 }

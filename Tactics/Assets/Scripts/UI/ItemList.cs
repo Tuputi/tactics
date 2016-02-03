@@ -17,7 +17,7 @@ public class ItemList : MonoBehaviour {
         itemDictionary = new Dictionary<ItemType, ItemBase>();
         foreach(ItemBase item in items)
         {
-            itemDictionary.Add(item.GetItemType(), item);
+            itemDictionary.Add(item.itemType, item);
         }
     }
 

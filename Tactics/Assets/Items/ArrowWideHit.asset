@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866f388511c79ca43b0e0d2b317ed2e9, type: 3}
+  m_Name: ArrowWideHit
+  m_EditorClassIdentifier: 
+  BasicRange: 2
+  ItemCount: 3
+  ItemName: Explosive Arrow
+  itemType: 3
+  ItemSprite: {fileID: 21300000, guid: 8b64788a4fe3ec94dabfbe93f32ee461, type: 3}
+  ItemMaxStackSize: 10
+  EffectToRange: 0
+  EffectToTArgetArea: 2
+  EffectToDamageStatic: 0
+  EffectToDamageMultiplayer: 1
+  ItemInstanceIndex: 0

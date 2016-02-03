@@ -26,6 +26,7 @@ public class Character : MonoBehaviour, System.IComparable
     }
     public bool isAi = false;
     public ActionBaseClass currentAction = null;
+    public ItemBase currentItem = null;
     int DistanceToGo = 0;
     public float TravelSpeed = 0.1f;
     public bool MoveCompleted = true;

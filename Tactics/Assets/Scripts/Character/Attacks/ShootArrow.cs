@@ -23,29 +23,45 @@ public class ShootArrow : AttackBase {
 
     public override int CalculateEffect(Tile targetTile)
     {
-
-        if (!targetTile.isOccupied)
+        bool foundTarget = false;
+        foreach(Tile t in attackArea)
+        {
+            if (t.isOccupied)
+            {
+                foundTarget = true;
+                break;
+            }
+        }
+        if (!foundTarget)
         {
             return 0;
         }
 
         Character chara = TurnManager.instance.CurrentlyTakingTurn;
-        int randoR = Random.Range(1,2);
-        int damageR = randoR * -2;
-        if (targetTile.tileCharacter.facing == chara.facing)
+
+        foreach(Tile t in attackArea)
         {
-            damageR *= 2;
-            Debug.Log("backstab");
+            if (t.isOccupied)
+            {
+                int randoR = Random.Range(1, 2);
+                int damageR = randoR * -2;
+                if (t.tileCharacter.facing == chara.facing)
+                {
+                    damageR *= 2;
+                    Debug.Log("backstab");
+                }
+                if (System.Math.Abs(t.height - chara.characterPosition.height) > 1 && chara.characterPosition.height > t.height)
+                {
+                    damageR *= 2;
+                    Debug.Log("heightAdvantage");
+                }
+                Debug.Log("Did " + damageR + " to " + t.tileCharacter.characterName);
+                t.tileCharacter.hp += damageR;
+                CharacterLogic.instance.DisplayEffect(t.tileCharacter, damageR);
+            }
         }
-        if (System.Math.Abs(targetTile.height - chara.characterPosition.height) > 1 && chara.characterPosition.height > targetTile.height)
-        {
-            damageR *= 2;
-            Debug.Log("heightAdvantage");
-        }
-        Debug.Log("Did " + damageR + " to " + targetTile.tileCharacter.characterName);
-        targetTile.tileCharacter.hp += damageR;
-        CharacterLogic.instance.DisplayEffect(targetTile.tileCharacter, damageR);
-        return damageR;
+        attackArea.Clear();
+        return 1;
     }
 
     public override List<Tile> CalculateActionRange(Tile startTile)
@@ -55,8 +71,7 @@ public class ShootArrow : AttackBase {
 
     public override List<Tile> CalculateActionRange(Tile startTile, ItemBase ib)
     {
-        float range = TurnManager.instance.CurrentlyTakingTurn.rangedRange + BasicRange + ib.GetRangeEffect();
-        Debug.Log("Range is " + range);
+        float range = TurnManager.instance.CurrentlyTakingTurn.rangedRange + ib.GetRangeEffect();
         return Pathfinding.GetPossibleRange(startTile, range, true);
     }
 
@@ -64,6 +79,20 @@ public class ShootArrow : AttackBase {
     {
         List<Tile> temp = new List<Tile>();
         temp.Add(targetTile);
+
+        if (TurnManager.instance.CurrentlyTakingTurn.currentItem)
+        {
+            ItemBase ib = TurnManager.instance.CurrentlyTakingTurn.currentItem;
+            if (ib.EffectToTArgetArea > 0)
+            {
+                List<Tile> tempList = Pathfinding.GetPossibleRange(targetTile, ib.EffectToTArgetArea, true);
+                foreach (Tile t in tempList)
+                {
+                    temp.Add(t);
+                }
+            }
+        }
+        attackArea = temp;
         return temp;
     }
 

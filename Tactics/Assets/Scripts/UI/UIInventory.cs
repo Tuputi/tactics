@@ -54,7 +54,6 @@ public class UIInventory : MonoBehaviour {
             InventorySlot invSlot = slot.GetComponent<InventorySlot>();
            if (invSlot.isEmpty)
            {
-                Debug.Log("stack: "+item.ItemMaxStackSize);
                 invSlot.AddItem(item.GetItemSprite(), item.ItemCount);
                 slot.GetComponent<Button>().onClick.AddListener(delegate { invSlot.SelectItem(item); });
                 Debug.Log("Added item to inventory " + item.ItemName + "," + item.ItemCount.ToString());

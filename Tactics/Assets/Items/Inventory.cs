@@ -45,6 +45,20 @@ public class Inventory{
     {
         ItemBase foundItem = inventory.Find(invItem => invItem.GetItemType() == itemType);
         foundItem.ItemCount--;
+        if(foundItem.ItemCount <= 0)
+        {
+            inventory.Remove(foundItem);
+        }
+    }
+
+    public void Use(int itemID)
+    {
+        ItemBase foundItem = inventory.Find(invItem => invItem.ItemId == itemID);
+        foundItem.ItemCount--;
+        if (foundItem.ItemCount <= 0)
+        {
+            inventory.Remove(foundItem);
+        }
     }
 
     public List<ItemBase> GetWholeInventory()

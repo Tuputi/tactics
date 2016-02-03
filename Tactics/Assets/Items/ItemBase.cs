@@ -5,14 +5,17 @@ public class ItemBase : ActionBaseClass {
 
     public int ItemCount = 3;
     public string ItemName = "NaN";
-    public string ItemClassName = "NaN";
+    public int ItemId = 0;
     public ItemType itemType;
     public Sprite ItemSprite;
-    public Sprite ItemSpriteHighlighted;
     public int ItemMaxStackSize;
 
     [Header("Item effects")]
     public float EffectToRange = 0;
+    public float EffectToTArgetArea = 0;
+    public float EffectToDamageStatic = 0;
+    public float EffectToDamageMultiplayer = 1f;
+
 
     //to distinguish between unique items at some point
     public int ItemInstanceIndex = 0;
