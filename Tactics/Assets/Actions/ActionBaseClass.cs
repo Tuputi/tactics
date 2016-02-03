@@ -6,6 +6,7 @@ public class ActionBaseClass : ScriptableObject {
     protected string actionName = "ActionBaseClass";
     public float BasicRange = 2f;
     public List<Tile> attackArea;
+    
 
     public virtual string GetName()
     {
@@ -52,4 +53,5 @@ public class ActionBaseClass : ScriptableObject {
         return chance;
     }
 
+   
 }

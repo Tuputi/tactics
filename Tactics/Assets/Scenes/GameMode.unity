@@ -295,8 +295,8 @@ MonoBehaviour:
   tileObjects:
   - {fileID: 11499606, guid: ff8b6c2cd7b3c314cab1d217c8aa0031, type: 2}
   characters:
-  - {fileID: 11470832, guid: 5a982eea3c95afd408b2626572f46b04, type: 2}
-  - {fileID: 11492114, guid: 03e4f2ac05ab5ac49840f84cab36da6d, type: 2}
+  - {fileID: 11452818, guid: 6be9cc00b8cb4464b91d4b635eecf506, type: 2}
+  - {fileID: 11409066, guid: 00535310f6ea39540b041da977a59770, type: 2}
   actions:
   - {fileID: 11400000, guid: 593c2c313b2068840951eb9a5d0ab70d, type: 2}
   - {fileID: 11400000, guid: 073bc1f5072a5454d8d7254c18756510, type: 2}
@@ -728,6 +728,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11464626, guid: ac143f73101875b478a624765fc630ab, type: 2}
+      propertyPath: items.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 437734, guid: ac143f73101875b478a624765fc630ab, type: 2}
       propertyPath: m_LocalPosition.x
       value: 578.0469
@@ -760,6 +764,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 11464626, guid: ac143f73101875b478a624765fc630ab, type: 2}
+      propertyPath: items.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: ec16d58122d8f344c8a89c80b94172a0,
+        type: 2}
+    - target: {fileID: 11464626, guid: ac143f73101875b478a624765fc630ab, type: 2}
+      propertyPath: items.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: d3f340bfd7241c04b95fa8a90d50e8de,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac143f73101875b478a624765fc630ab, type: 2}
   m_IsPrefabParent: 0

@@ -109,12 +109,20 @@ public class UIManager : MonoBehaviour{
 
     public void OpenInventory(ActionType at)
     {
+        if (InventoryOpen)
+        {
+            CloseInventory();
+        }
         InventoryOpen = true;
         PendingActionType = at;
+        AttackBase abc = PrefabHolder.instance.actionDictionary[at];
         UIInventory.gameObject.SetActive(true);
        foreach(ItemBase item in TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetWholeInventory())
        {
-            UIInventory.GetComponent<UIInventory>().AddItem(item);
+            if (abc.CompatibleItem(item))
+            {
+                UIInventory.GetComponent<UIInventory>().AddItem(item);
+            }
         }
     }
 

@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Name: Potion
   m_EditorClassIdentifier: 
   BasicRange: 2
+  attackArea: []
   ItemCount: 3
   ItemName: Potion
-  ItemClassName: NaN
+  ItemId: 0
   itemType: 0
   ItemSprite: {fileID: 21300000, guid: 8fefb7362bac7ac40ba51df8a8b83521, type: 3}
-  ItemSpriteHighlighted: {fileID: 0}
   ItemMaxStackSize: 10
+  itemCategories: 00000000
   EffectToRange: -3
+  EffectToTArgetArea: 0
+  EffectToDamageStatic: 0
+  EffectToDamageMultiplayer: 1
   ItemInstanceIndex: 0

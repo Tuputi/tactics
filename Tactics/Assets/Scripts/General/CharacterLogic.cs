@@ -114,6 +114,7 @@ public class CharacterLogic : MonoBehaviour{
             newItem.EffectToRange = template.EffectToRange;
             newItem.EffectToTArgetArea = template.EffectToTArgetArea;
             newItem.ItemId = id;
+            newItem.itemCategories = template.itemCategories;
             id++;
             chara.CharacterInventory.Add(newItem);
         }

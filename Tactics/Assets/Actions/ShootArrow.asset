@@ -11,7 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de299236dc4e8c94ca3f7c83e921a404, type: 3}
   m_Name: ShootArrow
   m_EditorClassIdentifier: 
+  BasicRange: 2
+  attackArea: []
   attackBaseProbability: 90
   minDamage: 10
   maxDamage: 15
   actionType: 2
+  compatibleItems: 0200000001000000

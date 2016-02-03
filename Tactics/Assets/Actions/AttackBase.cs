@@ -8,6 +8,9 @@ public class AttackBase : ActionBaseClass{
     public int minDamage = 0;
     public int maxDamage = 0;
     public ActionType actionType = ActionType.MeeleeAttack;
+    public List<ItemType> compatibleItems;
+
+
 
     public virtual ActionType GetActionType()
     {
@@ -26,6 +29,10 @@ public class AttackBase : ActionBaseClass{
         return false;
     }
 
-    
+    public virtual bool CompatibleItem(ItemBase ib)
+    {
+        return true;
+    }
+
 
 }

@@ -101,4 +101,16 @@ public class ShootArrow : AttackBase {
         CalculateEffect(TargetTile);
     }
 
+    public override bool CompatibleItem(ItemBase ib)
+    {
+        foreach(ItemType it in compatibleItems)
+        {
+            if (ib.itemCategories.Contains(it))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

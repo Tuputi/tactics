@@ -156,7 +156,7 @@ public class AiModule : Character {
         Tile goToTile = Pathfinding.FindTargetTile(this.characterPosition, tempTotalAttackRange);
         List<Tile> foundPath = Pathfinding.GetPath(this.characterPosition, goToTile);
 
-        if (foundPath.Count > 0)
+        if (foundPath !=null)
         {
             List<Tile> takePath = new List<Tile>();
             foreach (Tile t in foundPath)

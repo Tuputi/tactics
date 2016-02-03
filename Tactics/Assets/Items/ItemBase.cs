@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 [CreateAssetMenu]
 public class ItemBase : ActionBaseClass {
 
@@ -9,6 +9,8 @@ public class ItemBase : ActionBaseClass {
     public ItemType itemType;
     public Sprite ItemSprite;
     public int ItemMaxStackSize;
+
+    public List<ItemType> itemCategories;
 
     [Header("Item effects")]
     public float EffectToRange = 0;
