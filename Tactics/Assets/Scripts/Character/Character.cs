@@ -41,7 +41,7 @@ public class Character : MonoBehaviour, System.IComparable
     public int speed = 10;
 
     //lists
-    public List<ItemBase> items;
+    public List<ItemType> items;
     [HideInInspector]
     public List<Tile> possibleRange;
     public Inventory CharacterInventory;

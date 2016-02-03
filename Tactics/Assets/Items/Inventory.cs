@@ -33,6 +33,7 @@ public class Inventory{
         return false;
     }
 
+    //change these to item index
     public int GetItemCount(ItemType itemType)
     {
         int index = inventory.FindIndex(item => (item.GetItemType() == itemType));

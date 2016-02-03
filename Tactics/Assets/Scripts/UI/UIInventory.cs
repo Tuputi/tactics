@@ -46,7 +46,6 @@ public class UIInventory : MonoBehaviour {
 
     public void AddItem(ItemBase item)
     {
-        Debug.Log(InventorySlots.Count);
         foreach(GameObject slot in InventorySlots)
         {
             InventorySlot invSlot = slot.GetComponent<InventorySlot>();
@@ -54,7 +53,7 @@ public class UIInventory : MonoBehaviour {
            {
                 Debug.Log("stack: "+item.ItemMaxStackSize);
                 invSlot.AddItem(item.GetItemSprite(), item.ItemCount);
-                Debug.Log("Added item to inventory " + item.GetName() + "," + item.ItemCount.ToString());
+                Debug.Log("Added item to inventory " + item.ItemName + "," + item.ItemCount.ToString());
                 return;
            }
         }

@@ -104,11 +104,15 @@ public class CharacterLogic : MonoBehaviour{
     public void CreateInventory(Character chara)
     {
         chara.CharacterInventory = new Inventory();
-        foreach (ItemBase item in chara.items)
+        foreach (ItemType item in chara.items)
         {
-            ItemBase instanceItem = (ItemBase)ScriptableObject.CreateInstance(item.name);
-            chara.CharacterInventory.Add(instanceItem);
+            ItemBase newItem = ScriptableObject.CreateInstance<ItemBase>();
+            ItemBase template = ItemList.GetItem(item);
+            newItem.ItemName = template.ItemName;
+            newItem.ItemSprite = template.ItemSprite;
+            chara.CharacterInventory.Add(newItem);
         }
+
     }
 
     //actions

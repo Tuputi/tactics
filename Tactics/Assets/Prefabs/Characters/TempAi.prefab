@@ -991,8 +991,7 @@ MonoBehaviour:
   hpMax: 100
   mp: 100
   speed: 5
-  items:
-  - {fileID: 11400000, guid: a4c7641bd6841d245b1183cc31f0afcf, type: 2}
+  items: 02000000
   possibleRange: []
   targetCharacter: {fileID: 0}
   publicBehaviorList:
@@ -1078,9 +1077,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: items.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: a4c7641bd6841d245b1183cc31f0afcf,
-        type: 2}
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: speed
       value: 5

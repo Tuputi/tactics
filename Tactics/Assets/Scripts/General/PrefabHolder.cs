@@ -34,27 +34,26 @@ public class PrefabHolder : MonoBehaviour {
     //dictionaries
     [HideInInspector]
     public Dictionary<ActionType, AttackBase> actionDictionary;
-    public Dictionary<ItemType, ItemBase> itemDictionary;
+    //public Dictionary<ItemType, ItemBase> itemDictionary;
 
-
-    //sprite fix't
-    [Header("Sprites")]
-    public Sprite PotionSprite;
+    //sublists
+    [Header("SubLists")]
+    public ItemList itemList;
 
 
     void Awake()
     {
         instance = this;
         actionDictionary = new Dictionary<ActionType, AttackBase>();
-        itemDictionary = new Dictionary<ItemType, ItemBase>();
+        //itemDictionary = new Dictionary<ItemType, ItemBase>();
         foreach(AttackBase ab in actions)
         {
             actionDictionary.Add(ab.GetActionType(), ab);
         }
-        foreach (var item in items)
+        /*foreach (var item in ItemList.)
         {
             itemDictionary.Add(item.GetItemType(),item);
-        }
+        }*/
     }
 }
 
@@ -71,4 +70,4 @@ public enum GameMode { Editor, Game };
 //Names of different actions, used to reference to a dictionary of Actions
 public enum ActionType { MeeleeAttack, FireSpell, ShootArrow}
 
-public enum ItemType { Potion, Bomb};
+public enum ItemType { Potion, Bomb, Arrow};

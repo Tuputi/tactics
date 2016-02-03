@@ -1,11 +1,11 @@
 fileFormatVersion: 2
 guid: 866f388511c79ca43b0e0d2b317ed2e9
-timeCreated: 1454068748
+timeCreated: 1454352409
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - ItemSprite: {fileID: 21300000, guid: 900dbf7d315d2874a838c79ff93173a0, type: 3}
+  - ItemSprite: {instanceID: 0}
   - ItemSpriteHighlighted: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}

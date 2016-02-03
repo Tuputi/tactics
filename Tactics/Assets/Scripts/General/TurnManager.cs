@@ -30,6 +30,7 @@ public class TurnManager : MonoBehaviour {
         {
             gameMode = GameMode.Editor;
         }
+
     }
 
 	public void CreateCharacterList()
@@ -44,7 +45,6 @@ public class TurnManager : MonoBehaviour {
         {
             if(chara.CharacterInventory == null)
             {
-               // chara.CreateInventory();
                 CharacterLogic.instance.CreateInventory(chara);
             }
         }
@@ -161,7 +161,7 @@ public class TurnManager : MonoBehaviour {
         {
             mode = TurnMode.action;
            // CurrentlyTakingTurn.Action(PrefabHolder.instance.itemDictionary[it]);
-            CharacterLogic.instance.Action(CurrentlyTakingTurn, PrefabHolder.instance.itemDictionary[it]);
+            CharacterLogic.instance.Action(CurrentlyTakingTurn, ItemList.GetItem(it));
         }
         else
         {
