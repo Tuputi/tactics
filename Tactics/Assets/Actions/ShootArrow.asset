@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: ShootArrow
   m_EditorClassIdentifier: 
   BasicRange: 2
+  AnimationName: FireArrow
   attackArea: []
   attackBaseProbability: 90
   minDamage: 10

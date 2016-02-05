@@ -11,7 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbc3c57ad48c8b4a834155c06c175e7, type: 3}
   m_Name: MeeleeAttack
   m_EditorClassIdentifier: Assembly-CSharp::ActionBase
+  BasicRange: 2
+  AnimationName: Stab
+  attackArea: []
   attackBaseProbability: 90
   minDamage: 10
   maxDamage: 20
   actionType: 0
+  compatibleItems: 

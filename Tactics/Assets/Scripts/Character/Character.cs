@@ -112,6 +112,11 @@ public class Character : MonoBehaviour, System.IComparable
 
     public void DisplayDamage()
     {
+        if(targetTile == null)
+        {
+            Debug.Log("Missed Target");
+            return;
+        }
         currentAction.CompleteAction(targetTile);
         targetTile = null;
     }

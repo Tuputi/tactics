@@ -182,7 +182,7 @@ public class CharacterLogic : MonoBehaviour{
         ChangeFacing(chara, chara.characterPosition, tile);
 
         int random = Random.Range(1, 100);
-        chara.PlayAttackanimation("FireArrow");
+        chara.PlayAttackanimation(chara.currentAction.AnimationName);
         if (random <= chara.currentAction.GetHitChance(tile))
         {
             //chara.currentAction.CompleteAction(tile);

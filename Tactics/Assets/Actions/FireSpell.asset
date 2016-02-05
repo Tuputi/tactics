@@ -11,7 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c6aea211b7ce5246a35e260ccbdecb4, type: 3}
   m_Name: FireSpell
   m_EditorClassIdentifier: Assembly-CSharp::ActionBase
+  BasicRange: 2
+  AnimationName: 
+  attackArea: []
   attackBaseProbability: 80
   minDamage: 20
   maxDamage: 30
   actionType: 1
+  compatibleItems: 
