@@ -881,7 +881,7 @@ Animator:
   m_GameObject: {fileID: 199310}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 49235ef35ef3dd3468673bec72d4de97, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aa9d9165d298dea46a4b1794d84a408b, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -911,6 +911,7 @@ MonoBehaviour:
   currentItem: {fileID: 0}
   TravelSpeed: 0.3
   MoveCompleted: 1
+  characterAnimator: {fileID: 0}
   facing: 0
   hp: 100
   hpMax: 100
@@ -998,6 +999,10 @@ Prefab:
       propertyPath: items.Array.data[2]
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: aa9d9165d298dea46a4b1794d84a408b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 199310}

@@ -9,6 +9,13 @@ public class UIManager : MonoBehaviour{
     GameObject NextTurnButton;
     public Camera gameCamera;
 
+    //item info
+    public GameObject ItemInfoHolder;
+    public Text ItemName;
+    public Text ItemEffectOnRange;
+    public Text ItemEffectOnAttackArea;
+
+
     //statustemplate
     GameObject StatusTemplate;
     Text hpValue;
@@ -129,6 +136,35 @@ public class UIManager : MonoBehaviour{
     public void CloseInventory()
     {
         InventoryOpen = false;
+        CloseItemInfo();
         UIInventory.CloseInventory();
+    }
+
+    public void DisplayItemInfo(ItemBase item)
+    {
+        ItemInfoHolder.SetActive(true);
+        ItemName.text = item.ItemName;
+        if(item.EffectToRange < 0)
+        {
+            ItemEffectOnRange.text = "Range: " + item.EffectToRange.ToString();
+        }
+        else
+        {
+            ItemEffectOnRange.text = "Range: +" + item.EffectToRange.ToString();
+        }
+
+        if(item.EffectToTArgetArea < 0)
+        {
+            ItemEffectOnAttackArea.text = "Attack Area: " + item.EffectToTArgetArea.ToString();
+        }
+        else
+        {
+            ItemEffectOnAttackArea.text = "Attack Area: +" + item.EffectToTArgetArea.ToString();
+        }
+    }
+
+    public void CloseItemInfo()
+    {
+        ItemInfoHolder.SetActive(false);
     }
 }

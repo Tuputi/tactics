@@ -64,14 +64,18 @@ public class ShootArrow : AttackBase {
         return 1;
     }
 
-    public override List<Tile> CalculateActionRange(Tile startTile)
+   /* public override List<Tile> CalculateActionRange(Tile startTile)
     {
         return Pathfinding.GetPossibleRange(startTile, TurnManager.instance.CurrentlyTakingTurn.rangedRange, true);
-    }
+    }*/
 
-    public override List<Tile> CalculateActionRange(Tile startTile, ItemBase ib)
+    public override List<Tile> CalculateActionRange(Tile startTile)
     {
-        float range = TurnManager.instance.CurrentlyTakingTurn.rangedRange + ib.GetRangeEffect();
+        float range = TurnManager.instance.CurrentlyTakingTurn.rangedRange;
+        if (TurnManager.instance.CurrentlyTakingTurn.currentItem != null)
+        {
+            range += TurnManager.instance.CurrentlyTakingTurn.currentItem.GetRangeEffect();
+        }
         return Pathfinding.GetPossibleRange(startTile, range, true);
     }
 

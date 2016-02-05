@@ -158,13 +158,11 @@ public class CharacterLogic : MonoBehaviour{
     {
         chara.currentAction = ab;
         chara.currentItem = ib;
-        chara.possibleRange = ab.CalculateActionRange(chara.characterPosition, ib);
+        chara.possibleRange = ab.CalculateActionRange(chara.characterPosition);
         foreach (Tile t in chara.possibleRange)
         {
             t.SetOverlayType(OverlayType.Selected);
         }
-
-        Debug.Log("Action is " + ab + " and item is " + ib.ItemName);
     }
 
     public void CompleteAction(Character chara, Tile tile)
@@ -184,9 +182,11 @@ public class CharacterLogic : MonoBehaviour{
         ChangeFacing(chara, chara.characterPosition, tile);
 
         int random = Random.Range(1, 100);
-        if(random <= chara.currentAction.GetHitChance(tile))
+        chara.PlayAttackanimation("FireArrow");
+        if (random <= chara.currentAction.GetHitChance(tile))
         {
-            chara.currentAction.CompleteAction(tile);
+            //chara.currentAction.CompleteAction(tile);
+            chara.targetTile = tile;
         }
         else
         {
@@ -194,8 +194,11 @@ public class CharacterLogic : MonoBehaviour{
         }
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.hasActed = true;
+        
         UIManager.instance.UpdateButtons();
     }
+
+ 
 
     public void DisplayEffect(Character chara, int damageAmount)
     {

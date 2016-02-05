@@ -30,7 +30,7 @@ public class UIInventory : MonoBehaviour {
         //inventoryHolder.GetComponent<RectTransform>().sizeDelta = new Vector2(newHeight, newWidth);
         InventorySlots = new List<GameObject>();
 
-        for (int i = 0; i <= rows; i++)
+        for (int i = 0; i < rows; i++)
         {
             for(int j = 0; j < columns; j++)
             {
@@ -64,6 +64,7 @@ public class UIInventory : MonoBehaviour {
 
     public void CloseInventory()
     {
+        UnselectSlots();
         foreach(GameObject slot in InventorySlots)
         {
             InventorySlot invSlot = slot.GetComponent<InventorySlot>();
@@ -73,5 +74,25 @@ public class UIInventory : MonoBehaviour {
             }
         }
         this.gameObject.SetActive(false);
+    }
+
+    public void SelectASlot(InventorySlot iS)
+    {
+        foreach(GameObject go in InventorySlots)
+        {
+            go.GetComponent<InventorySlot>().slotSelected = false;
+            go.GetComponent<Button>().image.color = Color.grey;
+        }
+        iS.slotSelected = true;
+        iS.gameObject.GetComponent<Button>().image.color = Color.black;
+    }
+
+    public void UnselectSlots()
+    {
+        foreach (GameObject go in InventorySlots)
+        {
+            go.GetComponent<InventorySlot>().slotSelected = false;
+            go.GetComponent<Button>().image.color = Color.grey;
+        }
     }
 }

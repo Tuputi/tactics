@@ -5,9 +5,11 @@ public class InventorySlot : MonoBehaviour {
 
     public Sprite EmptySlot;
     public Text ItemCount;
+    public bool slotSelected = false;
+
+    UIInventory parentInventory;
 
     public bool isEmpty = true;
-
 
     public void AddItem(Sprite sprite, int itemCount){
         if(itemCount > 1) {
@@ -37,8 +39,22 @@ public class InventorySlot : MonoBehaviour {
 
     public void SelectItem(ItemBase item)
     {
+        if(parentInventory == null)
+        {
+            parentInventory = GetComponentInParent<UIInventory>();
+        }
+
+        if (!slotSelected)
+        {  
+            UIManager.instance.DisplayItemInfo(item);
+            parentInventory.SelectASlot(this);
+            return;
+        }
+
         TurnManager.instance.Action(UIManager.instance.PendingActionType, item);
         UIManager.instance.CloseInventory();
+        UIManager.instance.CloseItemInfo();
+        parentInventory.UnselectSlots();
     }
 
 }

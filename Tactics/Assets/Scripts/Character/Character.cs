@@ -30,6 +30,8 @@ public class Character : MonoBehaviour, System.IComparable
     int DistanceToGo = 0;
     public float TravelSpeed = 0.1f;
     public bool MoveCompleted = true;
+    public bool AttackAnimationCompleted = true;
+    public Animator characterAnimator;
 
     //Movement
     public Facing facing = Facing.Down;
@@ -46,6 +48,7 @@ public class Character : MonoBehaviour, System.IComparable
     [HideInInspector]
     public List<Tile> possibleRange;
     public Inventory CharacterInventory;
+    public Tile targetTile;
 
     //compartors
     public bool Equals(Character other)
@@ -90,9 +93,39 @@ public class Character : MonoBehaviour, System.IComparable
         }
     }
 
+    public void PlayAttackanimation(string AttackAnimationName)
+    {
+        if (characterAnimator == null)
+        {
+            characterAnimator = this.gameObject.GetComponent<Animator>();
+        }
+        characterAnimator.SetBool(AttackAnimationName, true);
+        AttackAnimationCompleted = false;
+    }
+
+    public void AnimationFinished(string AttackName)
+    {
+        Debug.Log(AttackName+" complete");
+        AttackAnimationCompleted = true;
+        characterAnimator.SetBool(AttackName, false);
+    }
+
+    public void DisplayDamage()
+    {
+        currentAction.CompleteAction(targetTile);
+        targetTile = null;
+    }
+
+
     Tile previousPostition;
     public void MoveCharacter(Character chara, List<Tile> path)
     {
+        if(characterAnimator == null)
+        {
+            characterAnimator = this.gameObject.GetComponent<Animator>();
+        }
+
+        characterAnimator.SetBool("Walking", true);
         MoveCompleted = false;
         DistanceToGo = path.Count - 1;
         // CameraScript.instance.SetMoveTarget(path[0].gameObject);
@@ -107,7 +140,7 @@ public class Character : MonoBehaviour, System.IComparable
         while (DistanceToGo >= 0)
         {
             Tile target = path[DistanceToGo];
-            Vector3 targetPos = new Vector3(target.transform.position.x, target.transform.position.y + 1.2f, target.transform.position.z);
+            Vector3 targetPos = new Vector3(target.transform.position.x, target.transform.position.y + 1f, target.transform.position.z);
             Vector3 sourcePos = chara.gameObject.transform.position;
             chara.transform.position = Vector3.MoveTowards(sourcePos, targetPos, Mathf.SmoothStep(0, 1f, TravelSpeed));
             if (chara.transform.position == targetPos)
@@ -120,6 +153,7 @@ public class Character : MonoBehaviour, System.IComparable
         }
         Debug.Log("Move complete");
         MoveCompleted = true;
+        characterAnimator.SetBool("Walking", false);
     }
 
 }
