@@ -800,9 +800,8 @@ MonoBehaviour:
   AttackAnimationCompleted: 1
   characterAnimator: {fileID: 0}
   facing: 2
-  hp: 100
   hpMax: 100
-  mp: 100
+  mpMax: 100
   speed: 10
   items: 0200000003000000
   possibleRange: []
@@ -884,6 +883,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: characterID
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: Archer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

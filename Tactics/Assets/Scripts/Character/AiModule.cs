@@ -63,11 +63,14 @@ public class AiModule : Character {
 
         if (waitingToCompleteAttack)
         {
-            waitingToCompleteAttack = false;
-            Debug.Log("turn done");
-            Tile targetT = GetClosestEnemy();
-            CharacterLogic.instance.ChangeFacing(this, this.characterPosition, targetT);
-            TurnManager.instance.NextInTurn();
+            if (AttackAnimationCompleted)
+            {
+                waitingToCompleteAttack = false;
+                Debug.Log("turn done");
+                Tile targetT = GetClosestEnemy();
+                CharacterLogic.instance.ChangeFacing(this, this.characterPosition, targetT);
+                TurnManager.instance.NextInTurn();
+            }
         }
     }
 

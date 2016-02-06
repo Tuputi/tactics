@@ -7,12 +7,12 @@ public class HealWhenHurt : BehaviourModuleBase {
 
     public override bool CheckConditions(Character currentCharacter)
     {
-        double healthPercentage = currentCharacter.hp / currentCharacter.hp;
+        double healthPercentage = currentCharacter.Hp / currentCharacter.Hp;
        // Debug.Log("HealthPercentage = " + healthPercentage);
         if (healthPercentage <= TriggerValue)
         {
             Debug.Log("HealWhenHurt = " + true);
-            currentCharacter.hp += 2;
+            currentCharacter.Hp += 2;
             return true;
         }
         else

@@ -56,7 +56,7 @@ public class ShootArrow : AttackBase {
                     Debug.Log("heightAdvantage");
                 }
                 Debug.Log("Did " + damageR + " to " + t.tileCharacter.characterName);
-                t.tileCharacter.hp += damageR;
+                t.tileCharacter.Hp += damageR;
                 CharacterLogic.instance.DisplayEffect(t.tileCharacter, damageR);
             }
         }

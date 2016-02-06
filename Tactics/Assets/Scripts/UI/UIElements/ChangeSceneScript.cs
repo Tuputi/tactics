@@ -13,12 +13,12 @@ public class ChangeSceneScript : MonoBehaviour {
     public void LoadScene(){
         if(SceneManager.GetActiveScene().name == "MapCreator")
         {
-            Application.LoadLevel(0);
+            SceneManager.LoadScene("GameMode");
         }
         else
         {
             MapName = EditorButtonScript.instance.mapnamefield.text;
-            Application.LoadLevel(1);
+            SceneManager.LoadScene("MapCreator");
         }
     }
 }

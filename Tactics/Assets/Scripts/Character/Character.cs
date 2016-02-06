@@ -21,9 +21,12 @@ public class Character : MonoBehaviour, System.IComparable
     {
         get
         {
-            return (hp > 0);
+            return (Hp > 0);
         }
     }
+
+    
+
     public bool isAi = false;
     public ActionBaseClass currentAction = null;
     public ItemBase currentItem = null;
@@ -35,13 +38,43 @@ public class Character : MonoBehaviour, System.IComparable
 
     //Movement
     public Facing facing = Facing.Down;
+    Tile previousPostition;
 
     //stats
     [Header("Stats")]
-    public int hp = 100;
+   
     public int hpMax = 100;
-    public int mp = 100;
+    public int mpMax = 100;
     public int speed = 10;
+
+    //private stats && setter/getters
+    private int hp = 100;
+    private int mp = 100;
+
+    public int Hp
+    {
+        get
+        {
+            return hp;
+        }
+
+        set
+        {
+            hp = value;
+        }
+    }
+    public int Mp
+    {
+        get
+        {
+            return mp;
+        }
+
+        set
+        {
+            mp = value;
+        }
+    }
 
     //lists
     public List<ItemType> items;
@@ -49,6 +82,7 @@ public class Character : MonoBehaviour, System.IComparable
     public List<Tile> possibleRange;
     public Inventory CharacterInventory;
     public Tile targetTile;
+
 
     //compartors
     public bool Equals(Character other)
@@ -93,6 +127,10 @@ public class Character : MonoBehaviour, System.IComparable
         }
     }
 
+
+
+    //Animation Controllers
+
     public void PlayAttackanimation(string AttackAnimationName)
     {
         if (characterAnimator == null)
@@ -121,9 +159,6 @@ public class Character : MonoBehaviour, System.IComparable
         targetTile = null;
     }
 
-
-    Tile previousPostition;
-
     public void MoveCharacter(Character chara, List<Tile> path)
     {
         if(characterAnimator == null)
@@ -146,6 +181,7 @@ public class Character : MonoBehaviour, System.IComparable
     {
         while (DistanceToGo >= 0)
         {
+            //turn to look the right way
             int tempInt = DistanceToGo;
             if (!(--tempInt < 0))
             {
@@ -155,6 +191,7 @@ public class Character : MonoBehaviour, System.IComparable
             {
                 CharacterLogic.instance.ChangeFacing(chara, previousPostition, path[DistanceToGo]);
             }
+
             Tile target = path[DistanceToGo];
             Vector3 targetPos = new Vector3(target.transform.position.x, target.transform.position.y + 1f, target.transform.position.z);
             Vector3 sourcePos = chara.gameObject.transform.position;

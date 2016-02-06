@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Wintellect.PowerCollections;
+using UnityEngine.SceneManagement;
 
 public class TurnManager : MonoBehaviour {
 
@@ -22,8 +23,9 @@ public class TurnManager : MonoBehaviour {
     {
         instance = this;
         characters = new OrderedBag<Character>();
-        if (Application.loadedLevel == 1)
+        if (SceneManager.GetActiveScene().name == "GameMode")
         {
+            Debug.Log("GameMode");
             gameMode = GameMode.Game;
         }
         else
@@ -204,7 +206,7 @@ public class TurnManager : MonoBehaviour {
         List<Character> deadCharacter = new List<Character>();
         foreach(Character chara in characters)
         {
-            if(chara.hp <= 0)
+            if(chara.Hp <= 0)
             {
                 deadCharacter.Add(chara);
             }

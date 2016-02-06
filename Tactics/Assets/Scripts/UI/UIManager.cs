@@ -52,7 +52,7 @@ public class UIManager : MonoBehaviour{
     public void UpdateStatus(Character chara)
     {
         StatusTemplate.SetActive(true);
-        hpValue.text = chara.hp.ToString();
+        hpValue.text = chara.Hp.ToString();
         hpValueMax.text = chara.hpMax.ToString();
         characterName.text = chara.characterName;
     }

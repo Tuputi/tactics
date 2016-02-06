@@ -38,7 +38,7 @@ public class FireSpell : AttackBase {
             if (t.isOccupied)
             {
                 Debug.Log("Did " + damageA + " to " + t.tileCharacter.characterName);
-                t.tileCharacter.hp -= damageA;
+                t.tileCharacter.Hp -= damageA;
                 CharacterLogic.instance.DisplayEffect(t.tileCharacter, -damageA);
                 // t.tileCharacter.CheckIfAlive(); 
             }
