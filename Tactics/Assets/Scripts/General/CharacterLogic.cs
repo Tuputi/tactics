@@ -193,8 +193,7 @@ public class CharacterLogic : MonoBehaviour{
             Debug.Log("Miss");
         }
         TurnManager.mode = TurnManager.TurnMode.end;
-        TurnManager.instance.hasActed = true;
-        
+        TurnManager.instance.hasActed = true;  
         UIManager.instance.UpdateButtons();
     }
 

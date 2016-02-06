@@ -123,6 +123,7 @@ public class Character : MonoBehaviour, System.IComparable
 
 
     Tile previousPostition;
+
     public void MoveCharacter(Character chara, List<Tile> path)
     {
         if(characterAnimator == null)
@@ -134,9 +135,10 @@ public class Character : MonoBehaviour, System.IComparable
         MoveCompleted = false;
         DistanceToGo = path.Count - 1;
         // CameraScript.instance.SetMoveTarget(path[0].gameObject);
-        CharacterLogic.instance.ChangeFacing(chara, characterPosition, path[DistanceToGo]);
         previousPostition = path[DistanceToGo];
         CharacterLogic.instance.SetCharacterPosition(chara, path[0]);
+        CharacterLogic.instance.ChangeFacing(chara, characterPosition, path[DistanceToGo]);
+
         StartCoroutine(MovePath(chara, path));
     }
 
@@ -144,13 +146,22 @@ public class Character : MonoBehaviour, System.IComparable
     {
         while (DistanceToGo >= 0)
         {
+            int tempInt = DistanceToGo;
+            if (!(--tempInt < 0))
+            {
+                CharacterLogic.instance.ChangeFacing(chara, previousPostition, path[DistanceToGo - 1]);
+            }
+            else
+            {
+                CharacterLogic.instance.ChangeFacing(chara, previousPostition, path[DistanceToGo]);
+            }
             Tile target = path[DistanceToGo];
             Vector3 targetPos = new Vector3(target.transform.position.x, target.transform.position.y + 1f, target.transform.position.z);
             Vector3 sourcePos = chara.gameObject.transform.position;
             chara.transform.position = Vector3.MoveTowards(sourcePos, targetPos, Mathf.SmoothStep(0, 1f, TravelSpeed));
             if (chara.transform.position == targetPos)
             {
-                CharacterLogic.instance.ChangeFacing(chara, previousPostition, path[DistanceToGo]);
+                
                 previousPostition = path[DistanceToGo];
                 DistanceToGo--;
             }

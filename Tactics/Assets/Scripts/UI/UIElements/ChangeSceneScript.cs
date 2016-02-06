@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ChangeSceneScript : MonoBehaviour {
 
-    public static string MapName;
+    public static string MapName = "testMap";
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
     }
 
     public void LoadScene(){
-        if(Application.loadedLevel == 1)
+        if(SceneManager.GetActiveScene().name == "MapCreator")
         {
             Application.LoadLevel(0);
         }

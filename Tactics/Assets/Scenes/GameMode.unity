@@ -295,8 +295,7 @@ MonoBehaviour:
   tileObjects:
   - {fileID: 11499606, guid: ff8b6c2cd7b3c314cab1d217c8aa0031, type: 2}
   characters:
-  - {fileID: 11452818, guid: 6be9cc00b8cb4464b91d4b635eecf506, type: 2}
-  - {fileID: 11409066, guid: 00535310f6ea39540b041da977a59770, type: 2}
+  - {fileID: 11490854, guid: 460af04871252794e91778407f2b4eaf, type: 2}
   - {fileID: 11463958, guid: ee32444d3b3b15a478ac8adbbdac1a90, type: 2}
   actions:
   - {fileID: 11400000, guid: 593c2c313b2068840951eb9a5d0ab70d, type: 2}
@@ -551,7 +550,7 @@ MonoBehaviour:
   mapRows: 10
   mapColumns: 10
   MapName: Hello
-  mapContainer: {fileID: 0}
+  mapContainer: {fileID: 1634819784}
 --- !u!4 &389061372
 Transform:
   m_ObjectHideFlags: 0
