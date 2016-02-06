@@ -17,13 +17,7 @@ public class Character : MonoBehaviour, System.IComparable
 
     //logic
     [HideInInspector]
-    public bool isAlive
-    {
-        get
-        {
-            return (Hp > 0);
-        }
-    }
+   
 
     
 
@@ -75,6 +69,15 @@ public class Character : MonoBehaviour, System.IComparable
             mp = value;
         }
     }
+    public bool isAlive
+    {
+        get
+        {
+            return (Hp > 0);
+        }
+    }
+
+    private GameObject Weapon;
 
     //lists
     public List<ItemType> items;
@@ -133,6 +136,7 @@ public class Character : MonoBehaviour, System.IComparable
 
     public void PlayAttackanimation(string AttackAnimationName)
     {
+        AttachWeapon();
         if (characterAnimator == null)
         {
             characterAnimator = this.gameObject.GetComponent<Animator>();
@@ -146,6 +150,22 @@ public class Character : MonoBehaviour, System.IComparable
         Debug.Log(AttackName+" complete");
         AttackAnimationCompleted = true;
         characterAnimator.SetBool(AttackName, false);
+        RemoveWeapon();
+    }
+
+    public void AttachWeapon()
+    {
+        Transform handBone = gameObject.transform.FindChild("Armature/UpperBody/Shoulder_R/Elbow_R/Hand_R").FindChild("Hand_R_1");
+        GameObject newBow = Instantiate(PrefabHolder.instance.Bow);
+        Weapon = newBow;
+       // newBow.transform.position = new Vector3(0, 0, 0);
+        newBow.transform.SetParent(handBone);
+        newBow.transform.localPosition = new Vector3(0, 0, 0);
+    }
+
+    public void RemoveWeapon()
+    {
+        Destroy(Weapon);
     }
 
     public void DisplayDamage()

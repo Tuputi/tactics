@@ -40,6 +40,9 @@ public class PrefabHolder : MonoBehaviour {
     [Header("SubLists")]
     public ItemList itemList;
 
+    [Header("Misc")]
+    public GameObject Bow;
+
 
     void Awake()
     {
