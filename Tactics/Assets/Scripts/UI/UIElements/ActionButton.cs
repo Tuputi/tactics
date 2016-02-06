@@ -18,10 +18,27 @@ public class ActionButton : ButtonScript {
         SetUp();
     }
 
-    public override void SelectAction()
+    public override void SelectButton()
     {
-        //TurnManager.instance.Action(actionType);
-        UIManager.instance.OpenInventory(actionType);
+        throw new NotImplementedException();
+    }
+
+    public void SelectAction(bool needsItemComponent)
+    {
+        if (UIManager.instance.InventoryOpen)
+        {
+            UIManager.instance.CloseInventory();
+            return;
+        }
+
+        if (needsItemComponent)
+        {
+            UIManager.instance.OpenInventory(actionType);
+        }
+        else {
+            TurnManager.instance.Action(actionType);
+        }
+       
     }
 
     public override void UpdateButton()

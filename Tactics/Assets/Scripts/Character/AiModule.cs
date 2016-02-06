@@ -4,14 +4,15 @@ using System.Collections.Generic;
 
 public class AiModule : Character {
 
-
+    [HideInInspector]
     public Character targetCharacter;
     public List<BehaviourModuleBase> publicBehaviorList;
     Dictionary<BehaviourType, BehaviourModuleBase> behaviourList;
+    [HideInInspector]
     public BehaviourModuleBase currentBehaviour;
     public List<AttackBase> availableAttacks;
 
-    public List<Tile> tempTotalAttackRange;
+    private List<Tile> tempTotalAttackRange;
 
     void Awake()
     {

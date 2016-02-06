@@ -142,7 +142,6 @@ public class TurnManager : MonoBehaviour {
         if (!hasActed)
         {
             mode = TurnMode.action;
-            //CurrentlyTakingTurn.Action(PrefabHolder.instance.actionDictionary[at]);
             CharacterLogic.instance.Action(CurrentlyTakingTurn, PrefabHolder.instance.actionDictionary[at]);
         }
         else
@@ -162,7 +161,6 @@ public class TurnManager : MonoBehaviour {
         if (!hasActed)
         {
             mode = TurnMode.action;
-            //CurrentlyTakingTurn.Action(PrefabHolder.instance.actionDictionary[at]);
             CharacterLogic.instance.Action(CurrentlyTakingTurn, PrefabHolder.instance.actionDictionary[at], ib);
         }
         else
@@ -182,7 +180,6 @@ public class TurnManager : MonoBehaviour {
         if (!hasActed)
         {
             mode = TurnMode.action;
-           // CurrentlyTakingTurn.Action(PrefabHolder.instance.itemDictionary[it]);
             CharacterLogic.instance.Action(CurrentlyTakingTurn, ItemList.GetItem(it));
         }
         else

@@ -8,31 +8,39 @@ public class Character : MonoBehaviour, System.IComparable
 
     public string characterName = "tempName";
     public int characterID = 0;
-    public Tile characterPosition;
+    
 
     //game logic stats
     public float characterEnergy = 5f;
     public int movementRange = 5;
     public float rangedRange = 5f;
+    public float TravelSpeed = 0.1f;
+    public bool isAi = false;
 
     //logic
     [HideInInspector]
-   
-
-    
-
-    public bool isAi = false;
-    public ActionBaseClass currentAction = null;
+    public Tile characterPosition;
+    [HideInInspector]
     public ItemBase currentItem = null;
-    int DistanceToGo = 0;
-    public float TravelSpeed = 0.1f;
-    public bool MoveCompleted = true;
+    [HideInInspector]
+    public ActionBaseClass currentAction = null;
+    [HideInInspector]
     public bool AttackAnimationCompleted = true;
-    public Animator characterAnimator;
+    [HideInInspector]
+    public bool MoveCompleted = true;
+    [HideInInspector]
+    public Tile targetTile;
+    [HideInInspector]
+    public Inventory CharacterInventory;
+    [HideInInspector]
+    public List<Tile> possibleRange;
 
     //Movement
+    [HideInInspector]
     public Facing facing = Facing.Down;
     Tile previousPostition;
+    int DistanceToGo = 0;
+    private Animator characterAnimator;
 
     //stats
     [Header("Stats")]
@@ -81,10 +89,9 @@ public class Character : MonoBehaviour, System.IComparable
 
     //lists
     public List<ItemType> items;
-    [HideInInspector]
-    public List<Tile> possibleRange;
-    public Inventory CharacterInventory;
-    public Tile targetTile;
+  
+
+    
 
 
     //compartors
@@ -161,6 +168,7 @@ public class Character : MonoBehaviour, System.IComparable
        // newBow.transform.position = new Vector3(0, 0, 0);
         newBow.transform.SetParent(handBone);
         newBow.transform.localPosition = new Vector3(0, 0, 0);
+        //change rotation as well
     }
 
     public void RemoveWeapon()
