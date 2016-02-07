@@ -108,6 +108,10 @@ public class TouchInput : MonoBehaviour {
                         }
 
                     }
+                    else
+                    {
+                        state = TouchState.still;
+                    }
                 }
             }
         }
