@@ -159,7 +159,7 @@ public class Pathfinding : MonoBehaviour {
             List<Tile> neighbourList = new List<Tile>(current.neighbours);
             foreach (Tile t in neighbourList)
             {
-                if (CheckValidity(t)) //run all additional validitychecks here
+                if (CheckValidity(t, ignoreMoveCost)) //run all additional validitychecks here
                 {
                     if (!closedList.Contains(t))
                     {
@@ -223,13 +223,15 @@ public class Pathfinding : MonoBehaviour {
         return possibleTiles;
     }
 
-    static bool CheckValidity(Tile tile)
+    static bool CheckValidity(Tile tile, bool ignoreMovement)
     {
-       if (!tile.isWalkable)
+        if (!ignoreMovement)
         {
-            return false;
+            if (!tile.isWalkable)
+            {
+                return false;
+            }
         }
-
         return true;
     }
 
@@ -246,7 +248,7 @@ public class Pathfinding : MonoBehaviour {
             closedList.Add(next);
             foreach (Tile t in next.neighbours)
             {
-                if (CheckValidity(t))
+                if (CheckValidity(t, false))
                 {
                     if (!openList.Contains(t))
                     {

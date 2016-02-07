@@ -789,7 +789,7 @@ MonoBehaviour:
   characterName: Archer
   characterID: 2
   characterEnergy: 8
-  movementRange: 4
+  movementRange: 5
   rangedRange: 5
   TravelSpeed: 0.1
   isAi: 0
@@ -886,6 +886,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Name
       value: Archer
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: movementRange
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
