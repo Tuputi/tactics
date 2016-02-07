@@ -36,31 +36,6 @@ public class CharacterLogic : MonoBehaviour{
         }
     }
 
-   /* public void ChangeFacing (Character chara, Facing facing)
-    {
-        GameObject rotateObj = chara.gameObject;
-        float rotation = 0f;
-        switch (facing)
-        {
-            case Facing.Up:
-                rotation = 90f;
-                break;
-            case Facing.Right:
-                rotation = 0f;
-                break;
-            case Facing.Down:
-                rotation = 270f;
-                break;
-            case Facing.Left:
-                rotation = 180f;
-                break;
-            default:
-                break;
-        }
-        chara.facing = facing;
-        rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
-    }*/
-
     public void ChangeFacing(Character chara, Tile at, Tile to)
     {
         int rowChange = System.Math.Abs(at.xPos - to.xPos);
@@ -109,16 +84,13 @@ public class CharacterLogic : MonoBehaviour{
         {
             ItemBase newItem = ScriptableObject.CreateInstance<ItemBase>();
             ItemBase template = ItemList.GetItem(item);
-            newItem.ItemName = template.ItemName;
-            newItem.ItemSprite = template.ItemSprite;
-            newItem.EffectToRange = template.EffectToRange;
-            newItem.EffectToTArgetArea = template.EffectToTArgetArea;
+            newItem.Init(template.ItemCount, template.ItemName, template.itemType, template.ItemSprite, template.ItemMaxStackSize);
+            newItem.InitEffect(template.EffectToRange, template.EffectToTArgetArea, template.EffectToDamageStatic, template.EffectToDamageMultiplayer);
             newItem.ItemId = id;
             newItem.itemCategories = template.itemCategories;
             id++;
             chara.CharacterInventory.Add(newItem);
         }
-
     }
 
     //actions
@@ -201,13 +173,19 @@ public class CharacterLogic : MonoBehaviour{
 
     public void DisplayEffect(Character chara, int damageAmount)
     {
-        GameObject damageText = (GameObject)Instantiate(PrefabHolder.instance.DamageText);
-        damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = damageAmount.ToString();
+        GameObject damageText = (GameObject)Instantiate(PrefabHolder.instance.DamageText);   
         if(damageAmount > 0)
         {
             damageText.GetComponentInChildren<UnityEngine.UI.Text>().color = Color.green;
         }
 
+        if (damageAmount == 0)
+        {
+            damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = "miss";
+        }
+        else {
+            damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = damageAmount.ToString();
+        }
         damageText.transform.SetParent(chara.gameObject.transform);
         damageText.transform.localPosition = new Vector3(0, 1f, 0);
     }

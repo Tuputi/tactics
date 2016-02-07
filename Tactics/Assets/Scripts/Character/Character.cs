@@ -181,6 +181,7 @@ public class Character : MonoBehaviour, System.IComparable
         if(targetTile == null)
         {
             Debug.Log("Missed Target");
+            CharacterLogic.instance.DisplayEffect(this, 0);
             return;
         }
         currentAction.CompleteAction(targetTile);

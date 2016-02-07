@@ -22,6 +22,24 @@ public class ItemBase : ActionBaseClass {
     //to distinguish between unique items at some point
     public int ItemInstanceIndex = 0;
 
+    public void Init(int itemCount,string itemName, ItemType ItemType, Sprite itemSprite, int itemMaxStackSize)
+    {
+        ItemCount = itemCount;
+        ItemName = itemName;
+       // ItemId = itemId;
+        itemType = ItemType;
+        ItemSprite = itemSprite;
+        ItemMaxStackSize = itemMaxStackSize;
+    }
+
+    public void InitEffect(float effectToRange, float effectToTargetArea, float effectToDamageStatic, float effectToDamageMultiplayer)
+    {
+        EffectToRange = effectToRange;
+        EffectToTArgetArea = effectToTargetArea;
+        EffectToDamageStatic = effectToDamageStatic;
+        EffectToDamageMultiplayer = effectToDamageMultiplayer;
+}
+
     public ItemType GetItemType()
     {
         return itemType;
