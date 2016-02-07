@@ -304,7 +304,6 @@ MonoBehaviour:
   items:
   - {fileID: 11400000, guid: d3f340bfd7241c04b95fa8a90d50e8de, type: 2}
   - {fileID: 11400000, guid: e5689c3879124cf4ebfb35c025468735, type: 2}
-  itemList: {fileID: 0}
   Bow: {fileID: 140086, guid: baf9059c0d1482b4296bae55d7ce37da, type: 2}
 --- !u!4 &182796414
 Transform:

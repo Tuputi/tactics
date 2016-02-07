@@ -36,10 +36,6 @@ public class PrefabHolder : MonoBehaviour {
     public Dictionary<ActionType, AttackBase> actionDictionary;
     //public Dictionary<ItemType, ItemBase> itemDictionary;
 
-    //sublists
-    [Header("SubLists")]
-    public ItemList itemList;
-
     [Header("Misc")]
     public GameObject Bow;
 

@@ -7,6 +7,7 @@ public class AttackBase : ActionBaseClass{
     public double attackBaseProbability; //100 = 100%
     public int minDamage = 0;
     public int maxDamage = 0;
+    public int MPCost = 0;
     public ActionType actionType = ActionType.MeeleeAttack;
     public List<ItemType> compatibleItems;
 
