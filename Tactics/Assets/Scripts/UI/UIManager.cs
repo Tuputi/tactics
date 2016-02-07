@@ -167,4 +167,23 @@ public class UIManager : MonoBehaviour{
     {
         ItemInfoHolder.SetActive(false);
     }
+
+    public GameObject TurnorderHolder;
+    public Text turnorderCharaName;
+    public void UpdateTurnOrderDisplay(List<Character> characters)
+    {
+        for(int i = 0; i < TurnorderHolder.transform.childCount; i++)
+        {
+            Destroy(TurnorderHolder.transform.GetChild(i).gameObject);
+        }
+            float currentHeight = 0;
+        foreach(Character chara in characters){
+            Text tempText = Instantiate(turnorderCharaName) as Text;
+            tempText.text = chara.characterName +" - "+ chara.characterEnergy.ToString();
+            tempText.transform.SetParent(TurnorderHolder.transform, false);
+           // tempText.transform.localScale = new Vector3(1, 1, 1);
+            tempText.transform.localPosition = new Vector3(0, currentHeight, 0);
+            currentHeight += -(turnorderCharaName.transform.GetComponent<RectTransform>().rect.height);
+        }
+    }
 }

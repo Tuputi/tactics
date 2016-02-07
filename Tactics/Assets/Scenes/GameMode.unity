@@ -443,6 +443,8 @@ MonoBehaviour:
   ItemEffectOnAttackArea: {fileID: 1895583630}
   PendingActionType: 0
   InventoryOpen: 0
+  TurnorderHolder: {fileID: 1739073228}
+  turnorderCharaName: {fileID: 11400192, guid: a3ac2e04b4d2b694e8a5452b48868c37, type: 2}
 --- !u!1 &234490612 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 174742, guid: f05f454fd3a90554a993067f07ff1a31, type: 2}
@@ -1979,6 +1981,38 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1724718146}
+--- !u!1 &1739073228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1739073229}
+  m_Layer: 5
+  m_Name: TurnorderUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1739073229
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1739073228}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1999599886}
+  m_RootOrder: 8
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 100.00098, y: 308.34973}
+  m_SizeDelta: {x: 200, y: 616.7}
+  m_Pivot: {x: 0.5000002, y: 1}
 --- !u!1 &1848388093 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 134626, guid: c5daf5f0935acde4883038e675454d46, type: 2}
@@ -2301,6 +2335,7 @@ RectTransform:
   - {fileID: 807712572}
   - {fileID: 1917614805}
   - {fileID: 1506970606}
+  - {fileID: 1739073229}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}

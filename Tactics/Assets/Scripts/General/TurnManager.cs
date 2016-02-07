@@ -61,6 +61,8 @@ public class TurnManager : MonoBehaviour {
             chara.characterEnergy += chara.speed;
             characters.Add(chara);
         }
+        List<Character> sendList = new List<Character>(tempList);
+        UIManager.instance.UpdateTurnOrderDisplay(sendList);
     }
 
 
