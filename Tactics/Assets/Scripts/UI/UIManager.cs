@@ -5,9 +5,11 @@ using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour{
 
-    GameObject ButtonHolder;
+    public GameObject ButtonHolder;
     UIInventory UIInventory;
     GameObject NextTurnButton;
+    public GameObject ActionButtonBase;
+    public GameObject BasicButtonBase;
     public Camera gameCamera;
 
     //item info
@@ -34,7 +36,7 @@ public class UIManager : MonoBehaviour{
     {
         instance = this;
         buttons = new List<ButtonScript>();
-        ButtonHolder = GameObject.Find("Canvas").transform.FindChild("ActionButtons").gameObject;
+       // ButtonHolder = GameObject.Find("Canvas").transform.FindChild("ActionButtons").gameObject;
         NextTurnButton = GameObject.Find("NextTurn");
         for(int i = 0; i < ButtonHolder.transform.childCount; i++)
         {
@@ -197,5 +199,28 @@ public class UIManager : MonoBehaviour{
             tempText.transform.localPosition = new Vector3(0, currentHeight, 0);
             currentHeight += -(turnorderCharaName.transform.GetComponent<RectTransform>().rect.height);
         }
+    }
+
+    public void CreateActionButton(List<AttackBase> actions)
+    {
+        List<GameObject> buttons = new List<GameObject>();
+        foreach (ButtonScript go in PrefabHolder.instance.basicActions)
+        {
+            ButtonScript newButton = Instantiate(go);
+            newButton.gameObject.transform.localScale = new Vector3(1, 1, 1);
+            newButton.SetUp();
+            buttons.Add(newButton.gameObject);
+        }
+        foreach (AttackBase ab in actions)
+        {
+            GameObject newButton = Instantiate(ActionButtonBase);
+            newButton.transform.localScale = new Vector3(1, 1, 1);
+            newButton.GetComponent<ActionButton>().ButtonText = ab.GetName();
+            newButton.GetComponent<ActionButton>().actionType = ab.GetActionType();
+            newButton.GetComponent<ActionButton>().SetUp();
+            buttons.Add(newButton);
+        }
+       
+        RotatinMenu.instance.AddActionButtons(buttons);
     }
 }

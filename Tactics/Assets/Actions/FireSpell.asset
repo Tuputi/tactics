@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Name: FireSpell
   m_EditorClassIdentifier: Assembly-CSharp::ActionBase
   BasicRange: 2
+  EnergyCost: 15
   AnimationName: 
   attackArea: []
   attackBaseProbability: 80
   minDamage: 20
   maxDamage: 30
+  MPCost: 0
   actionType: 1
   compatibleItems: 

@@ -9,6 +9,7 @@ public class PrefabHolder : MonoBehaviour {
     //ui-elements
     [Header("UI-elemnts")]
     public GameObject DamageText;
+    public List<ButtonScript> basicActions;
 
     //Tiles
     [Header("Tiles")]

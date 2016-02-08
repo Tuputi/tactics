@@ -8,10 +8,12 @@ public class RotatinMenu : MonoBehaviour {
     public List<GameObject> ButtonsForDial;
     public float speed = 5f;
     public float RotationAmount;
+    public static RotatinMenu instance;
 
     void Start()
     {
         PlaceEvenly();
+        instance = this;
     }
 
     void Update()
@@ -62,17 +64,17 @@ public class RotatinMenu : MonoBehaviour {
             accumulatedAngle += angleBetweenObjects;
         }
 
-        AddActionButtons();
     }
 
-    public void AddActionButtons()
+    public void AddActionButtons(List<GameObject> buttons)
     {
-        if(RotationPoint.transform.childCount >= ButtonsForDial.Count)
+        if(RotationPoint.transform.childCount >= buttons.Count)
         {
-            for(int i = 0; i < ButtonsForDial.Count; i++)
+            for(int i = 0; i < buttons.Count; i++)
             {
-                ButtonsForDial[i].transform.SetParent((RotationPoint.transform.GetChild(i).transform));
-                ButtonsForDial[i].transform.localPosition = new Vector3(0, 0, 0);
+                buttons[i].transform.SetParent((RotationPoint.transform.GetChild(i).transform));
+                buttons[i].transform.localPosition = new Vector3(0, 0, 0);
+                buttons[i].transform.localScale = new Vector3(1, 1, 1);
             }
         }
     }

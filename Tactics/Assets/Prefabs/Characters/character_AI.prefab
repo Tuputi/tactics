@@ -803,7 +803,7 @@ MonoBehaviour:
   facing: 0
   hpMax: 100
   mpMax: 100
-  speed: 5
+  speed: 55
   items: 02000000
   targetCharacter: {fileID: 0}
   publicBehaviorList:
@@ -879,6 +879,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: characterID
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: 55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

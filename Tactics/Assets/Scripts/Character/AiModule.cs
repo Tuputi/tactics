@@ -10,8 +10,6 @@ public class AiModule : Character {
     Dictionary<BehaviourType, BehaviourModuleBase> behaviourList;
     [HideInInspector]
     public BehaviourModuleBase currentBehaviour;
-    public List<AttackBase> availableAttacks;
-
     private List<Tile> tempTotalAttackRange;
 
     void Awake()

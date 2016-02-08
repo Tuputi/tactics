@@ -155,6 +155,7 @@ public class CharacterLogic : MonoBehaviour{
 
         int random = Random.Range(1, 100);
         chara.PlayAttackanimation(chara.currentAction.AnimationName);
+        chara.characterEnergy -= chara.currentAction.EnergyCost;
         if (random <= chara.currentAction.GetHitChance(tile))
         {
             //chara.currentAction.CompleteAction(tile);

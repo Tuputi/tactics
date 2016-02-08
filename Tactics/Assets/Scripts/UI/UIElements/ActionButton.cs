@@ -15,7 +15,7 @@ public class ActionButton : ButtonScript {
 
     void Awake()
     {
-        SetUp();
+        //SetUp();
     }
 
     public override void SelectButton()

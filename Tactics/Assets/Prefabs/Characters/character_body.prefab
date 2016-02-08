@@ -793,6 +793,9 @@ MonoBehaviour:
   rangedRange: 5
   TravelSpeed: 0.1
   isAi: 0
+  availableAttacks:
+  - {fileID: 11400000, guid: 073bc1f5072a5454d8d7254c18756510, type: 2}
+  - {fileID: 11400000, guid: e5a6a6970264f514bb208d6e54858462, type: 2}
   characterPosition: {fileID: 0}
   currentItem: {fileID: 0}
   currentAction: {fileID: 0}
@@ -803,7 +806,7 @@ MonoBehaviour:
   facing: 2
   hpMax: 100
   mpMax: 100
-  speed: 10
+  speed: 60
   items: 0200000003000000
 --- !u!137 &13755484
 SkinnedMeshRenderer:
@@ -872,6 +875,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: availableAttacks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
@@ -891,6 +898,20 @@ Prefab:
       propertyPath: movementRange
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: availableAttacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 073bc1f5072a5454d8d7254c18756510,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: availableAttacks.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: e5a6a6970264f514bb208d6e54858462,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 150148}

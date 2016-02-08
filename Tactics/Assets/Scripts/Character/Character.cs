@@ -17,6 +17,8 @@ public class Character : MonoBehaviour, System.IComparable
     public float TravelSpeed = 0.1f;
     public bool isAi = false;
 
+    public List<AttackBase> availableAttacks;
+
     //logic
     [HideInInspector]
     public Tile characterPosition;
