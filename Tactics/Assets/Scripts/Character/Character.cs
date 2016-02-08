@@ -131,7 +131,7 @@ public class Character : MonoBehaviour, System.IComparable
     //on mouse down
     void OnMouseDown()
     {
-        if (!characterPosition.IsPointerOverUIObject())
+        if (!UIManager.instance.IsPointerOverUIObject())
         {
             characterPosition.SelectThis();
         }

@@ -6,9 +6,6 @@ public class InputManager : MonoBehaviour {
 
     public GameObject CentrePoint;
     public GameObject RotationPoint;
-    //CameraRotationState camState = CameraRotationState.forward;
-
-    enum CameraRotationState { forward, right, back, left}
 
     //touch
     private Vector2 touchStartPos;
@@ -39,8 +36,11 @@ public class InputManager : MonoBehaviour {
                     {
                         Vector2 touchDeltaPos = Input.GetTouch(0).deltaPosition;
                         Vector3 move = new Vector3(-touchDeltaPos.x * moveSpeed, 0, -touchDeltaPos.y * moveSpeed);
-                        CentrePoint.transform.Translate(move, Space.Self);
 
+                        if (!UIManager.instance.IsPointerOverUIObject())
+                        {
+                            CentrePoint.transform.Translate(move, Space.Self);
+                        }
 
                     }
                 }

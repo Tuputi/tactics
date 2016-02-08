@@ -787,32 +787,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Ai
-  characterID: 1
-  characterPosition: {fileID: 0}
+  characterID: 2
   characterEnergy: 5
   movementRange: 5
   rangedRange: 5
-  isAi: 0
-  currentAction: {fileID: 0}
-  currentItem: {fileID: 0}
   TravelSpeed: 0.3
-  MoveCompleted: 1
+  isAi: 0
+  characterPosition: {fileID: 0}
+  currentItem: {fileID: 0}
+  currentAction: {fileID: 0}
   AttackAnimationCompleted: 1
-  characterAnimator: {fileID: 0}
+  MoveCompleted: 1
+  targetTile: {fileID: 0}
+  possibleRange: []
   facing: 0
-  hp: 40
   hpMax: 100
-  mp: 100
+  mpMax: 100
   speed: 5
   items: 02000000
-  possibleRange: []
-  targetTile: {fileID: 0}
   targetCharacter: {fileID: 0}
   publicBehaviorList:
   - {fileID: 11483754, guid: 874a514ecfcfef34b8cf379674a5e9c5, type: 2}
   currentBehaviour: {fileID: 11483754, guid: 874a514ecfcfef34b8cf379674a5e9c5, type: 2}
   availableAttacks: []
-  tempTotalAttackRange: []
 --- !u!137 &13713968
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -881,7 +878,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: characterID
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

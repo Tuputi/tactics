@@ -5,6 +5,7 @@ public class ActionBaseClass : ScriptableObject {
 
     protected string actionName = "ActionBaseClass";
     public float BasicRange = 2f;
+    public float EnergyCost = 5f;
     public string AnimationName;
     public List<Tile> attackArea;
     

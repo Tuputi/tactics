@@ -10,6 +10,7 @@ public class TurnManager : MonoBehaviour {
     public static TurnManager instance;
     public static OrderedBag<Character> characters;
     public float EnergyThreshold = 50f;
+    public float EnergyAddedPerTurn = 5f;
     public Character CurrentlyTakingTurn;
 
 
@@ -58,7 +59,8 @@ public class TurnManager : MonoBehaviour {
         characters.Clear();
         foreach(Character chara in tempList)
         {
-            chara.characterEnergy += chara.speed;
+            //chara.characterEnergy += chara.speed;
+            chara.characterEnergy += EnergyAddedPerTurn;
             characters.Add(chara);
         }
         List<Character> sendList = new List<Character>(tempList);
@@ -82,7 +84,7 @@ public class TurnManager : MonoBehaviour {
         Character nextCharacter = null;
         while(nextCharacter == null)
         {
-            if(characters.GetFirst().characterEnergy >= EnergyThreshold)
+            if(characters.GetFirst().characterEnergy >= (225- characters.GetFirst().speed))
             {
                 nextCharacter = characters.GetFirst();
             }

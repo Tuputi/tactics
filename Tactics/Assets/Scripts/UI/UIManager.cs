@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour{
 
@@ -47,6 +48,17 @@ public class UIManager : MonoBehaviour{
         UIInventory = GameObject.Find("Inventory").GetComponent<UIInventory>();
         UIInventory.gameObject.SetActive(false);
 
+    }
+
+    //code by mwk888
+    public bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 
     public void UpdateStatus(Character chara)

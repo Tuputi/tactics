@@ -19,6 +19,7 @@ public class TouchInput : MonoBehaviour {
     private Vector2 startPos;
     private float swipeStartTime;
     public static TouchState state;
+    public static bool touchActive = false;
 
    public enum TouchState { still, sLeft, sRight, sUp, sDown};
 
@@ -30,6 +31,7 @@ public class TouchInput : MonoBehaviour {
 
         if(nbTouches > 0)
         {
+            touchActive = true;
            // testImge.color = Color.blue;
             for(int i = 0; i< nbTouches; i++)
             {
@@ -47,7 +49,7 @@ public class TouchInput : MonoBehaviour {
                     Vector2 endPos = new Vector2(touch.position.x, touch.position.y);
 
 
-                    Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+                   /* Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
                     RaycastHit hit;
 
                     if (Physics.Raycast(ray, out hit,200))
@@ -57,7 +59,7 @@ public class TouchInput : MonoBehaviour {
                         {
                             testImge.color = Color.red;
                         }
-                    }
+                    }*/
 
 
 
@@ -117,6 +119,7 @@ public class TouchInput : MonoBehaviour {
         }
         else
         {
+            touchActive = false;
             //testImge.color = Color.red;
         }
     }
