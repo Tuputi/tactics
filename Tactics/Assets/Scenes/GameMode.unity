@@ -1651,7 +1651,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1422622171}
-        m_MethodName: SelectButton
+        m_MethodName: SelectAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

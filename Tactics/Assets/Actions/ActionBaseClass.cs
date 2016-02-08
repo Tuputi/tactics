@@ -7,6 +7,7 @@ public class ActionBaseClass : ScriptableObject {
     public float BasicRange = 2f;
     public float EnergyCost = 5f;
     public string AnimationName;
+    public bool UsedWithItems = false;
     public List<Tile> attackArea;
     
 

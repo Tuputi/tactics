@@ -12,6 +12,6 @@ public abstract class ButtonScript : MonoBehaviour {
 
     public abstract void UpdateButton();
 
-    public abstract void SelectButton();
+    public abstract void SelectAction();
 
 }

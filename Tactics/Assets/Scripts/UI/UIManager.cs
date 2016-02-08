@@ -218,6 +218,7 @@ public class UIManager : MonoBehaviour{
             newButton.GetComponent<ActionButton>().ButtonText = ab.GetName();
             newButton.GetComponent<ActionButton>().actionType = ab.GetActionType();
             newButton.GetComponent<ActionButton>().SetUp();
+            newButton.GetComponent<ActionButton>().OpenInventory = ab.UsedWithItems;
             buttons.Add(newButton);
         }
        

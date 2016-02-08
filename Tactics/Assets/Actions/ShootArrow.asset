@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Name: ShootArrow
   m_EditorClassIdentifier: 
   BasicRange: 2
+  EnergyCost: 5
   AnimationName: FireArrow
+  UsedWithItems: 1
   attackArea: []
   attackBaseProbability: 90
   minDamage: 10
   maxDamage: 15
+  MPCost: 0
   actionType: 2
   compatibleItems: 0200000001000000

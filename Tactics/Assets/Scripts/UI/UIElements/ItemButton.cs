@@ -35,7 +35,7 @@ public class ItemButton : ButtonScript {
         }
     }
 
-    public override void SelectButton()
+    public override void SelectAction()
     {
         TurnManager.instance.Action(itemType);
     }

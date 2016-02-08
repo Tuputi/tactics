@@ -15,7 +15,7 @@ public class MoveButton : ButtonScript {
         SetUp();
     }
 
-    public override void SelectButton()
+    public override void SelectAction()
     {
         UIManager.instance.CloseInventory();
         TurnManager.instance.Move();

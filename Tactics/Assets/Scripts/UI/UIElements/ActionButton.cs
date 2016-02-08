@@ -6,6 +6,7 @@ using System;
 public class ActionButton : ButtonScript {
 
     public ActionType actionType;
+    public bool OpenInventory = false;
 
     public override void SetUp()
     {
@@ -18,12 +19,7 @@ public class ActionButton : ButtonScript {
         //SetUp();
     }
 
-    public override void SelectButton()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void SelectAction(bool needsItemComponent)
+    public override void SelectAction()
     {
         if (UIManager.instance.InventoryOpen)
         {
@@ -31,7 +27,7 @@ public class ActionButton : ButtonScript {
             return;
         }
 
-        if (needsItemComponent)
+        if (OpenInventory)
         {
             UIManager.instance.OpenInventory(actionType);
         }
