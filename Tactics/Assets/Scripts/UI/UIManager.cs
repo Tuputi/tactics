@@ -38,10 +38,7 @@ public class UIManager : MonoBehaviour{
         buttons = new List<ButtonScript>();
        // ButtonHolder = GameObject.Find("Canvas").transform.FindChild("ActionButtons").gameObject;
         NextTurnButton = GameObject.Find("NextTurn");
-        for(int i = 0; i < ButtonHolder.transform.childCount; i++)
-        {
-            buttons.Add(ButtonHolder.transform.GetChild(i).GetComponent<ButtonScript>());
-        }
+        
         buttons.Add(NextTurnButton.GetComponent<ButtonScript>());
         StatusTemplate = GameObject.Find("StatusDisplayTemplate");
         hpValue = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValue").GetComponent<Text>();
@@ -124,7 +121,7 @@ public class UIManager : MonoBehaviour{
             t.SetOverlayType(OverlayType.None);
         }
         TurnManager.mode = TurnManager.TurnMode.end;
-        TurnManager.instance.NextInTurn();
+        TurnManager.instance.FindNextInTurn();
     }
 
 
@@ -203,13 +200,13 @@ public class UIManager : MonoBehaviour{
 
     public void CreateActionButton(List<AttackBase> actions)
     {
-        List<GameObject> buttons = new List<GameObject>();
+        List<GameObject> tempButtons = new List<GameObject>();
         foreach (ButtonScript go in PrefabHolder.instance.basicActions)
         {
             ButtonScript newButton = Instantiate(go);
             newButton.gameObject.transform.localScale = new Vector3(1, 1, 1);
             newButton.SetUp();
-            buttons.Add(newButton.gameObject);
+            tempButtons.Add(newButton.gameObject);
         }
         foreach (AttackBase ab in actions)
         {
@@ -219,9 +216,15 @@ public class UIManager : MonoBehaviour{
             newButton.GetComponent<ActionButton>().actionType = ab.GetActionType();
             newButton.GetComponent<ActionButton>().SetUp();
             newButton.GetComponent<ActionButton>().OpenInventory = ab.UsedWithItems;
-            buttons.Add(newButton);
+            tempButtons.Add(newButton);
         }
-       
-        RotatinMenu.instance.AddActionButtons(buttons);
+
+        buttons.Clear();
+        buttons.Add(NextTurnButton.GetComponent<ButtonScript>());
+        foreach (GameObject b in tempButtons)
+        {
+            buttons.Add(b.GetComponent<ButtonScript>());
+        }
+        RotatinMenu.instance.AddActionButtons(tempButtons);
     }
 }

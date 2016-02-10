@@ -29,6 +29,7 @@ public class ActionButton : ButtonScript {
 
         if (OpenInventory)
         {
+            SelectionScript.ClearSelection();
             UIManager.instance.OpenInventory(actionType);
         }
         else {

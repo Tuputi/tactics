@@ -5,7 +5,7 @@ public class SelectionScript : MonoBehaviour {
 
     public static List<Tile> selectedTiles;
 
-    private static bool selectMultiple = false;
+    public static bool selectMultiple = false;
     private static bool shiftClick = false;
     private static bool noSelection = false;
 
@@ -96,7 +96,16 @@ public class SelectionScript : MonoBehaviour {
     
     static void SetSelectedTileGame(Tile tile)
     {
-        SetSingleSelectedTile(tile);
+        if (selectMultiple)
+        {
+            SetMultipleSelectedTile(tile);
+            return;
+        }
+        else {
+            SetSingleSelectedTile(tile);
+        }
+       
+        //update statusUi
         if (tile.isOccupied)
         {
             UIManager.instance.UpdateStatus(tile.tileCharacter);
@@ -106,6 +115,7 @@ public class SelectionScript : MonoBehaviour {
             UIManager.instance.UpdateStatus(false);  
         }
 
+        //move or action?
         if (TurnManager.mode == TurnManager.TurnMode.move || TurnManager.mode == TurnManager.TurnMode.action)
         {
             ClearSelection();

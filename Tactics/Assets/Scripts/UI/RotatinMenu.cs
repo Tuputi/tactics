@@ -5,7 +5,6 @@ public class RotatinMenu : MonoBehaviour {
 
     public GameObject RotationPoint;
     public List<GameObject> ButtonObjects;
-    public List<GameObject> ButtonsForDial;
     public float speed = 5f;
     public float RotationAmount;
     public static RotatinMenu instance;

@@ -68,19 +68,11 @@ public class TurnManager : MonoBehaviour {
     }
 
 
-    public void NextInTurn()
+    public void FindNextInTurn()
     {
 
         CheckAliveStatus();
-
-        if (CurrentlyTakingTurn != null)
-        {
-            foreach (Tile t in CurrentlyTakingTurn.possibleRange)
-            {
-                t.SetOverlayType(OverlayType.None);
-            }
-        }
-
+        SelectionScript.ClearSelection();
         Character nextCharacter = null;
         while(nextCharacter == null)
         {
@@ -118,16 +110,11 @@ public class TurnManager : MonoBehaviour {
 
     public void Move()
     {
-        foreach(Tile t in CurrentlyTakingTurn.possibleRange)
-        {
-            t.SetOverlayType(OverlayType.None);
-        }
         CurrentlyTakingTurn.possibleRange.Clear();
         SelectionScript.ClearSelection();
         if (!hasMoved)
         {
             mode = TurnMode.move;
-            // CurrentlyTakingTurn.Move();
             CharacterLogic.instance.Move(CurrentlyTakingTurn);
         }
         else
@@ -138,10 +125,6 @@ public class TurnManager : MonoBehaviour {
 
     public void Action(ActionType at)
     {
-        foreach (Tile t in CurrentlyTakingTurn.possibleRange)
-        {
-            t.SetOverlayType(OverlayType.None);
-        }
         CurrentlyTakingTurn.possibleRange.Clear();
         SelectionScript.ClearSelection();
         if (!hasActed)
@@ -157,10 +140,6 @@ public class TurnManager : MonoBehaviour {
 
     public void Action(ActionType at, ItemBase ib)
     {
-        foreach (Tile t in CurrentlyTakingTurn.possibleRange)
-        {
-            t.SetOverlayType(OverlayType.None);
-        }
         CurrentlyTakingTurn.possibleRange.Clear();
         SelectionScript.ClearSelection();
         if (!hasActed)
@@ -176,10 +155,6 @@ public class TurnManager : MonoBehaviour {
 
     public void Action(ItemType it)
     {
-        foreach (Tile t in CurrentlyTakingTurn.possibleRange)
-        {
-            t.SetOverlayType(OverlayType.None);
-        }
         CurrentlyTakingTurn.possibleRange.Clear();
         SelectionScript.ClearSelection();
         if (!hasActed)

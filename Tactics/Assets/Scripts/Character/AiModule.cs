@@ -68,7 +68,7 @@ public class AiModule : Character {
                 Debug.Log("turn done");
                 Tile targetT = GetClosestEnemy();
                 CharacterLogic.instance.ChangeFacing(this, this.characterPosition, targetT);
-                TurnManager.instance.NextInTurn();
+                TurnManager.instance.FindNextInTurn();
             }
         }
     }

@@ -93,23 +93,27 @@ public class CharacterLogic : MonoBehaviour{
         }
     }
 
+    private void SelectMultipleTiles(List<Tile> tiles)
+    {
+        SelectionScript.selectMultiple = true;
+        foreach (Tile t in tiles)
+        {
+            t.SelectThis();
+        }
+        SelectionScript.selectMultiple = false;
+    }
+
     //actions
     public void Move(Character chara)
     {
         chara.possibleRange = Pathfinding.GetPossibleRange(chara.characterPosition, chara.movementRange, false);
-        foreach (Tile t in chara.possibleRange)
-        {
-            t.SetOverlayType(OverlayType.Selected);
-        }
+        SelectMultipleTiles(chara.possibleRange);
     }
 
     public void CompleteMove(Character chara, List<Tile> path)
     {
         chara.MoveCharacter(chara, path);
-        foreach (Tile t in chara.possibleRange)
-        {
-            t.SetOverlayType(OverlayType.None);
-        }
+        SelectionScript.ClearSelection();
         chara.possibleRange.Clear();
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.hasMoved = true;
@@ -120,10 +124,12 @@ public class CharacterLogic : MonoBehaviour{
     {
         chara.currentAction = ab;
         chara.possibleRange = ab.CalculateActionRange(chara.characterPosition);
+        SelectionScript.selectMultiple = true;
         foreach (Tile t in chara.possibleRange)
         {
-            t.SetOverlayType(OverlayType.Selected);
+            t.SelectThis();
         }
+        SelectionScript.selectMultiple = false;
     }
 
     public void Action(Character chara, ActionBaseClass ab, ItemBase ib)
@@ -131,10 +137,7 @@ public class CharacterLogic : MonoBehaviour{
         chara.currentAction = ab;
         chara.currentItem = ib;
         chara.possibleRange = ab.CalculateActionRange(chara.characterPosition);
-        foreach (Tile t in chara.possibleRange)
-        {
-            t.SetOverlayType(OverlayType.Selected);
-        }
+        SelectMultipleTiles(chara.possibleRange);
     }
 
     public void CompleteAction(Character chara, Tile tile)
@@ -142,11 +145,6 @@ public class CharacterLogic : MonoBehaviour{
         if (chara.currentItem != null)
         {
             chara.CharacterInventory.Use(chara.currentItem.ItemId);
-        }
-
-        foreach (Tile t in chara.possibleRange)
-        {
-            t.SetOverlayType(OverlayType.None);
         }
         chara.possibleRange.Clear();
         SelectionScript.ClearSelection();
@@ -158,7 +156,6 @@ public class CharacterLogic : MonoBehaviour{
         chara.characterEnergy -= chara.currentAction.EnergyCost;
         if (random <= chara.currentAction.GetHitChance(tile))
         {
-            //chara.currentAction.CompleteAction(tile);
             chara.targetTile = tile;
         }
         else

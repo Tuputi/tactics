@@ -11,7 +11,7 @@ public class StartGame : MonoBehaviour {
     public void SelectAction()
     {
         TurnManager.instance.CreateCharacterList();
-        TurnManager.instance.NextInTurn();
+        TurnManager.instance.FindNextInTurn();
         UIManager.instance.DisableButtons(true);
         this.transform.gameObject.SetActive(false);
     }

@@ -18,7 +18,7 @@ public class EditorButtonScript : MonoBehaviour {
         instance = this;
     }
 
-    public void FindPathButton()
+  /*  public void FindPathButton()
     {
         if(SelectionScript.selectedTiles.Count == 2)
         {
@@ -31,7 +31,7 @@ public class EditorButtonScript : MonoBehaviour {
                 }
             }
         }
-    }
+    }*/
 
     public void RotationButton()
     {
@@ -105,7 +105,6 @@ public class EditorButtonScript : MonoBehaviour {
             {
                 if (t.tileCharacter == null)
                 {
-                    //Character.CreateCharacter(CharaId, t);
                     CharacterLogic.CreateCharacter(CharaId, t);
                 }
                 else
