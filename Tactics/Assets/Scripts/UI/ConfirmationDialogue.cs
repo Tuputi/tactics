@@ -28,7 +28,7 @@ public class ConfirmationDialogue : MonoBehaviour{
         DialogueTemplate.gameObject.SetActive(true);
         ConfirmType = type;
         ActionTargetTile = target;
-        UIManager.instance.DisableButtons(false);
+        UIManager.instance.ActivateButtons(false);
         SelectionScript.SetNoSelection(true);
 
         switch (type)
@@ -50,7 +50,7 @@ public class ConfirmationDialogue : MonoBehaviour{
     public void Close()
     {
         DialogueTemplate.SetActive(false);
-        UIManager.instance.DisableButtons(true);
+        UIManager.instance.ActivateButtons(true);
         SelectionScript.SetNoSelection(false);
     }
 

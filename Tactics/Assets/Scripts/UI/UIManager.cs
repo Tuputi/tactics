@@ -36,10 +36,7 @@ public class UIManager : MonoBehaviour{
     {
         instance = this;
         buttons = new List<ButtonScript>();
-       // ButtonHolder = GameObject.Find("Canvas").transform.FindChild("ActionButtons").gameObject;
         NextTurnButton = GameObject.Find("NextTurn");
-        
-        buttons.Add(NextTurnButton.GetComponent<ButtonScript>());
         StatusTemplate = GameObject.Find("StatusDisplayTemplate");
         hpValue = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValue").GetComponent<Text>();
         hpValueMax = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValueMax").GetComponent<Text>();
@@ -89,7 +86,7 @@ public class UIManager : MonoBehaviour{
 
     }
 
-    public void DisableButtons(bool activeStatus)
+    public void ActivateButtons(bool activeStatus)
     {
        foreach(ButtonScript b in buttons)
        { 
@@ -99,7 +96,6 @@ public class UIManager : MonoBehaviour{
 
     public void SelectFacing(Character chara)
     {
-        //compas.SetActive(true);
         List<Tile> places = chara.characterPosition.neighbours;
         foreach(Tile t in places)
         {
@@ -107,14 +103,12 @@ public class UIManager : MonoBehaviour{
             t.GetComponentInChildren<OverlayArrow>().RotateArrow();
         }
         SelectionScript.SetNoSelection(true);
-        //Vector3 screenPos = gameCamera.WorldToScreenPoint(chara.gameObject.transform.position);
-        //compas.transform.position = screenPos;
     }
 
     public void CompleteFacing(Tile myTile)
     {
         CharacterLogic.instance.ChangeFacing(TurnManager.instance.CurrentlyTakingTurn, TurnManager.instance.CurrentlyTakingTurn.characterPosition, myTile);
-        DisableButtons(true);
+        ActivateButtons(true);
         SelectionScript.SetNoSelection(false);
         foreach(Tile t in TurnManager.instance.CurrentlyTakingTurn.characterPosition.neighbours)
         {
@@ -220,7 +214,7 @@ public class UIManager : MonoBehaviour{
         }
 
         buttons.Clear();
-        buttons.Add(NextTurnButton.GetComponent<ButtonScript>());
+       // buttons.Add(NextTurnButton.GetComponent<ButtonScript>());
         foreach (GameObject b in tempButtons)
         {
             buttons.Add(b.GetComponent<ButtonScript>());

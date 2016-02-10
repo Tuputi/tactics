@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class TurnManager : MonoBehaviour {
 
-    public enum TurnMode {  start, move, action, facing, end};
+    public enum TurnMode {  undecided, start, move, action, facing, end};
 
     public static TurnManager instance;
     public static OrderedBag<Character> characters;
@@ -174,7 +174,7 @@ public class TurnManager : MonoBehaviour {
         {
             mode = TurnMode.facing;
             UIManager.instance.SelectFacing(CurrentlyTakingTurn);
-            UIManager.instance.DisableButtons(false);
+            UIManager.instance.ActivateButtons(false);
         }
     }
 

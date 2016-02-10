@@ -47,7 +47,7 @@ public class RotatinMenu : MonoBehaviour {
         double tempDouble = System.Math.Cos(angleBetweenObjects * 0.5);
         float tempFloat = (float)tempDouble;
         float distanceFromCenter = (distanceBetweenObjects * 0.5f) /tempFloat;
-        float accumulatedAngle = 0.0f;
+        float accumulatedAngle = 360.0f;
         //foreach (GameObject go in ButtonObjects )
         for(int i = 0; i < ButtonObjects.Count-1; i++)
         {
@@ -60,7 +60,7 @@ public class RotatinMenu : MonoBehaviour {
             float cosFloat = (float)cosResult;
             float sinFloat = (float)sinResult;
             newG.transform.localPosition = new Vector3(cosFloat,sinFloat, 0);
-            accumulatedAngle += angleBetweenObjects;
+            accumulatedAngle -= angleBetweenObjects;
         }
 
     }

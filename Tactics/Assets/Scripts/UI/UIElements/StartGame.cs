@@ -5,14 +5,14 @@ public class StartGame : MonoBehaviour {
 
 	void Start()
     {
-        UIManager.instance.DisableButtons(false);
+        UIManager.instance.ActivateButtons(false);
     }
 
     public void SelectAction()
     {
         TurnManager.instance.CreateCharacterList();
         TurnManager.instance.FindNextInTurn();
-        UIManager.instance.DisableButtons(true);
+        UIManager.instance.ActivateButtons(true);
         this.transform.gameObject.SetActive(false);
     }
 }

@@ -16,6 +16,19 @@ public class TurnButton : ButtonScript {
 
     public override void SelectAction()
     {
+        if(TurnManager.mode == TurnManager.TurnMode.facing)
+        {
+            TurnManager.mode = TurnManager.TurnMode.undecided;
+            foreach(Tile t in TurnManager.instance.CurrentlyTakingTurn.characterPosition.neighbours)
+            {
+                t.SetOverlayType(OverlayType.None);
+            }
+            SelectionScript.SetNoSelection(false);
+            UIManager.instance.ActivateButtons(true);
+            return;
+        }
+
+        SelectionScript.ClearSelection();
         TurnManager.instance.FacingPhase();
     }
 
