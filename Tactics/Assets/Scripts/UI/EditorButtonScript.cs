@@ -137,6 +137,17 @@ public class EditorButtonScript : MonoBehaviour {
         }
     }
 
+    public void EmptyButton()
+    {
+        if (SelectionScript.selectedTiles.Count > 0)
+        {
+            foreach (Tile t in SelectionScript.selectedTiles)
+            {
+                t.SetTileType(TileType.None);
+            }
+        }
+    }
+
     public void Save()
     {
         if (!mapnamefield.text.Equals(""))

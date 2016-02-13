@@ -232,6 +232,12 @@ public class Tile : MonoBehaviour, System.IComparable
 
     void OnMouseDown()
     {
+        if(TurnManager.gameMode == GameMode.Editor)
+        {
+            SelectThis();
+            return;
+        }
+
         if (!UIManager.instance.IsPointerOverUIObject())
         {
             SelectThis();

@@ -787,12 +787,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Ai
-  characterID: 2
+  characterID: 1
   characterEnergy: 5
   movementRange: 5
   rangedRange: 5
   TravelSpeed: 0.3
   isAi: 0
+  availableAttacks: []
   characterPosition: {fileID: 0}
   currentItem: {fileID: 0}
   currentAction: {fileID: 0}
@@ -809,7 +810,6 @@ MonoBehaviour:
   publicBehaviorList:
   - {fileID: 11483754, guid: 874a514ecfcfef34b8cf379674a5e9c5, type: 2}
   currentBehaviour: {fileID: 11483754, guid: 874a514ecfcfef34b8cf379674a5e9c5, type: 2}
-  availableAttacks: []
 --- !u!137 &13713968
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -878,7 +878,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: characterID
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: speed

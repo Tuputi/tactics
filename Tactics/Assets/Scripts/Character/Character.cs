@@ -184,9 +184,13 @@ public class Character : MonoBehaviour, System.IComparable
         {
             Debug.Log("Missed Target");
             CharacterLogic.instance.DisplayEffect(this, 0);
+            currentAction = null;
+            currentItem = null;
             return;
         }
         currentAction.CompleteAction(targetTile);
+        currentAction = null;
+        currentItem = null;
         targetTile = null;
     }
 
