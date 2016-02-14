@@ -145,6 +145,7 @@ public class SelectionScript : MonoBehaviour {
                             }
                         }
                     }
+
                     ConfirmationDialogue.instance.Show(ConfirmationType.action, tile);
                 }
             }
