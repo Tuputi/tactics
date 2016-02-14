@@ -69,7 +69,9 @@ public class ConfirmationDialogue : MonoBehaviour{
                 {
                     CameraScript.instance.SetMoveTarget(TurnManager.instance.CurrentlyTakingTurn.gameObject);
                     // TurnManager.instance.CurrentlyTakingTurn.Action(TurnManager.instance.CurrentlyTakingTurn.currentAction);    
-                    CharacterLogic.instance.Action(TurnManager.instance.CurrentlyTakingTurn, TurnManager.instance.CurrentlyTakingTurn.currentAction);    
+                    //CharacterLogic.instance.Action(TurnManager.instance.CurrentlyTakingTurn, TurnManager.instance.CurrentlyTakingTurn.currentAction); 
+                    TurnManager.instance.CurrentlyTakingTurn.currentAction = null;
+                    TurnManager.mode = TurnManager.TurnMode.undecided;   
                     Debug.Log("Action canceled");
                 }
                 break;
@@ -84,7 +86,8 @@ public class ConfirmationDialogue : MonoBehaviour{
                 {
                     CameraScript.instance.SetMoveTarget(TurnManager.instance.CurrentlyTakingTurn.gameObject);
                     //TurnManager.instance.CurrentlyTakingTurn.Move();
-                    CharacterLogic.instance.Move(TurnManager.instance.CurrentlyTakingTurn);
+                   // CharacterLogic.instance.Move(TurnManager.instance.CurrentlyTakingTurn);
+                    TurnManager.mode = TurnManager.TurnMode.undecided;
                     Debug.Log("Move canceled");
                 }
                 break;
