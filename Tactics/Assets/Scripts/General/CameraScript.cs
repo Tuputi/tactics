@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class CameraScript : MonoBehaviour {
     
-    float viewDistance = 5f;
+    float viewDistance = 7.5f;
     bool MoveToTargetBool = false;
     public static CameraScript instance;
     List<GameObject> moveTargets;

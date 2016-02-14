@@ -6,6 +6,7 @@ public class InputManager : MonoBehaviour {
 
     public GameObject CentrePoint;
     public GameObject RotationPoint;
+    public static bool rotationOn = false;
 
     //touch
     private Vector2 touchStartPos;
@@ -27,6 +28,12 @@ public class InputManager : MonoBehaviour {
             {
                 if (Input.touchCount == 1)
                 {
+                    if (rotationOn)
+                    {
+                        CentrePoint.gameObject.transform.RotateAround(CentrePoint.gameObject.transform.position, transform.up, Input.GetTouch(0).deltaPosition.y * 0.5f);
+                        return;
+                    }
+
                     Touch touch = Input.GetTouch(0);
                     if (touch.phase == TouchPhase.Began)
                     {
@@ -51,7 +58,7 @@ public class InputManager : MonoBehaviour {
 
                     if (touch1.deltaPosition.magnitude < 0.4f)
                     {
-                        CentrePoint.gameObject.transform.RotateAround(CentrePoint.gameObject.transform.position, transform.up, touch2.deltaPosition.y * 0.5f);
+                       // CentrePoint.gameObject.transform.RotateAround(CentrePoint.gameObject.transform.position, transform.up, touch2.deltaPosition.y * 0.5f);
                     }
                     else
                     {

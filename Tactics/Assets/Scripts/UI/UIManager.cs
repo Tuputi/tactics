@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour{
     public GameObject ActionButtonBase;
     public GameObject BasicButtonBase;
     public Camera gameCamera;
+    public Toggle rotationToggle;
 
     //item info
     public GameObject ItemInfoHolder;
@@ -220,5 +221,10 @@ public class UIManager : MonoBehaviour{
             buttons.Add(b.GetComponent<ButtonScript>());
         }
         RotatinMenu.instance.AddActionButtons(tempButtons);
+    }
+
+    public void setRotationOnOff()
+    {
+        InputManager.rotationOn = !InputManager.rotationOn;
     }
 }

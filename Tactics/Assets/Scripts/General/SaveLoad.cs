@@ -37,7 +37,12 @@ public class SaveLoad : MonoBehaviour {
         string path = "";
         if (Application.platform == RuntimePlatform.Android)
         {
-            path = Application.persistentDataPath;
+            //path = Application.persistentDataPath;
+            var file = Resources.Load(filename) as TextAsset;
+            var mJson = JObject.Parse(file.text);
+            var m = new Map(0, 0);
+            m.JsonLoad(mJson);
+            return m;
         }
         else
         {

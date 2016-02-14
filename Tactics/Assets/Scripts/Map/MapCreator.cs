@@ -22,7 +22,7 @@ public class MapCreator : MonoBehaviour {
        // generateBlankMap(mapRows, mapColumns);
         if (Application.platform == RuntimePlatform.Android)
         {
-            MapName = ChangeSceneScript.MapName;
+            MapName = "Tactics_Map";//ChangeSceneScript.MapName;
         }
 
         if (!MapName.Equals(""))
