@@ -6,14 +6,16 @@ public class InventorySlot : MonoBehaviour {
     public Sprite EmptySlot;
     public Text ItemCount;
     public bool slotSelected = false;
+    public ItemBase MyItem = null;
 
     UIInventory parentInventory;
 
     public bool isEmpty = true;
 
-    public void AddItem(Sprite sprite, int itemCount){
-        if(itemCount > 1) {
+    public void AddItem(ItemBase item, Sprite sprite, int itemCount){
+        if (itemCount > 1) {
             ItemCount.text = itemCount.ToString();
+            MyItem = item;
         }
         else
         {
@@ -31,13 +33,14 @@ public class InventorySlot : MonoBehaviour {
 
     public void ClearSlot()
     {
+        MyItem = null;
         ItemCount.text = "";
         isEmpty = true;
         this.GetComponent<Image>().sprite = EmptySlot;
         this.transform.localScale = new Vector3(1, 1, 1);
     }
 
-    public void SelectItem(ItemBase item)
+    public void SelectItemForDisplay()
     {
         if(parentInventory == null)
         {
@@ -46,15 +49,19 @@ public class InventorySlot : MonoBehaviour {
 
         if (!slotSelected)
         {  
-            UIManager.instance.DisplayItemInfo(item);
+            UIManager.instance.DisplayItemInfo(MyItem);
             parentInventory.SelectASlot(this);
             return;
         }
 
-        TurnManager.instance.Action(UIManager.instance.PendingActionType, item);
+       
+    }
+
+    public void SelectItem()
+    {
+        TurnManager.instance.Action(UIManager.instance.PendingActionType, MyItem);
         UIManager.instance.CloseInventory();
         UIManager.instance.CloseItemInfo();
         parentInventory.UnselectSlots();
     }
-
 }

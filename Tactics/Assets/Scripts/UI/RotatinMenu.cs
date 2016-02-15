@@ -76,5 +76,10 @@ public class RotatinMenu : MonoBehaviour {
                 buttons[i].transform.localScale = new Vector3(1, 1, 1);
             }
         }
+        RotationPoint.transform.Rotate(new Vector3(0, 0, 180f), Space.Self);
+        for (int i = 0; i < RotationPoint.transform.childCount; i++)
+        {
+            RotationPoint.transform.GetChild(i).GetComponent<RotatingMenuSlot>().ChangeRotation(-180);
+        }
     }
 }

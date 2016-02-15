@@ -170,6 +170,7 @@ public class TurnManager : MonoBehaviour {
 
     public void FacingPhase()
     {
+        CameraScript.instance.SetMoveTarget(CurrentlyTakingTurn.gameObject);
         if (CurrentlyTakingTurn!=null && !CurrentlyTakingTurn.isAi)
         {
             mode = TurnMode.facing;

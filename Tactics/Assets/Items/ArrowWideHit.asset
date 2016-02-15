@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Name: ArrowWideHit
   m_EditorClassIdentifier: 
   BasicRange: 2
+  EnergyCost: 5
+  AnimationName: 
+  UsedWithItems: 0
   attackArea: []
   ItemCount: 3
   ItemName: Explosive Arrow
   ItemId: 0
   itemType: 3
-  ItemSprite: {fileID: 21300000, guid: 8b64788a4fe3ec94dabfbe93f32ee461, type: 3}
+  ItemSprite: {fileID: 21300000, guid: fc62bb8a8f2be3240bccb91f493d0221, type: 3}
   ItemMaxStackSize: 10
   itemCategories: 02000000
   EffectToRange: 0

@@ -44,7 +44,7 @@ public class ShootArrow : AttackBase {
             if (t.isOccupied)
             {
                 int randoR = Random.Range(1, 2);
-                int damageR = randoR * -2;
+                int damageR = randoR * -10;
                 if (t.tileCharacter.facing == chara.facing)
                 {
                     damageR *= 2;

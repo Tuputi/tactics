@@ -9,6 +9,7 @@ public class UIInventory : MonoBehaviour {
     public List<GameObject> InventorySlots;
     public GameObject inventoryHolder;
     public GameObject inventorySlot;
+    public ItemBase SelectedItem;
 
     public int rows;
     public int columns;
@@ -54,8 +55,8 @@ public class UIInventory : MonoBehaviour {
             InventorySlot invSlot = slot.GetComponent<InventorySlot>();
            if (invSlot.isEmpty)
            {
-                invSlot.AddItem(item.GetItemSprite(), item.ItemCount);
-                slot.GetComponent<Button>().onClick.AddListener(delegate { invSlot.SelectItem(item); });
+                invSlot.AddItem(item, item.GetItemSprite(), item.ItemCount);
+                slot.GetComponent<Button>().onClick.AddListener(delegate { invSlot.SelectItemForDisplay(); });
                 Debug.Log("Added item to inventory " + item.ItemName + "," + item.ItemCount.ToString());
                 return;
            }
@@ -81,10 +82,10 @@ public class UIInventory : MonoBehaviour {
         foreach(GameObject go in InventorySlots)
         {
             go.GetComponent<InventorySlot>().slotSelected = false;
-            go.GetComponent<Button>().image.color = Color.grey;
+            go.GetComponent<Button>().image.color = Color.white;
         }
         iS.slotSelected = true;
-        iS.gameObject.GetComponent<Button>().image.color = Color.black;
+        iS.gameObject.GetComponent<Button>().image.color = Color.grey;
     }
 
     public void UnselectSlots()

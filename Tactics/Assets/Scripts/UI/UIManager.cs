@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour{
     //item info
     public GameObject ItemInfoHolder;
     public Text ItemName;
+    public Image ItemImage;
     public Text ItemEffectOnRange;
     public Text ItemEffectOnAttackArea;
 
@@ -150,6 +151,7 @@ public class UIManager : MonoBehaviour{
     {
         ItemInfoHolder.SetActive(true);
         ItemName.text = item.ItemName;
+        ItemImage.sprite = item.ItemSprite;
         if(item.EffectToRange < 0)
         {
             ItemEffectOnRange.text = "Range: " + item.EffectToRange.ToString();
@@ -172,6 +174,18 @@ public class UIManager : MonoBehaviour{
     public void CloseItemInfo()
     {
         ItemInfoHolder.SetActive(false);
+    }
+
+    public void SelectItemFromItemInfo()
+    {
+        foreach(GameObject invSlot in UIInventory.InventorySlots)
+        {
+            InventorySlot iS = invSlot.GetComponent<InventorySlot>();
+            if (iS.slotSelected)
+            {
+                iS.SelectItem();
+            }
+        }
     }
 
     public GameObject TurnorderHolder;

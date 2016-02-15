@@ -232,6 +232,11 @@ public class Tile : MonoBehaviour, System.IComparable
 
     void OnMouseDown()
     {
+        if(this.tileType == TileType.None)
+        {
+            return;
+        }
+
         if(TurnManager.gameMode == GameMode.Editor)
         {
             SelectThis();
@@ -246,6 +251,11 @@ public class Tile : MonoBehaviour, System.IComparable
 
     public void SelectThis()
     {
+        if (this.tileType == TileType.None)
+        {
+            return;
+        }
+
         SelectionScript.SetSelectedTile(this);
     }
 
