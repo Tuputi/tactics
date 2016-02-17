@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .448529422, g: .0692582354, b: .0692582354, a: 1}
+  m_Color: {r: 0.44852942, g: 0.069258235, b: 0.069258235, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -80,8 +80,9 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 197
     m_Alignment: 1
+    m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -170,6 +171,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!224 &22418956
 RectTransform:
   m_ObjectHideFlags: 1
@@ -182,11 +184,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22476662}
   m_RootOrder: 0
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 29, y: 26}
-  m_SizeDelta: {x: 581.400024, y: 329.839996}
-  m_Pivot: {x: .5, y: .5}
+  m_SizeDelta: {x: 581.4, y: 329.84}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22476662
 RectTransform:
   m_ObjectHideFlags: 1
@@ -195,16 +197,16 @@ RectTransform:
   m_GameObject: {fileID: 149712}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .00235181581, y: .00235181581, z: .00235181581}
+  m_LocalScale: {x: 0.0023518158, y: 0.0023518158, z: 0.0023518158}
   m_Children:
   - {fileID: 22418956}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.14999998}
+  m_AnchoredPosition: {x: 0, y: 1.15}
   m_SizeDelta: {x: 1202, y: 612}
-  m_Pivot: {x: .5, y: .5}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

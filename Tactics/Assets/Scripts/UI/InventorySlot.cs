@@ -4,30 +4,45 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour {
 
     public Sprite EmptySlot;
+    public Sprite SelectedSlot;
     public Text ItemCount;
     public bool slotSelected = false;
     public ItemBase MyItem = null;
+    private Image MySlotImage;
+    private Image itemSprite;
 
     UIInventory parentInventory;
 
     public bool isEmpty = true;
 
+    public void Init()
+    {
+        parentInventory = GetComponentInParent<UIInventory>();
+        itemSprite = transform.FindChild("ItemSprite").GetComponent<Image>();
+        itemSprite.gameObject.SetActive(false);
+        MyItem = null;
+        ItemCount.text = "";
+        isEmpty = true;
+        MySlotImage = this.GetComponent<Image>();
+        MySlotImage.sprite = EmptySlot;
+    }
+
     public void AddItem(ItemBase item, Sprite sprite, int itemCount){
+        MyItem = item;
+
         if (itemCount > 1) {
-            ItemCount.text = itemCount.ToString();
-            MyItem = item;
+            ItemCount.text = itemCount.ToString();         
         }
         else
-        {
             ItemCount.text = "";
-        }
 
         isEmpty = false;
+
         if(sprite == null)
-        {
             Debug.Log("no sprite");
-        }
-        this.GetComponent<Image>().sprite = sprite;
+
+        itemSprite.gameObject.SetActive(true);
+        itemSprite.sprite = sprite;
         this.transform.localScale = new Vector3(1, 1, 1);
     }
 
@@ -36,25 +51,14 @@ public class InventorySlot : MonoBehaviour {
         MyItem = null;
         ItemCount.text = "";
         isEmpty = true;
-        this.GetComponent<Image>().sprite = EmptySlot;
+        itemSprite.gameObject.SetActive(false);
         this.transform.localScale = new Vector3(1, 1, 1);
     }
 
     public void SelectItemForDisplay()
     {
-        if(parentInventory == null)
-        {
-            parentInventory = GetComponentInParent<UIInventory>();
-        }
-
-        if (!slotSelected)
-        {  
-            UIManager.instance.DisplayItemInfo(MyItem);
-            parentInventory.SelectASlot(this);
-            return;
-        }
-
-       
+      UIManager.instance.DisplayItemInfo(MyItem);
+      parentInventory.SelectASlot(this);    
     }
 
     public void SelectItem()
@@ -63,5 +67,17 @@ public class InventorySlot : MonoBehaviour {
         UIManager.instance.CloseInventory();
         UIManager.instance.CloseItemInfo();
         parentInventory.UnselectSlots();
+    }
+
+    public void SelectSlot()
+    {
+        slotSelected = true;
+        MySlotImage.sprite = SelectedSlot;
+    }
+
+    public void UnselectSlot()
+    {
+        slotSelected = false;
+        MySlotImage.sprite = EmptySlot;
     }
 }

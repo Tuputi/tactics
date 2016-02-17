@@ -327,15 +327,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11443998, guid: bfb809322999fe1448f7da139bae9021, type: 2}
       propertyPath: m_Colors.m_DisabledColor.r
-      value: .784313798
+      value: 0.7843138
       objectReference: {fileID: 0}
     - target: {fileID: 11443998, guid: bfb809322999fe1448f7da139bae9021, type: 2}
       propertyPath: m_Colors.m_DisabledColor.g
-      value: .784313798
+      value: 0.7843138
       objectReference: {fileID: 0}
     - target: {fileID: 11443998, guid: bfb809322999fe1448f7da139bae9021, type: 2}
       propertyPath: m_Colors.m_DisabledColor.b
-      value: .784313798
+      value: 0.7843138
       objectReference: {fileID: 0}
     - target: {fileID: 107852, guid: bfb809322999fe1448f7da139bae9021, type: 2}
       propertyPath: m_Name

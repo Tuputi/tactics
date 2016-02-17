@@ -42,7 +42,7 @@ public class UIInventory : MonoBehaviour {
                 RectTransform slotRect = newSlot.GetComponent<RectTransform>();
                 //newSlot.transform.localPosition = new Vector3(0, 0, 0);
                 newSlot.transform.localPosition = new Vector3((slotWidth * i) + offsetWidth, (-slotHeight * j) -offsetHeight, 0);
-                newSlot.GetComponent<InventorySlot>().ClearSlot();
+                newSlot.GetComponent<InventorySlot>().Init();
             }
         }
     }
@@ -53,6 +53,7 @@ public class UIInventory : MonoBehaviour {
         foreach(GameObject slot in InventorySlots)
         {
             InventorySlot invSlot = slot.GetComponent<InventorySlot>();
+       
            if (invSlot.isEmpty)
            {
                 invSlot.AddItem(item, item.GetItemSprite(), item.ItemCount);
@@ -81,19 +82,16 @@ public class UIInventory : MonoBehaviour {
     {
         foreach(GameObject go in InventorySlots)
         {
-            go.GetComponent<InventorySlot>().slotSelected = false;
-            go.GetComponent<Button>().image.color = Color.white;
+            go.GetComponent<InventorySlot>().UnselectSlot();
         }
-        iS.slotSelected = true;
-        iS.gameObject.GetComponent<Button>().image.color = Color.grey;
+        iS.SelectSlot();
     }
 
     public void UnselectSlots()
     {
         foreach (GameObject go in InventorySlots)
         {
-            go.GetComponent<InventorySlot>().slotSelected = false;
-            go.GetComponent<Button>().image.color = Color.grey;
+            go.GetComponent<InventorySlot>().UnselectSlot();
         }
     }
 }
