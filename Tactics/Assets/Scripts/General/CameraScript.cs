@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class CameraScript : MonoBehaviour {
     
-    float viewDistance = 4.5f;
+    float viewDistance = 7.5f;
     bool MoveToTargetBool = false;
     public static CameraScript instance;
     List<GameObject> moveTargets;
@@ -81,7 +81,7 @@ public class CameraScript : MonoBehaviour {
         }
         Vector3 sourcePos = this.gameObject.transform.position;
         Vector3 destPos = targetPos - transform.forward * viewDistance;
-        destPos += transform.right * (viewDistance);
+       // destPos += transform.right * (viewDistance);
         float i = 0.0f;
         while (i < 1.0f)
         {
