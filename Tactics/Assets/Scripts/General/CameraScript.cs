@@ -5,9 +5,11 @@ using System.Collections.Generic;
 public class CameraScript : MonoBehaviour {
     
     float viewDistance = 7.5f;
-    bool MoveToTargetBool = false;
+    bool MoveToTargetActive = false;
     public static CameraScript instance;
     List<GameObject> moveTargets;
+
+    private GameObject shell;
 
     void Awake()
     {
@@ -19,7 +21,7 @@ public class CameraScript : MonoBehaviour {
     {
         if(moveTargets.Count > 0)
         {
-            if (!MoveToTargetBool)
+            if (!MoveToTargetActive)
             {
                 GameObject go = moveTargets[0];
                 SetMoveTarget(go);
@@ -30,15 +32,18 @@ public class CameraScript : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-       /* GameObject shell = new GameObject();
-        shell.transform.position = new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y + 2f, collision.gameObject.transform.position.z);
-        Debug.Log(collision.gameObject.transform.position);
-        setMovevTargetAffectOnlyHeight(shell);*/
+        if(shell == null)
+        {
+            shell = new GameObject();
+        }
+        shell.transform.position = new Vector3(gameObject.transform.position.x + 0.5f, gameObject.transform.position.y + 1f, gameObject.transform.position.z + 0.5f);
+        //Debug.Log(collision.gameObject.transform.position);
+        SetMoveCameraFromCollision(shell);
     }
 
     public void SetMoveTarget(GameObject Target)
     {
-        if (MoveToTargetBool)
+        if (MoveToTargetActive)
         {
             if(moveTargets.Count > 3)
             {
@@ -47,13 +52,13 @@ public class CameraScript : MonoBehaviour {
             moveTargets.Add(Target);
             return;
         }
-        MoveToTargetBool = true;
-        StartCoroutine(MoveToTarget(Target.transform, false));
+        MoveToTargetActive = true;
+        StartCoroutine(MoveToTarget(Target.transform));
     }
 
-    public void setMovevTargetAffectOnlyHeight(GameObject Target)
+    public void SetMoveCameraFromCollision(GameObject Target)
     {
-        if (MoveToTargetBool)
+        if (MoveToTargetActive)
         {
             if (moveTargets.Count > 3)
             {
@@ -62,25 +67,18 @@ public class CameraScript : MonoBehaviour {
             moveTargets.Add(Target);
             return;
         }
-        MoveToTargetBool = true;
-        StartCoroutine(MoveToTarget(Target.transform, true));
+        MoveToTargetActive = true;
+        StartCoroutine(MoveCameraFromCollision(Target.transform));
     }
 
 
     //code by aldonaletto 
-    IEnumerator MoveToTarget(Transform myTarget, bool changeY)
+    IEnumerator MoveToTarget(Transform myTarget)
     {
-        Vector3 targetPos = new Vector3(0, 0, 0);
-        if (!changeY)
-        {
-             targetPos = new Vector3(myTarget.transform.position.x, this.gameObject.transform.position.y, myTarget.transform.position.z);
-        }
-        else
-        {
-             targetPos = new Vector3(myTarget.transform.position.x, myTarget.gameObject.transform.position.y, myTarget.transform.position.z);
-        }
+        Vector3 targetPos = new Vector3(myTarget.transform.position.x, this.gameObject.transform.position.y, myTarget.transform.position.z);
         Vector3 sourcePos = this.gameObject.transform.position;
         Vector3 destPos = targetPos - transform.forward * viewDistance;
+
        // destPos += transform.right * (viewDistance);
         float i = 0.0f;
         while (i < 1.0f)
@@ -89,6 +87,22 @@ public class CameraScript : MonoBehaviour {
             i += Time.deltaTime;
             yield return 0;
         }
-        MoveToTargetBool = false;
+        MoveToTargetActive = false;
+    }
+
+    IEnumerator MoveCameraFromCollision(Transform myTarget)
+    {
+        Vector3 targetPos = new Vector3(gameObject.transform.position.x, myTarget.gameObject.transform.position.y, gameObject.transform.position.z);
+        Vector3 sourcePos = this.gameObject.transform.position;
+        Vector3 destPos = targetPos;
+
+        float i = 0.0f;
+        while (i < 1.0f)
+        {
+            transform.position = Vector3.Lerp(sourcePos, destPos, Mathf.SmoothStep(0, 1f, i));
+            i += Time.deltaTime;
+            yield return 0;
+        }
+        MoveToTargetActive = false;
     }
 }

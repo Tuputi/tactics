@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour{
     public GameObject BasicButtonBase;
     public Camera gameCamera;
     public Toggle rotationToggle;
+    public Toggle tiltToggle;
 
     //item info
     public GameObject ItemInfoHolder;
@@ -239,6 +240,11 @@ public class UIManager : MonoBehaviour{
 
     public void setRotationOnOff()
     {
-        InputManager.rotationOn = !InputManager.rotationOn;
+        CameraController.rotationOn = !CameraController.rotationOn;
+    }
+
+    public void setTiltOnOff()
+    {
+        CameraController.tiltOn = !CameraController.tiltOn;
     }
 }
