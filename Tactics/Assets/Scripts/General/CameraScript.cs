@@ -36,7 +36,7 @@ public class CameraScript : MonoBehaviour {
         {
             shell = new GameObject();
         }
-        shell.transform.position = new Vector3(gameObject.transform.position.x + 0.5f, gameObject.transform.position.y + 1f, gameObject.transform.position.z + 0.5f);
+        shell.transform.position = new Vector3(gameObject.transform.position.x + 0.5f, gameObject.transform.position.y + 1.5f, gameObject.transform.position.z + 0.5f);
         //Debug.Log(collision.gameObject.transform.position);
         SetMoveCameraFromCollision(shell);
     }

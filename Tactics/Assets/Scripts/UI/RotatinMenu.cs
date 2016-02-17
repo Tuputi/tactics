@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class RotatinMenu : MonoBehaviour {
 
@@ -8,34 +9,20 @@ public class RotatinMenu : MonoBehaviour {
     public float speed = 5f;
     public float RotationAmount;
     public static RotatinMenu instance;
+    private GameObject rotationHelper;
 
     void Start()
     {
         PlaceEvenly();
         instance = this;
+        rotationHelper = new GameObject();
     }
 
-    void Update()
+    public void RotateSlots(float amount)
     {
-
-       if(TouchInput.state == TouchInput.TouchState.sDown || Input.GetKeyDown(KeyCode.DownArrow))
+        for (int i = 0; i < RotationPoint.transform.childCount; i++)
         {
-            RotationPoint.transform.Rotate(new Vector3(0, 0, RotationAmount), Space.Self);
-            for(int i = 0; i < RotationPoint.transform.childCount; i++)
-            {
-                RotationPoint.transform.GetChild(i).GetComponent<RotatingMenuSlot>().ChangeRotation(-RotationAmount);
-            }  
-            TouchInput.state = TouchInput.TouchState.still;
-        }
-        if (TouchInput.state == TouchInput.TouchState.sUp || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            RotationPoint.transform.Rotate(new Vector3(0, 0, -RotationAmount), Space.Self);
-            for (int i = 0; i < RotationPoint.transform.childCount; i++)
-            {
-                RotatingMenuSlot tempSlot = RotationPoint.transform.GetChild(i).GetComponent<RotatingMenuSlot>();
-                tempSlot.ChangeRotation(RotationAmount);
-            }
-            TouchInput.state = TouchInput.TouchState.still;
+            RotationPoint.transform.GetChild(i).GetComponent<RotatingMenuSlot>().ChangeRotation(amount);
         }
     }
 
@@ -76,10 +63,40 @@ public class RotatinMenu : MonoBehaviour {
                 buttons[i].transform.localScale = new Vector3(1, 1, 1);
             }
         }
-        RotationPoint.transform.Rotate(new Vector3(0, 0, 180f), Space.Self);
-        for (int i = 0; i < RotationPoint.transform.childCount; i++)
+
+        RotateTo(180f);
+    }
+
+    public void RotateBy(float amount)
+    {
+        Debug.Log("Rotate by");
+        rotationHelper.transform.eulerAngles = RotationPoint.transform.eulerAngles + new Vector3(0, 0, amount);
+        StartCoroutine(RotateDial(rotationHelper.transform));
+    }
+
+    public void RotateTo(float degree)
+    {
+        rotationHelper.transform.eulerAngles = new Vector3(0, 0, degree);
+        StartCoroutine(RotateDial(rotationHelper.transform));
+    }
+
+    IEnumerator RotateDial(Transform myTarget)
+    {
+        Vector3 sourceRot = RotationPoint.transform.eulerAngles;
+        Vector3 targetRot = myTarget.eulerAngles;
+        Debug.Log(sourceRot);
+        Debug.Log(targetRot);
+
+        float i = 0.0f;
+        while (i < 1.0f)
         {
-            RotationPoint.transform.GetChild(i).GetComponent<RotatingMenuSlot>().ChangeRotation(-180);
+            float previousRotation = RotationPoint.transform.eulerAngles.z;
+            RotationPoint.transform.eulerAngles = Vector3.Lerp(sourceRot, targetRot, Mathf.SmoothStep(0, 1f, i));
+            float currentRotation = RotationPoint.transform.eulerAngles.z;
+            RotateSlots(previousRotation - currentRotation);
+            i += Time.deltaTime;
+            yield return 0;
         }
+        Debug.Log("Done");
     }
 }

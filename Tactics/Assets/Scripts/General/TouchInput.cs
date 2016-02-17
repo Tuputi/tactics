@@ -21,6 +21,9 @@ public class TouchInput : MonoBehaviour {
     public static TouchState state;
     public static bool touchActive = false;
 
+
+    public bool touchStartedOnUI = false;
+
    public enum TouchState { still, sLeft, sRight, sUp, sDown};
 
 
@@ -32,7 +35,6 @@ public class TouchInput : MonoBehaviour {
         if(nbTouches > 0)
         {
             touchActive = true;
-           // testImge.color = Color.blue;
             for(int i = 0; i< nbTouches; i++)
             {
                 Touch touch = Input.GetTouch(i);
@@ -41,26 +43,27 @@ public class TouchInput : MonoBehaviour {
                 {
                     startPos = touch.position;
                     swipeStartTime = Time.time;
+
+                    if (UIManager.instance.IsPointerOverUIObject())
+                    {
+                        touchStartedOnUI = true;
+                    }
+                    else
+                    {
+                        touchStartedOnUI = false;
+                    }
+                }
+
+                if(touch.phase == TouchPhase.Moved && touchStartedOnUI)
+                {
+                    RotatinMenu.instance.RotationPoint.transform.RotateAround(RotatinMenu.instance.RotationPoint.gameObject.transform.position, Vector3.back, Input.GetTouch(0).deltaPosition.y * 0.5f);
+                    RotatinMenu.instance.RotateSlots(Input.GetTouch(0).deltaPosition.y * 0.5f);
                 }
 
                 if(touch.phase == TouchPhase.Ended)
                 {
                     float deltaTime = Time.time - swipeStartTime;
                     Vector2 endPos = new Vector2(touch.position.x, touch.position.y);
-
-
-                   /* Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-                    RaycastHit hit;
-
-                    if (Physics.Raycast(ray, out hit,200))
-                    {
-                        //testImge.color = Color.red;
-                        if (hit.transform.gameObject.name.Equals("Cube"))
-                        {
-                            testImge.color = Color.red;
-                        }
-                    }*/
-
 
 
                     Vector2 swipeVector = endPos - startPos;
@@ -120,7 +123,6 @@ public class TouchInput : MonoBehaviour {
         else
         {
             touchActive = false;
-            //testImge.color = Color.red;
         }
     }
 
