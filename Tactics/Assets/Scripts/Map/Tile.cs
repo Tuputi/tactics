@@ -110,6 +110,11 @@ public class Tile : MonoBehaviour, System.IComparable
                 movementCost = 3;
                 isWalkable = true;
                 break;
+            case TileType.Water:
+                prefab = PrefabHolder.instance.Tile_Water_Prefab;
+                movementCost = 2;
+                isWalkable = true;
+                break;
             default:
                 break;
         }
@@ -213,7 +218,7 @@ public class Tile : MonoBehaviour, System.IComparable
         {
             Destroy(container.transform.GetChild(i).gameObject);
         }
-        GameObject newVisual = (GameObject)Instantiate(prefab, transform.position, Quaternion.identity);
+        GameObject newVisual = (GameObject)Instantiate(prefab, transform.position + prefab.transform.position, Quaternion.identity);
         newVisual.transform.parent = container.transform;
     }
 

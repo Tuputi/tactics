@@ -16,6 +16,7 @@ public class PrefabHolder : MonoBehaviour {
     public GameObject tile_base;
     public GameObject Tile_Grass_Prefab;
     public GameObject Tile_Rock_Prefab;
+    public GameObject Tile_Water_Prefab;
     public GameObject Tile_Empty_Prefab;
 
     //overlay
@@ -61,11 +62,12 @@ public class PrefabHolder : MonoBehaviour {
 //enums
 
 public enum Facing { Up, Right, Down, Left };
-public enum TileType { None, Grass, Rock };
+public enum TileType { None, Grass, Rock, Water };
 public enum OverlayType { None, Selected, Arrow };
 public enum BehaviourType { agressive, teamPlayer, healWhenHurt}
 public enum ConfirmationType { action, move};
 public enum GameMode { Editor, Game };
+public enum TargetAreaType { none, self, circular, line}
 
 //Names of different actions, used to reference to a dictionary of Actions
 public enum ActionType { MeeleeAttack, FireSpell, ShootArrow}

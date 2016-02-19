@@ -1523,7 +1523,7 @@
 ,
 		{
 
-			"TileType":2,
+			"TileType":3,
 			"Row":9,
 			"Column":3,
 			"Height":0.5,
@@ -1534,7 +1534,7 @@
 ,
 		{
 
-			"TileType":2,
+			"TileType":3,
 			"Row":9,
 			"Column":4,
 			"Height":0.5,
@@ -1545,7 +1545,7 @@
 ,
 		{
 
-			"TileType":2,
+			"TileType":3,
 			"Row":9,
 			"Column":5,
 			"Height":0.5,
@@ -1556,7 +1556,7 @@
 ,
 		{
 
-			"TileType":2,
+			"TileType":3,
 			"Row":9,
 			"Column":6,
 			"Height":2,
@@ -1567,7 +1567,7 @@
 ,
 		{
 
-			"TileType":2,
+			"TileType":3,
 			"Row":9,
 			"Column":7,
 			"Height":2,
@@ -1578,7 +1578,7 @@
 ,
 		{
 
-			"TileType":2,
+			"TileType":3,
 			"Row":9,
 			"Column":8,
 			"Height":2.5,
@@ -1743,7 +1743,7 @@
 ,
 		{
 
-			"TileType":2,
+			"TileType":3,
 			"Row":10,
 			"Column":8,
 			"Height":2.5,
@@ -1754,7 +1754,7 @@
 ,
 		{
 
-			"TileType":2,
+			"TileType":3,
 			"Row":10,
 			"Column":9,
 			"Height":2.5,
@@ -1765,7 +1765,7 @@
 ,
 		{
 
-			"TileType":2,
+			"TileType":3,
 			"Row":10,
 			"Column":10,
 			"Height":2.5,
@@ -1776,7 +1776,7 @@
 ,
 		{
 
-			"TileType":2,
+			"TileType":3,
 			"Row":10,
 			"Column":11,
 			"Height":2.5,
@@ -1787,7 +1787,7 @@
 ,
 		{
 
-			"TileType":2,
+			"TileType":3,
 			"Row":10,
 			"Column":12,
 			"Height":2.5,
@@ -1798,7 +1798,7 @@
 ,
 		{
 
-			"TileType":2,
+			"TileType":3,
 			"Row":10,
 			"Column":13,
 			"Height":2.5,

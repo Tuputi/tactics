@@ -5,8 +5,9 @@ public class TurnButton : ButtonScript {
 
     public override void SetUp()
     {
-        this.transform.FindChild("Text").GetComponent<Text>().text = ButtonText;
+
         button = this.GetComponent<Button>();
+        MyImage = this.GetComponent<Image>();
     }
 
     void Awake()
@@ -25,11 +26,22 @@ public class TurnButton : ButtonScript {
             }
             SelectionScript.SetNoSelection(false);
             UIManager.instance.ActivateButtons(true);
+            UnselectButton();
             return;
         }
 
         SelectionScript.ClearSelection();
         TurnManager.instance.FacingPhase();
+    }
+
+    public override void SelectButton()
+    {
+        MyImage.sprite = SelectedButton;
+    }
+
+    public override void UnselectButton()
+    {
+        MyImage.sprite = UnselectedButton;
     }
 
     public override void UpdateButton()

@@ -13,13 +13,14 @@ public class UIManager : MonoBehaviour{
     public Camera gameCamera;
     public Toggle rotationToggle;
     public Toggle tiltToggle;
+    public GameObject InTurnMarker;
+    private GameObject MyInTurnMarker;
 
     //item info
     public GameObject ItemInfoHolder;
     public Text ItemName;
     public Image ItemImage;
     public Text ItemEffectOnRange;
-    public Text ItemEffectOnAttackArea;
 
 
     //statustemplate
@@ -46,6 +47,7 @@ public class UIManager : MonoBehaviour{
         characterName = StatusTemplate.transform.FindChild("Name").GetComponent<Text>();
         UIInventory = GameObject.Find("Inventory").GetComponent<UIInventory>();
         UIInventory.gameObject.SetActive(false);
+        MyInTurnMarker = Instantiate(InTurnMarker);
 
     }
 
@@ -60,14 +62,14 @@ public class UIManager : MonoBehaviour{
         return results.Count > 0;
     }
 
-    public void UpdateStatus(Character chara)
+    public void UpdateStatusWindow(Character chara)
     {
         StatusTemplate.SetActive(true);
         hpValue.text = chara.Hp.ToString();
         hpValueMax.text = chara.hpMax.ToString();
         characterName.text = chara.characterName;
     }
-    public void UpdateStatus(bool visible)
+    public void SetStatusWindowActiveStatus(bool visible)
     {
         StatusTemplate.SetActive(visible);
     }
@@ -97,7 +99,16 @@ public class UIManager : MonoBehaviour{
        }
     }
 
-    public void SelectFacing(Character chara)
+    public void UnselectAllActionButtonsExcept(ButtonScript button)
+    {
+        foreach(ButtonScript bs in RotatingMenu.instance.GetAllActiveButtons())
+        {
+            bs.UnselectButton();
+        }
+        button.SelectButton();
+    }
+
+    public void StartSelectFacingPhase(Character chara)
     {
         List<Tile> places = chara.characterPosition.neighbours;
         foreach(Tile t in places)
@@ -162,14 +173,7 @@ public class UIManager : MonoBehaviour{
             ItemEffectOnRange.text = "Range: +" + item.EffectToRange.ToString();
         }
 
-        if(item.EffectToTArgetArea < 0)
-        {
-            ItemEffectOnAttackArea.text = "Attack Area: " + item.EffectToTArgetArea.ToString();
-        }
-        else
-        {
-            ItemEffectOnAttackArea.text = "Attack Area: +" + item.EffectToTArgetArea.ToString();
-        }
+        ItemInfoAreaDisplay.instance.LightUpRange(TargetAreaType.line, item.EffectToTArgetArea);
     }
 
     public void CloseItemInfo()
@@ -235,16 +239,25 @@ public class UIManager : MonoBehaviour{
         {
             buttons.Add(b.GetComponent<ButtonScript>());
         }
-        RotatinMenu.instance.AddActionButtons(tempButtons);
+        RotatingMenu.instance.AddActionButtons(tempButtons);
     }
 
-    public void setRotationOnOff()
+    public void AssignInTurnMaker(Character currentCharacter)
     {
-        CameraController.rotationOn = !CameraController.rotationOn;
+        MyInTurnMarker.gameObject.transform.SetParent(currentCharacter.gameObject.transform);
+        MyInTurnMarker.gameObject.transform.localPosition = new Vector3(0, 13f, 0);
     }
 
-    public void setTiltOnOff()
+    public void HideInTurnMarker()
     {
-        CameraController.tiltOn = !CameraController.tiltOn;
+        MyInTurnMarker.SetActive(false);
     }
+
+    public void ChangePanelVisibility(GameObject panel)
+    {
+        Animator anim = panel.GetComponent<Animator>();
+        bool visibility = anim.GetBool("Visible");
+        anim.SetBool("Visible", !visibility);
+    }
+
 }

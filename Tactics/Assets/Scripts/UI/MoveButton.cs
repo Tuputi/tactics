@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class MoveButton : ButtonScript {
 
@@ -8,6 +9,8 @@ public class MoveButton : ButtonScript {
     {
         this.transform.FindChild("Text").GetComponent<Text>().text = ButtonText;
         button = this.GetComponent<Button>();
+        MyImage = this.GetComponent<Image>();
+        UnselectButton();
     }
 
     void Awake()
@@ -18,7 +21,21 @@ public class MoveButton : ButtonScript {
     public override void SelectAction()
     {
         UIManager.instance.CloseInventory();
+        SelectButton();
+        UIManager.instance.UnselectAllActionButtonsExcept(this);
         TurnManager.instance.Move();
+    }
+
+    public override void UnselectButton()
+    {
+        MyImage.sprite = UnselectedButton;
+        Selected = false;
+    }
+
+    public override void SelectButton()
+    {
+        MyImage.sprite = SelectedButton;
+        Selected = true;
     }
 
     public override void UpdateButton()
@@ -26,6 +43,7 @@ public class MoveButton : ButtonScript {
         if (TurnManager.instance.hasMoved)
         {
             button.interactable = false;
+            MyImage.sprite = UnselectedButton;
         }
         else
         {

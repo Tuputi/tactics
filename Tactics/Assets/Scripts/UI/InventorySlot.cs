@@ -58,6 +58,8 @@ public class InventorySlot : MonoBehaviour {
     public void SelectItemForDisplay()
     {
       UIManager.instance.DisplayItemInfo(MyItem);
+        ItemInfoAreaDisplay.instance.SlackLights();
+      ItemInfoAreaDisplay.instance.LightUpRange(TargetAreaType.line, MyItem.EffectToTArgetArea);
       parentInventory.SelectASlot(this);    
     }
 

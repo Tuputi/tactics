@@ -108,11 +108,11 @@ public class SelectionScript : MonoBehaviour {
         //update statusUi
         if (tile.isOccupied)
         {
-            UIManager.instance.UpdateStatus(tile.tileCharacter);
+            UIManager.instance.UpdateStatusWindow(tile.tileCharacter);
         }
         else
         {
-            UIManager.instance.UpdateStatus(false);  
+            UIManager.instance.SetStatusWindowActiveStatus(false);  
         }
 
         //move or action?
@@ -141,7 +141,7 @@ public class SelectionScript : MonoBehaviour {
                             SetMultipleSelectedTile(t);
                             if (t.isOccupied)
                             {
-                                UIManager.instance.UpdateStatus(t.tileCharacter);
+                                UIManager.instance.UpdateStatusWindow(t.tileCharacter);
                             }
                         }
                     }

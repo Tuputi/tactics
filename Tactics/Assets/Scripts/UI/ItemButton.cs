@@ -19,7 +19,8 @@ public class ItemButton : ButtonScript {
         button = this.GetComponent<Button>();
         CountText = this.transform.FindChild("Count").GetComponent<Text>();
         CountText.text = ItemCount.ToString();
-
+        MyImage = this.GetComponent<Image>();
+        UnselectButton();
     }
 
     public override void UpdateButton()
@@ -28,6 +29,7 @@ public class ItemButton : ButtonScript {
         if (TurnManager.instance.hasActed || TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetItemCount(itemType) < 1)
         {
             button.interactable = false;
+            UnselectButton();
         }
         else
         {
@@ -35,8 +37,23 @@ public class ItemButton : ButtonScript {
         }
     }
 
+    public override void SelectButton()
+    {
+        MyImage.sprite = SelectedButton;
+        Selected = true;
+    }
+
+    public override void UnselectButton()
+    {
+        MyImage.sprite = UnselectedButton;
+        Selected = false;
+    }
+
     public override void SelectAction()
     {
         TurnManager.instance.Action(itemType);
+        MyImage.sprite = SelectedButton;
+        UIManager.instance.UnselectAllActionButtonsExcept(this);
+
     }
 }

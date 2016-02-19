@@ -167,7 +167,6 @@ public class CharacterLogic : MonoBehaviour{
         UIManager.instance.UpdateButtons();
     }
 
- 
 
     public void DisplayEffect(Character chara, int damageAmount)
     {
@@ -185,8 +184,8 @@ public class CharacterLogic : MonoBehaviour{
             damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = damageAmount.ToString();
         }
         damageText.transform.SetParent(chara.gameObject.transform);
-        damageText.transform.localPosition = new Vector3(0, 1f, 0);
-        UIManager.instance.UpdateStatus(chara);
+        damageText.transform.localPosition = new Vector3(0, 10f, 0);
+        UIManager.instance.UpdateStatusWindow(chara);
     }
 
     public void SetCharacterPosition(Character chara, Tile tile)

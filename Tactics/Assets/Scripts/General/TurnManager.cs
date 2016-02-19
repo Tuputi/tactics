@@ -87,6 +87,7 @@ public class TurnManager : MonoBehaviour {
         }
         //Debug.Log("Next in turn is " + nextCharacter.characterName);
         CurrentlyTakingTurn = nextCharacter;
+        UIManager.instance.AssignInTurnMaker(CurrentlyTakingTurn);
         TakeTurn();
     }
 
@@ -174,7 +175,7 @@ public class TurnManager : MonoBehaviour {
         if (CurrentlyTakingTurn!=null && !CurrentlyTakingTurn.isAi)
         {
             mode = TurnMode.facing;
-            UIManager.instance.SelectFacing(CurrentlyTakingTurn);
+            UIManager.instance.StartSelectFacingPhase(CurrentlyTakingTurn);
             UIManager.instance.ActivateButtons(false);
         }
     }

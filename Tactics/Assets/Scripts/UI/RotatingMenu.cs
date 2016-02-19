@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Collections;
 
-public class RotatinMenu : MonoBehaviour {
+public class RotatingMenu : MonoBehaviour {
 
     public GameObject RotationPoint;
     public List<GameObject> ButtonObjects;
     public float speed = 5f;
     public float RotationAmount;
-    public static RotatinMenu instance;
+    public static RotatingMenu instance;
     private GameObject rotationHelper;
+
+
+    public List<ButtonScript> activeButtons;
 
     void Start()
     {
@@ -54,6 +57,7 @@ public class RotatinMenu : MonoBehaviour {
 
     public void AddActionButtons(List<GameObject> buttons)
     {
+        activeButtons = new List<ButtonScript>();
         if(RotationPoint.transform.childCount >= buttons.Count)
         {
             for(int i = 0; i < buttons.Count; i++)
@@ -61,10 +65,16 @@ public class RotatinMenu : MonoBehaviour {
                 buttons[i].transform.SetParent((RotationPoint.transform.GetChild(i).transform));
                 buttons[i].transform.localPosition = new Vector3(0, 0, 0);
                 buttons[i].transform.localScale = new Vector3(1, 1, 1);
+                activeButtons.Add(buttons[i].GetComponent<ButtonScript>());
             }
         }
 
-        RotateTo(180f);
+        RotateTo(150f);
+    }
+
+    public List<ButtonScript> GetAllActiveButtons()
+    {
+        return activeButtons;
     }
 
     public void RotateBy(float amount)

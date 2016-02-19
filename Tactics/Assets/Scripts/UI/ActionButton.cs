@@ -12,6 +12,8 @@ public class ActionButton : ButtonScript {
     {
         this.transform.FindChild("Text").GetComponent<Text>().text = ButtonText;
         button = this.GetComponent<Button>();
+        MyImage = this.GetComponent<Image>();
+        UnselectButton();
     }
 
     void Awake()
@@ -24,18 +26,38 @@ public class ActionButton : ButtonScript {
         if (UIManager.instance.InventoryOpen)
         {
             UIManager.instance.CloseInventory();
-            return;
+            if (Selected)
+            {
+                UnselectButton();
+                return;
+            }
         }
 
         if (OpenInventory)
         {
             SelectionScript.ClearSelection();
             UIManager.instance.OpenInventory(actionType);
+            SelectButton();
+            UIManager.instance.UnselectAllActionButtonsExcept(this);
         }
         else {
             TurnManager.instance.Action(actionType);
+            SelectButton();
+            UIManager.instance.UnselectAllActionButtonsExcept(this);
         }
-       
+
+    }
+
+    public override void SelectButton()
+    {
+        MyImage.sprite = SelectedButton;
+        Selected = true;
+    }
+
+    public override void UnselectButton()
+    {
+        MyImage.sprite = UnselectedButton;
+        Selected = false;
     }
 
     public override void UpdateButton()

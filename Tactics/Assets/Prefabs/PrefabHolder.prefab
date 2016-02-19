@@ -42,9 +42,15 @@ MonoBehaviour:
   DamageText: {fileID: 149712, guid: cbe23b0540d4bd54bb4eee24c1f39efe, type: 2}
   basicActions:
   - {fileID: 11412558, guid: 1dbe0cbfb3ebf2f44810cf8186416acb, type: 2}
+  - {fileID: 11412558, guid: 1dbe0cbfb3ebf2f44810cf8186416acb, type: 2}
+  - {fileID: 11412558, guid: 1dbe0cbfb3ebf2f44810cf8186416acb, type: 2}
+  - {fileID: 11412558, guid: 1dbe0cbfb3ebf2f44810cf8186416acb, type: 2}
+  - {fileID: 11412558, guid: 1dbe0cbfb3ebf2f44810cf8186416acb, type: 2}
+  - {fileID: 11412558, guid: 1dbe0cbfb3ebf2f44810cf8186416acb, type: 2}
   tile_base: {fileID: 182542, guid: 8568a2665b84af146a336df17c18ba04, type: 2}
   Tile_Grass_Prefab: {fileID: 124734, guid: 8649c006f70c9b543b8216d41f33c40a, type: 2}
   Tile_Rock_Prefab: {fileID: 129904, guid: af637fdfa049d064ea05215d34f81081, type: 2}
+  Tile_Water_Prefab: {fileID: 121140, guid: 28d4365382772ba49be7db218d7fcb00, type: 2}
   Tile_Empty_Prefab: {fileID: 199082, guid: 795ad66db7f65024686854d77853998e, type: 2}
   Overlay_Empty_Prefab: {fileID: 170282, guid: 4a21fcdcfa063e34995887c12eb3aa78, type: 2}
   Overlay_Selection_Prefab: {fileID: 114286, guid: 9485f15fff0eed447ac14f9ef6c8b70a,

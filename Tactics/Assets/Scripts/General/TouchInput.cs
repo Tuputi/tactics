@@ -56,8 +56,8 @@ public class TouchInput : MonoBehaviour {
 
                 if(touch.phase == TouchPhase.Moved && touchStartedOnUI)
                 {
-                    RotatinMenu.instance.RotationPoint.transform.RotateAround(RotatinMenu.instance.RotationPoint.gameObject.transform.position, Vector3.back, Input.GetTouch(0).deltaPosition.y * 0.5f);
-                    RotatinMenu.instance.RotateSlots(Input.GetTouch(0).deltaPosition.y * 0.5f);
+                    RotatingMenu.instance.RotationPoint.transform.RotateAround(RotatingMenu.instance.RotationPoint.gameObject.transform.position, Vector3.back, Input.GetTouch(0).deltaPosition.y * 0.5f);
+                    RotatingMenu.instance.RotateSlots(Input.GetTouch(0).deltaPosition.y * 0.5f);
                 }
 
                 if(touch.phase == TouchPhase.Ended)

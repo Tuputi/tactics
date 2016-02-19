@@ -229,6 +229,14 @@ public class Character : MonoBehaviour, System.IComparable
 
             Tile target = path[DistanceToGo];
             Vector3 targetPos = new Vector3(target.transform.position.x, target.transform.position.y + 1f, target.transform.position.z);
+
+            if(target.tileType == TileType.Water)
+            {
+                targetPos = targetPos - new Vector3(0, 0.3f, 0);
+            }
+
+
+
             Vector3 sourcePos = chara.gameObject.transform.position;
             chara.transform.position = Vector3.MoveTowards(sourcePos, targetPos, Mathf.SmoothStep(0, 1f, TravelSpeed));
             if (chara.transform.position == targetPos)
