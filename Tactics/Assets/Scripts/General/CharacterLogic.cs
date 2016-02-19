@@ -107,6 +107,18 @@ public class CharacterLogic : MonoBehaviour{
     public void Move(Character chara)
     {
         chara.possibleRange = Pathfinding.GetPossibleRange(chara.characterPosition, chara.movementRange, false);
+        List<Tile> tempList = new List<Tile>();
+        foreach(Tile t in chara.possibleRange)
+        {
+            if (t.isOccupied) //remove all tiles with other characters
+            {
+               tempList.Add(t);
+            }
+        }
+        foreach(Tile t in tempList)
+        {
+            chara.possibleRange.Remove(t);
+        }
         SelectMultipleTiles(chara.possibleRange);
     }
 

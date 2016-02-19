@@ -31,6 +31,7 @@ public class TiltButton : ButtonScript {
 
     public override void UnselectButton()
     {
+        CameraController.tiltOn = false;
         MyImage.sprite = UnselectedButton;
         Selected = false;
     }

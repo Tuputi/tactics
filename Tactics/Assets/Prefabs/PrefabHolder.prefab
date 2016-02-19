@@ -59,7 +59,7 @@ MonoBehaviour:
   tileObjects:
   - {fileID: 11499606, guid: ff8b6c2cd7b3c314cab1d217c8aa0031, type: 2}
   characters:
-  - {fileID: 11490854, guid: 460af04871252794e91778407f2b4eaf, type: 2}
+  - {fileID: 11467068, guid: 460af04871252794e91778407f2b4eaf, type: 2}
   - {fileID: 11463958, guid: ee32444d3b3b15a478ac8adbbdac1a90, type: 2}
   actions:
   - {fileID: 11400000, guid: 593c2c313b2068840951eb9a5d0ab70d, type: 2}

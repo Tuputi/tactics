@@ -189,11 +189,11 @@ public class Tile : MonoBehaviour, System.IComparable
        if (Chara.characterPosition != null)
         {
             Chara.characterPosition.tileCharacter = null;
-            Chara.characterPosition.isWalkable = true;
+            //Chara.characterPosition.isWalkable = true;
         }
         Chara.characterPosition = this;
         this.tileCharacter = Chara;
-        this.isWalkable = false;
+       // this.isWalkable = false;
     }
 
     //move somewhere else?

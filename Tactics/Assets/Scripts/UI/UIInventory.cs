@@ -26,9 +26,6 @@ public class UIInventory : MonoBehaviour {
 
     public void CreateInventory()
     {
-        // float newWidth = (rows * slotWidth) + (rows * offsetWidth);
-        //float newHeight = (columns * slotHeight) + (columns * offsetHeight);
-        //inventoryHolder.GetComponent<RectTransform>().sizeDelta = new Vector2(newHeight, newWidth);
         InventorySlots = new List<GameObject>();
 
         for (int i = 0; i < rows; i++)
@@ -37,10 +34,8 @@ public class UIInventory : MonoBehaviour {
             {
                 GameObject newSlot = Instantiate(inventorySlot);
                 InventorySlots.Add(newSlot);
-                //Debug.Log(InventorySlots.Count);
                 newSlot.transform.SetParent(inventoryHolder.transform, false);
                 RectTransform slotRect = newSlot.GetComponent<RectTransform>();
-                //newSlot.transform.localPosition = new Vector3(0, 0, 0);
                 newSlot.transform.localPosition = new Vector3((slotWidth * i) + offsetWidth, (-slotHeight * j) -offsetHeight, 0);
                 newSlot.GetComponent<InventorySlot>().Init();
             }

@@ -31,6 +31,7 @@ public class RotationButton : ButtonScript {
 
     public override void UnselectButton()
     {
+        CameraController.rotationOn = false;
         MyImage.sprite = UnselectedButton;
         Selected = false;
     }

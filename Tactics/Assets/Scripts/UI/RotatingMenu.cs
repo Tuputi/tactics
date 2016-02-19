@@ -94,8 +94,8 @@ public class RotatingMenu : MonoBehaviour {
     {
         Vector3 sourceRot = RotationPoint.transform.eulerAngles;
         Vector3 targetRot = myTarget.eulerAngles;
-        Debug.Log(sourceRot);
-        Debug.Log(targetRot);
+       // Debug.Log(sourceRot);
+       // Debug.Log(targetRot);
 
         float i = 0.0f;
         while (i < 1.0f)

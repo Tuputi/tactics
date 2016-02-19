@@ -258,6 +258,13 @@ public class UIManager : MonoBehaviour{
         Animator anim = panel.GetComponent<Animator>();
         bool visibility = anim.GetBool("Visible");
         anim.SetBool("Visible", !visibility);
+
+        int childCount = panel.transform.childCount;
+        for(int i = 0; i < childCount; i++)
+        {
+            ButtonScript bs = panel.transform.GetChild(i).GetComponent<ButtonScript>();
+            bs.UnselectButton();
+        }
     }
 
 }

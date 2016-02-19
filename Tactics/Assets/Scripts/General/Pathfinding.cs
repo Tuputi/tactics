@@ -87,32 +87,28 @@ public class Pathfinding : MonoBehaviour {
         List<Tile> removeThee = new List<Tile>();
         foreach (Tile t in WeighedNeighbours)
         {
-            if (t.isWalkable)
-            {
-                if (!t.isOccupied)
-                {
-                    if (!closedList.Contains(t))
-                    {
-                        if (!openList.Contains(t))
-                        {
+           if (CheckValidity(t, false))
+           {
+               if (!closedList.Contains(t))
+               {
+                  if (!openList.Contains(t))
+                  {
                             t.cameFrom = tile;
                             float heightcost = System.Math.Abs(t.cameFrom.height - t.height);
                             t.gCost = t.cameFrom.gCost + t.movementCost + heightcost;
-                        }
-                        else
-                        {
-                            float heightcost = System.Math.Abs(t.cameFrom.height - t.height);
-                            float newCost = heightcost + t.movementCost + t.cameFrom.gCost;
-                            if (newCost < t.gCost)
-                            {
-                                t.gCost = newCost;
-                                t.cameFrom = tile;
-                            }
-                        }
-                    }
-                    else{removeThee.Add(t);}
-                }
-                else{removeThee.Add(t);}
+                  }
+                  else
+                  {
+                      float heightcost = System.Math.Abs(t.cameFrom.height - t.height);
+                      float newCost = heightcost + t.movementCost + t.cameFrom.gCost;
+                      if (newCost < t.gCost)
+                      {
+                          t.gCost = newCost;
+                          t.cameFrom = tile;
+                      }
+                      }
+               }
+               else{removeThee.Add(t);}
             }
             else{removeThee.Add(t);}
         }
@@ -230,6 +226,13 @@ public class Pathfinding : MonoBehaviour {
             if (!tile.isWalkable)
             {
                 return false;
+            }
+            if (tile.isOccupied)
+            {
+                if(!(tile.tileCharacter.isAi == TurnManager.instance.CurrentlyTakingTurn.isAi)) //if on opposing team
+                {
+                    return false;
+                }
             }
         }
         return true;

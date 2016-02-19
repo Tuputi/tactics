@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class AiModule : Character {
+public class AiModule : MonoBehaviour {
 
     [HideInInspector]
     public Character targetCharacter;
@@ -11,12 +11,15 @@ public class AiModule : Character {
     [HideInInspector]
     public BehaviourModuleBase currentBehaviour;
     private List<Tile> tempTotalAttackRange;
+    private Character myCharacter;
 
     void Awake()
     {
-        isAi = true;
+        myCharacter = this.gameObject.GetComponent<Character>();
+        myCharacter.isAi = true;
+
         behaviourList = new Dictionary<BehaviourType, BehaviourModuleBase>();
-        availableAttacks = new List<AttackBase>();
+        myCharacter.availableAttacks = new List<AttackBase>();
         foreach (BehaviourModuleBase bmb in publicBehaviorList)
         {
             behaviourList.Add(bmb.behaviorType, bmb);
@@ -52,7 +55,7 @@ public class AiModule : Character {
     {
         if (waitingToCompleteMove)
         {
-            if (MoveCompleted)
+            if (myCharacter.MoveCompleted)
             {
                 waitingToCompleteMove = false;
                 AttackTarget();
@@ -62,12 +65,12 @@ public class AiModule : Character {
 
         if (waitingToCompleteAttack)
         {
-            if (AttackAnimationCompleted)
+            if (myCharacter.AttackAnimationCompleted)
             {
                 waitingToCompleteAttack = false;
                 Debug.Log("turn done");
                 Tile targetT = GetClosestEnemy();
-                CharacterLogic.instance.ChangeFacing(this, this.characterPosition, targetT);
+                CharacterLogic.instance.ChangeFacing(myCharacter, myCharacter.characterPosition, targetT);
                 TurnManager.instance.FindNextInTurn();
             }
         }
@@ -84,7 +87,7 @@ public class AiModule : Character {
             }
             else if(closest != null && (!chara.isAi))
             {
-                if(Pathfinding.GetHeuristic(closest.characterPosition, this.characterPosition) > Pathfinding.GetHeuristic(chara.characterPosition, this.characterPosition))
+                if(Pathfinding.GetHeuristic(closest.characterPosition, myCharacter.characterPosition) > Pathfinding.GetHeuristic(chara.characterPosition, myCharacter.characterPosition))
                 {
                     closest = chara;
                 }
@@ -97,11 +100,11 @@ public class AiModule : Character {
     {
         foreach (BehaviourType behaviourType in behaviourList.Keys)
         {
-            if (behaviourList[behaviourType].CheckConditions(this))
+            if (behaviourList[behaviourType].CheckConditions(myCharacter))
             {
                 currentBehaviour = behaviourList[behaviourType];
-                currentBehaviour.SetAvailableAttacks(this);
-                Tile tempTile = currentBehaviour.GetTarget(this);
+                currentBehaviour.SetAvailableAttacks(myCharacter);
+                Tile tempTile = currentBehaviour.GetTarget(myCharacter);
                 if (tempTile.tileCharacter != null)
                 {
                     targetCharacter = tempTile.tileCharacter;
@@ -113,17 +116,20 @@ public class AiModule : Character {
 
     public bool AttackTarget()
     {
-        foreach (AttackBase ab in availableAttacks)
+        TurnManager.mode = TurnManager.TurnMode.action;
+        foreach (AttackBase ab in myCharacter.availableAttacks)
         {
-            List<Tile> attackRange = ab.CalculateActionRange(this.characterPosition);
+            Debug.Log(ab.name);
+            List<Tile> attackRange = ab.CalculateActionRange(myCharacter.characterPosition);
             foreach (Tile t in attackRange)
             {
                 if (t.isOccupied)
                 {
                    if (t.tileCharacter.characterName.Equals(targetCharacter.characterName))
                     {
-                      currentAction = ab;
-                      CharacterLogic.instance.CompleteAction(this, t);
+                        myCharacter.currentAction = ab;
+                        myCharacter.currentAction.DrawTargetArea(t);
+                        CharacterLogic.instance.CompleteAction(myCharacter, t);
                       return false;
                     }
                 }
@@ -135,7 +141,8 @@ public class AiModule : Character {
 
     public void AiMove()
     {
-        Tile targetTile = Pathfinding.FindTarget(this.characterPosition, false);
+        TurnManager.mode = TurnManager.TurnMode.move;
+        Tile targetTile = Pathfinding.FindTarget(myCharacter.characterPosition, false);
         if(targetTile == null)
         {
             Debug.Log("No target tile found");
@@ -144,7 +151,7 @@ public class AiModule : Character {
 
         //from which distance can we attack the target?
         tempTotalAttackRange = new List<Tile>();
-        foreach(AttackBase ab in availableAttacks)
+        foreach(AttackBase ab in myCharacter.availableAttacks)
         {
             foreach(Tile t in ab.CalculateActionRange(targetTile))
             {
@@ -155,20 +162,20 @@ public class AiModule : Character {
             }
         }
 
-        Tile goToTile = Pathfinding.FindTargetTile(this.characterPosition, tempTotalAttackRange);
-        List<Tile> foundPath = Pathfinding.GetPath(this.characterPosition, goToTile);
+        Tile goToTile = Pathfinding.FindTargetTile(myCharacter.characterPosition, tempTotalAttackRange);
+        List<Tile> foundPath = Pathfinding.GetPath(myCharacter.characterPosition, goToTile);
 
         if (foundPath !=null)
         {
             List<Tile> takePath = new List<Tile>();
             foreach (Tile t in foundPath)
             {
-                if (t.pathfindingCost <= this.movementRange)
+                if (t.pathfindingCost <= myCharacter.movementRange)
                 {
                     takePath.Add(t);
                 }
             }
-            CharacterLogic.instance.CompleteMove(this, foundPath);
+            CharacterLogic.instance.CompleteMove(myCharacter, foundPath);
         }
         else
         {

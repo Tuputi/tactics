@@ -91,6 +91,6 @@ public class TeamPlayer : BehaviourModuleBase {
         List<AttackBase> temp = new List<AttackBase>();
         temp.Add(PrefabHolder.instance.actionDictionary[ActionType.MeeleeAttack]);
         temp.Add(PrefabHolder.instance.actionDictionary[ActionType.ShootArrow]);
-        currentCharacter.GetComponent<AiModule>().availableAttacks = temp;
+        currentCharacter.GetComponent<Character>().availableAttacks = temp;
     }
 }

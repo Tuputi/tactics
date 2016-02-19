@@ -295,6 +295,7 @@ GameObject:
   - 4: {fileID: 433608}
   - 95: {fileID: 9531264}
   - 114: {fileID: 11490854}
+  - 114: {fileID: 11467068}
   m_Layer: 0
   m_Name: character_AI
   m_TagString: Untagged
@@ -775,6 +776,39 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11467068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1accace1fa0024f4e9d6671fae2cf31a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterName: Ai
+  characterID: 1
+  characterEnergy: 5
+  movementRange: 5
+  rangedRange: 5
+  TravelSpeed: 0.2
+  isAi: 1
+  availableAttacks:
+  - {fileID: 11400000, guid: 073bc1f5072a5454d8d7254c18756510, type: 2}
+  - {fileID: 11400000, guid: e5a6a6970264f514bb208d6e54858462, type: 2}
+  characterPosition: {fileID: 0}
+  currentItem: {fileID: 0}
+  currentAction: {fileID: 0}
+  AttackAnimationCompleted: 1
+  MoveCompleted: 1
+  targetTile: {fileID: 0}
+  possibleRange: []
+  facing: 2
+  hpMax: 100
+  mpMax: 100
+  speed: 10
+  items: 0200000003000000
 --- !u!114 &11490854
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -786,26 +820,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479152c5ee0553f4ebb76476f46ffdae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: Ai
-  characterID: 1
-  characterEnergy: 5
-  movementRange: 5
-  rangedRange: 5
-  TravelSpeed: 0.3
-  isAi: 0
-  availableAttacks: []
-  characterPosition: {fileID: 0}
-  currentItem: {fileID: 0}
-  currentAction: {fileID: 0}
-  AttackAnimationCompleted: 1
-  MoveCompleted: 1
-  targetTile: {fileID: 0}
-  possibleRange: []
-  facing: 0
-  hpMax: 100
-  mpMax: 100
-  speed: 55
-  items: 02000000
   targetCharacter: {fileID: 0}
   publicBehaviorList:
   - {fileID: 11483754, guid: 874a514ecfcfef34b8cf379674a5e9c5, type: 2}
@@ -877,12 +891,50 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: items.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: availableAttacks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: characterID
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: speed
       value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterName
+      value: Ai
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: TravelSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: isAi
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: availableAttacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 073bc1f5072a5454d8d7254c18756510,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: availableAttacks.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: e5a6a6970264f514bb208d6e54858462,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[1]
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
