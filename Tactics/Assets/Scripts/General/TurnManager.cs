@@ -130,7 +130,6 @@ public class TurnManager : MonoBehaviour {
         SelectionScript.ClearSelection();
         if (!hasActed)
         {
-            Debug.Log("Take action without item");
             mode = TurnMode.action;
             CharacterLogic.instance.Action(CurrentlyTakingTurn, PrefabHolder.instance.actionDictionary[at]);
         }
@@ -223,6 +222,7 @@ public class TurnManager : MonoBehaviour {
         else
         {
             Debug.Log("Game Over");
+            UIManager.instance.DisplayGameOver(teamB);
         }
     }
 

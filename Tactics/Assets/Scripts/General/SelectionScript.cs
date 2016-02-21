@@ -163,7 +163,6 @@ public class SelectionScript : MonoBehaviour {
         {
             selectedTiles.Add(tile);
             tile.SetOverlayType(OverlayType.Selected);
-            Debug.Log("Set overlay.selected");
         }
     }
 

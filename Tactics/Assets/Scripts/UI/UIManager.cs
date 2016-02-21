@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour{
 
     public GameObject ButtonHolder;
@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour{
     public Toggle tiltToggle;
     public GameObject InTurnMarker;
     private GameObject MyInTurnMarker;
+    public GameObject GameOverScreen;
+    private GameObject GameOverInstance;
 
     //item info
     public GameObject ItemInfoHolder;
@@ -272,6 +274,33 @@ public class UIManager : MonoBehaviour{
         {
             ButtonScript bs = panel.transform.GetChild(i).GetComponent<ButtonScript>();
             bs.UnselectButton();
+        }
+    }
+
+    public void DisplayGameOver(bool PlayerWinner)
+    {
+        GameOverInstance = Instantiate(GameOverScreen);
+        Text Winner = GameOverInstance.transform.FindChild("ResultText").GetComponent<Text>();
+
+        if (PlayerWinner)
+            Winner.text = "You won";
+        else
+            Winner.text = "You lost";
+
+        GameOverInstance.transform.SetParent(GameObject.Find("Canvas").transform, false);
+        GameOverInstance.GetComponent<Button>().onClick.AddListener(delegate { UIManager.instance.ReloadGame(); });
+    }
+
+    public void ReloadGame()
+    {
+        SceneManager.LoadScene("GameMode");
+    }
+
+    public void RemoveGameOverScreen()
+    {
+        if (GameOverInstance != null)
+        {
+            Destroy(GameOverInstance);
         }
     }
 

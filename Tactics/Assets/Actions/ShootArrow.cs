@@ -24,7 +24,6 @@ public class ShootArrow : AttackBase {
     public override int CalculateEffect(Tile targetTile)
     {
         bool foundTarget = false;
-        Debug.Log(attackArea.Count);
         foreach(Tile t in attackArea)
         {
             if (t.isOccupied)

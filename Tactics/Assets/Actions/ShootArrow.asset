@@ -17,8 +17,8 @@ MonoBehaviour:
   UsedWithItems: 1
   attackArea: []
   attackBaseProbability: 90
-  minDamage: 10
-  maxDamage: 15
+  minDamage: 20
+  maxDamage: 25
   MPCost: 0
   actionType: 2
   compatibleItems: 0200000001000000

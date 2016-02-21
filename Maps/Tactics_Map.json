@@ -1078,7 +1078,7 @@
 			"Height":3.5,
 			"Rotation":0,
 			"ObjectId":0,
-			"CharacterId":1
+			"CharacterId":0
 		}
 ,
 		{
@@ -1430,7 +1430,7 @@
 			"Height":3,
 			"Rotation":0,
 			"ObjectId":0,
-			"CharacterId":1
+			"CharacterId":0
 		}
 ,
 		{
@@ -1463,7 +1463,7 @@
 			"Height":4,
 			"Rotation":0,
 			"ObjectId":0,
-			"CharacterId":1
+			"CharacterId":0
 		}
 ,
 		{
@@ -2244,7 +2244,7 @@
 			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
-			"CharacterId":2
+			"CharacterId":0
 		}
 ,
 		{
@@ -2255,7 +2255,7 @@
 			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
-			"CharacterId":2
+			"CharacterId":0
 		}
 ,
 		{
@@ -2266,7 +2266,7 @@
 			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
-			"CharacterId":2
+			"CharacterId":0
 		}
 ,
 		{
