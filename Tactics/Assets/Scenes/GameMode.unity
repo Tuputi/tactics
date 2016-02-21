@@ -827,6 +827,8 @@ MonoBehaviour:
   button: {fileID: 0}
   SelectedButton: {fileID: 21300000, guid: 12686e83a702e244a9bacc6de85b664d, type: 3}
   UnselectedButton: {fileID: 21300000, guid: 3a337870a27acf24c8807048b25728ce, type: 3}
+  toggleGroup:
+  - {fileID: 1217045696}
 --- !u!1 &545592972
 GameObject:
   m_ObjectHideFlags: 0
@@ -2002,6 +2004,8 @@ MonoBehaviour:
   button: {fileID: 0}
   SelectedButton: {fileID: 21300000, guid: e7701334c387ca446b86d05f43da4df9, type: 3}
   UnselectedButton: {fileID: 21300000, guid: 7f62137dce28f374d9f6a74255ba7b1e, type: 3}
+  toggleGroup:
+  - {fileID: 532510810}
 --- !u!1001 &1244632270
 Prefab:
   m_ObjectHideFlags: 0

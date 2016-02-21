@@ -101,9 +101,6 @@ public class SelectionScript : MonoBehaviour {
             SetMultipleSelectedTile(tile);
             return;
         }
-        else {
-            SetSingleSelectedTile(tile);
-        }
        
         //update statusUi
         if (tile.isOccupied)
@@ -117,15 +114,14 @@ public class SelectionScript : MonoBehaviour {
 
         //move or action?
         if (TurnManager.mode == TurnManager.TurnMode.move || TurnManager.mode == TurnManager.TurnMode.action)
-        {
-            ClearSelection();
-            foreach (Tile t in TurnManager.instance.CurrentlyTakingTurn.possibleRange)
-            {
-                t.SetOverlayType(OverlayType.None);
-            }
+        {            
             if (TurnManager.instance.CurrentlyTakingTurn.possibleRange.Contains(tile))
             {
                 ClearSelection();
+                foreach (Tile t in TurnManager.instance.CurrentlyTakingTurn.possibleRange)
+                {
+                    t.SetOverlayType(OverlayType.None);
+                }
                 if (TurnManager.mode == TurnManager.TurnMode.move)
                 {
                     SetSingleSelectedTile(tile);
@@ -149,10 +145,10 @@ public class SelectionScript : MonoBehaviour {
                     ConfirmationDialogue.instance.Show(ConfirmationType.action, tile);
                 }
             }
-            else
-            {
-                TurnManager.mode = TurnManager.TurnMode.start;
-            }
+        }
+        else
+        {
+            SetSingleSelectedTile(tile);
         }
     }
 
@@ -167,6 +163,7 @@ public class SelectionScript : MonoBehaviour {
         {
             selectedTiles.Add(tile);
             tile.SetOverlayType(OverlayType.Selected);
+            Debug.Log("Set overlay.selected");
         }
     }
 

@@ -130,6 +130,7 @@ public class TurnManager : MonoBehaviour {
         SelectionScript.ClearSelection();
         if (!hasActed)
         {
+            Debug.Log("Take action without item");
             mode = TurnMode.action;
             CharacterLogic.instance.Action(CurrentlyTakingTurn, PrefabHolder.instance.actionDictionary[at]);
         }

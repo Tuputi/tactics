@@ -20,6 +20,11 @@ public class MoveButton : ButtonScript {
 
     public override void SelectAction()
     {
+        if (Selected)
+        {
+            UnselectButton();
+            return;
+        }
         UIManager.instance.CloseInventory();
         SelectButton();
         UIManager.instance.UnselectAllActionButtonsExcept(this);
@@ -28,6 +33,12 @@ public class MoveButton : ButtonScript {
 
     public override void UnselectButton()
     {
+        if (Selected)
+        {
+            SelectionScript.ClearSelection();
+            TurnManager.instance.CurrentlyTakingTurn.possibleRange.Clear();
+            TurnManager.mode = TurnManager.TurnMode.undecided;
+        }
         MyImage.sprite = UnselectedButton;
         Selected = false;
     }

@@ -34,7 +34,17 @@ public class CameraController : MonoBehaviour {
                 {
                     if (rotationOn)
                     {
-                        CentrePoint.gameObject.transform.RotateAround(CentrePoint.gameObject.transform.position, transform.up, Input.GetTouch(0).deltaPosition.y * 0.5f);
+                        //CentrePoint.gameObject.transform.RotateAround(CentrePoint.gameObject.transform.position, transform.up, Input.GetTouch(0).deltaPosition.y * 0.5f);
+                        CentrePoint.gameObject.transform.RotateAround(new Vector3(7.5f, 6f, 7.5f), transform.up, Input.GetTouch(0).deltaPosition.y * 0.5f);
+                        return;
+                    }
+
+                    if (tiltOn)
+                    {
+                        RotationPoint.transform.eulerAngles += new Vector3(Input.GetTouch(0).deltaPosition.y * 0.2f, 0, 0);
+                        Vector3 rot = RotationPoint.transform.eulerAngles;
+                        rot.x = Mathf.Clamp(rot.x, minTilt, maxTilt);
+                        RotationPoint.gameObject.transform.eulerAngles = rot;
                         return;
                     }
 
@@ -60,21 +70,7 @@ public class CameraController : MonoBehaviour {
                     Touch touch1 = Input.GetTouch(0);
                     Touch touch2 = Input.GetTouch(1);
 
-                    if (tiltOn)
-                    {
-                        Vector2 touch1PreviousPOs = touch1.position - touch1.deltaPosition;
-                        Vector2 touch2PreviousPOs = touch2.position - touch2.deltaPosition;
-
-                        float prevTouchMagnitude = (touch1PreviousPOs - touch2PreviousPOs).magnitude;
-                        float touchDeltaMagnitude = (touch1.position - touch2.position).magnitude;
-
-                        float deltaMagDif = prevTouchMagnitude - touchDeltaMagnitude;
-                        RotationPoint.transform.eulerAngles += new Vector3(deltaMagDif * 0.2f, 0, 0);
-                        Vector3 rot = RotationPoint.transform.eulerAngles;
-                        rot.x = Mathf.Clamp(rot.x, minTilt, maxTilt);
-                        RotationPoint.gameObject.transform.eulerAngles = rot;
-                        return;
-                    }
+                   
 
                     if (!(touch1.deltaPosition.magnitude < 0.2f))
                     {
@@ -91,7 +87,7 @@ public class CameraController : MonoBehaviour {
                         pos.y = Mathf.Clamp(pos.y, minZoom, maxZoom);
                         CentrePoint.gameObject.transform.position = pos;
 
-                        RotationPoint.transform.eulerAngles += new Vector3(deltaMagDif * 0.2f, 0, 0);
+                        RotationPoint.transform.eulerAngles += new Vector3(deltaMagDif * 0.1f, 0, 0);
                         Vector3 rot = RotationPoint.transform.eulerAngles;
                         rot.x = Mathf.Clamp(rot.x, minTilt, maxTilt);
                         RotationPoint.gameObject.transform.eulerAngles = rot;

@@ -136,12 +136,7 @@ public class CharacterLogic : MonoBehaviour{
     {
         chara.currentAction = ab;
         chara.possibleRange = ab.CalculateActionRange(chara.characterPosition);
-        SelectionScript.selectMultiple = true;
-        foreach (Tile t in chara.possibleRange)
-        {
-            t.SelectThis();
-        }
-        SelectionScript.selectMultiple = false;
+        SelectMultipleTiles(chara.possibleRange);
     }
 
     public void Action(Character chara, ActionBaseClass ab, ItemBase ib)

@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class TiltButton : ButtonScript {
+
+    public List<ButtonScript> toggleGroup;
 
     public override void SetUp()
     {
@@ -40,6 +42,10 @@ public class TiltButton : ButtonScript {
     {
         MyImage.sprite = SelectedButton;
         Selected = true;
+        foreach (ButtonScript bs in toggleGroup)
+        {
+            bs.UnselectButton();
+        }
     }
 
     public override void UpdateButton()

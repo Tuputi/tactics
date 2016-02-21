@@ -28,9 +28,21 @@ public class ActionButton : ButtonScript {
             UIManager.instance.CloseInventory();
             if (Selected)
             {
+                SelectionScript.ClearSelection();
+                TurnManager.instance.CurrentlyTakingTurn.possibleRange.Clear();
+                TurnManager.mode = TurnManager.TurnMode.undecided;
                 UnselectButton();
                 return;
             }
+        }
+
+        if (Selected)
+        {
+            SelectionScript.ClearSelection();
+            TurnManager.instance.CurrentlyTakingTurn.possibleRange.Clear();
+            TurnManager.mode = TurnManager.TurnMode.undecided;
+            UnselectButton();
+            return;
         }
 
         if (OpenInventory)
@@ -41,6 +53,7 @@ public class ActionButton : ButtonScript {
             UIManager.instance.UnselectAllActionButtonsExcept(this);
         }
         else {
+            Debug.Log("Open no inventory");
             TurnManager.instance.Action(actionType);
             SelectButton();
             UIManager.instance.UnselectAllActionButtonsExcept(this);
@@ -57,7 +70,7 @@ public class ActionButton : ButtonScript {
     public override void UnselectButton()
     {
         MyImage.sprite = UnselectedButton;
-        Selected = false;
+        Selected = false;        
     }
 
     public override void UpdateButton()
