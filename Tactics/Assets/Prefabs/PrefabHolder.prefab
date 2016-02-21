@@ -47,6 +47,7 @@ MonoBehaviour:
   - {fileID: 11412558, guid: 1dbe0cbfb3ebf2f44810cf8186416acb, type: 2}
   - {fileID: 11412558, guid: 1dbe0cbfb3ebf2f44810cf8186416acb, type: 2}
   - {fileID: 11412558, guid: 1dbe0cbfb3ebf2f44810cf8186416acb, type: 2}
+  ConfirmationTemplate: {fileID: 131898, guid: 5ab7b8812c7aaea419cd5c5c589ebe11, type: 2}
   tile_base: {fileID: 182542, guid: 8568a2665b84af146a336df17c18ba04, type: 2}
   Tile_Grass_Prefab: {fileID: 124734, guid: 8649c006f70c9b543b8216d41f33c40a, type: 2}
   Tile_Rock_Prefab: {fileID: 129904, guid: af637fdfa049d064ea05215d34f81081, type: 2}

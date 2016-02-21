@@ -15,17 +15,17 @@ public class ConfirmationDialogue : MonoBehaviour{
     void Start()
     {
         instance = this;
+       // DialogueTemplate = Instantiate(PrefabHolder.instance.ConfirmationTemplate);
+       // DialogueTemplate.transform.SetParent(GameObject.Find("Canvas").transform,false);
         SituationDesc = DialogueTemplate.transform.FindChild("SituationDesc").GetComponent<Text>();
         HitChanceText = DialogueTemplate.transform.FindChild("HitChangeText").GetComponent<Text>();
-
         DialogueTemplate.SetActive(false);
     }
 
     public void Show(ConfirmationType type, Tile target)
-    {
-        
+    {     
         CameraScript.instance.SetMoveTarget(target.gameObject);
-        DialogueTemplate.gameObject.SetActive(true);
+        DialogueTemplate.SetActive(true);
         ConfirmType = type;
         ActionTargetTile = target;
         UIManager.instance.ActivateButtons(false);
@@ -62,15 +62,13 @@ public class ConfirmationDialogue : MonoBehaviour{
             case ConfirmationType.action:
                 if (selected)
                 {
-                   // TurnManager.instance.CurrentlyTakingTurn.CompleteAction(ActionTargetTile);
                     CharacterLogic.instance.CompleteAction(TurnManager.instance.CurrentlyTakingTurn, ActionTargetTile);
                     UIManager.instance.CloseInventory();
                 }
                 else
                 {
-                    CameraScript.instance.SetMoveTarget(TurnManager.instance.CurrentlyTakingTurn.gameObject);
-                    // TurnManager.instance.CurrentlyTakingTurn.Action(TurnManager.instance.CurrentlyTakingTurn.currentAction);    
-                    //CharacterLogic.instance.Action(TurnManager.instance.CurrentlyTakingTurn, TurnManager.instance.CurrentlyTakingTurn.currentAction); 
+                    UIManager.instance.UnselectAllButtons();
+                    CameraScript.instance.SetMoveTarget(TurnManager.instance.CurrentlyTakingTurn.gameObject); 
                     TurnManager.instance.CurrentlyTakingTurn.currentAction = null;
                     TurnManager.mode = TurnManager.TurnMode.undecided;   
                     Debug.Log("Action canceled");
@@ -80,14 +78,12 @@ public class ConfirmationDialogue : MonoBehaviour{
                 if (selected)
                 {
                     List<Tile> tempPath = Pathfinding.GetPath(TurnManager.instance.CurrentlyTakingTurn.characterPosition, ActionTargetTile);
-                    //TurnManager.instance.CurrentlyTakingTurn.CompleteMove(tempPath);
                     CharacterLogic.instance.CompleteMove(TurnManager.instance.CurrentlyTakingTurn, tempPath);
                 }
                 else
                 {
+                    UIManager.instance.UnselectAllButtons();
                     CameraScript.instance.SetMoveTarget(TurnManager.instance.CurrentlyTakingTurn.gameObject);
-                    //TurnManager.instance.CurrentlyTakingTurn.Move();
-                   // CharacterLogic.instance.Move(TurnManager.instance.CurrentlyTakingTurn);
                     TurnManager.mode = TurnManager.TurnMode.undecided;
                     Debug.Log("Move canceled");
                 }

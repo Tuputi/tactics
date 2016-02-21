@@ -108,6 +108,14 @@ public class UIManager : MonoBehaviour{
         button.SelectButton();
     }
 
+    public void UnselectAllButtons()
+    {
+        foreach (ButtonScript bs in RotatingMenu.instance.GetAllActiveButtons())
+        {
+            bs.UnselectButton();
+        }
+    }
+
     public void StartSelectFacingPhase(Character chara)
     {
         List<Tile> places = chara.characterPosition.neighbours;

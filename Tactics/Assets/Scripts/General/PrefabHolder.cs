@@ -10,6 +10,7 @@ public class PrefabHolder : MonoBehaviour {
     [Header("UI-elemnts")]
     public GameObject DamageText;
     public List<ButtonScript> basicActions;
+    public GameObject ConfirmationTemplate;
 
     //Tiles
     [Header("Tiles")]
