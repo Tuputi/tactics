@@ -30,6 +30,7 @@ public class TurnButton : ButtonScript {
             return;
         }
 
+        UIManager.instance.CloseInventory();
         SelectionScript.ClearSelection();
         TurnManager.instance.FacingPhase();
     }

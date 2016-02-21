@@ -17,6 +17,9 @@ public class UIManager : MonoBehaviour{
     private GameObject MyInTurnMarker;
     public GameObject GameOverScreen;
     private GameObject GameOverInstance;
+    public GameObject AttackName;
+    private GameObject AttackNameInstance;
+    private Text AttackNameText;
 
     //item info
     public GameObject ItemInfoHolder;
@@ -50,6 +53,12 @@ public class UIManager : MonoBehaviour{
         UIInventory = GameObject.Find("Inventory").GetComponent<UIInventory>();
         UIInventory.gameObject.SetActive(false);
         MyInTurnMarker = Instantiate(InTurnMarker);
+
+
+        AttackNameInstance = Instantiate(AttackName);
+        AttackNameInstance.transform.SetParent(GameObject.Find("Canvas").transform,false);
+        AttackNameText = AttackNameInstance.GetComponentInChildren<Text>();
+        AttackNameInstance.SetActive(false);
 
     }
 
@@ -302,6 +311,17 @@ public class UIManager : MonoBehaviour{
         {
             Destroy(GameOverInstance);
         }
+    }
+
+    public void ShowAttackName(string attackName)
+    {
+        AttackNameInstance.SetActive(true);
+        AttackNameText.text = attackName;
+    }
+
+    public void HideAttackName()
+    {
+        AttackNameInstance.SetActive(false);
     }
 
 }

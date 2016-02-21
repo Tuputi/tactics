@@ -160,6 +160,7 @@ public class Character : MonoBehaviour, System.IComparable
         AttackAnimationCompleted = true;
         characterAnimator.SetBool(AttackName, false);
         RemoveWeapon();
+        UIManager.instance.HideAttackName();
     }
 
     public void AttachWeapon()

@@ -159,6 +159,7 @@ public class CharacterLogic : MonoBehaviour{
         ChangeFacing(chara, chara.characterPosition, tile);
 
         int random = Random.Range(1, 100);
+        UIManager.instance.ShowAttackName(chara.currentAction.GetName());
         chara.PlayAttackanimation(chara.currentAction.AnimationName);
         chara.characterEnergy -= chara.currentAction.EnergyCost;
         if (random <= chara.currentAction.GetHitChance(tile))
