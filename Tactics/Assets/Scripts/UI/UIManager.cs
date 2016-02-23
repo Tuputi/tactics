@@ -212,6 +212,12 @@ public class UIManager : MonoBehaviour{
         }
     }
 
+    public Vector3 ConvertPositionToScreenPoint(GameObject go)
+    {
+        Vector3 screenPos = gameCamera.WorldToScreenPoint(go.transform.position);
+        return screenPos;
+    }
+
     public GameObject TurnorderHolder;
     public Text turnorderCharaName;
     public void UpdateTurnOrderDisplay(List<Character> characters)
@@ -264,7 +270,7 @@ public class UIManager : MonoBehaviour{
     public void AssignInTurnMaker(Character currentCharacter)
     {
         MyInTurnMarker.gameObject.transform.SetParent(currentCharacter.gameObject.transform);
-        MyInTurnMarker.gameObject.transform.localPosition = new Vector3(0, 13f, 0);
+        MyInTurnMarker.gameObject.transform.localPosition = new Vector3(0, currentCharacter.inturnmarkerheight, 0);
     }
 
     public void HideInTurnMarker()

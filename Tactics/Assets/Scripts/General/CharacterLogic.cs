@@ -157,11 +157,11 @@ public class CharacterLogic : MonoBehaviour{
         SelectionScript.ClearSelection();
 
         ChangeFacing(chara, chara.characterPosition, tile);
-
-        int random = Random.Range(1, 100);
         UIManager.instance.ShowAttackName(chara.currentAction.GetName());
         chara.PlayAttackanimation(chara.currentAction.AnimationName);
         chara.characterEnergy -= chara.currentAction.EnergyCost;
+
+        int random = Random.Range(1, 100);   
         if (random <= chara.currentAction.GetHitChance(tile))
         {
             chara.targetTile = tile;

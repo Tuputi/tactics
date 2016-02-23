@@ -36,7 +36,7 @@ public class ActionBaseClass : ScriptableObject {
 
     public virtual void PlayAnimation(Character chara)
     {
-        chara.GetComponent<Animator>().Play("ShootArrow");
+        chara.GetComponent<Animator>().Play(AnimationName);
     }
 
     public virtual void CompleteAction(Tile TargetTile)

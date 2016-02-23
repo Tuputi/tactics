@@ -10,6 +10,8 @@ public class ConfirmationDialogue : MonoBehaviour{
     public static ConfirmationDialogue instance;
     private ConfirmationType ConfirmType;
     private Tile ActionTargetTile = null;
+    bool waitingAnimationToFinish;
+    float templateHeight;
 
 
     void Start()
@@ -19,23 +21,50 @@ public class ConfirmationDialogue : MonoBehaviour{
        // DialogueTemplate.transform.SetParent(GameObject.Find("Canvas").transform,false);
         SituationDesc = DialogueTemplate.transform.FindChild("SituationDesc").GetComponent<Text>();
         HitChanceText = DialogueTemplate.transform.FindChild("HitChangeText").GetComponent<Text>();
+        templateHeight = DialogueTemplate.GetComponent<RectTransform>().rect.height;
         DialogueTemplate.SetActive(false);
+    }
+
+    void Update(){
+        if (waitingAnimationToFinish)
+        {
+            if (!CameraScript.instance.MoveToTargetActive)
+            {
+                Show();
+                waitingAnimationToFinish = false;
+            }
+        }
     }
 
     public void Show(ConfirmationType type, Tile target)
     {     
         CameraScript.instance.SetMoveTarget(target.gameObject);
-        DialogueTemplate.SetActive(true);
+        waitingAnimationToFinish = true;
         ConfirmType = type;
         ActionTargetTile = target;
         UIManager.instance.ActivateButtons(false);
         SelectionScript.SetNoSelection(true);
+    }
 
-        switch (type)
+    private void Show()
+    {
+        Vector3 position = UIManager.instance.ConvertPositionToScreenPoint(ActionTargetTile.gameObject);
+        if (position.y + templateHeight < Screen.height)
+        {
+            position += new Vector3(0, templateHeight, 0);
+        }
+        else
+        {
+            position += new Vector3(0,-templateHeight,0);
+        }
+        DialogueTemplate.transform.position = position;
+        DialogueTemplate.SetActive(true);
+
+        switch (ConfirmType)
         {
             case ConfirmationType.action:
                 SituationDesc.text = "Target tile/s with " + TurnManager.instance.CurrentlyTakingTurn.currentAction.GetName() + "?";
-                HitChanceText.text = "The hit chance is " + TurnManager.instance.CurrentlyTakingTurn.currentAction.GetHitChance(ActionTargetTile).ToString()+"%";
+                HitChanceText.text = "The hit chance is " + TurnManager.instance.CurrentlyTakingTurn.currentAction.GetHitChance(ActionTargetTile).ToString() + "%";
                 break;
             case ConfirmationType.move:
                 SituationDesc.text = "Move to this tile?";

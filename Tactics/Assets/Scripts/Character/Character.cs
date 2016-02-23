@@ -8,9 +8,10 @@ public class Character : MonoBehaviour, System.IComparable
 
     public string characterName = "tempName";
     public int characterID = 0;
-    
+
 
     //game logic stats
+    public float inturnmarkerheight = 5f;
     public float characterEnergy = 5f;
     public int movementRange = 5;
     public float rangedRange = 5f;
@@ -92,7 +93,11 @@ public class Character : MonoBehaviour, System.IComparable
     //lists
     public List<ItemType> items;
   
-
+    
+    void Start()
+    {
+        Hp = hpMax;
+    }
     
 
 
@@ -145,7 +150,7 @@ public class Character : MonoBehaviour, System.IComparable
 
     public void PlayAttackanimation(string AttackAnimationName)
     {
-        AttachWeapon();
+        //AttachWeapon();
         if (characterAnimator == null)
         {
             characterAnimator = this.gameObject.GetComponent<Animator>();
@@ -159,7 +164,7 @@ public class Character : MonoBehaviour, System.IComparable
         Debug.Log(AttackName+" complete");
         AttackAnimationCompleted = true;
         characterAnimator.SetBool(AttackName, false);
-        RemoveWeapon();
+        //RemoveWeapon();
         UIManager.instance.HideAttackName();
     }
 
@@ -236,13 +241,10 @@ public class Character : MonoBehaviour, System.IComparable
                 targetPos = targetPos - new Vector3(0, 0.3f, 0);
             }
 
-
-
             Vector3 sourcePos = chara.gameObject.transform.position;
             chara.transform.position = Vector3.MoveTowards(sourcePos, targetPos, Mathf.SmoothStep(0, 1f, TravelSpeed));
-            if (chara.transform.position == targetPos)
-            {
-                
+            if (Mathf.Approximately(chara.transform.position.x,targetPos.x) && Mathf.Approximately(chara.transform.position.y, targetPos.y) && Mathf.Approximately(chara.transform.position.z, targetPos.z))
+            {     
                 previousPostition = path[DistanceToGo];
                 DistanceToGo--;
             }

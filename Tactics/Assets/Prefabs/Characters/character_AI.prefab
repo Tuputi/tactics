@@ -788,7 +788,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Ai
-  characterID: 1
+  characterID: 4
+  inturnmarkerheight: 13
   characterEnergy: 5
   movementRange: 5
   rangedRange: 5
@@ -900,7 +901,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterID
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: speed
@@ -935,6 +936,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: items.Array.data[1]
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: inturnmarkerheight
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

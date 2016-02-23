@@ -16,10 +16,6 @@ public class ShootArrow : AttackBase {
         return actionName;
     }
 
-    public override bool CalculateHitChance()
-    {
-        return base.CalculateHitChance();
-    }
 
     public override int CalculateEffect(Tile targetTile)
     {
@@ -64,10 +60,6 @@ public class ShootArrow : AttackBase {
         return 1;
     }
 
-   /* public override List<Tile> CalculateActionRange(Tile startTile)
-    {
-        return Pathfinding.GetPossibleRange(startTile, TurnManager.instance.CurrentlyTakingTurn.rangedRange, true);
-    }*/
 
     public override List<Tile> CalculateActionRange(Tile startTile)
     {

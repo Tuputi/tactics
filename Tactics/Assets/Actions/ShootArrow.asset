@@ -16,9 +16,10 @@ MonoBehaviour:
   AnimationName: FireArrow
   UsedWithItems: 1
   attackArea: []
-  attackBaseProbability: 90
+  AttackName: Shoot Arrow
   minDamage: 20
   maxDamage: 25
   MPCost: 0
+  hitChance: 90
   actionType: 2
   compatibleItems: 0200000001000000

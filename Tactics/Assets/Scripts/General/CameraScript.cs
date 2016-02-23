@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class CameraScript : MonoBehaviour {
     
     float viewDistance = 7.5f;
-    bool MoveToTargetActive = false;
+    public bool MoveToTargetActive = false;
     public static CameraScript instance;
     List<GameObject> moveTargets;
 
@@ -43,6 +43,7 @@ public class CameraScript : MonoBehaviour {
 
     public void SetMoveTarget(GameObject Target)
     {
+
         if (MoveToTargetActive)
         {
             if(moveTargets.Count > 3)
