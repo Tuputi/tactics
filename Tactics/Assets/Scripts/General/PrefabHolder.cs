@@ -69,9 +69,12 @@ public enum BehaviourType { agressive, teamPlayer, healWhenHurt}
 public enum ConfirmationType { action, move};
 public enum GameMode { Editor, Game };
 public enum TargetAreaType { none, self, circular, line}
+
 public enum Elements { Fire, Water, Earth, Wind}
+public enum Resistance { Normal, Absorb, Immune, Resistant, Weak} //No change, damage = hp, no damage, 50% damage, 150% damage
+public enum DisplayTexts { none, miss, immune};
 
 //Names of different actions, used to reference to a dictionary of Actions
-public enum ActionType { MeeleeAttack, FireSpell, ShootArrow, Howl}
+public enum ActionType { MeeleeAttack, FireSpell, ShootArrow, Howl, Stab}
 
 public enum ItemType { Potion, Bomb, Arrow, ArrowWideHit};

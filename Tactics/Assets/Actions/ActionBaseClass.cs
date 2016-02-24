@@ -18,7 +18,12 @@ public class ActionBaseClass : ScriptableObject {
 
     public virtual List<Tile> CalculateActionRange(Tile startTile)
     {
-        return Pathfinding.GetPossibleRange(startTile, 2f, true);
+        float range = BasicRange;
+        if (TurnManager.instance.CurrentlyTakingTurn.currentItem)
+        {
+            range += TurnManager.instance.CurrentlyTakingTurn.currentItem.GetRangeEffect();
+        }
+        return Pathfinding.GetPossibleRange(startTile, range, true);
     }
 
     public virtual List<Tile> CalculateActionRange(Tile startTile, ItemBase ib)

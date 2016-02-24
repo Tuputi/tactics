@@ -20,6 +20,13 @@ public class Character : MonoBehaviour, System.IComparable
 
     public List<AttackBase> availableAttacks;
 
+    public Resistance FireStatus;
+    public Resistance WaterStatus;
+    public Resistance EarthStatus;
+    public Resistance WindStatus;
+
+    public Dictionary<Elements, Resistance> elementalResistances;
+
     //logic
     [HideInInspector]
     public Tile characterPosition;
@@ -37,6 +44,8 @@ public class Character : MonoBehaviour, System.IComparable
     public Inventory CharacterInventory;
     [HideInInspector]
     public List<Tile> possibleRange;
+    [HideInInspector]
+    public bool AttackMissed = false;
 
     //Movement
     [HideInInspector]
@@ -97,6 +106,11 @@ public class Character : MonoBehaviour, System.IComparable
     void Start()
     {
         Hp = hpMax;
+        elementalResistances = new Dictionary<Elements, Resistance>();
+        elementalResistances.Add(Elements.Fire, FireStatus);
+        elementalResistances.Add(Elements.Water, WaterStatus);
+        elementalResistances.Add(Elements.Earth, EarthStatus);
+        elementalResistances.Add(Elements.Wind, WindStatus);
     }
     
 
@@ -200,20 +214,40 @@ public class Character : MonoBehaviour, System.IComparable
 
     public void DisplayDamage()
     {
-        if(targetTile == null)
-        {
-            Debug.Log("Missed Target");
-            CharacterLogic.instance.DisplayEffect(this, 0);
-            currentAction = null;
-            currentItem = null;
-            return;
-        }
-        targetTile.tileCharacter.PlayHurtAnimation();
-        currentAction.CompleteAction(targetTile);
-        
+        currentAction.CompleteAction(targetTile);        
         currentAction = null;
         currentItem = null;
         targetTile = null;
+    }
+
+    public void DisplayEffect(int damageAmount, DisplayTexts displayText)
+    {
+        GameObject damageText = (GameObject)Instantiate(PrefabHolder.instance.DamageText);
+        if (damageAmount > 0)
+        {
+            damageText.GetComponentInChildren<UnityEngine.UI.Text>().color = Color.green;
+        }
+
+
+        switch (displayText)
+        {
+            case DisplayTexts.none:
+                damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = damageAmount.ToString();
+                break;
+            case DisplayTexts.miss:
+                damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = "miss";
+                break;
+            case DisplayTexts.immune:
+                damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = "immune";
+                break;
+            default:
+                break;
+        }
+
+        damageText.transform.SetParent(this.gameObject.transform);
+        damageText.transform.localPosition = new Vector3(0, this.inturnmarkerheight, 0);
+
+        UIManager.instance.UpdateStatusWindow(this);
     }
 
     public void MoveCharacter(Character chara, List<Tile> path)

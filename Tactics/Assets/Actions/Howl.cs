@@ -52,7 +52,7 @@ public class Howl : AttackBase {
                 }
                 Debug.Log("Did " + damageR + " to " + t.tileCharacter.characterName);
                 t.tileCharacter.Hp += damageR;
-                CharacterLogic.instance.DisplayEffect(t.tileCharacter, damageR);
+                t.tileCharacter.DisplayEffect(damageR, DisplayTexts.none);
             }
         }
         attackArea.Clear();

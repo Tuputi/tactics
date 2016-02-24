@@ -63,7 +63,7 @@ public class ItemBase : ActionBaseClass {
         if (targetTile.isOccupied)
         {
             healing = (int)(targetTile.tileCharacter.hpMax*0.3); //heal 30%
-            CharacterLogic.instance.DisplayEffect(targetTile.tileCharacter, healing);
+            targetTile.tileCharacter.DisplayEffect( healing, DisplayTexts.none);
             targetTile.tileCharacter.Hp += healing;
         }
         return healing;

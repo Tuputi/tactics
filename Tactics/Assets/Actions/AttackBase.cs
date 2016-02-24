@@ -11,6 +11,9 @@ public class AttackBase : ActionBaseClass{
     public int hitChance;
     public ActionType actionType = ActionType.MeeleeAttack;
     public List<ItemType> compatibleItems;
+    public List<Elements> ElementalAttributes;
+
+    private DisplayTexts displayText = DisplayTexts.none;
 
 
 
@@ -52,7 +55,10 @@ public class AttackBase : ActionBaseClass{
                 List<Tile> tempList = Pathfinding.GetPossibleRange(targetTile, ib.EffectToTArgetArea, true);
                 foreach (Tile t in tempList)
                 {
-                    temp.Add(t);
+                    if (!temp.Contains(t))
+                    {
+                        temp.Add(t);
+                    }
                 }
             }
         }
@@ -71,6 +77,7 @@ public class AttackBase : ActionBaseClass{
                 break;
             }
         }
+
         if (!foundTarget)
         {
             return 0;
@@ -82,25 +89,88 @@ public class AttackBase : ActionBaseClass{
         {
             if (t.isOccupied)
             {
-                int damage = Random.Range(minDamage, maxDamage);
-                damage *= -1;
-                if (t.tileCharacter.facing == chara.facing)
+                if(Random.Range(1,100) < GetHitChance(t))
                 {
-                    damage *= 2;
-                    Debug.Log("backstab");
+                    Debug.Log("Missed this character");
+                   t.tileCharacter.DisplayEffect(0, DisplayTexts.miss);
                 }
-                if (System.Math.Abs(t.height - chara.characterPosition.height) > 1 && chara.characterPosition.height > t.height)
+                else
                 {
-                    damage *= 2;
-                    Debug.Log("heightAdvantage");
+                    //base damage
+                    int damage = Random.Range(minDamage, maxDamage);
+                    damage *= -1;
+
+                    //back attack
+                    if (t.tileCharacter.facing == chara.facing)
+                    {
+                        damage *= 2;
+                        Debug.Log("backstab");
+                    }
+                    
+                    //height extra
+                    if (System.Math.Abs(t.height - chara.characterPosition.height) > 1 && chara.characterPosition.height > t.height)
+                    {
+                        damage *= 2;
+                        Debug.Log("heightAdvantage");
+                    }
+
+                    //elemental effects
+                    int finalDamage = GetElementalEffects(targetTile.tileCharacter, damage);
+
+                    if (finalDamage == 0 && !(displayText == DisplayTexts.immune))
+                    {
+                        displayText = DisplayTexts.miss;
+                    }
+
+                    Debug.Log("Did " + finalDamage + " to " + t.tileCharacter.characterName);
+                    t.tileCharacter.Hp += finalDamage;
+                    t.tileCharacter.DisplayEffect(finalDamage, displayText);
+                    displayText = DisplayTexts.none;
                 }
-                Debug.Log("Did " + damage + " to " + t.tileCharacter.characterName);
-                t.tileCharacter.Hp += damage;
-                CharacterLogic.instance.DisplayEffect(t.tileCharacter, damage);
+
             }
         }
         attackArea.Clear();
         return 1;
+    }
+
+    private int GetElementalEffects(Character TargetCharacter, float damage)
+    {
+        bool absorb = false;
+        float tempDamage = damage;
+        foreach (Elements element in ElementalAttributes)
+        {
+            Resistance res = TargetCharacter.elementalResistances[element];
+            switch (res)
+            {
+                case Resistance.Normal:
+                    break;
+                case Resistance.Absorb:
+                    absorb = true;
+                    break;
+                case Resistance.Immune:
+                    tempDamage = 0;
+                    displayText = DisplayTexts.immune;
+                    break;
+                case Resistance.Resistant:
+                    tempDamage *= 0.5f;
+                    break;
+                case Resistance.Weak:
+                    tempDamage *= 1.5f;
+                    Debug.Log("Enemy is weak against " + element);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (absorb)
+        {
+            damage = Mathf.Abs(tempDamage);
+            return (int)damage;
+        }
+
+        return (int)tempDamage;
     }
 
     public override int GetHitChance(Tile targetTile)

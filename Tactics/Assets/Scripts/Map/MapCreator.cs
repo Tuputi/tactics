@@ -56,7 +56,6 @@ public class MapCreator : MonoBehaviour {
 
     void generateBlankMap(int rows, int columns)
     {
-
         cleanMap();
         map = new Tile[rows,columns];
         for (int x = 0; x < rows; x++)

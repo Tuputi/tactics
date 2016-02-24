@@ -160,42 +160,16 @@ public class CharacterLogic : MonoBehaviour{
         UIManager.instance.ShowAttackName(chara.currentAction.GetName());
         chara.PlayAttackanimation(chara.currentAction.AnimationName);
         chara.characterEnergy -= chara.currentAction.EnergyCost;
-
-        int random = Random.Range(1, 100);   
-        if (random <= chara.currentAction.GetHitChance(tile))
-        {
-            chara.targetTile = tile;
-        }
-        else
-        {
-            Debug.Log("Miss");
-        }
+        chara.targetTile = tile;
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.hasActed = true;  
         UIManager.instance.UpdateButtons();
     }
 
 
-    public void DisplayEffect(Character chara, int damageAmount)
-    {
-        GameObject damageText = (GameObject)Instantiate(PrefabHolder.instance.DamageText);   
-        if(damageAmount > 0)
-        {
-            damageText.GetComponentInChildren<UnityEngine.UI.Text>().color = Color.green;
-        }
+    
 
-        if (damageAmount == 0)
-        {
-            damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = "miss";
-        }
-        else {
-            damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = damageAmount.ToString();
-        }
-        damageText.transform.SetParent(chara.gameObject.transform);
-        damageText.transform.localPosition = new Vector3(0, chara.inturnmarkerheight, 0);
 
-        UIManager.instance.UpdateStatusWindow(chara);
-    }
 
     public void SetCharacterPosition(Character chara, Tile tile)
     {
