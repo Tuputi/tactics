@@ -192,7 +192,7 @@ public class CharacterLogic : MonoBehaviour{
             damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = damageAmount.ToString();
         }
         damageText.transform.SetParent(chara.gameObject.transform);
-        damageText.transform.localPosition = new Vector3(0, 10f, 0);
+        damageText.transform.localPosition = new Vector3(0, chara.inturnmarkerheight, 0);
 
         UIManager.instance.UpdateStatusWindow(chara);
     }

@@ -208,8 +208,9 @@ public class Character : MonoBehaviour, System.IComparable
             currentItem = null;
             return;
         }
-        currentAction.CompleteAction(targetTile);
         targetTile.tileCharacter.PlayHurtAnimation();
+        currentAction.CompleteAction(targetTile);
+        
         currentAction = null;
         currentItem = null;
         targetTile = null;

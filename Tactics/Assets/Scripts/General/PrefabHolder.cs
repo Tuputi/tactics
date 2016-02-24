@@ -69,6 +69,7 @@ public enum BehaviourType { agressive, teamPlayer, healWhenHurt}
 public enum ConfirmationType { action, move};
 public enum GameMode { Editor, Game };
 public enum TargetAreaType { none, self, circular, line}
+public enum Elements { Fire, Water, Earth, Wind}
 
 //Names of different actions, used to reference to a dictionary of Actions
 public enum ActionType { MeeleeAttack, FireSpell, ShootArrow, Howl}
