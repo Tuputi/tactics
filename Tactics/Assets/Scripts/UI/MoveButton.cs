@@ -22,6 +22,9 @@ public class MoveButton : ButtonScript {
     {
         if (Selected)
         {
+            SelectionScript.ClearSelection();
+            TurnManager.instance.CurrentlyTakingTurn.possibleRange.Clear();
+            TurnManager.mode = TurnManager.TurnMode.undecided;
             UnselectButton();
             return;
         }
@@ -33,12 +36,6 @@ public class MoveButton : ButtonScript {
 
     public override void UnselectButton()
     {
-        if (Selected)
-        {
-            SelectionScript.ClearSelection();
-            TurnManager.instance.CurrentlyTakingTurn.possibleRange.Clear();
-            TurnManager.mode = TurnManager.TurnMode.undecided;
-        }
         MyImage.sprite = UnselectedButton;
         Selected = false;
     }

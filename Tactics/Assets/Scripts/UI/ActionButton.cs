@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.UI;
-using System;
 
 public class ActionButton : ButtonScript {
 
@@ -26,7 +24,7 @@ public class ActionButton : ButtonScript {
         if (UIManager.instance.InventoryOpen)
         {
             UIManager.instance.CloseInventory();
-            if (Selected)
+            if (this.Selected)
             {
                 SelectionScript.ClearSelection();
                 TurnManager.instance.CurrentlyTakingTurn.possibleRange.Clear();
