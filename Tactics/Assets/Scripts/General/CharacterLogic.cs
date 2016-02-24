@@ -193,6 +193,7 @@ public class CharacterLogic : MonoBehaviour{
         }
         damageText.transform.SetParent(chara.gameObject.transform);
         damageText.transform.localPosition = new Vector3(0, 10f, 0);
+
         UIManager.instance.UpdateStatusWindow(chara);
     }
 

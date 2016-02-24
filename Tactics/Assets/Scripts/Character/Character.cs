@@ -148,6 +148,20 @@ public class Character : MonoBehaviour, System.IComparable
 
     //Animation Controllers
 
+    public void PlayHurtAnimation()
+    {
+        if (characterAnimator == null)
+        {
+            characterAnimator = this.gameObject.GetComponent<Animator>();
+        }
+        characterAnimator.SetBool("Hurt", true);
+    }
+
+    public void FinishHurtAnimation()
+    {
+        characterAnimator.SetBool("Hurt", false);
+    }
+
     public void PlayAttackanimation(string AttackAnimationName)
     {
         //AttachWeapon();
@@ -195,6 +209,7 @@ public class Character : MonoBehaviour, System.IComparable
             return;
         }
         currentAction.CompleteAction(targetTile);
+        targetTile.tileCharacter.PlayHurtAnimation();
         currentAction = null;
         currentItem = null;
         targetTile = null;

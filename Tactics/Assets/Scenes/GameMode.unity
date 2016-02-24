@@ -2592,6 +2592,48 @@ Camera:
   m_PrefabParentObject: {fileID: 2055280, guid: c5daf5f0935acde4883038e675454d46,
     type: 2}
   m_PrefabInternal: {fileID: 1244632270}
+--- !u!1001 &1590349210
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 448096, guid: fd77b03dcd7803345b503d14da4c1fc5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 448096, guid: fd77b03dcd7803345b503d14da4c1fc5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 448096, guid: fd77b03dcd7803345b503d14da4c1fc5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 448096, guid: fd77b03dcd7803345b503d14da4c1fc5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 448096, guid: fd77b03dcd7803345b503d14da4c1fc5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 448096, guid: fd77b03dcd7803345b503d14da4c1fc5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 448096, guid: fd77b03dcd7803345b503d14da4c1fc5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 448096, guid: fd77b03dcd7803345b503d14da4c1fc5, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: fd77b03dcd7803345b503d14da4c1fc5, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1597586376
 Prefab:
   m_ObjectHideFlags: 0
@@ -2790,6 +2832,11 @@ Prefab:
       propertyPath: actions.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: 07b6a544aca0a094a89e59f16be8d8d7,
+        type: 2}
+    - target: {fileID: 11475372, guid: bc56caf5af46eb546a654777b32bea9a, type: 2}
+      propertyPath: characters.Array.data[1]
+      value: 
+      objectReference: {fileID: 11465816, guid: fd77b03dcd7803345b503d14da4c1fc5,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc56caf5af46eb546a654777b32bea9a, type: 2}
