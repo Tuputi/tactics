@@ -46,7 +46,7 @@ public class ActionButton : ButtonScript {
         if (OpenInventory)
         {
             SelectionScript.ClearSelection();
-            UIManager.instance.OpenInventory(actionType);
+            UIManager.instance.OpenInventory(actionType, TurnManager.instance.CurrentlyTakingTurn.inventoryType);
             SelectButton();
             UIManager.instance.UnselectAllActionButtonsExcept(this);
         }

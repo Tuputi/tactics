@@ -24,6 +24,7 @@ public class Character : MonoBehaviour, System.IComparable
     public Resistance WaterStatus;
     public Resistance EarthStatus;
     public Resistance WindStatus;
+    public InventoryType inventoryType;
 
     public Dictionary<Elements, Resistance> elementalResistances;
 

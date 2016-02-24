@@ -76,9 +76,13 @@ public class CameraScript : MonoBehaviour {
     //code by aldonaletto 
     IEnumerator MoveToTarget(Transform myTarget)
     {
+
+        Vector3 heading = myTarget.position - this.gameObject.transform.position;
+        float distance = Vector3.Dot(heading, this.gameObject.transform.forward);
+
         Vector3 targetPos = new Vector3(myTarget.transform.position.x, this.gameObject.transform.position.y, myTarget.transform.position.z);
         Vector3 sourcePos = this.gameObject.transform.position;
-        Vector3 destPos = targetPos - transform.forward * viewDistance;
+        Vector3 destPos = targetPos - transform.forward * distance;
 
 
        // destPos += transform.right * (viewDistance);

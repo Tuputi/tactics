@@ -6,17 +6,23 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour{
 
     public GameObject ButtonHolder;
-    UIInventory UIInventory;
+
+    public List<GameObject> inventoryTemplates;
+    Dictionary<InventoryType, GameObject> inventoryDictionary;
+    GameObject CurrentUIInventory; 
+
     GameObject NextTurnButton;
     public GameObject ActionButtonBase;
     public GameObject BasicButtonBase;
+
     public Camera gameCamera;
-    public Toggle rotationToggle;
-    public Toggle tiltToggle;
+
     public GameObject InTurnMarker;
     private GameObject MyInTurnMarker;
+
     public GameObject GameOverScreen;
     private GameObject GameOverInstance;
+
     public GameObject AttackName;
     private GameObject AttackNameInstance;
     private Text AttackNameText;
@@ -50,10 +56,11 @@ public class UIManager : MonoBehaviour{
         hpValue = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValue").GetComponent<Text>();
         hpValueMax = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValueMax").GetComponent<Text>();
         characterName = StatusTemplate.transform.FindChild("Name").GetComponent<Text>();
-        UIInventory = GameObject.Find("Inventory").GetComponent<UIInventory>();
-        UIInventory.gameObject.SetActive(false);
+
         MyInTurnMarker = Instantiate(InTurnMarker);
 
+        inventoryDictionary = new Dictionary<InventoryType, GameObject>();
+        inventoryDictionary.Add(InventoryType.archer, inventoryTemplates[0]);
 
         AttackNameInstance = Instantiate(AttackName);
         AttackNameInstance.transform.SetParent(GameObject.Find("Canvas").transform,false);
@@ -152,7 +159,7 @@ public class UIManager : MonoBehaviour{
     }
 
 
-    public void OpenInventory(ActionType at)
+    public void OpenInventory(ActionType at, InventoryType invType)
     {
         if (InventoryOpen)
         {
@@ -161,21 +168,33 @@ public class UIManager : MonoBehaviour{
         InventoryOpen = true;
         PendingActionType = at;
         AttackBase abc = PrefabHolder.instance.actionDictionary[at];
-        UIInventory.gameObject.SetActive(true);
+        SetUpUiInventory(invType);
        foreach(ItemBase item in TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetWholeInventory())
        {
             if (abc.CompatibleItem(item))
             {
-                UIInventory.GetComponent<UIInventory>().AddItem(item);
+                CurrentUIInventory.GetComponent<UIInventory>().AddItem(item);
             }
         }
+    }
+
+    private void SetUpUiInventory(InventoryType invType)
+    {
+        CurrentUIInventory = Instantiate(inventoryDictionary[invType]);
+        CurrentUIInventory.transform.SetParent(GameObject.Find("Canvas").transform,false);
+        CurrentUIInventory.transform.SetAsFirstSibling();
+
+        ItemInfoHolder = CurrentUIInventory.transform.FindChild("ItemInfo").gameObject;
+        ItemName = ItemInfoHolder.transform.FindChild("ItemName").GetComponent<Text>();
+        ItemImage = ItemInfoHolder.transform.FindChild("ItemImage").GetComponent<Image>();
+        ItemEffectOnRange = ItemInfoHolder.transform.FindChild("RangeEffect").GetComponent<Text>();
     }
 
     public void CloseInventory()
     {
         InventoryOpen = false;
         CloseItemInfo();
-        UIInventory.CloseInventory();
+        CurrentUIInventory.GetComponent<UIInventory>().CloseInventory();
     }
 
     public void DisplayItemInfo(ItemBase item)
@@ -202,7 +221,7 @@ public class UIManager : MonoBehaviour{
 
     public void SelectItemFromItemInfo()
     {
-        foreach(GameObject invSlot in UIInventory.InventorySlots)
+        foreach(GameObject invSlot in CurrentUIInventory.GetComponent<UIInventory>().InventorySlots)
         {
             InventorySlot iS = invSlot.GetComponent<InventorySlot>();
             if (iS.slotSelected)
