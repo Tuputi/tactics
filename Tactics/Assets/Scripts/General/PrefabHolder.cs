@@ -32,12 +32,10 @@ public class PrefabHolder : MonoBehaviour {
     public List<TileObject> tileObjects;
     public List<Character> characters;
     public List<AttackBase> actions;
-    public List<ItemBase> items;
 
     //dictionaries
     [HideInInspector]
     public Dictionary<ActionType, AttackBase> actionDictionary;
-    //public Dictionary<ItemType, ItemBase> itemDictionary;
 
     [Header("Misc")]
     public GameObject Bow;
@@ -47,15 +45,10 @@ public class PrefabHolder : MonoBehaviour {
     {
         instance = this;
         actionDictionary = new Dictionary<ActionType, AttackBase>();
-        //itemDictionary = new Dictionary<ItemType, ItemBase>();
         foreach(AttackBase ab in actions)
         {
             actionDictionary.Add(ab.GetActionType(), ab);
         }
-        /*foreach (var item in ItemList.)
-        {
-            itemDictionary.Add(item.GetItemType(),item);
-        }*/
     }
 }
 

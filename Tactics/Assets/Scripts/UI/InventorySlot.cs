@@ -68,7 +68,6 @@ public class InventorySlot : MonoBehaviour {
     {
         TurnManager.instance.Action(UIManager.instance.PendingActionType, MyItem);
         UIManager.instance.CloseInventory();
-        UIManager.instance.CloseItemInfo();
         parentInventory.UnselectSlots();
     }
 

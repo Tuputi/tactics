@@ -17,6 +17,7 @@ public class ItemBase : ActionBaseClass {
     public float EffectToTArgetArea = 0;
     public float EffectToDamageStatic = 0;
     public float EffectToDamageMultiplayer = 1f;
+    public List<Elements> addElement;
 
 
     //to distinguish between unique items at some point
@@ -38,7 +39,12 @@ public class ItemBase : ActionBaseClass {
         EffectToTArgetArea = effectToTargetArea;
         EffectToDamageStatic = effectToDamageStatic;
         EffectToDamageMultiplayer = effectToDamageMultiplayer;
-}
+    }
+
+    public void InitElement(List<Elements> elements)
+    {
+        addElement = new List<Elements>(elements);
+    }
 
     public ItemType GetItemType()
     {

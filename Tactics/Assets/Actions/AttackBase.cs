@@ -114,8 +114,24 @@ public class AttackBase : ActionBaseClass{
                         Debug.Log("heightAdvantage");
                     }
 
+                    if (TurnManager.instance.CurrentlyTakingTurn.currentItem != null)
+                    {
+                        if(ElementalAttributes == null)
+                        {
+                            ElementalAttributes = new List<Elements>();
+                        }
+                        foreach(Elements element in TurnManager.instance.CurrentlyTakingTurn.currentItem.addElement)
+                        {
+                            if (!ElementalAttributes.Contains(element))
+                            {
+                                ElementalAttributes.Add(element);
+                                Debug.Log("Added " + element);
+                            }
+                        }
+                    }
+
                     //elemental effects
-                    int finalDamage = GetElementalEffects(targetTile.tileCharacter, damage);
+                    int finalDamage = GetElementalEffects(t.tileCharacter, damage);
 
                     if (finalDamage == 0 && !(displayText == DisplayTexts.immune))
                     {

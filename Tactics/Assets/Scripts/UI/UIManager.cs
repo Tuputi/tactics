@@ -61,6 +61,8 @@ public class UIManager : MonoBehaviour{
 
         inventoryDictionary = new Dictionary<InventoryType, GameObject>();
         inventoryDictionary.Add(InventoryType.archer, inventoryTemplates[0]);
+        inventoryDictionary.Add(InventoryType.mage, inventoryTemplates[1]);
+
 
         AttackNameInstance = Instantiate(AttackName);
         AttackNameInstance.transform.SetParent(GameObject.Find("Canvas").transform,false);
@@ -193,6 +195,10 @@ public class UIManager : MonoBehaviour{
     public void CloseInventory()
     {
         InventoryOpen = false;
+        if (CurrentUIInventory == null)
+        {
+            return;
+        }
         CloseItemInfo();
         CurrentUIInventory.GetComponent<UIInventory>().CloseInventory();
     }
@@ -216,6 +222,10 @@ public class UIManager : MonoBehaviour{
 
     public void CloseItemInfo()
     {
+        if(ItemInfoHolder == null)
+        {
+            return;
+        }
         ItemInfoHolder.SetActive(false);
     }
 

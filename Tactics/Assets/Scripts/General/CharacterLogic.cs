@@ -86,6 +86,7 @@ public class CharacterLogic : MonoBehaviour{
             ItemBase template = ItemList.GetItem(item);
             newItem.Init(template.ItemCount, template.ItemName, template.itemType, template.ItemSprite, template.ItemMaxStackSize);
             newItem.InitEffect(template.EffectToRange, template.EffectToTArgetArea, template.EffectToDamageStatic, template.EffectToDamageMultiplayer);
+            newItem.InitElement(template.addElement);
             newItem.ItemId = id;
             newItem.itemCategories = template.itemCategories;
             id++;
