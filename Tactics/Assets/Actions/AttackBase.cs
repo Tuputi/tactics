@@ -8,14 +8,38 @@ public class AttackBase : ActionBaseClass{
     public int minDamage = 0;
     public int maxDamage = 0;
     public int MPCost = 0;
-    public int hitChance;
+    public int HitChance;
     public ActionType actionType = ActionType.MeeleeAttack;
     public List<ItemType> compatibleItems;
     public List<Elements> ElementalAttributes;
 
+    [HideInInspector]
+    public int ActionID;
+
     private DisplayTexts displayText = DisplayTexts.none;
 
+    public void Init(string attackName, int minDama, int maxDama, int Mpcost, int hitChance, ActionType actType, float baseRange, string animaName)
+    {
+        AttackName = attackName;
+        minDamage = minDama;
+        maxDamage = maxDama;
+        MPCost = Mpcost;
+        HitChance = hitChance;
+        actionType = actType;
+        BasicRange = baseRange;
+        AnimationName = animaName;
+    }
 
+    public void InitCompatibleItems(List<ItemType> compItems, bool withitems)
+    {
+        compatibleItems = compItems;
+        UsedWithItems = withitems;
+    }
+
+    public void InitElements(List<Elements> elementAttributes)
+    {
+        ElementalAttributes = elementAttributes;
+    }
 
     public virtual ActionType GetActionType()
     {
@@ -113,25 +137,22 @@ public class AttackBase : ActionBaseClass{
                         damage *= 2;
                         Debug.Log("heightAdvantage");
                     }
-
+                List<Elements> tempElements = new List<Elements>(ElementalAttributes);
                     if (TurnManager.instance.CurrentlyTakingTurn.currentItem != null)
                     {
-                        if(ElementalAttributes == null)
-                        {
-                            ElementalAttributes = new List<Elements>();
-                        }
+                        
                         foreach(Elements element in TurnManager.instance.CurrentlyTakingTurn.currentItem.addElement)
                         {
-                            if (!ElementalAttributes.Contains(element))
+                            if (!tempElements.Contains(element))
                             {
-                                ElementalAttributes.Add(element);
+                                tempElements.Add(element);
                                 Debug.Log("Added " + element);
                             }
                         }
                     }
 
                     //elemental effects
-                    int finalDamage = GetElementalEffects(t.tileCharacter, damage);
+                    int finalDamage = GetElementalEffects(t.tileCharacter, damage, tempElements);
 
                     if (finalDamage == 0 && !(displayText == DisplayTexts.immune))
                     {
@@ -144,17 +165,16 @@ public class AttackBase : ActionBaseClass{
                     displayText = DisplayTexts.none;
                 }
 
-           // }
         }
         attackArea.Clear();
         return 1;
     }
 
-    private int GetElementalEffects(Character TargetCharacter, float damage)
+    private int GetElementalEffects(Character TargetCharacter, float damage, List<Elements> elementList)
     {
         bool absorb = false;
         float tempDamage = damage;
-        foreach (Elements element in ElementalAttributes)
+        foreach (Elements element in elementList)
         {
             Resistance res = TargetCharacter.elementalResistances[element];
             switch (res)
@@ -191,7 +211,7 @@ public class AttackBase : ActionBaseClass{
 
     public override int GetHitChance(Tile targetTile)
     {
-        float tempHitChange = hitChance;
+        float tempHitChange = HitChance;
         foreach (Tile t in attackArea)
         {
             if (t.isOccupied)

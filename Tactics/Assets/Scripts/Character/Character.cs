@@ -18,7 +18,7 @@ public class Character : MonoBehaviour, System.IComparable
     public float TravelSpeed = 0.1f;
     public bool isAi = false;
 
-    public List<AttackBase> availableAttacks;
+    public List<ActionType> ActionTypes;
 
     public Resistance FireStatus;
     public Resistance WaterStatus;
@@ -47,6 +47,9 @@ public class Character : MonoBehaviour, System.IComparable
     public List<Tile> possibleRange;
     [HideInInspector]
     public bool AttackMissed = false;
+    [HideInInspector]
+    public List<AttackBase> AvailableActions;
+    public Dictionary<ActionType, AttackBase> AvailableActionDictionary;
 
     //Movement
     [HideInInspector]

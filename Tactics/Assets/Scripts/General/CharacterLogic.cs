@@ -94,6 +94,46 @@ public class CharacterLogic : MonoBehaviour{
         }
     }
 
+    //mainly for human players
+    public void CreateAttackList(Character chara)
+    {
+        int id = 0;
+        chara.AvailableActions = new List<AttackBase>();
+        chara.AvailableActionDictionary = new Dictionary<ActionType, AttackBase>();
+        Debug.Log("Chara ActionTypes " + chara.ActionTypes.Count);
+        foreach (ActionType attack in chara.ActionTypes)
+        {
+            AttackBase newAttack = ScriptableObject.CreateInstance<AttackBase>();
+            AttackBase template = ActionList.GetAction(attack);
+            newAttack.Init(template.AttackName, template.minDamage, template.maxDamage, template.MPCost, template.HitChance, template.actionType, template.BasicRange, template.AnimationName);
+            newAttack.InitCompatibleItems(template.compatibleItems, template.UsedWithItems);
+            newAttack.InitElements(template.ElementalAttributes);
+            newAttack.ActionID = id;
+            id++;
+            chara.AvailableActions.Add(newAttack);
+            chara.AvailableActionDictionary.Add(attack, newAttack);
+        }
+    }
+
+    //mainly for ai
+    public void CreateAttackList(Character chara, List<ActionType> actionTypeList)
+    {
+        int id = 0;
+        chara.AvailableActions = new List<AttackBase>();
+        foreach (ActionType attack in actionTypeList)
+        {
+            AttackBase newAttack = ScriptableObject.CreateInstance<AttackBase>();
+            AttackBase template = ActionList.GetAction(attack);
+            newAttack.Init(template.AttackName, template.minDamage, template.maxDamage, template.MPCost, template.HitChance, template.actionType, template.BasicRange, template.AnimationName);
+            newAttack.InitCompatibleItems(template.compatibleItems, template.UsedWithItems);
+            newAttack.InitElements(template.ElementalAttributes);
+            newAttack.ActionID = id;
+            id++;
+            chara.AvailableActions.Add(newAttack);
+            chara.AvailableActionDictionary.Add(attack, newAttack);
+        }
+    }
+
     private void SelectMultipleTiles(List<Tile> tiles)
     {
         SelectionScript.selectMultiple = true;

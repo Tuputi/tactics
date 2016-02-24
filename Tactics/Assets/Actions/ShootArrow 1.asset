@@ -18,9 +18,10 @@ MonoBehaviour:
   attackArea: []
   AttackName: Shoot Arrow
   minDamage: 10
-  maxDamage: 29
+  maxDamage: 30
   MPCost: 0
-  hitChance: 100
+  HitChance: 100
   actionType: 2
   compatibleItems: 0200000003000000
-  ElementalAttributes: 00000000
+  ElementalAttributes: 
+  ActionID: 0

@@ -795,12 +795,12 @@ MonoBehaviour:
   rangedRange: 5
   TravelSpeed: 0.1
   isAi: 1
-  availableAttacks:
-  - {fileID: 11400000, guid: 07b6a544aca0a094a89e59f16be8d8d7, type: 2}
+  ActionTypes: 03000000
   FireStatus: 4
   WaterStatus: 0
   EarthStatus: 0
   WindStatus: 0
+  inventoryType: 0
   characterPosition: {fileID: 0}
   currentItem: {fileID: 0}
   currentAction: {fileID: 0}
@@ -808,6 +808,8 @@ MonoBehaviour:
   MoveCompleted: 1
   targetTile: {fileID: 0}
   possibleRange: []
+  AttackMissed: 0
+  AvailableActions: []
   facing: 2
   hpMax: 50
   mpMax: 15
@@ -896,6 +898,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: ActionTypes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: publicBehaviorList.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -911,6 +917,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: FireStatus
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ActionTypes.Array.data[0]
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -22,7 +22,7 @@ public class AiModule : MonoBehaviour {
         myCharacter.isAi = true;
 
         behaviourList = new Dictionary<BehaviourType, BehaviourModuleBase>();
-        myCharacter.availableAttacks = new List<AttackBase>();
+        myCharacter.ActionTypes = new List<ActionType>();
         foreach (BehaviourModuleBase bmb in publicBehaviorList)
         {
             behaviourList.Add(bmb.behaviorType, bmb);
@@ -112,9 +112,9 @@ public class AiModule : MonoBehaviour {
     public bool AttackTarget()
     {
         TurnManager.mode = TurnManager.TurnMode.action;
-        foreach (AttackBase ab in myCharacter.availableAttacks)
+        foreach (AttackBase ab in myCharacter.AvailableActions)
         {
-            Debug.Log(ab.name);
+            Debug.Log(ab.AttackName);
             List<Tile> attackRange = ab.CalculateActionRange(myCharacter.characterPosition);
             foreach (Tile t in attackRange)
             {
@@ -150,7 +150,7 @@ public class AiModule : MonoBehaviour {
 
         //from which distance can we attack the target?
         tempTotalAttackRange = new List<Tile>();
-        foreach(AttackBase ab in myCharacter.availableAttacks)
+        foreach(AttackBase ab in myCharacter.AvailableActions)
         {
             foreach(Tile t in ab.CalculateActionRange(targetTile))
             {
@@ -242,7 +242,7 @@ public class AiModule : MonoBehaviour {
         foreach(Character cha in possibleCharas)
         {
             tempTotalAttackRange = new List<Tile>();
-            foreach (AttackBase ab in myCharacter.availableAttacks)
+            foreach (AttackBase ab in myCharacter.AvailableActions)
             {
                 foreach (Tile t in ab.CalculateActionRange(cha.characterPosition))
                 {

@@ -19,6 +19,6 @@ public class BehaviourModuleBase : MonoBehaviour {
 
     virtual public void SetAvailableAttacks(Character currentCharacter)
     {
-        currentCharacter.GetComponent<Character>().availableAttacks = new List<AttackBase>();
+        CharacterLogic.instance.CreateAttackList(currentCharacter);
     }
 }

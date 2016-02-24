@@ -20,7 +20,8 @@ MonoBehaviour:
   minDamage: 15
   maxDamage: 30
   MPCost: 0
-  hitChance: 100
+  HitChance: 100
   actionType: 4
   compatibleItems: 
   ElementalAttributes: 
+  ActionID: 0

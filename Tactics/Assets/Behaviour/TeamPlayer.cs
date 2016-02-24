@@ -83,8 +83,6 @@ public class TeamPlayer : BehaviourModuleBase {
 
     public override void SetAvailableAttacks(Character currentCharacter)
     {
-        List<AttackBase> temp = new List<AttackBase>();
-        temp = currentCharacter.availableAttacks;
-        currentCharacter.GetComponent<Character>().availableAttacks = temp;
+        CharacterLogic.instance.CreateAttackList(currentCharacter);
     }
 }

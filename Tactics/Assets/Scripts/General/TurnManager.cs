@@ -50,6 +50,9 @@ public class TurnManager : MonoBehaviour {
             {
                 CharacterLogic.instance.CreateInventory(chara);
             }
+
+            CharacterLogic.instance.CreateAttackList(chara);
+
         }
     }
 
@@ -97,7 +100,8 @@ public class TurnManager : MonoBehaviour {
         hasActed = false;
         hasMoved = false;
         UIManager.instance.UpdateButtons();
-        UIManager.instance.CreateActionButton(CurrentlyTakingTurn.availableAttacks);
+        CharacterLogic.instance.CreateAttackList(CurrentlyTakingTurn);
+        UIManager.instance.CreateActionButton(CurrentlyTakingTurn.AvailableActions);
         SelectionScript.ClearSelection();
         CurrentlyTakingTurn.characterPosition.SelectThis();
         CameraScript.instance.SetMoveTarget(CurrentlyTakingTurn.gameObject);
@@ -131,7 +135,7 @@ public class TurnManager : MonoBehaviour {
         if (!hasActed)
         {
             mode = TurnMode.action;
-            CharacterLogic.instance.Action(CurrentlyTakingTurn, PrefabHolder.instance.actionDictionary[at]);
+            CharacterLogic.instance.Action(CurrentlyTakingTurn, CurrentlyTakingTurn.AvailableActionDictionary[at]);
         }
         else
         {
@@ -146,7 +150,7 @@ public class TurnManager : MonoBehaviour {
         if (!hasActed)
         {
             mode = TurnMode.action;
-            CharacterLogic.instance.Action(CurrentlyTakingTurn, PrefabHolder.instance.actionDictionary[at], ib);
+            CharacterLogic.instance.Action(CurrentlyTakingTurn, CurrentlyTakingTurn.AvailableActionDictionary[at], ib);
         }
         else
         {
