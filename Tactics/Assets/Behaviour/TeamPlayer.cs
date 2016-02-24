@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class TeamPlayer : BehaviourModuleBase {
 
+    private List<AttackBase> activeAttacks;
+
 	void Awake()
     {
 
@@ -11,86 +13,78 @@ public class TeamPlayer : BehaviourModuleBase {
 
     public override bool CheckConditions(Character currentCharacter)
     {
-        List<Tile> reachableArea = Pathfinding.GetPossibleRange(currentCharacter.characterPosition, currentCharacter.movementRange, false);
-        bool friendsTargetFound = false;
-        foreach (Tile t in reachableArea)
+        List<Character> charas = new List<Character>();
+
+        //create a list of all characters of the same team with a target
+        foreach(Character cha in TurnManager.characters)
         {
-            if (t.isOccupied)
+            if(cha.isAi)
             {
-                if (t.tileCharacter.isAlive)
+                if (cha.GetComponent<AiModule>().targetCharacter != null)
                 {
-                    if (t.tileCharacter.isAi)
-                    {
-                        if (!t.tileCharacter.characterName.Equals(currentCharacter.characterName))
-                        {
-                            if (!(t.tileCharacter.GetComponent<AiModule>().targetCharacter == null) && !(t.tileCharacter.GetComponent<AiModule>().targetCharacter.isAi))
-                            {
-                                friendsTargetFound = true;
-                                break;
-                            }
-                        }
-                    }
+                    charas.Add(cha);
                 }
             }
         }
-        Debug.Log("TeamPlayer = "+friendsTargetFound);
-        return friendsTargetFound;
+
+        foreach(Character c in charas)
+        {
+           float distance = Pathfinding.GetHeuristic(c.GetComponent<AiModule>().targetCharacter.characterPosition, currentCharacter.characterPosition);
+            if (distance <= currentCharacter.movementRange + 1)
+            {
+                Debug.Log("Teamplayer active");
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public override Tile GetTarget(Character currentCharacter)
     {
-        List<Tile> reachableArea = Pathfinding.GetPossibleRange(currentCharacter.characterPosition, currentCharacter.movementRange, true);
-        List<Character> friendsTargets = new List<Character>();
-        foreach (Tile t in reachableArea)
+        Character closestToMe = null;
+        List<Character> charas = new List<Character>();
+        foreach (Character cha in TurnManager.characters)
         {
-            if (t.isOccupied)
+            if (cha != currentCharacter)
             {
-                if (t.tileCharacter.isAlive)
+                if (cha.isAi)
                 {
-                    if (t.tileCharacter.isAi)
+                    if (cha.GetComponent<AiModule>().targetCharacter != null)
                     {
-                        if (!t.tileCharacter.characterName.Equals(currentCharacter.characterName))
-                        {
-                            if (!(t.tileCharacter.GetComponent<AiModule>().targetCharacter == null) && !(t.tileCharacter.GetComponent<AiModule>().targetCharacter.isAi))
-                            {
-                                friendsTargets.Add(t.tileCharacter.GetComponent<AiModule>().targetCharacter);
-                            }
-                        }
+                        charas.Add(cha);
+                    }
+                }
+            }
+        }
+        foreach (Character chara in charas)
+        {
+            float distance = Pathfinding.GetHeuristic(chara.GetComponent<AiModule>().targetCharacter.characterPosition, currentCharacter.characterPosition);
+            if (distance <= currentCharacter.movementRange + 1)
+            {
+                if(closestToMe == null)
+                {
+                    closestToMe = chara.GetComponent<AiModule>().targetCharacter;
+                }
+                else
+                {
+                    if(distance < Pathfinding.GetHeuristic(closestToMe.characterPosition, currentCharacter.characterPosition))
+                    {
+                        closestToMe = chara.GetComponent<AiModule>().targetCharacter;
                     }
                 }
             }
         }
 
-        Character closestToMe = null;
-     
-        foreach (Character chara in friendsTargets)
-        {
-                if (closestToMe == null)
-                {
-                    closestToMe = chara;
-                }
-                else if (!(chara == null) && Pathfinding.GetHeuristic(currentCharacter.characterPosition, chara.characterPosition) < Pathfinding.GetHeuristic(currentCharacter.characterPosition, closestToMe.characterPosition))
-                {
-                    closestToMe = chara;
-                }
-        }
+        Debug.Log("Closest to me is " + closestToMe);
+        return closestToMe.characterPosition;
 
-        if(closestToMe == null)
-        {
-            Debug.Log("null in closesttome");
-            return null;
-        }
-        else
-        {
-            return closestToMe.characterPosition;
-        }      
     }
 
     public override void SetAvailableAttacks(Character currentCharacter)
     {
         List<AttackBase> temp = new List<AttackBase>();
-        temp.Add(PrefabHolder.instance.actionDictionary[ActionType.MeeleeAttack]);
-        temp.Add(PrefabHolder.instance.actionDictionary[ActionType.ShootArrow]);
+        temp = currentCharacter.availableAttacks;
         currentCharacter.GetComponent<Character>().availableAttacks = temp;
     }
 }

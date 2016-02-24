@@ -789,6 +789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Wolfy
   characterID: 1
+  inturnmarkerheight: 5
   characterEnergy: 5
   movementRange: 4
   rangedRange: 5
@@ -821,6 +822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetCharacter: {fileID: 0}
   publicBehaviorList:
+  - {fileID: 11484650, guid: f9122a78f59b3ba4fac4c08fe3802fba, type: 2}
   - {fileID: 11483754, guid: 874a514ecfcfef34b8cf379674a5e9c5, type: 2}
   currentBehaviour: {fileID: 0}
 --- !u!137 &13789402
@@ -890,9 +892,18 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: publicBehaviorList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_LocalPosition.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: publicBehaviorList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11484650, guid: f9122a78f59b3ba4fac4c08fe3802fba,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 148028}

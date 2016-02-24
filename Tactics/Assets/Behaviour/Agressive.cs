@@ -11,7 +11,7 @@ public class Agressive : BehaviourModuleBase {
 
     public override Tile GetTarget(Character currentCharacter)
     {
-        return Pathfinding.FindTarget(currentCharacter.characterPosition,false);
+        return Pathfinding.FindClosestEnemy(currentCharacter.characterPosition,false);
     }
 
     public override void SetAvailableAttacks(Character currentCharacter)

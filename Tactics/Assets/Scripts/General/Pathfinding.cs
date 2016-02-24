@@ -257,7 +257,10 @@ public class Pathfinding : MonoBehaviour {
                     {
                         if (attackPositions.Contains(t))
                         {
-                            return t;
+                            if (!t.isOccupied || t == tile)
+                            {
+                                return t;
+                            }
                         }
                         openList.Add(t);
                     }
@@ -270,7 +273,7 @@ public class Pathfinding : MonoBehaviour {
         return null;
     }
 
-    public static Tile FindTarget(Tile tile, bool isAi)
+    public static Tile FindClosestEnemy(Tile tile, bool isAi)
     {
         List<Character> templist = new List<Character>();
         foreach(Character cha in TurnManager.characters)

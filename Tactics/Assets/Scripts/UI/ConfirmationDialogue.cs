@@ -22,6 +22,10 @@ public class ConfirmationDialogue : MonoBehaviour{
         SituationDesc = DialogueTemplate.transform.FindChild("SituationDesc").GetComponent<Text>();
         HitChanceText = DialogueTemplate.transform.FindChild("HitChangeText").GetComponent<Text>();
         templateHeight = DialogueTemplate.GetComponent<RectTransform>().rect.height;
+        if(Application.platform == RuntimePlatform.Android)
+        {
+            templateHeight *= 3;
+        }
         DialogueTemplate.SetActive(false);
     }
 
@@ -55,7 +59,7 @@ public class ConfirmationDialogue : MonoBehaviour{
         }
         else
         {
-            position += new Vector3(0,-templateHeight,0);
+            position += new Vector3(0,-templateHeight/2,0);
         }
         DialogueTemplate.transform.position = position;
         DialogueTemplate.SetActive(true);

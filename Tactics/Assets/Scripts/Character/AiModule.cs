@@ -13,6 +13,9 @@ public class AiModule : MonoBehaviour {
     private List<Tile> tempTotalAttackRange;
     private Character myCharacter;
 
+    bool waitingToCompleteMove = false;
+    bool waitingToCompleteAttack = false;
+
     void Awake()
     {
         myCharacter = this.gameObject.GetComponent<Character>();
@@ -29,27 +32,19 @@ public class AiModule : MonoBehaviour {
     public void TakeTurn()
     {
         SelectBehaviour();
-        //can I atack target?
         bool DoSearch = AttackTarget();
         if (DoSearch)
         {
-           //move towards target
            AiMove();
            waitingToCompleteMove = true;
-           //wait here until movement completed
-           //try to attack target
-           //AttackTarget();
-            //wait here until attack complete
         }
         else
         {
             waitingToCompleteAttack = true;
         }
-        //Debug.Log("turn done");
     }
 
-    bool waitingToCompleteMove = false;
-    bool waitingToCompleteAttack = false;
+
 
     void Update()
     {
@@ -142,11 +137,15 @@ public class AiModule : MonoBehaviour {
     public void AiMove()
     {
         TurnManager.mode = TurnManager.TurnMode.move;
-        Tile targetTile = Pathfinding.FindTarget(myCharacter.characterPosition, false);
-        if(targetTile == null)
+
+        Tile targetTile = null;
+        if (targetCharacter == null)
         {
-            Debug.Log("No target tile found");
-            return;
+            targetTile = Pathfinding.FindClosestEnemy(myCharacter.characterPosition, false);
+        }
+        else
+        {
+            targetTile = targetCharacter.characterPosition;
         }
 
         //from which distance can we attack the target?
@@ -161,8 +160,54 @@ public class AiModule : MonoBehaviour {
                 }
             }
         }
-
+        //gototile is the closest position where an attack reachers the enemy
         Tile goToTile = Pathfinding.FindTargetTile(myCharacter.characterPosition, tempTotalAttackRange);
+
+        if(goToTile == null)
+        {
+            //silertejp
+            foreach(Tile t in targetTile.neighbours)
+            {
+                if(!t.isOccupied && t.isWalkable)
+                {
+                    goToTile = t;
+                }
+            }
+            if(goToTile == null)
+            {
+                List<Tile> largerSearch = new List<Tile>();
+                foreach(Tile t in targetTile.neighbours)
+                {
+                    largerSearch.Add(t);
+                    foreach(Tile ti in t.neighbours)
+                    {
+                        largerSearch.Add(ti);
+                    }
+                }
+
+                foreach(Tile til in largerSearch)
+                {
+                    if (!til.isOccupied && til.isWalkable)
+                    {
+                        goToTile = til;
+                    }
+                }
+            }
+            if(goToTile == null)
+            {
+                Debug.Log("Do nothing");
+                return;
+            }
+
+
+           /* goToTile = FindAnAccessableTarget();
+            if(goToTile == null)
+            {
+                Debug.Log("No target possible,  wahtsoever");
+                return;
+            }*/
+        }
+
         List<Tile> foundPath = Pathfinding.GetPath(myCharacter.characterPosition, goToTile);
 
         if (foundPath !=null)
@@ -183,5 +228,34 @@ public class AiModule : MonoBehaviour {
         }
     }
 
+    private Tile FindAnAccessableTarget()
+    {
+        List<Character> possibleCharas = new List<Character>();
+        foreach(Character chara in TurnManager.characters)
+        {
+            if (!chara.isAi)
+            {
+                possibleCharas.Add(chara);
+            }
+        }
+
+        foreach(Character cha in possibleCharas)
+        {
+            tempTotalAttackRange = new List<Tile>();
+            foreach (AttackBase ab in myCharacter.availableAttacks)
+            {
+                foreach (Tile t in ab.CalculateActionRange(cha.characterPosition))
+                {
+                    if (!tempTotalAttackRange.Contains(t))
+                    {
+                        tempTotalAttackRange.Add(t);
+                    }
+                }
+            }
+        }
+
+        Tile GoToLargerSearch = Pathfinding.FindTargetTile(myCharacter.characterPosition, tempTotalAttackRange);
+        return GoToLargerSearch;
+    }
 
 }
