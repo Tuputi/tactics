@@ -89,13 +89,13 @@ public class AttackBase : ActionBaseClass{
         {
             if (t.isOccupied)
             {
-                if(Random.Range(1,100) < GetHitChance(t))
+               /* if(Random.Range(1,100) < GetHitChance(t))
                 {
                     Debug.Log("Missed this character");
                    t.tileCharacter.DisplayEffect(0, DisplayTexts.miss);
                 }
                 else
-                {
+                {*/
                     //base damage
                     int damage = Random.Range(minDamage, maxDamage);
                     damage *= -1;
@@ -128,7 +128,7 @@ public class AttackBase : ActionBaseClass{
                     displayText = DisplayTexts.none;
                 }
 
-            }
+           // }
         }
         attackArea.Clear();
         return 1;
@@ -182,7 +182,7 @@ public class AttackBase : ActionBaseClass{
             {
                 if (TurnManager.instance.CurrentlyTakingTurn.facing != t.tileCharacter.facing)
                 {
-                    tempHitChange -= tempHitChange * 0.3f;
+                    //tempHitChange -= tempHitChange * 0.1f;
                 }
             }
         }

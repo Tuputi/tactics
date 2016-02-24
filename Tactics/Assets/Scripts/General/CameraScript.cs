@@ -80,6 +80,7 @@ public class CameraScript : MonoBehaviour {
         Vector3 sourcePos = this.gameObject.transform.position;
         Vector3 destPos = targetPos - transform.forward * viewDistance;
 
+
        // destPos += transform.right * (viewDistance);
         float i = 0.0f;
         while (i < 1.0f)

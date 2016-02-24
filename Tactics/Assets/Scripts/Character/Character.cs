@@ -222,6 +222,7 @@ public class Character : MonoBehaviour, System.IComparable
 
     public void DisplayEffect(int damageAmount, DisplayTexts displayText)
     {
+        PlayHurtAnimation();
         GameObject damageText = (GameObject)Instantiate(PrefabHolder.instance.DamageText);
         if (damageAmount > 0)
         {
@@ -246,7 +247,6 @@ public class Character : MonoBehaviour, System.IComparable
 
         damageText.transform.SetParent(this.gameObject.transform);
         damageText.transform.localPosition = new Vector3(0, this.inturnmarkerheight, 0);
-
         UIManager.instance.UpdateStatusWindow(this);
     }
 
