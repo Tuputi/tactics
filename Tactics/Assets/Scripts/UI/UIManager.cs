@@ -262,7 +262,7 @@ public class UIManager : MonoBehaviour{
             i++;    
         }
 
-        ItemInfoAreaDisplay.instance.LightUpRange(TargetAreaType.line, item.EffectToTArgetArea);
+        ItemInfoAreaDisplay.instance.LightUpRange(TargetAreaType.line, item.EffectToTArgetArea + TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[PendingActionType].TargetAreaSize);
     }
 
 

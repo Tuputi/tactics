@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 866f388511c79ca43b0e0d2b317ed2e9, type: 3}
-  m_Name: ArrowWideHit
+  m_Name: Gunpowder
   m_EditorClassIdentifier: 
   BasicRange: 2
   TargetAreaSize: 1
@@ -17,14 +17,14 @@ MonoBehaviour:
   AnimationName: 
   UsedWithItems: 0
   attackArea: []
-  ItemCount: 3
-  ItemName: Explosive Arrow
+  ItemCount: 6
+  ItemName: Gunpowder
   ItemId: 0
-  itemType: 3
-  ItemSprite: {fileID: 21300000, guid: fc62bb8a8f2be3240bccb91f493d0221, type: 3}
-  ItemMaxStackSize: 10
-  itemCategories: 02000000
-  EffectToRange: -1
+  itemType: 4
+  ItemSprite: {fileID: 21300000, guid: 5907227a5f5c78e4d960ca151f1ded58, type: 3}
+  ItemMaxStackSize: 5
+  itemCategories: 020000000100000004000000
+  EffectToRange: 0
   EffectToTArgetArea: 1
   EffectToDamageStatic: 0
   EffectToDamageMultiplayer: 1
