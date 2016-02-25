@@ -9,6 +9,10 @@ public class UIManager : MonoBehaviour{
 
     public List<GameObject> inventoryTemplates;
     Dictionary<InventoryType, GameObject> inventoryDictionary;
+
+    public List<Image> elementIcons;
+    Dictionary<Elements, Image> elementIconDictionary;
+
     GameObject CurrentUIInventory; 
 
     GameObject NextTurnButton;
@@ -32,6 +36,7 @@ public class UIManager : MonoBehaviour{
     public Text ItemName;
     public Image ItemImage;
     public Text ItemEffectOnRange;
+    public GameObject ElementHolder;
 
 
     //statustemplate
@@ -39,6 +44,7 @@ public class UIManager : MonoBehaviour{
     Text hpValue;
     Text hpValueMax;
     Text characterName;
+    GameObject StatusElementHolder;
 
     List<ButtonScript> buttons;
     public static UIManager instance;
@@ -52,16 +58,25 @@ public class UIManager : MonoBehaviour{
         instance = this;
         buttons = new List<ButtonScript>();
         NextTurnButton = GameObject.Find("NextTurn");
+
+
         StatusTemplate = GameObject.Find("StatusDisplayTemplate");
         hpValue = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValue").GetComponent<Text>();
         hpValueMax = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValueMax").GetComponent<Text>();
         characterName = StatusTemplate.transform.FindChild("Name").GetComponent<Text>();
+        StatusElementHolder = StatusTemplate.transform.FindChild("ElementHolder").gameObject;
 
         MyInTurnMarker = Instantiate(InTurnMarker);
 
         inventoryDictionary = new Dictionary<InventoryType, GameObject>();
         inventoryDictionary.Add(InventoryType.archer, inventoryTemplates[0]);
         inventoryDictionary.Add(InventoryType.mage, inventoryTemplates[1]);
+
+        elementIconDictionary = new Dictionary<Elements, Image>();
+        elementIconDictionary.Add(Elements.Fire, elementIcons[0]);
+        elementIconDictionary.Add(Elements.Water, elementIcons[1]);
+        elementIconDictionary.Add(Elements.Earth, elementIcons[2]);
+        elementIconDictionary.Add(Elements.Wind, elementIcons[3]);
 
 
         AttackNameInstance = Instantiate(AttackName);
@@ -88,6 +103,18 @@ public class UIManager : MonoBehaviour{
         hpValue.text = chara.Hp.ToString();
         hpValueMax.text = chara.hpMax.ToString();
         characterName.text = chara.characterName;
+
+       
+        foreach (KeyValuePair<Elements, Resistance> er in chara.elementalResistances)
+        {
+            Text resText = StatusElementHolder.transform.FindChild(er.Key.ToString()).GetComponentInChildren<Text>();
+            resText.text = er.Value.ToString();
+        }
+
+
+
+
+
     }
     public void SetStatusWindowActiveStatus(bool visible)
     {
@@ -190,6 +217,7 @@ public class UIManager : MonoBehaviour{
         ItemName = ItemInfoHolder.transform.FindChild("ItemName").GetComponent<Text>();
         ItemImage = ItemInfoHolder.transform.FindChild("ItemImage").GetComponent<Image>();
         ItemEffectOnRange = ItemInfoHolder.transform.FindChild("RangeEffect").GetComponent<Text>();
+        ElementHolder = ItemInfoHolder.transform.FindChild("ElementHolder").gameObject;
     }
 
     public void CloseInventory()
@@ -217,8 +245,26 @@ public class UIManager : MonoBehaviour{
             ItemEffectOnRange.text = "Range: +" + item.EffectToRange.ToString();
         }
 
+        for (int d = 0; d < 4; d++)
+        {
+            GameObject child = ElementHolder.transform.GetChild(d).gameObject;
+            if (child.transform.childCount > 0)
+            {
+                Destroy(child.transform.GetChild(0).gameObject);
+            }
+        }
+        int i = 0;
+        foreach(Elements e in item.addElement)
+        {
+            Image newIcon = Instantiate(elementIconDictionary[e]);
+            newIcon.transform.SetParent(ElementHolder.transform.GetChild(i).transform, false);
+            newIcon.transform.localPosition = new Vector3(0, 0 , 0);
+            i++;    
+        }
+
         ItemInfoAreaDisplay.instance.LightUpRange(TargetAreaType.line, item.EffectToTArgetArea);
     }
+
 
     public void CloseItemInfo()
     {
@@ -226,6 +272,7 @@ public class UIManager : MonoBehaviour{
         {
             return;
         }
+   
         ItemInfoHolder.SetActive(false);
     }
 

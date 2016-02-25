@@ -43,16 +43,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonHolder: {fileID: 0}
+  inventoryTemplates:
+  - {fileID: 110874, guid: d2054c0c00b7a674f9c34b26d036e528, type: 2}
+  - {fileID: 141246, guid: 7a7589d179b76b34d8820da2a8b75b12, type: 2}
+  elementIcons:
+  - {fileID: 11457084, guid: 894546d4cce67fd40b580f4372b12fb5, type: 2}
+  - {fileID: 11469332, guid: 585de6d666e3d884f9957e27f64fd4d7, type: 2}
+  - {fileID: 11466598, guid: 35135f07c36b2954f90078034b853de2, type: 2}
+  - {fileID: 11490318, guid: 98acf39278e2bbd4eaddfe68c7168fd1, type: 2}
   ActionButtonBase: {fileID: 116466, guid: 211d9aacf2de6bd4881251f6a6f1c23a, type: 2}
   BasicButtonBase: {fileID: 107852, guid: bfb809322999fe1448f7da139bae9021, type: 2}
   gameCamera: {fileID: 0}
-  rotationToggle: {fileID: 0}
-  tiltToggle: {fileID: 0}
   InTurnMarker: {fileID: 100274, guid: c197063f9b305324fbc06e1436df2671, type: 2}
+  GameOverScreen: {fileID: 195598, guid: 6e1e674fe80840f40a1891f353b77c07, type: 2}
+  AttackName: {fileID: 131514, guid: fe7c275719583e64b9a79560cac4005a, type: 2}
   ItemInfoHolder: {fileID: 0}
   ItemName: {fileID: 0}
   ItemImage: {fileID: 0}
   ItemEffectOnRange: {fileID: 0}
+  ElementHolder: {fileID: 0}
   PendingActionType: 0
   InventoryOpen: 0
   TurnorderHolder: {fileID: 0}
