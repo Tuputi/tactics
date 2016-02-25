@@ -107,6 +107,5 @@ public class RotatingMenu : MonoBehaviour {
             i += Time.deltaTime;
             yield return 0;
         }
-        Debug.Log("Done");
     }
 }

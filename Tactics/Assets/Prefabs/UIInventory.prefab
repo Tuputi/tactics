@@ -554,7 +554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InventorySlots: []
   inventoryHolder: {fileID: 176968}
-  inventorySlot: {fileID: 177930, guid: 4ce8a89de9cf50b4f9b085a31dec9c82, type: 2}
+  inventorySlot: {fileID: 11425070, guid: 4ce8a89de9cf50b4f9b085a31dec9c82, type: 2}
   SelectedItem: {fileID: 0}
   rows: 4
   columns: 2

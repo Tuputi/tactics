@@ -7,13 +7,13 @@ public class UIManager : MonoBehaviour{
 
     public GameObject ButtonHolder;
 
-    public List<GameObject> inventoryTemplates;
-    Dictionary<InventoryType, GameObject> inventoryDictionary;
+    public List<UIInventory> inventoryTemplates;
+    Dictionary<InventoryType, UIInventory> inventoryDictionary;
 
     public List<Image> elementIcons;
     Dictionary<Elements, Image> elementIconDictionary;
 
-    GameObject CurrentUIInventory; 
+    UIInventory CurrentUIInventory; 
 
     GameObject NextTurnButton;
     public GameObject ActionButtonBase;
@@ -68,7 +68,7 @@ public class UIManager : MonoBehaviour{
 
         MyInTurnMarker = Instantiate(InTurnMarker);
 
-        inventoryDictionary = new Dictionary<InventoryType, GameObject>();
+        inventoryDictionary = new Dictionary<InventoryType, UIInventory>();
         inventoryDictionary.Add(InventoryType.archer, inventoryTemplates[0]);
         inventoryDictionary.Add(InventoryType.mage, inventoryTemplates[1]);
 
@@ -202,7 +202,7 @@ public class UIManager : MonoBehaviour{
        {
             if (abc.CompatibleItem(item))
             {
-                CurrentUIInventory.GetComponent<UIInventory>().AddItem(item);
+                CurrentUIInventory.AddItem(item);
             }
         }
     }
@@ -278,12 +278,11 @@ public class UIManager : MonoBehaviour{
 
     public void SelectItemFromItemInfo()
     {
-        foreach(GameObject invSlot in CurrentUIInventory.GetComponent<UIInventory>().InventorySlots)
+        foreach(InventorySlot invSlot in CurrentUIInventory.GetComponent<UIInventory>().InventorySlots)
         {
-            InventorySlot iS = invSlot.GetComponent<InventorySlot>();
-            if (iS.slotSelected)
+            if (invSlot.slotSelected)
             {
-                iS.SelectItem();
+                invSlot.SelectItem();
             }
         }
     }

@@ -100,7 +100,6 @@ public class CharacterLogic : MonoBehaviour{
         int id = 0;
         chara.AvailableActions = new List<AttackBase>();
         chara.AvailableActionDictionary = new Dictionary<ActionType, AttackBase>();
-        Debug.Log("Chara ActionTypes " + chara.ActionTypes.Count);
         foreach (ActionType attack in chara.ActionTypes)
         {
             AttackBase newAttack = ScriptableObject.CreateInstance<AttackBase>();

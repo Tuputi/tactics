@@ -28,5 +28,5 @@ MonoBehaviour:
   EffectToTArgetArea: 1
   EffectToDamageStatic: 0
   EffectToDamageMultiplayer: 1
-  addElement: 00000000
+  addElement: 00000000010000000200000003000000
   ItemInstanceIndex: 0

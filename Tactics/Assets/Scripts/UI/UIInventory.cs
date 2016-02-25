@@ -6,9 +6,9 @@ public class UIInventory : MonoBehaviour {
 
 
 
-    public List<GameObject> InventorySlots;
+    public List<InventorySlot> InventorySlots;
     public GameObject inventoryHolder;
-    public GameObject inventorySlot;
+    public InventorySlot inventorySlot;
     public ItemBase SelectedItem;
 
     public int rows;
@@ -26,13 +26,13 @@ public class UIInventory : MonoBehaviour {
 
     public void CreateInventory()
     {
-        InventorySlots = new List<GameObject>();
+        InventorySlots = new List<InventorySlot>();
 
         for (int i = 0; i < rows; i++)
         {
             for(int j = 0; j < columns; j++)
             {
-                GameObject newSlot = Instantiate(inventorySlot);
+                InventorySlot newSlot = Instantiate(inventorySlot);
                 InventorySlots.Add(newSlot);
                 newSlot.transform.SetParent(inventoryHolder.transform, false);
                 RectTransform slotRect = newSlot.GetComponent<RectTransform>();
@@ -45,14 +45,13 @@ public class UIInventory : MonoBehaviour {
 
     public void AddItem(ItemBase item)
     {
-        foreach(GameObject slot in InventorySlots)
+        Debug.Log(InventorySlots.Count);
+        foreach (InventorySlot slot in InventorySlots)
         {
-            InventorySlot invSlot = slot.GetComponent<InventorySlot>();
-       
-           if (invSlot.isEmpty)
+            if (slot.isEmpty)
            {
-                invSlot.AddItem(item, item.GetItemSprite(), item.ItemCount);
-                slot.GetComponent<Button>().onClick.AddListener(delegate { invSlot.SelectItemForDisplay(); });
+                slot.AddItem(item, item.GetItemSprite(), item.ItemCount);
+                slot.GetComponent<Button>().onClick.AddListener(delegate { slot.SelectItemForDisplay(); });
                 Debug.Log("Added item to inventory " + item.ItemName + "," + item.ItemCount.ToString());
                 return;
            }
@@ -62,12 +61,11 @@ public class UIInventory : MonoBehaviour {
     public void CloseInventory()
     {
         UnselectSlots();
-        foreach(GameObject slot in InventorySlots)
+        foreach(InventorySlot slot in InventorySlots)
         {
-            InventorySlot invSlot = slot.GetComponent<InventorySlot>();
-            if (!invSlot.isEmpty)
+            if (!slot.isEmpty)
             {
-                invSlot.ClearSlot();
+                slot.ClearSlot();
             }
         }
         this.gameObject.SetActive(false);
@@ -75,18 +73,18 @@ public class UIInventory : MonoBehaviour {
 
     public void SelectASlot(InventorySlot iS)
     {
-        foreach(GameObject go in InventorySlots)
+        foreach(InventorySlot go in InventorySlots)
         {
-            go.GetComponent<InventorySlot>().UnselectSlot();
+            go.UnselectSlot();
         }
         iS.SelectSlot();
     }
 
     public void UnselectSlots()
     {
-        foreach (GameObject go in InventorySlots)
+        foreach (InventorySlot go in InventorySlots)
         {
-            go.GetComponent<InventorySlot>().UnselectSlot();
+            go.UnselectSlot();
         }
     }
 }

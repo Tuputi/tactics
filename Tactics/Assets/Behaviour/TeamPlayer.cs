@@ -18,11 +18,14 @@ public class TeamPlayer : BehaviourModuleBase {
         //create a list of all characters of the same team with a target
         foreach(Character cha in TurnManager.characters)
         {
-            if(cha.isAi)
+            if (!cha == TurnManager.instance.CurrentlyTakingTurn)
             {
-                if (cha.GetComponent<AiModule>().targetCharacter != null)
+                if (cha.isAi)
                 {
-                    charas.Add(cha);
+                    if (cha.GetComponent<AiModule>().targetCharacter != null)
+                    {
+                        charas.Add(cha);
+                    }
                 }
             }
         }
@@ -57,6 +60,7 @@ public class TeamPlayer : BehaviourModuleBase {
                 }
             }
         }
+
         foreach (Character chara in charas)
         {
             float distance = Pathfinding.GetHeuristic(chara.GetComponent<AiModule>().targetCharacter.characterPosition, currentCharacter.characterPosition);

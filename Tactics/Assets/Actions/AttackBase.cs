@@ -76,7 +76,7 @@ public class AttackBase : ActionBaseClass{
             ItemBase ib = TurnManager.instance.CurrentlyTakingTurn.currentItem;
             if (ib.EffectToTArgetArea > 0)
             {
-                List<Tile> tempList = Pathfinding.GetPossibleRange(targetTile, ib.EffectToTArgetArea, true);
+                List<Tile> tempList = Pathfinding.GetPossibleRange(targetTile, ib.EffectToTArgetArea + TargetAreaSize, true);
                 foreach (Tile t in tempList)
                 {
                     if (!temp.Contains(t))
