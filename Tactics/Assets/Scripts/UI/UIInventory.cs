@@ -9,7 +9,6 @@ public class UIInventory : MonoBehaviour {
     public List<InventorySlot> InventorySlots;
     public GameObject inventoryHolder;
     public InventorySlot inventorySlot;
-    public ItemBase SelectedItem;
 
     public int rows;
     public int columns;
@@ -71,7 +70,7 @@ public class UIInventory : MonoBehaviour {
         this.gameObject.SetActive(false);
     }
 
-    public void SelectASlot(InventorySlot iS)
+    public virtual void SelectASlot(InventorySlot iS)
     {
         foreach(InventorySlot go in InventorySlots)
         {

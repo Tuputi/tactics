@@ -11,6 +11,8 @@ public class MageInventory : UIInventory {
     public GameObject rotationPoint;
     private GameObject rotationHelper;
 
+    public SpellForm spellForm;
+
 
     void Awake()
     {
@@ -103,4 +105,9 @@ public class MageInventory : UIInventory {
         }
     }
 
+    public override void SelectASlot(InventorySlot iS)
+    {
+        iS.SelectSlot();
+        spellForm.AddIncredient(iS.MyItem);
+    }
 }
