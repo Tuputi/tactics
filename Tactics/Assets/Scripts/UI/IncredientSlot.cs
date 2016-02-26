@@ -17,7 +17,7 @@ public class IncredientSlot : MonoBehaviour {
 
     public bool isEmpty = true;
 
-    public void Init(List<IncredientSlot> toggle)
+    public void Init(List<IncredientSlot> toggle, SpellForm parent)
     {
         itemSprite = transform.FindChild("ItemSprite").GetComponent<Image>();
         itemSprite.gameObject.SetActive(false);
@@ -26,6 +26,7 @@ public class IncredientSlot : MonoBehaviour {
         MySlotImage = this.GetComponent<Image>();
         MySlotImage.sprite = EmptySlot;
         toggleGroup = toggle;
+        parentSpell = parent;
     }
 
     public void AddItem(ItemBase item)
@@ -47,6 +48,7 @@ public class IncredientSlot : MonoBehaviour {
         MyItem = null;
         isEmpty = true;
         itemSprite.gameObject.SetActive(false);
+        parentSpell.UpdateSpell();
         //this.transform.localScale = new Vector3(1, 1, 1);
     }
 
@@ -68,6 +70,7 @@ public class IncredientSlot : MonoBehaviour {
     {
         slotSelected = true;
         MySlotImage.sprite = SelectedSlot;
+        Debug.Log("Selected");
     }
 
     public void UnselectSlot()

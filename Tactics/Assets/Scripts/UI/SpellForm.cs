@@ -14,7 +14,7 @@ public class SpellForm : MonoBehaviour {
     {
         foreach(IncredientSlot slot in IncredientSlots)
         {
-            slot.Init(IncredientSlots);
+            slot.Init(IncredientSlots, this);
         }
         spellName = SpellInfo.transform.FindChild("SpellName").GetComponent<Text>();
         areaInfo = SpellInfo.transform.FindChild("AreaInfo").GetComponent<ItemInfoAreaDisplay>();
@@ -129,5 +129,29 @@ public class SpellForm : MonoBehaviour {
         return false;
     }
 
+    public bool AnyIncredientSlotOccupied()
+    {
+        foreach (IncredientSlot slot in IncredientSlots)
+        {
+            if (!slot.isEmpty)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public void UpdateSpell()
+    {
+        if (AnyIncredientSlotOccupied())
+        {
+            ItemBase currentSpell = CreateASpell();
+            Debug.Log(currentSpell.EffectToRange);
+            TurnManager.instance.Action(UIManager.instance.PendingActionType, currentSpell);
+        }
+        else {
+            SelectionScript.ClearSelection();
+            TurnManager.instance.CurrentlyTakingTurn.currentItem = null;
+        }
+    }
 }

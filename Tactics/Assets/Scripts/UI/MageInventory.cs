@@ -57,6 +57,8 @@ public class MageInventory : UIInventory {
             newG.transform.localPosition = new Vector3(cosFloat, sinFloat, 0);
             accumulatedAngle -= angleBetweenObjects;
             newG.GetComponent<InventorySlot>().Init();
+            newG.AddComponent<DraggableObject>();
+            newG.GetComponent<DraggableObject>().Init(newG.transform.localPosition);
             InventorySlots.Add(newG.GetComponent<InventorySlot>());
         }
     }
@@ -108,7 +110,15 @@ public class MageInventory : UIInventory {
 
     public override void SelectASlot(InventorySlot iS)
     {
+        foreach(InventorySlot slot in InventorySlots)
+        {
+            slot.UnselectSlot();
+            slot.GetComponent<DraggableObject>().selected = false;
+            slot.GetComponent<DraggableObject>().ReturnToOrigLocation();
+        }
+
         iS.SelectSlot();
+        iS.transform.GetComponent<DraggableObject>().selected = true;
 
         if (spellForm.AnyIncredientSlotSlected())
         {
