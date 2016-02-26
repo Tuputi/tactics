@@ -81,4 +81,5 @@ public class InventorySlot : MonoBehaviour {
         slotSelected = false;
         MySlotImage.sprite = EmptySlot;
     }
+
 }
