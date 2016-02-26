@@ -31,7 +31,7 @@ public class Character : MonoBehaviour, System.IComparable
     //logic
     [HideInInspector]
     public Tile characterPosition;
-    [HideInInspector]
+    //[HideInInspector]
     public ItemBase currentItem = null;
     [HideInInspector]
     public ActionBaseClass currentAction = null;

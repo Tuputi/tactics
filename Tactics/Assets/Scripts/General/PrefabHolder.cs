@@ -72,4 +72,4 @@ public enum DisplayTexts { none, miss, immune};
 //Names of different actions, used to reference to a dictionary of Actions
 public enum ActionType { MeeleeAttack, FireSpell, ShootArrow, Howl, Stab}
 
-public enum ItemType { Potion, Bomb, Arrow, ArrowWideHit, Gunpowder};
+public enum ItemType { Potion, Bomb, Arrow, ArrowWideHit, Gunpowder, Spell};

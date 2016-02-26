@@ -6,9 +6,7 @@ public class SpellForm : MonoBehaviour {
 
     public GameObject SpellInfo;
     private Text spellName;
-    private Image spellImage;
-
-
+    private ItemInfoAreaDisplay areaInfo;
     public List<IncredientSlot> IncredientSlots;
 
     void Awake()
@@ -17,6 +15,8 @@ public class SpellForm : MonoBehaviour {
         {
             slot.Init(IncredientSlots);
         }
+        spellName = SpellInfo.transform.FindChild("SpellName").GetComponent<Text>();
+        areaInfo = SpellInfo.transform.FindChild("AreaInfo").GetComponent<ItemInfoAreaDisplay>();
     }
 
 
@@ -29,7 +29,7 @@ public class SpellForm : MonoBehaviour {
         slot.SelectSlot();
     }
 
-    public void AddIncredient(ItemBase item)
+    public ItemBase AddIncredient(ItemBase item)
     {
         foreach(IncredientSlot slot in IncredientSlots)
         {
@@ -39,8 +39,75 @@ public class SpellForm : MonoBehaviour {
                 slot.UnselectSlot();
             }
         }
+        float area = DisplaySpellArea();
+        float range = CalculateAttackRange();
+        List<Elements> elements = CalculateElementEffects();
+        return CreateASpell(area, range, elements);
     }
 
+    public ItemBase CreateASpell(float area, float range, List<Elements> elementList)
+    {
+        AttackBase currentAttack = TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[UIManager.instance.PendingActionType];
+
+        Spell newSpell = ScriptableObject.CreateInstance<Spell>();
+        newSpell.SpellInit("TempSpell", area - currentAttack.TargetAreaSize, range - currentAttack.BasicRange, elementList);
+        return newSpell;
+    }
+
+    //targetarea
+    //attackrange
+    //elements
+
+    public float CalculateAttackRange()
+    {
+        float range = TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[UIManager.instance.PendingActionType].BasicRange;
+        foreach (IncredientSlot slot in IncredientSlots)
+        {
+            if (!slot.isEmpty)
+            {
+                ItemBase incredient = slot.MyItem;
+                range += incredient.EffectToRange;
+            }
+        }
+        return range;
+    }
+
+    public List<Elements> CalculateElementEffects()
+    {
+        List<Elements> tempList = TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[UIManager.instance.PendingActionType].ElementalAttributes;
+        foreach (IncredientSlot slot in IncredientSlots)
+        {
+            if (!slot.isEmpty)
+            {
+                ItemBase incredient = slot.MyItem;
+                foreach(Elements element in incredient.addElement)
+                {
+                    if (!tempList.Contains(element))
+                    {
+                        tempList.Add(element);
+                    }
+                }
+            }
+        }
+        return tempList;
+    }
+
+    public float DisplaySpellArea()
+    {
+        float areaRange = TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[UIManager.instance.PendingActionType].TargetAreaSize;
+        foreach (IncredientSlot slot in IncredientSlots)
+        {
+            if (!slot.isEmpty)
+            {
+                ItemBase incredient = slot.MyItem;
+                areaRange += incredient.EffectToTArgetArea;
+            }
+        }
+
+        areaInfo.SlackLights();
+        areaInfo.LightUpRange(TargetAreaType.line, areaRange);
+        return areaRange;
+    }
 
 
 }

@@ -61,7 +61,6 @@ public class InventorySlot : MonoBehaviour {
       ItemInfoAreaDisplay.instance.SlackLights();
       ItemInfoAreaDisplay.instance.LightUpRange(TargetAreaType.line, MyItem.EffectToTArgetArea + TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[UIManager.instance.PendingActionType].TargetAreaSize);
       parentInventory.SelectASlot(this);
-      TurnManager.instance.Action(UIManager.instance.PendingActionType, MyItem);
     }
 
     public void SelectItem()

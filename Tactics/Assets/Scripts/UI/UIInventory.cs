@@ -44,7 +44,6 @@ public class UIInventory : MonoBehaviour {
 
     public void AddItem(ItemBase item)
     {
-        Debug.Log(InventorySlots.Count);
         foreach (InventorySlot slot in InventorySlots)
         {
             if (slot.isEmpty)
@@ -77,6 +76,7 @@ public class UIInventory : MonoBehaviour {
             go.UnselectSlot();
         }
         iS.SelectSlot();
+        TurnManager.instance.Action(UIManager.instance.PendingActionType, iS.MyItem);
     }
 
     public void UnselectSlots()

@@ -32,6 +32,7 @@ public class MageInventory : UIInventory {
         InventorySlots = new List<InventorySlot>();
         PlaceEvenly();
         rotationHelper = new GameObject();
+        rotationHelper.name = "RotationHelperMage";
     }
 
     private void PlaceEvenly()
@@ -108,6 +109,9 @@ public class MageInventory : UIInventory {
     public override void SelectASlot(InventorySlot iS)
     {
         iS.SelectSlot();
-        spellForm.AddIncredient(iS.MyItem);
+        ItemBase currentSpell = spellForm.AddIncredient(iS.MyItem);
+        Debug.Log(currentSpell.EffectToRange);
+        TurnManager.instance.Action(UIManager.instance.PendingActionType, currentSpell);
     }
+
 }

@@ -67,7 +67,6 @@ public class IncredientSlot : MonoBehaviour {
     {
         slotSelected = true;
         MySlotImage.sprite = SelectedSlot;
-        Debug.Log("slotselected");
     }
 
     public void UnselectSlot()
