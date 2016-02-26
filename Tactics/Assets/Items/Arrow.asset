@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: Arrow
   m_EditorClassIdentifier: 
   BasicRange: 2
+  TargetAreaSize: 1
   EnergyCost: 5
   AnimationName: 
   UsedWithItems: 0
@@ -23,7 +24,7 @@ MonoBehaviour:
   ItemSprite: {fileID: 21300000, guid: e5cac8ee5c4c76241bd294f61183d974, type: 3}
   ItemMaxStackSize: 4
   itemCategories: 02000000
-  EffectToRange: 2
+  EffectToRange: 1
   EffectToTArgetArea: 0
   EffectToDamageStatic: 0
   EffectToDamageMultiplayer: 1

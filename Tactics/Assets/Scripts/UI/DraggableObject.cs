@@ -7,12 +7,13 @@ public class DraggableObject : MonoBehaviour {
     bool dragging = false;
     public Vector3 origPosition;
     Vector3 offset = new Vector2(5, 5);
+    Vector2 offset2D = new Vector2(5, 5);
+
 
 
     public void Init(Vector3 orgPos)
     {
         origPosition = orgPos;
-        gameObject.AddComponent<Collider>();
     }
 
     void Update()
@@ -28,21 +29,24 @@ public class DraggableObject : MonoBehaviour {
             return;
         }
 
-        //if (TouchInput.touchActive && !dragging)
-        if(Input.GetMouseButtonDown(0) && !dragging)
+        if((Input.GetMouseButtonDown(0) && !dragging) || (TouchInput.touchActive && !dragging))
         {
             dragging = true;
             origPosition = GetComponent<RectTransform>().localPosition;
         }
-        //if (TouchInput.touchActive && dragging)
         if(dragging)
         {
-            GetComponent<RectTransform>().position = Input.mousePosition + offset;
-            //Input.GetTouch(0).position;
-            //;
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                GetComponent<RectTransform>().position = Input.GetTouch(0).position + offset2D;
+            }
+            else
+            {
+                GetComponent<RectTransform>().position = Input.mousePosition + offset;
+            }
+
         }
-        //if (!TouchInput.touchActive)
-        if(Input.GetMouseButtonUp(0))
+        if(Input.GetMouseButtonUp(0) || !TouchInput.touchActive)
         {
             dragging = false;
             ReturnToOrigLocation();
