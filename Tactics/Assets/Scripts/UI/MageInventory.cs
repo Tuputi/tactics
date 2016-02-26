@@ -111,10 +111,10 @@ public class MageInventory : UIInventory {
     public override void SelectASlot(InventorySlot iS)
     {
         foreach(InventorySlot slot in InventorySlots)
-        {
+        { 
+            slot.GetComponent<DraggableObject>().ReturnToOrigLocation();
             slot.UnselectSlot();
             slot.GetComponent<DraggableObject>().selected = false;
-            slot.GetComponent<DraggableObject>().ReturnToOrigLocation();
         }
 
         iS.SelectSlot();

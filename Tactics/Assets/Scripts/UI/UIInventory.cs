@@ -49,7 +49,7 @@ public class UIInventory : MonoBehaviour {
             if (slot.isEmpty)
            {
                 slot.AddItem(item, item.GetItemSprite(), item.ItemCount);
-                slot.GetComponent<Button>().onClick.AddListener(delegate { slot.SelectItemForDisplay(); });
+                //slot.GetComponent<Button>().onClick.AddListener(delegate { slot.SelectItemForDisplay(); });
                 Debug.Log("Added item to inventory " + item.ItemName + "," + item.ItemCount.ToString());
                 return;
            }
