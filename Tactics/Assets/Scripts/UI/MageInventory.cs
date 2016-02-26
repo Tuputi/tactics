@@ -120,13 +120,13 @@ public class MageInventory : UIInventory {
         iS.SelectSlot();
         iS.transform.GetComponent<DraggableObject>().selected = true;
 
-        if (spellForm.AnyIncredientSlotSlected())
+       /* if (spellForm.AnyIncredientSlotSlected())
         {
             spellForm.AddIncredient(iS.MyItem);
             ItemBase currentSpell = spellForm.CreateASpell();
             Debug.Log(currentSpell.EffectToRange);
             TurnManager.instance.Action(UIManager.instance.PendingActionType, currentSpell);
-        }
+        }*/
     }
 
 }

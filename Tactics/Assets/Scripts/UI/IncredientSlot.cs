@@ -110,13 +110,11 @@ public class IncredientSlot : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("collision in incredient!");
-
         InventorySlot invSlot = col.gameObject.GetComponent<InventorySlot>();
         if (!(invSlot == null))
         {
             AddItem(invSlot.MyItem);
-            Debug.Log("Added item!");
+            parentSpell.UpdateSpell();
         }
     }
  

@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c930296c3e63564ab3569d8496dac51, type: 3}
   m_Name: ShootArrow 1
   m_EditorClassIdentifier: 
-  BasicRange: 6
+  BasicRange: 4
   TargetAreaSize: 1
   EnergyCost: 5
   AnimationName: Stab
