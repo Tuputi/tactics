@@ -8,6 +8,7 @@ public class SpellForm : MonoBehaviour {
     private Text spellName;
     private ItemInfoAreaDisplay areaInfo;
     public List<IncredientSlot> IncredientSlots;
+    public GameObject Elementholder;
 
     void Awake()
     {
@@ -29,7 +30,7 @@ public class SpellForm : MonoBehaviour {
         slot.SelectSlot();
     }
 
-    public ItemBase AddIncredient(ItemBase item)
+    public void AddIncredient(ItemBase item)
     {
         foreach(IncredientSlot slot in IncredientSlots)
         {
@@ -39,18 +40,20 @@ public class SpellForm : MonoBehaviour {
                 slot.UnselectSlot();
             }
         }
+    }
+
+    public ItemBase CreateASpell()
+    {
         float area = DisplaySpellArea();
         float range = CalculateAttackRange();
         List<Elements> elements = CalculateElementEffects();
-        return CreateASpell(area, range, elements);
-    }
 
-    public ItemBase CreateASpell(float area, float range, List<Elements> elementList)
-    {
         AttackBase currentAttack = TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[UIManager.instance.PendingActionType];
 
         Spell newSpell = ScriptableObject.CreateInstance<Spell>();
-        newSpell.SpellInit("TempSpell", area - currentAttack.TargetAreaSize, range - currentAttack.BasicRange, elementList);
+        newSpell.SpellInit("TempSpell", area - currentAttack.TargetAreaSize, range - currentAttack.BasicRange, elements);
+
+        UpdateElementDisplay(newSpell);
         return newSpell;
     }
 
@@ -107,6 +110,23 @@ public class SpellForm : MonoBehaviour {
         areaInfo.SlackLights();
         areaInfo.LightUpRange(TargetAreaType.line, areaRange);
         return areaRange;
+    }
+
+    public void UpdateElementDisplay(ItemBase item)
+    {
+        UIManager.instance.CreateElementDisplay(item, Elementholder);
+    }
+
+    public bool AnyIncredientSlotSlected()
+    {
+        foreach(IncredientSlot slot in IncredientSlots)
+        {
+            if (slot.slotSelected)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 

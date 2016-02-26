@@ -109,9 +109,14 @@ public class MageInventory : UIInventory {
     public override void SelectASlot(InventorySlot iS)
     {
         iS.SelectSlot();
-        ItemBase currentSpell = spellForm.AddIncredient(iS.MyItem);
-        Debug.Log(currentSpell.EffectToRange);
-        TurnManager.instance.Action(UIManager.instance.PendingActionType, currentSpell);
+
+        if (spellForm.AnyIncredientSlotSlected())
+        {
+            spellForm.AddIncredient(iS.MyItem);
+            ItemBase currentSpell = spellForm.CreateASpell();
+            Debug.Log(currentSpell.EffectToRange);
+            TurnManager.instance.Action(UIManager.instance.PendingActionType, currentSpell);
+        }
     }
 
 }

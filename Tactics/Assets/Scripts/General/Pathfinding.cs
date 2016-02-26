@@ -302,4 +302,42 @@ public class Pathfinding : MonoBehaviour {
         }
         return closest.characterPosition;
     }
+
+    public static List<Tile> GetTargetArea(Tile charaPosition, TargetAreaType tat, float range)
+    {
+        List<Tile> tempList = new List<Tile>();
+        switch (tat)
+        {
+            case TargetAreaType.none:
+                Debug.LogError("TargetAreaType not defined");
+                break;
+            case TargetAreaType.self:
+                tempList.Add(charaPosition);
+                break;
+            case TargetAreaType.circular:
+                tempList = GetPossibleRange(charaPosition, range, true);
+                break;
+            case TargetAreaType.line:
+                if(range > 1)
+                    tempList = charaPosition.neighbours;
+                if (range > 2)
+                {
+                    tempList.Add(charaPosition.neighbours[0].neighbours[0]);
+                    tempList.Add(charaPosition.neighbours[1].neighbours[1]);
+                    tempList.Add(charaPosition.neighbours[2].neighbours[2]);
+                    tempList.Add(charaPosition.neighbours[3].neighbours[3]);
+                }
+               /* if (range > 3)
+                {
+                    tempList.Add(charaPosition.neighbours[0].neighbours[0].neighbours[0]);
+                    tempList.Add(charaPosition.neighbours[1].neighbours[1].neighbours[1]);
+                    tempList.Add(charaPosition.neighbours[2].neighbours[2].neighbours[2]);
+                    tempList.Add(charaPosition.neighbours[3].neighbours[3].neighbours[3]);
+                }*/
+                break;
+            default:
+                break;
+        }
+        return tempList;
+    }
 }

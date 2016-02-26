@@ -43,10 +43,11 @@ public class IncredientSlot : MonoBehaviour {
 
     public void ClearSlot()
     {
+        Debug.Log("clearslot");
         MyItem = null;
         isEmpty = true;
         itemSprite.gameObject.SetActive(false);
-        this.transform.localScale = new Vector3(1, 1, 1);
+        //this.transform.localScale = new Vector3(1, 1, 1);
     }
 
     public void SelectItemForDisplay()
@@ -80,6 +81,7 @@ public class IncredientSlot : MonoBehaviour {
         if (this.slotSelected)
         {
             UnselectSlot();
+            ClearSlot();
         }
         else
         {
@@ -88,7 +90,14 @@ public class IncredientSlot : MonoBehaviour {
     }
 
     public void SelectButton()
-    {    
+    {
+        if (slotSelected)
+        {
+            UnselectSlot();
+            ClearSlot();
+            return;
+        }
+
         foreach (IncredientSlot slot in toggleGroup)
         {
             slot.UnselectSlot();

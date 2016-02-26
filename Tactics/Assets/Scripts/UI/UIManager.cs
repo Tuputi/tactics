@@ -245,26 +245,30 @@ public class UIManager : MonoBehaviour{
             ItemEffectOnRange.text = "Range: +" + item.EffectToRange.ToString();
         }
 
+        CreateElementDisplay(item, ElementHolder);
+
+        ItemInfoAreaDisplay.instance.LightUpRange(TargetAreaType.line, item.EffectToTArgetArea + TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[PendingActionType].TargetAreaSize);
+    }
+
+    public void CreateElementDisplay(ItemBase item, GameObject elemHolder)
+    {
         for (int d = 0; d < 4; d++)
         {
-            GameObject child = ElementHolder.transform.GetChild(d).gameObject;
+            GameObject child = elemHolder.transform.GetChild(d).gameObject;
             if (child.transform.childCount > 0)
             {
                 Destroy(child.transform.GetChild(0).gameObject);
             }
         }
         int i = 0;
-        foreach(Elements e in item.addElement)
+        foreach (Elements e in item.addElement)
         {
             Image newIcon = Instantiate(elementIconDictionary[e]);
-            newIcon.transform.SetParent(ElementHolder.transform.GetChild(i).transform, false);
-            newIcon.transform.localPosition = new Vector3(0, 0 , 0);
-            i++;    
+            newIcon.transform.SetParent(elemHolder.transform.GetChild(i).transform, false);
+            newIcon.transform.localPosition = new Vector3(0, 0, 0);
+            i++;
         }
-
-        ItemInfoAreaDisplay.instance.LightUpRange(TargetAreaType.line, item.EffectToTArgetArea + TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[PendingActionType].TargetAreaSize);
     }
-
 
     public void CloseItemInfo()
     {
