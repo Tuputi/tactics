@@ -8,7 +8,7 @@ public class DraggableObject : MonoBehaviour {
     public Vector3 origPosition;
     Vector3 offset = new Vector2(1, 1);
     Vector2 offset2D = new Vector2(1, 1);
-
+    public bool draggable = true;
 
 
     public void Init(Vector3 orgPos)
@@ -34,7 +34,7 @@ public class DraggableObject : MonoBehaviour {
             dragging = true;
             origPosition = GetComponent<RectTransform>().localPosition;
         }
-        if(dragging)
+        if(dragging && draggable)
         {
            if (Application.platform == RuntimePlatform.Android)
             {

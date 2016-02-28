@@ -36,13 +36,17 @@ public class InventorySlot : MonoBehaviour {
             ItemCount.text = itemCount.ToString();
             itemCountInt = itemCount;
             itemSprite.color = Color.white;
-            this.GetComponent<Button>().interactable = true;
         }
-        else {
+        else if(itemCount == 1){
             ItemCount.text = "";
-            itemCount = 0;
-            itemSprite.color = Color.gray;
-            this.GetComponent<Button>().interactable = false;      
+            itemCount = 1;
+            itemSprite.color = Color.white;
+        }
+        else
+        {
+            ItemCount.text = "";
+            itemCount = 1;
+            itemSprite.color = Color.grey;
         }
 
         isEmpty = false;
