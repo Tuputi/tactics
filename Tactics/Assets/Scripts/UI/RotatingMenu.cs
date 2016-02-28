@@ -57,6 +57,21 @@ public class RotatingMenu : MonoBehaviour {
 
     public void AddActionButtons(List<GameObject> buttons)
     {
+       /* List<GameObject> cleanupList = new List<GameObject>();
+        foreach(ButtonScript bs in activeButtons)
+        {
+            cleanupList.Add(bs.gameObject);
+        }
+        foreach(GameObject go in cleanupList)
+        {
+            activeButtons.Remove(go.GetComponent<ButtonScript>());
+        }
+        for(int i = cleanupList.Count; i <0; i--)
+        {
+            Destroy(cleanupList[i]);
+        }*/
+
+
         activeButtons = new List<ButtonScript>();
         if(RotationPoint.transform.childCount >= buttons.Count)
         {

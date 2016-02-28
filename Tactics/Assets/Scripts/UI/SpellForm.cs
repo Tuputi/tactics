@@ -160,8 +160,18 @@ public class SpellForm : MonoBehaviour {
         else {
             SelectionScript.ClearSelection();
             TurnManager.instance.CurrentlyTakingTurn.currentItem = null;
+            ClearSpellInfo();
         }
     }
+
+
+    private void ClearSpellInfo()
+    {
+        spellName.text = "???";
+        currentSpell = null;
+        areaInfo.SlackLights();
+    }
+
     public void UpdateSpellDisplay()
     {
         spellName.text = currentSpell.ItemName;

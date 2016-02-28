@@ -12,7 +12,7 @@ public class InventorySlot : MonoBehaviour {
     private Image MySlotImage;
     private Image itemSprite;
 
-    UIInventory parentInventory;
+    public UIInventory parentInventory;
 
     public bool isEmpty = true;
 

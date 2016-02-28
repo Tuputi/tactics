@@ -147,6 +147,16 @@ public class MageInventory : UIInventory {
         iS.transform.GetComponent<DraggableObject>().selected = true;
     }
 
+    public void UnselectAllSlots()
+    {
+        foreach (InventorySlot slot in InventorySlots)
+        {
+            slot.GetComponent<DraggableObject>().ReturnToOrigLocation();
+            slot.UnselectSlot();
+            slot.GetComponent<DraggableObject>().selected = false;
+        }
+    }
+
     public override void CloseInventory()
     {
         foreach(IncredientSlot inSlot in spellForm.IncredientSlots)
