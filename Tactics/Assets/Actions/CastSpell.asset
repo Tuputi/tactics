@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c930296c3e63564ab3569d8496dac51, type: 3}
+  m_Name: CastSpell
+  m_EditorClassIdentifier: 
+  BasicRange: 2
+  TargetAreaSize: 1
+  EnergyCost: 5
+  AnimationName: Stab
+  UsedWithItems: 1
+  attackArea: []
+  AttackName: Cast Spell
+  minDamage: 10
+  maxDamage: 15
+  MPCost: 0
+  HitChance: 100
+  actionType: 5
+  compatibleItems: 00000000010000000200000004000000
+  ElementalAttributes: 
+  ActionID: 0

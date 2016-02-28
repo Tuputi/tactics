@@ -31,11 +31,6 @@ public class PrefabHolder : MonoBehaviour {
     [Header("Lists")]
     public List<TileObject> tileObjects;
     public List<Character> characters;
-    public List<AttackBase> actions;
-
-    //dictionaries
-    [HideInInspector]
-    public Dictionary<ActionType, AttackBase> actionDictionary;
 
     [Header("Misc")]
     public GameObject Bow;
@@ -44,11 +39,6 @@ public class PrefabHolder : MonoBehaviour {
     void Awake()
     {
         instance = this;
-        actionDictionary = new Dictionary<ActionType, AttackBase>();
-        foreach(AttackBase ab in actions)
-        {
-            actionDictionary.Add(ab.GetActionType(), ab);
-        }
     }
 }
 
@@ -70,6 +60,6 @@ public enum Resistance { Normal, Absorb, Immune, Resistant, Weak} //No change, d
 public enum DisplayTexts { none, miss, immune};
 
 //Names of different actions, used to reference to a dictionary of Actions
-public enum ActionType { MeeleeAttack, FireSpell, ShootArrow, Howl, Stab}
+public enum ActionType { MeeleeAttack, FireSpell, ShootArrow, Howl, Stab, CastSpell}
 
 public enum ItemType { Potion, Bomb, Arrow, ArrowWideHit, Gunpowder, Spell};

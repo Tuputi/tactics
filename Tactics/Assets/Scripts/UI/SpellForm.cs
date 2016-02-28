@@ -44,11 +44,12 @@ public class SpellForm : MonoBehaviour {
 
     public ItemBase CreateASpell()
     {
+        AttackBase currentAttack = TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[UIManager.instance.PendingActionType];
+
         float area = DisplaySpellArea();
         float range = CalculateAttackRange();
-        List<Elements> elements = CalculateElementEffects();
+        List<Elements> elements = CalculateElementEffects(currentAttack);
 
-        AttackBase currentAttack = TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[UIManager.instance.PendingActionType];
 
         Spell newSpell = ScriptableObject.CreateInstance<Spell>();
         newSpell.SpellInit("TempSpell", area - currentAttack.TargetAreaSize, range - currentAttack.BasicRange, elements);
@@ -75,9 +76,10 @@ public class SpellForm : MonoBehaviour {
         return range;
     }
 
-    public List<Elements> CalculateElementEffects()
+    public List<Elements> CalculateElementEffects(AttackBase currentAtt)
     {
-        List<Elements> tempList = TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[UIManager.instance.PendingActionType].ElementalAttributes;
+        List<Elements> tempList = new List<Elements>(currentAtt.ElementalAttributes);
+        Debug.Log("Actionelements: " + tempList.Count);
         foreach (IncredientSlot slot in IncredientSlots)
         {
             if (!slot.isEmpty)
@@ -88,6 +90,7 @@ public class SpellForm : MonoBehaviour {
                     if (!tempList.Contains(element))
                     {
                         tempList.Add(element);
+                        Debug.Log("Added " + element);
                     }
                 }
             }
@@ -146,7 +149,7 @@ public class SpellForm : MonoBehaviour {
         if (AnyIncredientSlotOccupied())
         {
             ItemBase currentSpell = CreateASpell();
-            Debug.Log(currentSpell.EffectToRange);
+            //delete this line in order not to have instance action available
             TurnManager.instance.Action(UIManager.instance.PendingActionType, currentSpell);
         }
         else {

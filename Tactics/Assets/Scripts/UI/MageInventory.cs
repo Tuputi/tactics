@@ -39,7 +39,7 @@ public class MageInventory : UIInventory {
     {
         float angleBetweenObjects = 360 / inventorySlotAmount + 1;
         RotationAmount = angleBetweenObjects + 3f;
-        float distanceBetweenObjects = 500f;
+        float distanceBetweenObjects = 450f;
         double tempDouble = System.Math.Cos(angleBetweenObjects * 0.5);
         float tempFloat = (float)tempDouble;
         float distanceFromCenter = (distanceBetweenObjects * 0.5f) / tempFloat;

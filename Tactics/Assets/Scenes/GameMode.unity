@@ -1574,6 +1574,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 42631523c39d22444bb0d0a9cd4a249b, type: 2}
   - {fileID: 11400000, guid: 07b6a544aca0a094a89e59f16be8d8d7, type: 2}
   - {fileID: 11400000, guid: 073bc1f5072a5454d8d7254c18756510, type: 2}
+  - {fileID: 11400000, guid: 7c9b4cf27cedcfb4e92f063c49668cdf, type: 2}
 --- !u!4 &963285263
 Transform:
   m_ObjectHideFlags: 0
@@ -2996,7 +2997,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11475372, guid: bc56caf5af46eb546a654777b32bea9a, type: 2}
       propertyPath: actions.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 11475372, guid: bc56caf5af46eb546a654777b32bea9a, type: 2}
       propertyPath: characters.Array.size
@@ -3068,6 +3069,11 @@ Prefab:
       propertyPath: characters.Array.data[2]
       value: 
       objectReference: {fileID: 11400930, guid: f4c0c323f10f66e46b4c11e2655f41ff,
+        type: 2}
+    - target: {fileID: 11475372, guid: bc56caf5af46eb546a654777b32bea9a, type: 2}
+      propertyPath: actions.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c9b4cf27cedcfb4e92f063c49668cdf,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc56caf5af46eb546a654777b32bea9a, type: 2}

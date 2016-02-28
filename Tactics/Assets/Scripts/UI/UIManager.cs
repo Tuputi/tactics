@@ -196,7 +196,7 @@ public class UIManager : MonoBehaviour{
         }
         InventoryOpen = true;
         PendingActionType = at;
-        AttackBase abc = PrefabHolder.instance.actionDictionary[at];
+        AttackBase abc = ActionList.GetAction(at);
         SetUpUiInventory(invType);
        foreach(ItemBase item in TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetWholeInventory())
        {
@@ -258,6 +258,7 @@ public class UIManager : MonoBehaviour{
             if (child.transform.childCount > 0)
             {
                 Destroy(child.transform.GetChild(0).gameObject);
+                Debug.Log("Destroyed an elementsymbol");
             }
         }
         int i = 0;
