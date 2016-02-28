@@ -6,6 +6,7 @@ public class InventorySlot : MonoBehaviour {
     public Sprite EmptySlot;
     public Sprite SelectedSlot;
     public Text ItemCount;
+    public int itemCountInt;
     public bool slotSelected = false;
     public ItemBase MyItem = null;
     private Image MySlotImage;
@@ -30,11 +31,19 @@ public class InventorySlot : MonoBehaviour {
     public void AddItem(ItemBase item, Sprite sprite, int itemCount){
         MyItem = item;
 
-        if (itemCount > 1) {
-            ItemCount.text = itemCount.ToString();         
+        if (itemCount > 1)
+        {
+            ItemCount.text = itemCount.ToString();
+            itemCountInt = itemCount;
+            itemSprite.color = Color.white;
+            this.GetComponent<Button>().interactable = true;
         }
-        else
+        else {
             ItemCount.text = "";
+            itemCount = 0;
+            itemSprite.color = Color.gray;
+            this.GetComponent<Button>().interactable = false;      
+        }
 
         isEmpty = false;
 

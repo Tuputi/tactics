@@ -31,6 +31,12 @@ public class IncredientSlot : MonoBehaviour {
 
     public void AddItem(ItemBase item)
     {
+        if (MyItem != null)
+        {
+            TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.AddToCount(MyItem.itemType);
+            parentSpell.parentInventory.UpdateAllItemSlots();
+        }
+
         MyItem = item;
         isEmpty = false;
 
@@ -39,17 +45,41 @@ public class IncredientSlot : MonoBehaviour {
 
         itemSprite.gameObject.SetActive(true);
         itemSprite.sprite = item.ItemSprite;
+
+        //use the one assigned to inventoryslot
+        TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.Use(MyItem.itemType);
+        parentSpell.parentInventory.UpdateAllItemSlots();
+
         this.transform.localScale = new Vector3(1, 1, 1);
     }
 
     public void ClearSlot()
     {
-        Debug.Log("clearslot");
+             if (MyItem != null)
+            {
+                TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.AddToCount(MyItem.itemType);
+                parentSpell.parentInventory.UpdateAllItemSlots();
+            }
+        
+
         MyItem = null;
         isEmpty = true;
         itemSprite.gameObject.SetActive(false);
         parentSpell.UpdateSpell();
         //this.transform.localScale = new Vector3(1, 1, 1);
+    }
+
+    public void ClearSlotsWithoutReplacing()
+    {
+        if (MyItem != null)
+        {
+            Debug.Log("My item is " + MyItem.ItemName + "and it's current itemcount is " + MyItem.ItemCount);
+        }
+
+        MyItem = null;
+        isEmpty = true;
+        itemSprite.gameObject.SetActive(false);
+        parentSpell.UpdateSpell();
     }
 
     public void SelectItemForDisplay()

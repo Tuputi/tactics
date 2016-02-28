@@ -231,6 +231,17 @@ public class UIManager : MonoBehaviour{
         CurrentUIInventory.GetComponent<UIInventory>().CloseInventory();
     }
 
+    public void CloseInventoryAfterCompletedAttack()
+    {
+        InventoryOpen = false;
+        if (CurrentUIInventory == null)
+        {
+            return;
+        }
+        CloseItemInfo();
+        CurrentUIInventory.GetComponent<UIInventory>().CloseInventoryAfterAttack();
+    }
+
     public void DisplayItemInfo(ItemBase item)
     {
         ItemInfoHolder.SetActive(true);
@@ -258,7 +269,6 @@ public class UIManager : MonoBehaviour{
             if (child.transform.childCount > 0)
             {
                 Destroy(child.transform.GetChild(0).gameObject);
-                Debug.Log("Destroyed an elementsymbol");
             }
         }
         int i = 0;

@@ -192,6 +192,7 @@ public class CharacterLogic : MonoBehaviour{
         if (chara.currentItem != null)
         {
             chara.CharacterInventory.Use(chara.currentItem.ItemId);
+            Debug.Log("Used item");
         }
         chara.possibleRange.Clear();
         SelectionScript.ClearSelection();
@@ -205,10 +206,6 @@ public class CharacterLogic : MonoBehaviour{
         TurnManager.instance.hasActed = true;  
         UIManager.instance.UpdateButtons();
     }
-
-
-    
-
 
 
     public void SetCharacterPosition(Character chara, Tile tile)

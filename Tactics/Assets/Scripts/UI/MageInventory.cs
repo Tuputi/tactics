@@ -68,6 +68,23 @@ public class MageInventory : UIInventory {
         return InventorySlots;
     }
 
+    public void UpdateAllItemSlots()
+    {
+        foreach (InventorySlot slot in InventorySlots)
+        {
+            if (!slot.isEmpty)
+            {
+                ItemBase item = TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetItem(slot.MyItem.itemType);
+                if(item == null)
+                {
+                    break;
+                }
+                slot.ClearSlot();
+                slot.AddItem(item, item.ItemSprite, item.ItemCount);
+            }
+        }
+    }
+
     public void RotateBy(float amount)
     {
         Debug.Log("Rotate by");
@@ -128,5 +145,42 @@ public class MageInventory : UIInventory {
             TurnManager.instance.Action(UIManager.instance.PendingActionType, currentSpell);
         }*/
     }
+
+    public override void CloseInventory()
+    {
+        foreach(IncredientSlot inSlot in spellForm.IncredientSlots)
+        {
+            inSlot.ClearSlot();
+        }
+
+        UnselectSlots();
+        foreach (InventorySlot slot in InventorySlots)
+        {
+            if (!slot.isEmpty)
+            {
+                slot.ClearSlot();
+            }
+        }
+        this.gameObject.SetActive(false);
+    }
+
+    public override void CloseInventoryAfterAttack()
+    {
+        foreach (IncredientSlot inSlot in spellForm.IncredientSlots)
+        {
+            inSlot.ClearSlotsWithoutReplacing();
+        }
+
+        UnselectSlots();
+        foreach (InventorySlot slot in InventorySlots)
+        {
+            if (!slot.isEmpty)
+            {
+                slot.ClearSlot();
+            }
+        }
+        this.gameObject.SetActive(false);
+    }
+
 
 }

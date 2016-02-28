@@ -631,6 +631,7 @@ MonoBehaviour:
   - {fileID: 11467126}
   - {fileID: 11478556}
   Elementholder: {fileID: 199820}
+  parentInventory: {fileID: 11439012}
 --- !u!114 &11406408
 MonoBehaviour:
   m_ObjectHideFlags: 1

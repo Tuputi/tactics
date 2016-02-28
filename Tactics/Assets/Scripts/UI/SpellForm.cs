@@ -10,6 +10,7 @@ public class SpellForm : MonoBehaviour {
     public List<IncredientSlot> IncredientSlots;
     public GameObject Elementholder;
     Spell currentSpell;
+    public MageInventory parentInventory;
 
     void Awake()
     {
@@ -55,6 +56,7 @@ public class SpellForm : MonoBehaviour {
         Spell newSpell = ScriptableObject.CreateInstance<Spell>();
         newSpell.SpellInit("TempSpell", area - currentAttack.TargetAreaSize, range - currentAttack.BasicRange, elements);
         newSpell.ItemName = Spellinterpreter();
+        newSpell.ItemId = -1;
         UpdateElementDisplay(newSpell);
         currentSpell = newSpell;
         UpdateSpellDisplay();
@@ -82,7 +84,6 @@ public class SpellForm : MonoBehaviour {
     public List<Elements> CalculateElementEffects(AttackBase currentAtt)
     {
         List<Elements> tempList = new List<Elements>(currentAtt.ElementalAttributes);
-        Debug.Log("Actionelements: " + tempList.Count);
         foreach (IncredientSlot slot in IncredientSlots)
         {
             if (!slot.isEmpty)
@@ -93,7 +94,6 @@ public class SpellForm : MonoBehaviour {
                     if (!tempList.Contains(element))
                     {
                         tempList.Add(element);
-                        Debug.Log("Added " + element);
                     }
                 }
             }

@@ -1482,7 +1482,7 @@ MonoBehaviour:
   AttackMissed: 0
   AvailableActions: []
   facing: 2
-  hpMax: 100
+  hpMax: 200
   mpMax: 100
   speed: 60
   items: 020000000300000004000000
@@ -1593,6 +1593,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: ActionTypes.Array.data[2]
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: hpMax
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

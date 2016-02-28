@@ -56,10 +56,23 @@ public class UIInventory : MonoBehaviour {
         }
     }
 
-    public void CloseInventory()
+    public virtual void CloseInventory()
     {
         UnselectSlots();
         foreach(InventorySlot slot in InventorySlots)
+        {
+            if (!slot.isEmpty)
+            {
+                slot.ClearSlot();
+            }
+        }
+        this.gameObject.SetActive(false);
+    }
+
+    public virtual void CloseInventoryAfterAttack()
+    {
+        UnselectSlots();
+        foreach (InventorySlot slot in InventorySlots)
         {
             if (!slot.isEmpty)
             {

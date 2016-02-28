@@ -17,7 +17,7 @@ MonoBehaviour:
   AnimationName: 
   UsedWithItems: 0
   attackArea: []
-  ItemCount: 3
+  ItemCount: 1
   ItemName: Arrow
   ItemId: 0
   itemType: 2

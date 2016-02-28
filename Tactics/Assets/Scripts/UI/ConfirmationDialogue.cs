@@ -96,7 +96,7 @@ public class ConfirmationDialogue : MonoBehaviour{
                 if (selected)
                 {
                     CharacterLogic.instance.CompleteAction(TurnManager.instance.CurrentlyTakingTurn, ActionTargetTile);
-                    UIManager.instance.CloseInventory();
+                    UIManager.instance.CloseInventoryAfterCompletedAttack();
                 }
                 else
                 {

@@ -45,15 +45,31 @@ public class Inventory{
     {
         ItemBase foundItem = inventory.Find(invItem => invItem.GetItemType() == itemType);
         foundItem.ItemCount--;
-        if(foundItem.ItemCount <= 0)
+       /* if(foundItem.ItemCount <= 0)
         {
             inventory.Remove(foundItem);
+        }*/
+    }
+
+    public void AddToCount(ItemType itemType)
+    {
+        ItemBase foundItem = inventory.Find(invItem => invItem.GetItemType() == itemType);
+        if(foundItem == null)
+        {
+            Debug.Log("Item not found");
+            return;
         }
+        foundItem.ItemCount++;
     }
 
     public void Use(int itemID)
     {
         ItemBase foundItem = inventory.Find(invItem => invItem.ItemId == itemID);
+        if(foundItem == null)
+        {
+            Debug.Log("ItemID not in inventory");
+            return;
+        }
         foundItem.ItemCount--;
         if (foundItem.ItemCount <= 0)
         {
@@ -71,5 +87,11 @@ public class Inventory{
         inventory.Remove(item);
     }
 
+    public ItemBase GetItem(ItemType iT)
+    {
+        ItemBase foundItem = inventory.Find(item => iT == item.itemType);
+        return foundItem;
+
+    }
 
 }
