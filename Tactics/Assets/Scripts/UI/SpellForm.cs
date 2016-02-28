@@ -9,6 +9,7 @@ public class SpellForm : MonoBehaviour {
     private ItemInfoAreaDisplay areaInfo;
     public List<IncredientSlot> IncredientSlots;
     public GameObject Elementholder;
+    Spell currentSpell;
 
     void Awake()
     {
@@ -53,8 +54,10 @@ public class SpellForm : MonoBehaviour {
 
         Spell newSpell = ScriptableObject.CreateInstance<Spell>();
         newSpell.SpellInit("TempSpell", area - currentAttack.TargetAreaSize, range - currentAttack.BasicRange, elements);
-
+        newSpell.ItemName = Spellinterpreter();
         UpdateElementDisplay(newSpell);
+        currentSpell = newSpell;
+        UpdateSpellDisplay();
         return newSpell;
     }
 
@@ -101,18 +104,20 @@ public class SpellForm : MonoBehaviour {
     public float DisplaySpellArea()
     {
         float areaRange = TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[UIManager.instance.PendingActionType].TargetAreaSize;
+        float tempRange = 0;
+        tempRange = tempRange + areaRange;
         foreach (IncredientSlot slot in IncredientSlots)
         {
             if (!slot.isEmpty)
             {
                 ItemBase incredient = slot.MyItem;
-                areaRange += incredient.EffectToTArgetArea;
+                tempRange += incredient.EffectToTArgetArea;
             }
         }
 
         areaInfo.SlackLights();
-        areaInfo.LightUpRange(TargetAreaType.line, areaRange);
-        return areaRange;
+        areaInfo.LightUpRange(TargetAreaType.line, tempRange);
+        return tempRange;
     }
 
     public void UpdateElementDisplay(ItemBase item)
@@ -148,13 +153,82 @@ public class SpellForm : MonoBehaviour {
     {
         if (AnyIncredientSlotOccupied())
         {
-            ItemBase currentSpell = CreateASpell();
+            CreateASpell();
             //delete this line in order not to have instance action available
-            TurnManager.instance.Action(UIManager.instance.PendingActionType, currentSpell);
+           // TurnManager.instance.Action(UIManager.instance.PendingActionType, currentSpell);
         }
         else {
             SelectionScript.ClearSelection();
             TurnManager.instance.CurrentlyTakingTurn.currentItem = null;
         }
+    }
+    public void UpdateSpellDisplay()
+    {
+        spellName.text = currentSpell.ItemName;
+    }
+
+    public string Spellinterpreter()
+    {
+        string tempName = "???";
+
+        int FireCount = 0;
+        int WaterCount = 0;
+        int WindCount = 0;
+        int EarthCount = 0;
+
+        foreach (IncredientSlot slot in IncredientSlots)
+        {
+            if (!slot.isEmpty)
+            {
+                ItemBase incredient = slot.MyItem;
+                foreach(Elements element in incredient.addElement)
+                {
+                    switch (element)
+                    {
+                        case Elements.Fire:
+                            FireCount++;
+                            break;
+                        case Elements.Water:
+                            WaterCount++;
+                            break;
+                        case Elements.Earth:
+                            EarthCount++;
+                            break;
+                        case Elements.Wind:
+                            WindCount++;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
+        if(FireCount > 0)
+        {
+            tempName = "Fire";
+            if(FireCount > 1)
+            {
+                tempName = "Fire Burst";
+                if(FireCount > 2)
+                {
+                    tempName = "FireStorm";
+                }
+            }
+        }
+
+        return tempName;
+    }
+
+    public void SelecteSpellFromCentre()
+    {
+
+        if (currentSpell == null)
+        {
+            return;
+        }
+        Debug.Log("Spell selected");
+
+        TurnManager.instance.Action(UIManager.instance.PendingActionType, currentSpell);
     }
 }

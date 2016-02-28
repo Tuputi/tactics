@@ -319,7 +319,7 @@ public class Pathfinding : MonoBehaviour {
                 break;
             case TargetAreaType.line:
                 if(range > 1)
-                    tempList = charaPosition.neighbours;
+                    tempList = new List<Tile>(charaPosition.neighbours);
                 if (range > 2)
                 {
                     tempList.Add(charaPosition.neighbours[0].neighbours[0]);
