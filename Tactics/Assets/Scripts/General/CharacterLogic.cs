@@ -38,41 +38,33 @@ public class CharacterLogic : MonoBehaviour{
 
     public void ChangeFacing(Character chara, Tile at, Tile to)
     {
-        int rowChange = System.Math.Abs(at.xPos - to.xPos);
-        int columnChange = System.Math.Abs(at.yPos - to.yPos);
-
         GameObject rotateObj = chara.gameObject;
 
-        if (rowChange > columnChange)
+        if (at.yPos < to.yPos)
         {
-            if (at.xPos < to.xPos)
-            {
-                chara.facing = Facing.Left;
-                float rotation = 180f;
-                rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
-            }
-            else
-            {
-                chara.facing = Facing.Right;
-                float rotation = 0f;
-                rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
-            }
+            chara.facing = Facing.Up;
+            float rotation = 90f;
+            rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
         }
-        else
+        if (at.xPos < to.xPos)
         {
-            if (at.yPos > to.yPos)
-            {
-                chara.facing = Facing.Down;
-                float rotation = 270f;
-                rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
-            }
-            else
-            {
-                chara.facing = Facing.Up;
-                float rotation = 90f;
-                rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
-            }
+            chara.facing = Facing.Left;
+            float rotation = 180f;
+            rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
         }
+        if(at.xPos > to.xPos)
+        {
+            chara.facing = Facing.Right;
+            float rotation = 0f;
+            rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
+        }
+        if(at.yPos > to.yPos)
+        {
+            chara.facing = Facing.Down;
+            float rotation = 270f;
+            rotateObj.gameObject.transform.rotation = Quaternion.Euler(0, rotation, 0);
+        }
+   
         chara.characterPosition.SetCharacter(chara);
     }
 

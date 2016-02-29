@@ -267,7 +267,7 @@ public class Character : MonoBehaviour, System.IComparable
         // CameraScript.instance.SetMoveTarget(path[0].gameObject);
         previousPostition = path[DistanceToGo];
         CharacterLogic.instance.SetCharacterPosition(chara, path[0]);
-        CharacterLogic.instance.ChangeFacing(chara, characterPosition, path[DistanceToGo]);
+        //CharacterLogic.instance.ChangeFacing(chara, characterPosition, path[DistanceToGo]);
 
         StartCoroutine(MovePath(chara, path));
     }

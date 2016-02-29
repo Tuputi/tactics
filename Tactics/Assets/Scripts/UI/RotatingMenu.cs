@@ -71,6 +71,14 @@ public class RotatingMenu : MonoBehaviour {
             Destroy(cleanupList[i]);
         }*/
 
+        for(int i = 0; i < RotationPoint.transform.childCount; i++)
+        {
+            GameObject child = RotationPoint.transform.GetChild(i).gameObject;
+            if(child.transform.childCount > 0)
+            {
+               Destroy(child.transform.GetChild(0).gameObject);
+            }
+        }
 
         activeButtons = new List<ButtonScript>();
         if(RotationPoint.transform.childCount >= buttons.Count)
