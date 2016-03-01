@@ -195,7 +195,7 @@ public class CharacterLogic : MonoBehaviour{
         chara.characterEnergy -= chara.currentAction.EnergyCost;
         chara.targetTile = tile;
         TurnManager.mode = TurnManager.TurnMode.end;
-        TurnManager.instance.hasActed = true;  
+        TurnManager.instance.hasActed = true;
         UIManager.instance.UpdateButtons();
     }
 

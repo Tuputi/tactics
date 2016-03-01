@@ -142,7 +142,15 @@ public class SelectionScript : MonoBehaviour {
                         }
                     }
 
-                    ConfirmationDialogue.instance.Show(ConfirmationType.action, tile);
+                    if (!TurnManager.instance.CurrentlyTakingTurn.isAi)
+                    {
+                        ConfirmationDialogue.instance.Show(ConfirmationType.action, tile);
+                    }
+                    else
+                    {
+                        CharacterLogic.instance.CompleteAction(TurnManager.instance.CurrentlyTakingTurn, tile);
+                        UIManager.instance.CloseInventoryAfterCompletedAttack();
+                    }
                 }
             }
         }

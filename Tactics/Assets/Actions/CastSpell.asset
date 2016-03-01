@@ -23,6 +23,6 @@ MonoBehaviour:
   MPCost: 0
   HitChance: 100
   actionType: 5
-  compatibleItems: 00000000010000000200000004000000
+  compatibleItems: 05000000
   ElementalAttributes: 
   ActionID: 0

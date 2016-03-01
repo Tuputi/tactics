@@ -87,6 +87,9 @@ public class TeamPlayer : BehaviourModuleBase {
 
     public override void SetAvailableAttacks(Character currentCharacter)
     {
+        List<ActionType> temp = new List<ActionType>();
+        temp.Add(ActionType.Bite);
+        temp.Add(ActionType.Howl);
         CharacterLogic.instance.CreateAttackList(currentCharacter);
     }
 }

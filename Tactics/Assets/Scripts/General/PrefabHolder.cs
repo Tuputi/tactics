@@ -60,6 +60,6 @@ public enum Resistance { Normal, Absorb, Immune, Resistant, Weak} //No change, d
 public enum DisplayTexts { none, miss, immune};
 
 //Names of different actions, used to reference to a dictionary of Actions
-public enum ActionType { MeeleeAttack, FireSpell, ShootArrow, Howl, Stab, CastSpell}
+public enum ActionType { MeeleeAttack, FireSpell, ShootArrow, Howl, Stab, CastSpell, Bite}
 
-public enum ItemType { Potion, Bomb, Arrow, ArrowWideHit, Gunpowder, Spell};
+public enum ItemType { Potion, Bomb, Arrow, ArrowWideHit, Gunpowder, Spell, GnarledRoot, BrokenBone};

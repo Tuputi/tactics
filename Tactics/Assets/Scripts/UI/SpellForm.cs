@@ -214,60 +214,134 @@ public class SpellForm : MonoBehaviour {
             }
         }
 
-        //fire spells
-        if(FireCount == 1 && EarthCount <3 && WindCount < 3 && WaterCount < 3)
+        
+       
+        if(FireCount == 1)
         {
-            tempName = "Fire";
+            tempName = "Flame";
         }
-        if (FireCount == 2 && EarthCount <3 && WindCount < 3 && WaterCount < 3)
+        if (FireCount > 1)
         {
             tempName = "Fire Burst";
         }
-        if (FireCount > 2 && EarthCount < 3 && WindCount < 3 && WaterCount < 3)
+        if (FireCount > 2)
         {
             tempName = "Fire Storm";
         }
 
-        //earth
-        if (FireCount < 3 && EarthCount < 2 && WindCount < 3 && WaterCount < 3)
+
+        if (WaterCount == 1)
         {
-            tempName = "Earth";
+            tempName = "Frostbite";
+        } 
+        if(WaterCount > 1)
+        {
+            tempName = "Ice Rain";
         }
-        if (FireCount < 3 && EarthCount < 3 && WindCount < 3 && WaterCount < 3)
+        if (WaterCount > 2)
+        {
+            tempName = "Tidal Wave";
+        }
+
+
+       
+        if(WindCount == 1)
+        {
+            tempName = "Wind Whip";
+        }
+        if (WindCount > 1)
+        {
+            tempName = "Gust of Wind";
+        }
+        if (WindCount > 2)
+        {
+            tempName = "Tornado";
+        }
+
+        
+        if(EarthCount == 1)
+        {
+            tempName = "Throw Rock";
+        }
+        if (EarthCount > 1)
         {
             tempName = "Earth Rumble";
         }
-        if (FireCount < 3 && EarthCount > 2 && WindCount < 3 && WaterCount < 3)
+        if (EarthCount > 2)
         {
             tempName = "Earthquake";
         }
 
-        //wind
-        if (FireCount < 3 && EarthCount < 3 && WindCount < 2 && WaterCount < 3)
+
+        //combinations
+        if(EarthCount == 2 && WindCount == 1)
         {
-            tempName = "Gust of Wind";
+            tempName = "Sandstorm";
         }
-        if (FireCount < 3 && EarthCount < 3 && WindCount < 3 && WaterCount < 3)
+        if(EarthCount == 1 && WindCount == 2)
         {
-            tempName = "Stormwinds";
+            tempName = "Corrode";
         }
-        if (FireCount < 3 && EarthCount < 3 && WindCount > 2 && WaterCount < 3)
+        if(EarthCount == 1 && WindCount == 1)
         {
-            tempName = "Hurricane";
+            tempName = "Pebbleswarm";
         }
 
-        //water
-        if (FireCount < 3 && EarthCount < 3 && WindCount < 3 && WaterCount < 2)
+        if(WaterCount == 2 && WindCount == 1)
         {
-            tempName = "Water";
+            tempName = "Wave";
         }
-        if (FireCount < 3 && EarthCount < 3 && WindCount < 3 && WaterCount < 3)
+        if(WaterCount == 1 && WindCount == 2)
         {
-            tempName = "Water Whip";
+            tempName = "Hailstorm";
         }
-        if (FireCount < 3 && EarthCount < 3 && WindCount < 3 && WaterCount > 2)
+        if(WaterCount == 1 && WindCount == 1)
         {
-            tempName = "Tsunami";
+            tempName = "Rain";
+        }
+        if(WaterCount == 2 && EarthCount == 1)
+        {
+            tempName = "Marsh";
+        }
+        if(WaterCount == 1 && EarthCount == 2)
+        {
+            tempName = "Quicksand";
+        }
+        if(WaterCount == 1 && EarthCount == 1)
+        {
+            tempName = "Mud";
+        }
+        if(FireCount == 2 && WindCount == 1)
+        {
+            tempName = "Fire Whip";
+        }
+        if(FireCount == 1 && WindCount == 1)
+        {
+            tempName = "Spark";
+        }
+        if(FireCount == 2 && EarthCount == 1)
+        {
+            tempName = "Fireball";
+        }
+        if(FireCount == 1 && EarthCount == 2)
+        {
+            tempName = "Magma";
+        }
+        if(FireCount == 1 && EarthCount == 1)
+        {
+            tempName = "Molten";
+        }
+        if(FireCount == 2 && WaterCount == 1)
+        {
+            tempName = "Steam";
+        }
+        if(FireCount == 1 && WaterCount == 2)
+        {
+            tempName = "Fog";
+        }
+        if(FireCount == 1 && WaterCount == 1)
+        {
+            tempName = "Mist";
         }
 
         return tempName;

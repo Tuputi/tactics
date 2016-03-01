@@ -12,17 +12,20 @@ public class AiModule : MonoBehaviour {
     public BehaviourModuleBase currentBehaviour;
     private List<Tile> tempTotalAttackRange;
     private Character myCharacter;
-
+    private ActionType currentActionType;
     bool waitingToCompleteMove = false;
     bool waitingToCompleteAttack = false;
+    bool waitAMoment = false;
 
+    float currentTime = 0f;
+    float WaitTime = 2f;
     void Awake()
     {
         myCharacter = this.gameObject.GetComponent<Character>();
         myCharacter.isAi = true;
 
         behaviourList = new Dictionary<BehaviourType, BehaviourModuleBase>();
-        myCharacter.ActionTypes = new List<ActionType>();
+        //myCharacter.ActionTypes = new List<ActionType>();
         foreach (BehaviourModuleBase bmb in publicBehaviorList)
         {
             behaviourList.Add(bmb.behaviorType, bmb);
@@ -32,15 +35,15 @@ public class AiModule : MonoBehaviour {
     public void TakeTurn()
     {
         SelectBehaviour();
-        bool DoSearch = AttackTarget();
-        if (DoSearch)
+        if (!TargetWithinAttackRange())
         {
-           AiMove();
-           waitingToCompleteMove = true;
+           TurnManager.instance.Move();
+           waitAMoment = true;        
         }
         else
         {
-            waitingToCompleteAttack = true;
+            TurnManager.instance.Action(currentActionType);
+            waitAMoment = true;
         }
     }
 
@@ -48,13 +51,52 @@ public class AiModule : MonoBehaviour {
 
     void Update()
     {
+        if (waitAMoment)
+        {
+            currentTime += Time.deltaTime;
+            if(currentTime > WaitTime)
+            {
+                Debug.Log("Done!");
+                currentTime = 0f;
+                waitAMoment = false;
+                switch (TurnManager.mode)
+                {
+                    case TurnManager.TurnMode.undecided:
+                        break;
+                    case TurnManager.TurnMode.start:
+                        break;
+                    case TurnManager.TurnMode.move:
+                        AiMove();
+                        waitingToCompleteMove = true;
+                        break;
+                    case TurnManager.TurnMode.action:
+                        AttackTarget();
+                        waitingToCompleteAttack = true;
+                        break;
+                    case TurnManager.TurnMode.facing:
+                        break;
+                    case TurnManager.TurnMode.end:
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
         if (waitingToCompleteMove)
         {
             if (myCharacter.MoveCompleted)
             {
                 waitingToCompleteMove = false;
-                AttackTarget();
-                waitingToCompleteAttack = true;
+                if (TargetWithinAttackRange())
+                {
+                    TurnManager.instance.Action(currentActionType);
+                    waitAMoment = true;
+                }
+                else
+                {
+                    EndTurn();
+                }
             }
         }
 
@@ -63,12 +105,17 @@ public class AiModule : MonoBehaviour {
             if (myCharacter.AttackAnimationCompleted)
             {
                 waitingToCompleteAttack = false;
-                Debug.Log("turn done");
-                Tile targetT = GetClosestEnemy();
-                CharacterLogic.instance.ChangeFacing(myCharacter, myCharacter.characterPosition, targetT);
-                TurnManager.instance.FindNextInTurn();
+                EndTurn();
             }
         }
+    }
+
+    private void EndTurn()
+    {
+        Debug.Log("turn done");
+        Tile targetT = GetClosestEnemy();
+        CharacterLogic.instance.ChangeFacing(myCharacter, myCharacter.characterPosition, targetT);
+        TurnManager.instance.FindNextInTurn();
     }
 
     Tile GetClosestEnemy()
@@ -109,123 +156,88 @@ public class AiModule : MonoBehaviour {
         }
     }
 
-    public bool AttackTarget()
-    {
-        TurnManager.mode = TurnManager.TurnMode.action;
+    public bool TargetWithinAttackRange(){
         foreach (AttackBase ab in myCharacter.AvailableActions)
         {
-            Debug.Log(ab.AttackName);
             List<Tile> attackRange = ab.CalculateActionRange(myCharacter.characterPosition);
             foreach (Tile t in attackRange)
             {
                 if (t.isOccupied)
                 {
-                   if (t.tileCharacter.characterName.Equals(targetCharacter.characterName))
+                    if (t.tileCharacter.characterName.Equals(targetCharacter.characterName))
                     {
-                        myCharacter.currentAction = ab;
-                        myCharacter.currentAction.DrawTargetArea(t);
-                        CharacterLogic.instance.CompleteAction(myCharacter, t);
-                      return false;
+                        currentActionType = ab.actionType;
+                        return true;
                     }
                 }
             }
         }
-        Debug.Log("None of the attacks could be completed");
-        return true;
+        return false;
+    }
+
+    public void AttackTarget()
+    {
+        Tile attackTargetTile = null;
+        foreach(Tile t in myCharacter.possibleRange)
+        {
+            List<Tile> tempRange = new List<Tile>(myCharacter.AvailableActionDictionary[currentActionType].DrawTargetArea(t));
+            foreach(Tile tile in tempRange)
+            {
+                if (tile.isOccupied)
+                {
+                    if (tile.tileCharacter.characterName.Equals(targetCharacter.characterName))
+                    {
+                        attackTargetTile = tile;
+                        break;
+                    }
+                }
+            }
+        }
+        if(attackTargetTile != null)
+        {
+            attackTargetTile.SelectThis();
+        }
     }
 
     public void AiMove()
     {
-        TurnManager.mode = TurnManager.TurnMode.move;
-
-        Tile targetTile = null;
-        if (targetCharacter == null)
+        Tile bestTile = null;
+        Debug.Log("Current possible range "+ myCharacter.possibleRange.Count);
+        foreach(Tile t in myCharacter.possibleRange)
         {
-            targetTile = Pathfinding.FindClosestEnemy(myCharacter.characterPosition, false);
+            float distance = Pathfinding.GetHeuristic(t, targetCharacter.characterPosition);
+            if(bestTile == null)
+            {
+                bestTile = t;
+            }
+            else if(distance < Pathfinding.GetHeuristic(bestTile, targetCharacter.characterPosition))
+            {
+                bestTile = t;
+            }
         }
-        else
-        {
-            targetTile = targetCharacter.characterPosition;
-        }
+        Debug.Log(bestTile);
 
-        //from which distance can we attack the target?
-        tempTotalAttackRange = new List<Tile>();
+        
+        /*tempTotalAttackRange = new List<Tile>();
         foreach(AttackBase ab in myCharacter.AvailableActions)
         {
-            foreach(Tile t in ab.CalculateActionRange(targetTile))
+            foreach(Tile t in ab.CalculateActionRange(myCharacter.characterPosition))
             {
                 if (!tempTotalAttackRange.Contains(t))
                 {
                     tempTotalAttackRange.Add(t);
                 }
             }
-        }
-        //gototile is the closest position where an attack reachers the enemy
-        Tile goToTile = Pathfinding.FindTargetTile(myCharacter.characterPosition, tempTotalAttackRange);
+        }*/
+      
+        List<Tile> foundPath = Pathfinding.GetPath(myCharacter.characterPosition, bestTile);
 
-        if(goToTile == null)
+        if (foundPath == null)
         {
-            //silertejp
-            foreach(Tile t in targetTile.neighbours)
-            {
-                if(!t.isOccupied && t.isWalkable)
-                {
-                    goToTile = t;
-                }
-            }
-            if(goToTile == null)
-            {
-                List<Tile> largerSearch = new List<Tile>();
-                foreach(Tile t in targetTile.neighbours)
-                {
-                    largerSearch.Add(t);
-                    foreach(Tile ti in t.neighbours)
-                    {
-                        largerSearch.Add(ti);
-                    }
-                }
-
-                foreach(Tile til in largerSearch)
-                {
-                    if (!til.isOccupied && til.isWalkable)
-                    {
-                        goToTile = til;
-                    }
-                }
-            }
-            if(goToTile == null)
-            {
-                Debug.Log("Do nothing");
-                return;
-            }
-
-
-           /* goToTile = FindAnAccessableTarget();
-            if(goToTile == null)
-            {
-                Debug.Log("No target possible,  wahtsoever");
-                return;
-            }*/
+            Debug.Log("No possible tile to go to found");
+            return;
         }
-
-        List<Tile> foundPath = Pathfinding.GetPath(myCharacter.characterPosition, goToTile);
-
-        if (foundPath !=null)
-        {
-            List<Tile> takePath = new List<Tile>();
-            foreach (Tile t in foundPath)
-            {
-                if (t.pathfindingCost <= myCharacter.movementRange)
-                {
-                    takePath.Add(t);
-                }
-            }
-            CharacterLogic.instance.CompleteMove(myCharacter, foundPath);
-        }
-        else
-        {
-            Debug.Log("nope");
-        }
+        CharacterLogic.instance.CompleteMove(myCharacter, foundPath);
     }
 
     private Tile FindAnAccessableTarget()

@@ -67,7 +67,7 @@ public class ConfirmationDialogue : MonoBehaviour{
         switch (ConfirmType)
         {
             case ConfirmationType.action:
-                SituationDesc.text = "Target tile/s with " + TurnManager.instance.CurrentlyTakingTurn.currentAction.GetName() + "?";
+                SituationDesc.text = "Target tile(s) with " + TurnManager.instance.CurrentlyTakingTurn.currentAction.GetName() + "?";
                 HitChanceText.text = "The hit chance is " + TurnManager.instance.CurrentlyTakingTurn.currentAction.GetHitChance(ActionTargetTile).ToString() + "%";
                 break;
             case ConfirmationType.move:

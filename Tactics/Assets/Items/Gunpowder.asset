@@ -21,12 +21,12 @@ MonoBehaviour:
   ItemName: Gunpowder
   ItemId: 0
   itemType: 4
-  ItemSprite: {fileID: 21300000, guid: 5907227a5f5c78e4d960ca151f1ded58, type: 3}
+  ItemSprite: {fileID: 21300000, guid: 3357f5920eec9a244896b6a651952ca9, type: 3}
   ItemMaxStackSize: 5
   itemCategories: 020000000100000004000000
   EffectToRange: 0
   EffectToTArgetArea: 1
   EffectToDamageStatic: 0
-  EffectToDamageMultiplayer: 1
-  addElement: 00000000010000000200000003000000
+  EffectToDamageMultiplayer: 2
+  addElement: 0000000002000000
   ItemInstanceIndex: 0

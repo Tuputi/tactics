@@ -17,7 +17,7 @@ public class Agressive : BehaviourModuleBase {
     public override void SetAvailableAttacks(Character currentCharacter)
     {
         List<ActionType> temp = new List<ActionType>();
-        temp.Add(ActionType.Howl);
-        CharacterLogic.instance.CreateAttackList(currentCharacter, temp);
+        temp.Add(ActionType.Bite);
+        CharacterLogic.instance.CreateAttackList(currentCharacter);
     }
 }

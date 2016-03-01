@@ -79,6 +79,10 @@ public class Character : MonoBehaviour, System.IComparable
         set
         {
             hp = value;
+            if(hp <= 0)
+            {
+                TurnManager.instance.CheckAliveStatus();
+            }
         }
     }
     public int Mp

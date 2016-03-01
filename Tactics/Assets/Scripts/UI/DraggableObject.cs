@@ -29,7 +29,7 @@ public class DraggableObject : MonoBehaviour {
             return;
         }*/
 
-        if((Input.GetMouseButtonDown(0) && !dragging))// || (TouchInput.touchActive && !dragging))
+        if((Input.GetMouseButtonDown(0) && !dragging) || (TouchInput.touchActive && !dragging))
         {
             dragging = true;
             origPosition = GetComponent<RectTransform>().localPosition;
@@ -46,7 +46,7 @@ public class DraggableObject : MonoBehaviour {
            }
 
         }
-        if(Input.GetMouseButtonUp(0))// || !TouchInput.touchActive)
+        if(Input.GetMouseButtonUp(0) || !TouchInput.touchActive)
         {
             dragging = false;
             ReturnToOrigLocation();
