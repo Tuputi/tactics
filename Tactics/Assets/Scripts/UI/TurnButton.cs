@@ -25,13 +25,10 @@ public class TurnButton : ButtonScript {
                 t.SetOverlayType(OverlayType.None);
             }
             SelectionScript.SetNoSelection(false);
-            UIManager.instance.ActivateButtons(true);
+            UIManager.instance.UpdateButtons();
             UnselectButton();
             return;
         }
-
-        UIManager.instance.CloseInventory();
-        SelectionScript.ClearSelection();
         TurnManager.instance.FacingPhase();
     }
 

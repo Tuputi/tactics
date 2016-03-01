@@ -162,6 +162,11 @@ public class CharacterLogic : MonoBehaviour{
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.hasMoved = true;
         UIManager.instance.UpdateButtons();
+
+        if (TurnManager.instance.hasActed)
+        {
+            TurnManager.instance.FacingPhase();
+        }
     }
 
     public void Action(Character chara, ActionBaseClass ab)
@@ -197,6 +202,11 @@ public class CharacterLogic : MonoBehaviour{
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.hasActed = true;
         UIManager.instance.UpdateButtons();
+
+        if (TurnManager.instance.hasMoved)
+        {
+            TurnManager.instance.FacingPhase();
+        }
     }
 
 

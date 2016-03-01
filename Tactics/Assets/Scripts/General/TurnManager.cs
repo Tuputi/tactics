@@ -175,12 +175,14 @@ public class TurnManager : MonoBehaviour {
 
     public void FacingPhase()
     {
+        UIManager.instance.CloseInventory();
+        SelectionScript.ClearSelection();
         CameraScript.instance.SetMoveTarget(CurrentlyTakingTurn.gameObject);
         if (CurrentlyTakingTurn!=null && !CurrentlyTakingTurn.isAi)
         {
             mode = TurnMode.facing;
             UIManager.instance.StartSelectFacingPhase(CurrentlyTakingTurn);
-            UIManager.instance.ActivateButtons(false);
+            UIManager.instance.UpdateButtons();
         }
     }
 
