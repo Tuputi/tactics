@@ -1,0 +1,178 @@
+fileFormatVersion: 2
+guid: 91bf170938c78574eb52dee172faf95a
+timeCreated: 1456938943
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Arm
+    100004: Arm_002
+    100006: Arm_L
+    100008: Arm_L_001
+    100010: Arm_L_002
+    100012: Arm_L_003
+    100014: Arm_L_004
+    100016: Arm_L_005
+    100018: Arm_R_001
+    100020: Arm_R_002
+    100022: Arm_R_003
+    100024: Arm_R_005
+    100026: Arm_R_006
+    100028: Arm_R_008
+    100030: Armature
+    100032: BaseBone
+    100034: Ear_L
+    100036: Ear_R
+    100038: Finger_L
+    100040: Finger_L_001
+    100042: Finger_L_002
+    100044: Finger_L_003
+    100046: Finger_R
+    100048: Finger_R_001
+    100050: Finger_R_002
+    100052: Finger_R_003
+    100054: Head
+    100056: Leg_L
+    100058: Leg_L_001
+    100060: Leg_L_002
+    100062: Leg_L_003
+    100064: Leg_R
+    100066: Leg_R_001
+    100068: Leg_R_002
+    100070: Leg_R_003
+    100072: pCube3
+    100074: Spine
+    100076: Spine_001
+    100078: Spine_002
+    100080: Tail
+    100082: Tail_001
+    100084: Tail_002
+    100086: Tail_003
+    100088: Tail_004
+    100090: Thumb_L
+    100092: Thumb_R
+    100094: transform1
+    100096: transform2
+    100098: Archer_Rat_Mesh
+    400000: //RootNode
+    400002: Arm
+    400004: Arm_002
+    400006: Arm_L
+    400008: Arm_L_001
+    400010: Arm_L_002
+    400012: Arm_L_003
+    400014: Arm_L_004
+    400016: Arm_L_005
+    400018: Arm_R_001
+    400020: Arm_R_002
+    400022: Arm_R_003
+    400024: Arm_R_005
+    400026: Arm_R_006
+    400028: Arm_R_008
+    400030: Armature
+    400032: BaseBone
+    400034: Ear_L
+    400036: Ear_R
+    400038: Finger_L
+    400040: Finger_L_001
+    400042: Finger_L_002
+    400044: Finger_L_003
+    400046: Finger_R
+    400048: Finger_R_001
+    400050: Finger_R_002
+    400052: Finger_R_003
+    400054: Head
+    400056: Leg_L
+    400058: Leg_L_001
+    400060: Leg_L_002
+    400062: Leg_L_003
+    400064: Leg_R
+    400066: Leg_R_001
+    400068: Leg_R_002
+    400070: Leg_R_003
+    400072: pCube3
+    400074: Spine
+    400076: Spine_001
+    400078: Spine_002
+    400080: Tail
+    400082: Tail_001
+    400084: Tail_002
+    400086: Tail_003
+    400088: Tail_004
+    400090: Thumb_L
+    400092: Thumb_R
+    400094: transform1
+    400096: transform2
+    400098: Archer_Rat_Mesh
+    4300000: pCube3
+    4300002: Archer_Rat_Mesh
+    7400000: Default Take
+    7400002: Stab
+    9500000: //RootNode
+    13700000: pCube3
+    13700002: Archer_Rat_Mesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

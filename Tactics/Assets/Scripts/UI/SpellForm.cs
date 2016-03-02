@@ -269,14 +269,14 @@ public class SpellForm : MonoBehaviour {
         }
         if (EarthCount > 2)
         {
-            tempName = "Earthquake";
+            tempName = "Earth quake";
         }
 
 
         //combinations
         if(EarthCount == 2 && WindCount == 1)
         {
-            tempName = "Sandstorm";
+            tempName = "Sand storm";
         }
         if(EarthCount == 1 && WindCount == 2)
         {
@@ -284,7 +284,7 @@ public class SpellForm : MonoBehaviour {
         }
         if(EarthCount == 1 && WindCount == 1)
         {
-            tempName = "Pebbleswarm";
+            tempName = "Pebble swarm";
         }
 
         if(WaterCount == 2 && WindCount == 1)
@@ -293,7 +293,7 @@ public class SpellForm : MonoBehaviour {
         }
         if(WaterCount == 1 && WindCount == 2)
         {
-            tempName = "Hailstorm";
+            tempName = "Hail storm";
         }
         if(WaterCount == 1 && WindCount == 1)
         {

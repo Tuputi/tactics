@@ -24,15 +24,15 @@ public class CharacterLogic : MonoBehaviour{
                 Vector3 pos = tilePos.transform.position + cha.transform.position;
                 GameObject go = (GameObject)Instantiate(cha.gameObject, pos, Quaternion.identity);
 
-                if (!NameCreator.instance.IsNameAlreadyUsed(cha.characterName) || cha.characterNameType == NameType.Animal)
+               /* if (!NameCreator.instance.IsNameAlreadyUsed(cha.characterName) || cha.characterNameType == NameType.Animal)
                 {
                     go.name = cha.characterName;
                     NameCreator.instance.AddANameToUsed(cha.characterName);
                 }
                 else
-                {
-                    go.name = NameCreator.instance.GetAName(NameType.Rat);
-                }
+                {*/
+                    go.name = NameCreator.instance.GetAName(cha.characterNameType);
+                //}
                 go.GetComponent<Character>().characterName = go.name;
 
                 GameObject characterHolder = GameObject.Find("Characters");

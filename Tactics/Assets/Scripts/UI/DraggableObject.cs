@@ -6,8 +6,8 @@ public class DraggableObject : MonoBehaviour {
     public bool selected;
     bool dragging = false;
     public Vector3 origPosition;
-    Vector3 offset = new Vector2(1, 1);
-    Vector2 offset2D = new Vector2(1, 1);
+    Vector3 offset = new Vector2(-5, -5);
+    Vector2 offset2D = new Vector2(-5, -5);
     public bool draggable = true;
 
 
@@ -29,7 +29,7 @@ public class DraggableObject : MonoBehaviour {
             return;
         }*/
 
-        if((Input.GetMouseButtonDown(0) && !dragging) || (TouchInput.touchActive && !dragging))
+        if((Input.GetMouseButtonDown(0) && !dragging))// || (TouchInput.touchActive && !dragging))
         {
             dragging = true;
             origPosition = GetComponent<RectTransform>().localPosition;
@@ -46,7 +46,7 @@ public class DraggableObject : MonoBehaviour {
            }
 
         }
-        if(Input.GetMouseButtonUp(0) || !TouchInput.touchActive)
+        if(Input.GetMouseButtonUp(0))// || !TouchInput.touchActive)
         {
             dragging = false;
             ReturnToOrigLocation();
