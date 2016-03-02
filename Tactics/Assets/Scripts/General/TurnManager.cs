@@ -9,6 +9,7 @@ public class TurnManager : MonoBehaviour {
 
     public static TurnManager instance;
     public static OrderedBag<Character> characters;
+    private List<Character> inactiveCharacters;
     public float EnergyThreshold = 50f;
     public float EnergyAddedPerTurn = 5f;
     public Character CurrentlyTakingTurn;
@@ -62,9 +63,8 @@ public class TurnManager : MonoBehaviour {
         characters.Clear();
         foreach(Character chara in tempList)
         {
-            //chara.characterEnergy += chara.speed;
-            chara.characterEnergy += EnergyAddedPerTurn;
-            characters.Add(chara);
+                chara.characterEnergy += EnergyAddedPerTurn;
+                characters.Add(chara);
         }
         List<Character> sendList = new List<Character>(tempList);
         UIManager.instance.UpdateTurnOrderDisplay(sendList);
@@ -81,7 +81,7 @@ public class TurnManager : MonoBehaviour {
         {
             if(characters.GetFirst().characterEnergy >= (225- characters.GetFirst().speed))
             {
-                nextCharacter = characters.GetFirst();
+                    nextCharacter = characters.GetFirst();
             }
             else
             {
@@ -191,28 +191,30 @@ public class TurnManager : MonoBehaviour {
         List<Character> deadCharacter = new List<Character>();
         foreach(Character chara in characters)
         {
-            if(chara.Hp <= 0)
+            if(!chara.isAlive)
             {
                 deadCharacter.Add(chara);
+                chara.GetComponent<Animator>().SetBool("Dead", true);
+                chara.Hp = 0;
             }
         }
 
-        foreach(Character ch in deadCharacter)
+        foreach(Character cha in deadCharacter)
         {
-            characters.Remove(ch);
+            characters.Remove(cha);
         }
 
-        for(int i = deadCharacter.Count-1; i >= 0; i--)
-        {
-            Destroy(deadCharacter[i].gameObject);
-        }
+        CheckIfGameOver();
+    }
 
+    public void CheckIfGameOver()
+    {
         bool teamAi = false;
         bool teamB = false;
 
-        foreach(Character chara in characters)
+        foreach (Character chara in characters)
         {
-            if(chara.isAi)
+            if (chara.isAi)
             {
                 teamAi = true;
             }
@@ -222,11 +224,8 @@ public class TurnManager : MonoBehaviour {
             }
         }
 
-        if(teamAi && teamB)
-        {
-        }
-        else
-        {
+        if (!(teamAi && teamB))
+        { 
             Debug.Log("Game Over");
             UIManager.instance.DisplayGameOver(teamB);
         }

@@ -788,7 +788,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Wolfy
+  characterNameType: 1
+  characterClass: Animal
   characterID: 1
+  profileSprite: {fileID: 21300000, guid: 5d04b373a66950441ad8e4a56b9e187d, type: 3}
   inturnmarkerheight: 5
   characterEnergy: 5
   movementRange: 4
@@ -929,6 +932,19 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: ActionTypes.Array.data[1]
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: profileSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d04b373a66950441ad8e4a56b9e187d,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: characterClass
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterNameType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -7,8 +7,10 @@ public class Character : MonoBehaviour, System.IComparable
 {
 
     public string characterName = "tempName";
+    public NameType characterNameType = NameType.Rat;
+    public string characterClass = "Freelancer";
     public int characterID = 0;
-
+    public Sprite profileSprite;
 
     //game logic stats
     public float inturnmarkerheight = 5f;
@@ -78,11 +80,7 @@ public class Character : MonoBehaviour, System.IComparable
 
         set
         {
-            hp = value;
-            if(hp <= 0)
-            {
-                TurnManager.instance.CheckAliveStatus();
-            }
+            hp = value;           
         }
     }
     public int Mp
@@ -202,6 +200,11 @@ public class Character : MonoBehaviour, System.IComparable
         characterAnimator.SetBool(AttackName, false);
         //RemoveWeapon();
         UIManager.instance.HideAttackName();
+
+        if(TurnManager.instance.hasMoved && TurnManager.instance.hasActed)
+        {
+            TurnManager.instance.FacingPhase();
+        }
     }
 
     public void AttachWeapon()
@@ -311,6 +314,11 @@ public class Character : MonoBehaviour, System.IComparable
         Debug.Log("Move complete");
         MoveCompleted = true;
         characterAnimator.SetBool("Walking", false);
+
+        if (TurnManager.instance.hasMoved && TurnManager.instance.hasActed)
+        {
+            TurnManager.instance.FacingPhase();
+        }
     }
 
 }

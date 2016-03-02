@@ -23,7 +23,18 @@ public class CharacterLogic : MonoBehaviour{
             {
                 Vector3 pos = tilePos.transform.position + cha.transform.position;
                 GameObject go = (GameObject)Instantiate(cha.gameObject, pos, Quaternion.identity);
-                go.name = cha.characterName;
+
+                if (!NameCreator.instance.IsNameAlreadyUsed(cha.characterName) || cha.characterNameType == NameType.Animal)
+                {
+                    go.name = cha.characterName;
+                    NameCreator.instance.AddANameToUsed(cha.characterName);
+                }
+                else
+                {
+                    go.name = NameCreator.instance.GetAName(NameType.Rat);
+                }
+                go.GetComponent<Character>().characterName = go.name;
+
                 GameObject characterHolder = GameObject.Find("Characters");
                 go.transform.SetParent(characterHolder.transform);
                 tilePos.SetCharacter(go.GetComponent<Character>());
@@ -162,11 +173,6 @@ public class CharacterLogic : MonoBehaviour{
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.hasMoved = true;
         UIManager.instance.UpdateButtons();
-
-        if (TurnManager.instance.hasActed)
-        {
-            TurnManager.instance.FacingPhase();
-        }
     }
 
     public void Action(Character chara, ActionBaseClass ab)
@@ -202,11 +208,6 @@ public class CharacterLogic : MonoBehaviour{
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.hasActed = true;
         UIManager.instance.UpdateButtons();
-
-        if (TurnManager.instance.hasMoved)
-        {
-            TurnManager.instance.FacingPhase();
-        }
     }
 
 

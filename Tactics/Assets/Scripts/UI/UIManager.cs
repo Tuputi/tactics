@@ -44,6 +44,8 @@ public class UIManager : MonoBehaviour{
     Text hpValue;
     Text hpValueMax;
     Text characterName;
+    Text characterClass;
+    Image characterProfile;
     GameObject StatusElementHolder;
 
     List<ButtonScript> buttons;
@@ -64,7 +66,11 @@ public class UIManager : MonoBehaviour{
         hpValue = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValue").GetComponent<Text>();
         hpValueMax = StatusTemplate.transform.FindChild("HP").transform.FindChild("hpValueMax").GetComponent<Text>();
         characterName = StatusTemplate.transform.FindChild("Name").GetComponent<Text>();
+        characterClass = StatusTemplate.transform.FindChild("Class").GetComponent<Text>();
+        characterProfile = StatusTemplate.transform.Find("ProfileImage").GetComponent<Image>();
+        characterProfile.gameObject.SetActive(false);       
         StatusElementHolder = StatusTemplate.transform.FindChild("ElementHolder").gameObject;
+        StatusTemplate.gameObject.SetActive(false);
 
         MyInTurnMarker = Instantiate(InTurnMarker);
 
@@ -100,9 +106,14 @@ public class UIManager : MonoBehaviour{
     public void UpdateStatusWindow(Character chara)
     {
         StatusTemplate.SetActive(true);
+        StatusTemplate.gameObject.GetComponent<StatusWindow>().CloseAllTabs();
         hpValue.text = chara.Hp.ToString();
         hpValueMax.text = chara.hpMax.ToString();
         characterName.text = chara.characterName;
+        characterClass.text = chara.characterClass;
+        characterProfile.gameObject.SetActive(true);
+        characterProfile.sprite = chara.profileSprite;
+
 
        
         foreach (KeyValuePair<Elements, Resistance> er in chara.elementalResistances)

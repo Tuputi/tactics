@@ -58,6 +58,7 @@ public enum InventoryType { archer, mage}
 public enum Elements { Fire, Water, Earth, Wind}
 public enum Resistance { Normal, Absorb, Immune, Resistant, Weak} //No change, damage = hp, no damage, 50% damage, 150% damage
 public enum DisplayTexts { none, miss, immune};
+public enum NameType { Rat, Animal};
 
 //Names of different actions, used to reference to a dictionary of Actions
 public enum ActionType { MeeleeAttack, FireSpell, ShootArrow, Howl, Stab, CastSpell, Bite}

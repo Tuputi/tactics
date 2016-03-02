@@ -20,8 +20,8 @@ public class ConfirmationDialogue : MonoBehaviour{
        // DialogueTemplate = Instantiate(PrefabHolder.instance.ConfirmationTemplate);
        // DialogueTemplate.transform.SetParent(GameObject.Find("Canvas").transform,false);
         SituationDesc = DialogueTemplate.transform.FindChild("SituationDesc").GetComponent<Text>();
-        HitChanceText = DialogueTemplate.transform.FindChild("HitChangeText").GetComponent<Text>();
-        templateHeight = DialogueTemplate.GetComponent<RectTransform>().rect.height;
+       // HitChanceText = DialogueTemplate.transform.FindChild("HitChangeText").GetComponent<Text>();
+        templateHeight = DialogueTemplate.GetComponentInChildren<Image>().GetComponent<RectTransform>().rect.height;
         if(Application.platform == RuntimePlatform.Android)
         {
             templateHeight *= 3;
@@ -55,7 +55,7 @@ public class ConfirmationDialogue : MonoBehaviour{
         Vector3 position = UIManager.instance.ConvertPositionToScreenPoint(ActionTargetTile.gameObject);
         if (position.y + templateHeight < Screen.height)
         {
-            position += new Vector3(0, templateHeight, 0);
+            position += new Vector3(0, templateHeight/2, 0);
         }
         else
         {
@@ -68,11 +68,11 @@ public class ConfirmationDialogue : MonoBehaviour{
         {
             case ConfirmationType.action:
                 SituationDesc.text = "Target tile(s) with " + TurnManager.instance.CurrentlyTakingTurn.currentAction.GetName() + "?";
-                HitChanceText.text = "The hit chance is " + TurnManager.instance.CurrentlyTakingTurn.currentAction.GetHitChance(ActionTargetTile).ToString() + "%";
+               // HitChanceText.text = "The hit chance is " + TurnManager.instance.CurrentlyTakingTurn.currentAction.GetHitChance(ActionTargetTile).ToString() + "%";
                 break;
             case ConfirmationType.move:
                 SituationDesc.text = "Move to this tile?";
-                HitChanceText.text = "";
+               // HitChanceText.text = "";
                 break;
             default:
                 break;
