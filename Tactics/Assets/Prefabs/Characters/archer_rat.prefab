@@ -1432,7 +1432,7 @@ MonoBehaviour:
   hpMax: 100
   mpMax: 100
   speed: 60
-  items: 020000000300000004000000
+  items: 02000000030000000400000008000000
 --- !u!137 &13767498
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1522,6 +1522,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: items.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 8d33dc2d7537d204cb52dd5a1170f8eb, type: 2}
@@ -1536,6 +1540,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: WindStatus
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[3]
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

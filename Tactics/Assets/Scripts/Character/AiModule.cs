@@ -215,7 +215,7 @@ public class AiModule : MonoBehaviour {
                 bestTile = t;
             }
         }
-        Debug.Log(bestTile);
+        //Debug.Log(bestTile);
 
         
         /*tempTotalAttackRange = new List<Tile>();

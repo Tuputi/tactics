@@ -51,10 +51,11 @@ public class SpellForm : MonoBehaviour {
         float area = DisplaySpellArea();
         float range = CalculateAttackRange();
         List<Elements> elements = CalculateElementEffects(currentAttack);
+        TargetAreaType myTat = GetTargetAreaType();
 
 
         Spell newSpell = ScriptableObject.CreateInstance<Spell>();
-        newSpell.SpellInit("TempSpell", area - currentAttack.TargetAreaSize, range - currentAttack.BasicRange, elements);
+        newSpell.SpellInit("TempSpell", area - currentAttack.TargetAreaSize, range - currentAttack.BasicRange, elements, myTat);
         newSpell.ItemName = Spellinterpreter();
         newSpell.ItemId = -1;
         UpdateElementDisplay(newSpell);
@@ -63,7 +64,8 @@ public class SpellForm : MonoBehaviour {
         return newSpell;
     }
 
-    //targetarea
+    //targetrange
+    //targetareatype
     //attackrange
     //elements
 
@@ -79,6 +81,55 @@ public class SpellForm : MonoBehaviour {
             }
         }
         return range;
+    }
+
+    public TargetAreaType GetTargetAreaType(){
+        int croshairCount = 0;
+        int linecount = 0;
+        int selfcount = 0;
+
+
+        foreach(IncredientSlot slot in IncredientSlots)
+        {
+            if (!slot.isEmpty)
+            {
+                if(slot.MyItem.targetAreaType != TargetAreaType.none)
+                {
+                    switch (slot.MyItem.targetAreaType)
+                    {
+                        case TargetAreaType.none:
+                            break;
+                        case TargetAreaType.self:
+                            selfcount++;
+                            break;
+                        case TargetAreaType.circular:
+                            break;
+                        case TargetAreaType.croshair:
+                            croshairCount++;
+                            break;
+                        case TargetAreaType.line:
+                            linecount++;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
+        if(croshairCount >= linecount)
+        {
+            return TargetAreaType.croshair;
+        }
+        if(linecount >= selfcount )
+        {
+            return TargetAreaType.line;
+        }
+        if(selfcount > 0)
+        {
+            return TargetAreaType.self;
+        }
+        return TargetAreaType.none;
     }
 
     public List<Elements> CalculateElementEffects(AttackBase currentAtt)
@@ -117,7 +168,7 @@ public class SpellForm : MonoBehaviour {
         }
 
         areaInfo.SlackLights();
-        areaInfo.LightUpRange(TargetAreaType.line, tempRange);
+        areaInfo.LightUpRange(TargetAreaType.croshair, tempRange);
         return tempRange;
     }
 

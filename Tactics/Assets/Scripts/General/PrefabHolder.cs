@@ -51,7 +51,7 @@ public enum OverlayType { None, Selected, Arrow };
 public enum BehaviourType { agressive, teamPlayer, healWhenHurt}
 public enum ConfirmationType { action, move};
 public enum GameMode { Editor, Game };
-public enum TargetAreaType { none, self, circular, line}
+public enum TargetAreaType { none, self, circular, croshair, line}
 
 public enum InventoryType { archer, mage}
 
@@ -63,4 +63,4 @@ public enum NameType { Rat, Animal};
 //Names of different actions, used to reference to a dictionary of Actions
 public enum ActionType { MeeleeAttack, FireSpell, ShootArrow, Howl, Stab, CastSpell, Bite}
 
-public enum ItemType { Potion, Bomb, Arrow, ArrowWideHit, Gunpowder, Spell, GnarledRoot, BrokenBone};
+public enum ItemType { Potion, Bomb, Arrow, ArrowWideHit, Gunpowder, Spell, GnarledRoot, BrokenBone, PiercingArrow};

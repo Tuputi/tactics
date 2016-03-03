@@ -18,6 +18,7 @@ public class ItemBase : ActionBaseClass {
     public float EffectToDamageStatic = 0;
     public float EffectToDamageMultiplayer = 1f;
     public List<Elements> addElement;
+    public TargetAreaType targetAreaType = TargetAreaType.none;
 
 
     //to distinguish between unique items at some point
@@ -33,12 +34,13 @@ public class ItemBase : ActionBaseClass {
         ItemMaxStackSize = itemMaxStackSize;
     }
 
-    public void InitEffect(float effectToRange, float effectToTargetArea, float effectToDamageStatic, float effectToDamageMultiplayer)
+    public void InitEffect(float effectToRange, float effectToTargetArea, float effectToDamageStatic, float effectToDamageMultiplayer, TargetAreaType tat)
     {
         EffectToRange = effectToRange;
         EffectToTArgetArea = effectToTargetArea;
         EffectToDamageStatic = effectToDamageStatic;
         EffectToDamageMultiplayer = effectToDamageMultiplayer;
+        targetAreaType = tat;
     }
 
     public void InitElement(List<Elements> elements)

@@ -12,6 +12,7 @@ public class AttackBase : ActionBaseClass{
     public ActionType actionType = ActionType.MeeleeAttack;
     public List<ItemType> compatibleItems;
     public List<Elements> ElementalAttributes;
+    public TargetAreaType targetAreaType = TargetAreaType.croshair;
 
     [HideInInspector]
     public int ActionID;
@@ -66,6 +67,18 @@ public class AttackBase : ActionBaseClass{
         return base.CalculateActionRange(startTile, ib);
     }
 
+    public TargetAreaType GetTargetAreaType()
+    {
+        if (TurnManager.instance.CurrentlyTakingTurn.currentItem)
+        {
+            if(TurnManager.instance.CurrentlyTakingTurn.currentItem.targetAreaType != TargetAreaType.none)
+            {
+                return TurnManager.instance.CurrentlyTakingTurn.currentItem.targetAreaType;
+            }
+        }
+        return targetAreaType;
+    }
+
     public override List<Tile> DrawTargetArea(Tile targetTile)
     {
         List<Tile> temp = new List<Tile>();
@@ -79,7 +92,7 @@ public class AttackBase : ActionBaseClass{
             {
                 float area = ib.EffectToTArgetArea + TurnManager.instance.CurrentlyTakingTurn.currentAction.TargetAreaSize;
                 Debug.Log("Area is " + area);
-                List<Tile> tempList = Pathfinding.GetTargetArea(targetTile, TargetAreaType.line, area);
+                List<Tile> tempList = Pathfinding.GetTargetArea(targetTile, GetTargetAreaType(), area);
                 foreach (Tile t in tempList)
                 {
                     if (!temp.Contains(t))

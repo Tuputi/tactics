@@ -269,7 +269,7 @@ public class UIManager : MonoBehaviour{
 
         CreateElementDisplay(item, ElementHolder);
 
-        ItemInfoAreaDisplay.instance.LightUpRange(TargetAreaType.line, item.EffectToTArgetArea + TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[PendingActionType].TargetAreaSize);
+        ItemInfoAreaDisplay.instance.LightUpRange(TargetAreaType.croshair, item.EffectToTArgetArea + TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[PendingActionType].TargetAreaSize);
     }
 
     public void CreateElementDisplay(ItemBase item, GameObject elemHolder)

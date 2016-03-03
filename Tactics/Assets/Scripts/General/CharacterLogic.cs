@@ -88,7 +88,7 @@ public class CharacterLogic : MonoBehaviour{
             ItemBase newItem = ScriptableObject.CreateInstance<ItemBase>();
             ItemBase template = ItemList.GetItem(item);
             newItem.Init(template.ItemCount, template.ItemName, template.itemType, template.ItemSprite, template.ItemMaxStackSize);
-            newItem.InitEffect(template.EffectToRange, template.EffectToTArgetArea, template.EffectToDamageStatic, template.EffectToDamageMultiplayer);
+            newItem.InitEffect(template.EffectToRange, template.EffectToTArgetArea, template.EffectToDamageStatic, template.EffectToDamageMultiplayer, template.targetAreaType);
             newItem.InitElement(template.addElement);
             newItem.ItemId = id;
             newItem.itemCategories = template.itemCategories;

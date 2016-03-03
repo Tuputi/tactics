@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866f388511c79ca43b0e0d2b317ed2e9, type: 3}
+  m_Name: PiercingArrow
+  m_EditorClassIdentifier: 
+  BasicRange: 2
+  TargetAreaSize: 1
+  EnergyCost: 5
+  AnimationName: 
+  UsedWithItems: 0
+  attackArea: []
+  ItemCount: 5
+  ItemName: Piercing arrow
+  ItemId: 0
+  itemType: 8
+  ItemSprite: {fileID: 21300000, guid: e5cac8ee5c4c76241bd294f61183d974, type: 3}
+  ItemMaxStackSize: 5
+  itemCategories: 02000000
+  EffectToRange: 1
+  EffectToTArgetArea: 2
+  EffectToDamageStatic: 0
+  EffectToDamageMultiplayer: 1
+  addElement: 
+  targetAreaType: 4
+  ItemInstanceIndex: 0

@@ -71,7 +71,7 @@ public class ItemInfoAreaDisplay : MonoBehaviour {
                     tiles[centerPosition - 6].GetComponent<Image>().color = Color.white;
                 }
                 break;
-            case TargetAreaType.line:
+            case TargetAreaType.croshair:
                 tiles[centerPosition].GetComponent<Image>().color = Color.white;
                 for (int i = 0; i < range; i++)
                 {

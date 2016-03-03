@@ -303,7 +303,7 @@ public class Pathfinding : MonoBehaviour {
         return closest.characterPosition;
     }
 
-    public static List<Tile> GetTargetArea(Tile charaPosition, TargetAreaType tat, float range)
+    public static List<Tile> GetTargetArea(Tile targetTile, TargetAreaType tat, float range)
     {
         List<Tile> tempList = new List<Tile>();
         switch (tat)
@@ -312,20 +312,20 @@ public class Pathfinding : MonoBehaviour {
                 Debug.LogError("TargetAreaType not defined");
                 break;
             case TargetAreaType.self:
-                tempList.Add(charaPosition);
+                tempList.Add(targetTile);
                 break;
             case TargetAreaType.circular:
-                tempList = GetPossibleRange(charaPosition, range, true);
+                tempList = GetPossibleRange(targetTile, range, true);
                 break;
-            case TargetAreaType.line:
+            case TargetAreaType.croshair:
                 if(range > 1)
-                    tempList = new List<Tile>(charaPosition.neighbours);
+                    tempList = new List<Tile>(targetTile.neighbours);
                 if (range > 2)
                 {
-                    tempList.Add(charaPosition.neighbours[0].neighbours[0]);
-                    tempList.Add(charaPosition.neighbours[1].neighbours[1]);
-                    tempList.Add(charaPosition.neighbours[2].neighbours[2]);
-                    tempList.Add(charaPosition.neighbours[3].neighbours[3]);
+                    tempList.Add(targetTile.neighbours[0].neighbours[0]);
+                    tempList.Add(targetTile.neighbours[1].neighbours[1]);
+                    tempList.Add(targetTile.neighbours[2].neighbours[2]);
+                    tempList.Add(targetTile.neighbours[3].neighbours[3]);
                 }
                /* if (range > 3)
                 {
@@ -334,6 +334,36 @@ public class Pathfinding : MonoBehaviour {
                     tempList.Add(charaPosition.neighbours[2].neighbours[2].neighbours[2]);
                     tempList.Add(charaPosition.neighbours[3].neighbours[3].neighbours[3]);
                 }*/
+                break;
+            case TargetAreaType.line:
+                Tile charaOrig = TurnManager.instance.CurrentlyTakingTurn.characterPosition;
+                if (targetTile.yPos < charaOrig.yPos)
+                {
+                    for (int i = 0; i < range; i++) {
+                        tempList.Add(MapCreator.instance.map[targetTile.xPos, targetTile.yPos - i]);
+                    }
+                }
+                else if (targetTile.yPos > charaOrig.yPos)
+                {
+                    for (int i = 0; i < range; i++)
+                    {
+                        tempList.Add(MapCreator.instance.map[targetTile.xPos, targetTile.yPos + i]);
+                    }
+                }
+                else if (targetTile.xPos > charaOrig.xPos)
+                {
+                    for (int i = 0; i < range; i++)
+                    {
+                        tempList.Add(MapCreator.instance.map[targetTile.xPos + i, targetTile.yPos]);
+                    }
+                }
+                else if (targetTile.xPos < charaOrig.xPos)
+                {
+                    for (int i = 0; i < range; i++)
+                    {
+                        tempList.Add(MapCreator.instance.map[targetTile.xPos - i, targetTile.yPos]);
+                    }
+                }
                 break;
             default:
                 break;
