@@ -195,8 +195,9 @@ public class CharacterLogic : MonoBehaviour{
         if (chara.currentItem != null)
         {
             chara.CharacterInventory.Use(chara.currentItem.ItemId);
-            Debug.Log("Used item");
         }
+        Debug.Log(chara.currentItem);
+
         chara.possibleRange.Clear();
         SelectionScript.ClearSelection();
 

@@ -74,6 +74,7 @@ public class AttackBase : ActionBaseClass{
         if (TurnManager.instance.CurrentlyTakingTurn.currentItem)
         {
             ItemBase ib = TurnManager.instance.CurrentlyTakingTurn.currentItem;
+            Debug.Log(ib.ItemName);
             if (ib.EffectToTArgetArea > 0)
             {
                 float area = ib.EffectToTArgetArea + TurnManager.instance.CurrentlyTakingTurn.currentAction.TargetAreaSize;
@@ -115,13 +116,6 @@ public class AttackBase : ActionBaseClass{
         {
             if (t.isOccupied)
             {
-               /* if(Random.Range(1,100) < GetHitChance(t))
-                {
-                    Debug.Log("Missed this character");
-                   t.tileCharacter.DisplayEffect(0, DisplayTexts.miss);
-                }
-                else
-                {*/
                     //base damage
                     int damage = Random.Range(minDamage, maxDamage);
                     damage *= -1;
@@ -139,10 +133,10 @@ public class AttackBase : ActionBaseClass{
                         damage *= 2;
                         Debug.Log("heightAdvantage");
                     }
-                List<Elements> tempElements = new List<Elements>(ElementalAttributes);
+                    List<Elements> tempElements = new List<Elements>(ElementalAttributes);
+
                     if (TurnManager.instance.CurrentlyTakingTurn.currentItem != null)
                     {
-                        
                         foreach(Elements element in TurnManager.instance.CurrentlyTakingTurn.currentItem.addElement)
                         {
                             if (!tempElements.Contains(element))
@@ -176,6 +170,8 @@ public class AttackBase : ActionBaseClass{
     {
         bool absorb = false;
         float tempDamage = damage;
+
+        Debug.Log("Elementlist count in getelementeffest " + elementList.Count);
         foreach (Elements element in elementList)
         {
             Resistance res = TargetCharacter.elementalResistances[element];
@@ -189,6 +185,7 @@ public class AttackBase : ActionBaseClass{
                 case Resistance.Immune:
                     tempDamage = 0;
                     displayText = DisplayTexts.immune;
+                    Debug.Log("Immunity");
                     break;
                 case Resistance.Resistant:
                     tempDamage *= 0.5f;

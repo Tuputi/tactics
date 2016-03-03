@@ -225,9 +225,10 @@ public class Character : MonoBehaviour, System.IComparable
 
     public void DisplayDamage()
     {
+        Debug.Log("DislayDamage "+ currentItem);
         currentAction.CompleteAction(targetTile);        
         currentAction = null;
-        currentItem = null;
+        //currentItem = null;
         targetTile = null;
     }
 

@@ -17,10 +17,7 @@ public class ConfirmationDialogue : MonoBehaviour{
     void Start()
     {
         instance = this;
-       // DialogueTemplate = Instantiate(PrefabHolder.instance.ConfirmationTemplate);
-       // DialogueTemplate.transform.SetParent(GameObject.Find("Canvas").transform,false);
         SituationDesc = DialogueTemplate.transform.FindChild("SituationDesc").GetComponent<Text>();
-       // HitChanceText = DialogueTemplate.transform.FindChild("HitChangeText").GetComponent<Text>();
         templateHeight = DialogueTemplate.GetComponentInChildren<Image>().GetComponent<RectTransform>().rect.height;
         if(Application.platform == RuntimePlatform.Android)
         {

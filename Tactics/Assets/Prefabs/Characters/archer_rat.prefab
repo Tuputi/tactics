@@ -1415,9 +1415,9 @@ MonoBehaviour:
   isAi: 0
   ActionTypes: 0200000004000000
   FireStatus: 1
-  WaterStatus: 2
-  EarthStatus: 3
-  WindStatus: 4
+  WaterStatus: 0
+  EarthStatus: 0
+  WindStatus: 0
   inventoryType: 0
   characterPosition: {fileID: 0}
   currentItem: {fileID: 0}
@@ -1525,6 +1525,18 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 8d33dc2d7537d204cb52dd5a1170f8eb, type: 2}
+    - target: {fileID: 0}
+      propertyPath: WaterStatus
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: EarthStatus
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: WindStatus
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 125076}

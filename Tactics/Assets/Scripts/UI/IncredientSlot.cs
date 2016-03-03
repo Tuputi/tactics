@@ -77,7 +77,6 @@ public class IncredientSlot : MonoBehaviour {
         MyItem = null;
         isEmpty = true;
         itemSprite.gameObject.SetActive(false);
-        parentSpell.UpdateSpell();
     }
 
     public void SelectItemForDisplay()

@@ -94,6 +94,7 @@ public class SpellForm : MonoBehaviour {
                     if (!tempList.Contains(element))
                     {
                         tempList.Add(element);
+                        Debug.Log("Spell has element " + element);
                     }
                 }
             }
@@ -354,8 +355,7 @@ public class SpellForm : MonoBehaviour {
         {
             return;
         }
-        Debug.Log("Spell selected");
-
+        CreateASpell();
         TurnManager.instance.Action(UIManager.instance.PendingActionType, currentSpell);
     }
 }
