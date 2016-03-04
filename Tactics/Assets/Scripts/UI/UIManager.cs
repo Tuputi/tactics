@@ -274,21 +274,30 @@ public class UIManager : MonoBehaviour{
 
     public void CreateElementDisplay(ItemBase item, GameObject elemHolder)
     {
-        for (int d = 0; d < 4; d++)
+        for(int i = 0; i < elemHolder.transform.childCount; i++)
         {
-            GameObject child = elemHolder.transform.GetChild(d).gameObject;
-            if (child.transform.childCount > 0)
-            {
-                Destroy(child.transform.GetChild(0).gameObject);
-            }
+            elemHolder.transform.GetChild(i).GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
         }
-        int i = 0;
+
         foreach (Elements e in item.addElement)
         {
-            Image newIcon = Instantiate(elementIconDictionary[e]);
-            newIcon.transform.SetParent(elemHolder.transform.GetChild(i).transform, false);
-            newIcon.transform.localPosition = new Vector3(0, 0, 0);
-            i++;
+            switch (e)
+            {
+                case Elements.Fire:
+                    elemHolder.transform.FindChild("Fire").GetComponent<Image>().color = Color.white;
+                    break;
+                case Elements.Water:
+                    elemHolder.transform.FindChild("Water").GetComponent<Image>().color = Color.white;
+                    break;
+                case Elements.Earth:
+                    elemHolder.transform.FindChild("Earth").GetComponent<Image>().color = Color.white;
+                    break;
+                case Elements.Wind:
+                    elemHolder.transform.FindChild("Air").GetComponent<Image>().color = Color.white;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
