@@ -312,7 +312,6 @@ public class Character : MonoBehaviour, System.IComparable
             }
             yield return 0;
         }
-        Debug.Log("Move complete");
         MoveCompleted = true;
         characterAnimator.SetBool("Walking", false);
 

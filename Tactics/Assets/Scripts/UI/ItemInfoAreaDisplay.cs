@@ -48,6 +48,11 @@ public class ItemInfoAreaDisplay : MonoBehaviour {
             range = Rows - 2;
         }
 
+        if(tat == TargetAreaType.none)
+        {
+            tat = TargetAreaType.croshair;
+        }
+
         switch (tat)
         {
             case TargetAreaType.none:
@@ -79,6 +84,12 @@ public class ItemInfoAreaDisplay : MonoBehaviour {
                     tiles[centerPosition + i].GetComponent<Image>().color = Color.white;
                     tiles[centerPosition - (i * Rows)].GetComponent<Image>().color = Color.white;
                     tiles[centerPosition + (i * Rows)].GetComponent<Image>().color = Color.white;
+                }
+                break;
+            case TargetAreaType.line:
+                for(int i = 0; i < range; i++)
+                {
+                    tiles[2 + 5 * i].GetComponent<Image>().color = Color.white;
                 }
                 break;
             default:

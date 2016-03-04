@@ -168,7 +168,7 @@ public class SpellForm : MonoBehaviour {
         }
 
         areaInfo.SlackLights();
-        areaInfo.LightUpRange(TargetAreaType.croshair, tempRange);
+        areaInfo.LightUpRange(GetTargetAreaType(), tempRange);
         return tempRange;
     }
 

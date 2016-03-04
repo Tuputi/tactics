@@ -578,6 +578,10 @@ Prefab:
       value: 
       objectReference: {fileID: 11499390, guid: d2054c0c00b7a674f9c34b26d036e528,
         type: 2}
+    - target: {fileID: 11410548, guid: 922de998ce42aa045afe1a62cc657d91, type: 2}
+      propertyPath: InTurnMarker
+      value: 
+      objectReference: {fileID: 136026, guid: 17e104521423c6846a1930ac481966fe, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 922de998ce42aa045afe1a62cc657d91, type: 2}
   m_IsPrefabParent: 0
@@ -4547,6 +4551,10 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 7c9b4cf27cedcfb4e92f063c49668cdf,
         type: 2}
+    - target: {fileID: 11475372, guid: bc56caf5af46eb546a654777b32bea9a, type: 2}
+      propertyPath: Overlay_inTurn_Prefab
+      value: 
+      objectReference: {fileID: 167768, guid: 32628453f434e6a4da3cae2c11b62af7, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc56caf5af46eb546a654777b32bea9a, type: 2}
   m_IsPrefabParent: 0

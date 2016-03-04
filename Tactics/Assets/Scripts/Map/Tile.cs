@@ -118,6 +118,7 @@ public class Tile : MonoBehaviour, System.IComparable
             default:
                 break;
         }
+
         GenerateVisuals();
     }
 
@@ -160,6 +161,9 @@ public class Tile : MonoBehaviour, System.IComparable
                 overlayPrefab = PrefabHolder.instance.Overlay_Arrow_Prefab;
                 overlayPrefab.GetComponent<OverlayArrow>().SetTile(this);
                 break;
+            case OverlayType.inTurn:
+                overlayPrefab = PrefabHolder.instance.Overlay_inTurn_Prefab;
+                break;
             default:
                 break;
         }
@@ -189,6 +193,7 @@ public class Tile : MonoBehaviour, System.IComparable
        if (Chara.characterPosition != null)
         {
             Chara.characterPosition.tileCharacter = null;
+            Chara.characterPosition.SetOverlayType(OverlayType.None);
             //Chara.characterPosition.isWalkable = true;
         }
         Chara.characterPosition = this;

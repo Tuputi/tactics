@@ -269,7 +269,7 @@ public class UIManager : MonoBehaviour{
 
         CreateElementDisplay(item, ElementHolder);
 
-        ItemInfoAreaDisplay.instance.LightUpRange(TargetAreaType.croshair, item.EffectToTArgetArea + TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[PendingActionType].TargetAreaSize);
+        ItemInfoAreaDisplay.instance.LightUpRange(item.targetAreaType, item.EffectToTArgetArea + TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[PendingActionType].TargetAreaSize);
     }
 
     public void CreateElementDisplay(ItemBase item, GameObject elemHolder)
@@ -370,7 +370,7 @@ public class UIManager : MonoBehaviour{
 
     public void AssignInTurnMaker(Character currentCharacter)
     {
-        MyInTurnMarker.gameObject.transform.SetParent(currentCharacter.gameObject.transform);
+        MyInTurnMarker.gameObject.transform.SetParent(currentCharacter.gameObject.transform,false);
         MyInTurnMarker.gameObject.transform.localPosition = new Vector3(0, currentCharacter.inturnmarkerheight, 0);
     }
 

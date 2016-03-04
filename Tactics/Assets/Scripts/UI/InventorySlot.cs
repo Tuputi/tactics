@@ -11,6 +11,7 @@ public class InventorySlot : MonoBehaviour {
     public ItemBase MyItem = null;
     private Image MySlotImage;
     private Image itemSprite;
+    private Image numberBG;
 
     public UIInventory parentInventory;
 
@@ -21,6 +22,8 @@ public class InventorySlot : MonoBehaviour {
         parentInventory = GetComponentInParent<UIInventory>();
         itemSprite = transform.FindChild("ItemSprite").GetComponent<Image>();
         itemSprite.gameObject.SetActive(false);
+        numberBG = transform.FindChild("NumberBG").GetComponent<Image>();
+        numberBG.gameObject.SetActive(false);
         MyItem = null;
         ItemCount.text = "";
         isEmpty = true;
@@ -33,11 +36,13 @@ public class InventorySlot : MonoBehaviour {
 
         if (itemCount > 1)
         {
+            numberBG.gameObject.SetActive(true);
             ItemCount.text = itemCount.ToString();
             itemCountInt = itemCount;
             itemSprite.color = Color.white;
         }
         else if(itemCount == 1){
+            numberBG.gameObject.SetActive(false);
             ItemCount.text = "";
             itemCount = 1;
             itemSprite.color = Color.white;
@@ -62,6 +67,7 @@ public class InventorySlot : MonoBehaviour {
     public void ClearSlot()
     {
         MyItem = null;
+        numberBG.gameObject.SetActive(false);
         ItemCount.text = "";
         isEmpty = true;
         itemSprite.gameObject.SetActive(false);
@@ -76,7 +82,7 @@ public class InventorySlot : MonoBehaviour {
         }
       UIManager.instance.DisplayItemInfo(MyItem);
       ItemInfoAreaDisplay.instance.SlackLights();
-      ItemInfoAreaDisplay.instance.LightUpRange(TargetAreaType.croshair, MyItem.EffectToTArgetArea + TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[UIManager.instance.PendingActionType].TargetAreaSize);
+      ItemInfoAreaDisplay.instance.LightUpRange(MyItem.targetAreaType, MyItem.EffectToTArgetArea + TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[UIManager.instance.PendingActionType].TargetAreaSize);
       parentInventory.SelectASlot(this);
     }
 
