@@ -446,6 +446,10 @@ public class UIManager : MonoBehaviour{
     public GameObject EarthEffect;
     public void AddMagicEffect(Character targetCharacter, Elements attackElem)
     {
+        if(attackElem == Elements.None)
+        {
+            return;
+        }
         GameObject magicEffect = null;
 
         switch (attackElem)

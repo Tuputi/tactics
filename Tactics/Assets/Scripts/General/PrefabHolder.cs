@@ -56,7 +56,7 @@ public enum TargetAreaType { none, self, circular, croshair, line}
 
 public enum InventoryType { archer, mage}
 
-public enum Elements { Fire, Water, Earth, Wind}
+public enum Elements { Fire, Water, Earth, Wind, None}
 public enum Resistance { Normal, Absorb, Immune, Resistant, Weak} //No change, damage = hp, no damage, 50% damage, 150% damage
 public enum DisplayTexts { none, miss, immune};
 public enum NameType { Rat, Animal};

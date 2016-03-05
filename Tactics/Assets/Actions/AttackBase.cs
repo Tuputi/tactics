@@ -13,7 +13,7 @@ public class AttackBase : ActionBaseClass{
     public List<ItemType> compatibleItems;
     public List<Elements> ElementalAttributes;
     public TargetAreaType targetAreaType = TargetAreaType.croshair;
-    public Elements AttackElement;
+    public Elements AttackElement = Elements.None;
 
     [HideInInspector]
     public int ActionID;
@@ -186,7 +186,11 @@ public class AttackBase : ActionBaseClass{
         bool absorb = false;
         float tempDamage = damage;
 
-        AttackElement = elementList[0];
+        if(elementList.Count > 0)
+        {
+            AttackElement = elementList[0];
+        }
+
         foreach (Elements element in elementList)
         {
             Resistance res = TargetCharacter.elementalResistances[element];
