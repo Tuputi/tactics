@@ -232,35 +232,7 @@ public class Character : MonoBehaviour, System.IComparable
         targetTile = null;
     }
 
-    public void DisplayEffect(int damageAmount, DisplayTexts displayText)
-    {
-        PlayHurtAnimation();
-        GameObject damageText = (GameObject)Instantiate(PrefabHolder.instance.DamageText);
-        if (damageAmount > 0)
-        {
-            damageText.GetComponentInChildren<UnityEngine.UI.Text>().color = Color.green;
-        }
-
-
-        switch (displayText)
-        {
-            case DisplayTexts.none:
-                damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = damageAmount.ToString();
-                break;
-            case DisplayTexts.miss:
-                damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = "miss";
-                break;
-            case DisplayTexts.immune:
-                damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = "immune";
-                break;
-            default:
-                break;
-        }
-
-        damageText.transform.SetParent(this.gameObject.transform);
-        damageText.transform.localPosition = new Vector3(0, this.inturnmarkerheight, 0);
-        UIManager.instance.UpdateStatusWindow(this);
-    }
+   
 
     public void MoveCharacter(Character chara, List<Tile> path)
     {

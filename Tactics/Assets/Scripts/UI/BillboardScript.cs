@@ -3,6 +3,7 @@ using System.Collections;
 
 public class BillboardScript : MonoBehaviour {
 
+    [HideInInspector]
     public new Camera camera;
 
     void Start()

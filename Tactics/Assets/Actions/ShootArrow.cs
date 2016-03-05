@@ -53,7 +53,7 @@ public class ShootArrow : AttackBase {
                 }
                 Debug.Log("Did " + damageR + " to " + t.tileCharacter.characterName);
                 t.tileCharacter.Hp += damageR;
-                t.tileCharacter.DisplayEffect( damageR, DisplayTexts.none);
+                //t.tileCharacter.DisplayEffect( damageR, DisplayTexts.none);
             }
         }
         attackArea.Clear();

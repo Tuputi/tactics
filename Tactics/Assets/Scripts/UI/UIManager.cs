@@ -440,4 +440,36 @@ public class UIManager : MonoBehaviour{
         AttackNameInstance.SetActive(false);
     }
 
+    public GameObject FireEffect;
+    public GameObject WaterEffect;
+    public GameObject WindEffect;
+    public GameObject EarthEffect;
+    public void AddMagicEffect(Character targetCharacter, Elements attackElem)
+    {
+        GameObject magicEffect = null;
+
+        switch (attackElem)
+        {
+            case Elements.Fire:
+                magicEffect = Instantiate(FireEffect);
+                break;
+            case Elements.Water:
+                magicEffect = Instantiate(WaterEffect);
+
+                break;
+            case Elements.Earth:
+                magicEffect = Instantiate(EarthEffect);
+
+                break;
+            case Elements.Wind:
+                magicEffect = Instantiate(WindEffect);
+
+                break;
+            default:
+                break;
+        }
+
+        magicEffect.transform.SetParent(targetCharacter.gameObject.transform);
+        magicEffect.transform.localPosition = Vector3.zero;
+    }
 }

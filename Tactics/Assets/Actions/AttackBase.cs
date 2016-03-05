@@ -13,6 +13,7 @@ public class AttackBase : ActionBaseClass{
     public List<ItemType> compatibleItems;
     public List<Elements> ElementalAttributes;
     public TargetAreaType targetAreaType = TargetAreaType.croshair;
+    public Elements AttackElement;
 
     [HideInInspector]
     public int ActionID;
@@ -170,7 +171,8 @@ public class AttackBase : ActionBaseClass{
 
                     Debug.Log("Did " + finalDamage + " to " + t.tileCharacter.characterName);
                     t.tileCharacter.Hp += finalDamage;
-                    t.tileCharacter.DisplayEffect(finalDamage, displayText);
+                   CharacterLogic.instance.DisplayEffect(t.tileCharacter, finalDamage, displayText);
+                    UIManager.instance.AddMagicEffect(t.tileCharacter, AttackElement);
                     displayText = DisplayTexts.none;
                 }
 
@@ -184,7 +186,7 @@ public class AttackBase : ActionBaseClass{
         bool absorb = false;
         float tempDamage = damage;
 
-        Debug.Log("Elementlist count in getelementeffest " + elementList.Count);
+        AttackElement = elementList[0];
         foreach (Elements element in elementList)
         {
             Resistance res = TargetCharacter.elementalResistances[element];

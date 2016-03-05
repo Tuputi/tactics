@@ -211,6 +211,36 @@ public class CharacterLogic : MonoBehaviour{
         UIManager.instance.UpdateButtons();
     }
 
+    public void DisplayEffect(Character targetChara, int damageAmount, DisplayTexts displayText)
+    {
+        targetChara.PlayHurtAnimation();
+
+        GameObject damageText = (GameObject)Instantiate(PrefabHolder.instance.DamageText);
+        if (damageAmount > 0)
+        {
+            damageText.GetComponentInChildren<UnityEngine.UI.Text>().color = Color.green;
+        }
+
+
+        switch (displayText)
+        {
+            case DisplayTexts.none:
+                damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = damageAmount.ToString();
+                break;
+            case DisplayTexts.miss:
+                damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = "miss";
+                break;
+            case DisplayTexts.immune:
+                damageText.GetComponentInChildren<UnityEngine.UI.Text>().text = "immune";
+                break;
+            default:
+                break;
+        }
+
+        damageText.transform.SetParent(targetChara.gameObject.transform);
+        damageText.transform.localPosition = new Vector3(0, targetChara.inturnmarkerheight, 0);
+        UIManager.instance.UpdateStatusWindow(targetChara);
+    }
 
     public void SetCharacterPosition(Character chara, Tile tile)
     {
