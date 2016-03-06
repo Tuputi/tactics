@@ -1461,7 +1461,7 @@ MonoBehaviour:
   characterName: Mortimer
   characterNameType: 0
   characterClass: Mage
-  characterID: 5
+  characterID: 2
   profileSprite: {fileID: 21300000, guid: 0af8e777d8c0c2b40a4f3d7c7550945b, type: 3}
   inturnmarkerheight: 6
   characterEnergy: 8
@@ -1583,7 +1583,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterID
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Controller

@@ -1405,7 +1405,7 @@ MonoBehaviour:
   characterName: Percy
   characterNameType: 0
   characterClass: Archer
-  characterID: 2
+  characterID: 1
   profileSprite: {fileID: 21300000, guid: 6e15b5861ffd9d0419bdcdc427b8c437, type: 3}
   inturnmarkerheight: 6
   characterEnergy: 8
@@ -1544,6 +1544,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: items.Array.data[3]
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterID
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

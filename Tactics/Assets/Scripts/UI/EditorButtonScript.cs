@@ -137,6 +137,17 @@ public class EditorButtonScript : MonoBehaviour {
         }
     }
 
+    public void WaterButton()
+    {
+        if (SelectionScript.selectedTiles.Count > 0)
+        {
+            foreach (Tile t in SelectionScript.selectedTiles)
+            {
+                t.SetTileType(TileType.Water);
+            }
+        }
+    }
+
     public void EmptyButton()
     {
         if (SelectionScript.selectedTiles.Count > 0)

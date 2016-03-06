@@ -36,7 +36,7 @@ public class Tile : MonoBehaviour, System.IComparable
     {
         get
         {
-            return (!((tileCharacter == null) && (tileObject == null)));
+            return (!(tileCharacter == null));
         }
     }
     public bool isWalkable = true;
@@ -183,6 +183,7 @@ public class Tile : MonoBehaviour, System.IComparable
                 GameObject go = (GameObject)Instantiate(to.gameObject, pos, Quaternion.identity);
                 tileObject = go;
                 go.transform.SetParent(this.gameObject.transform);
+                isWalkable = false;
                 return;
             }
         }
@@ -213,6 +214,7 @@ public class Tile : MonoBehaviour, System.IComparable
         {
             Destroy(tileCharacter.gameObject);
         }
+        isWalkable = true;
     }
 
     public void GenerateVisuals()
