@@ -70,7 +70,7 @@ public class AttackBase : ActionBaseClass{
 
     public TargetAreaType GetTargetAreaType()
     {
-        if (TurnManager.instance.CurrentlyTakingTurn.currentItem)
+        if (TurnManager.instance.CurrentlyTakingTurn.currentItem && UsedWithItems)
         {
             if(TurnManager.instance.CurrentlyTakingTurn.currentItem.targetAreaType != TargetAreaType.none)
             {
@@ -85,7 +85,7 @@ public class AttackBase : ActionBaseClass{
         List<Tile> temp = new List<Tile>();
         temp.Add(targetTile);
 
-        if (TurnManager.instance.CurrentlyTakingTurn.currentItem)
+        if (TurnManager.instance.CurrentlyTakingTurn.currentItem && UsedWithItems)
         {
             ItemBase ib = TurnManager.instance.CurrentlyTakingTurn.currentItem;
             Debug.Log(ib.ItemName);
@@ -149,7 +149,7 @@ public class AttackBase : ActionBaseClass{
                     }
                     List<Elements> tempElements = new List<Elements>(ElementalAttributes);
 
-                    if (TurnManager.instance.CurrentlyTakingTurn.currentItem != null)
+                    if (TurnManager.instance.CurrentlyTakingTurn.currentItem != null && UsedWithItems)
                     {
                         foreach(Elements element in TurnManager.instance.CurrentlyTakingTurn.currentItem.addElement)
                         {

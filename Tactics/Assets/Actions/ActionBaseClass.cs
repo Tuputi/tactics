@@ -20,7 +20,7 @@ public class ActionBaseClass : ScriptableObject {
     public virtual List<Tile> CalculateActionRange(Tile startTile)
     {
         float range = BasicRange;
-        if (TurnManager.instance.CurrentlyTakingTurn.currentItem)
+        if (TurnManager.instance.CurrentlyTakingTurn.currentItem && UsedWithItems)
         {
             range += TurnManager.instance.CurrentlyTakingTurn.currentItem.GetRangeEffect();
         }

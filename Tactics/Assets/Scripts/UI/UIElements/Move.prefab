@@ -49,8 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonText: Move
   button: {fileID: 0}
-  SelectedButton: {fileID: 21300000, guid: 1dd7bd03fe3ca744aa1886823071cb27, type: 3}
-  UnselectedButton: {fileID: 21300000, guid: d5b2a8de57c20864aa292b020fbcacd6, type: 3}
+  SelectedButton: {fileID: 21300000, guid: 6bf10111d2309344ea469547b0b7dc10, type: 3}
+  UnselectedButton: {fileID: 21300000, guid: e61e05d05b89f5b49832cd91d21a82e2, type: 3}
 --- !u!114 &11429464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -208,7 +208,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 797.5701, y: 157}
-  m_SizeDelta: {x: 180, y: 90}
+  m_SizeDelta: {x: 200, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &100100000
 Prefab:
@@ -238,20 +238,20 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: UnselectedButton
       value: 
-      objectReference: {fileID: 21300000, guid: d5b2a8de57c20864aa292b020fbcacd6,
+      objectReference: {fileID: 21300000, guid: e61e05d05b89f5b49832cd91d21a82e2,
         type: 3}
     - target: {fileID: 0}
       propertyPath: SelectedButton
       value: 
-      objectReference: {fileID: 21300000, guid: 1dd7bd03fe3ca744aa1886823071cb27,
+      objectReference: {fileID: 21300000, guid: 6bf10111d2309344ea469547b0b7dc10,
         type: 3}
     - target: {fileID: 0}
       propertyPath: m_SizeDelta.x
-      value: 180
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_SizeDelta.y
-      value: 90
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
