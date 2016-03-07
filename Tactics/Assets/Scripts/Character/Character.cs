@@ -257,15 +257,8 @@ public class Character : MonoBehaviour, System.IComparable
         while (DistanceToGo >= 0)
         {
             //turn to look the right way
-            int tempInt = DistanceToGo;
-            if (!(--tempInt < 0))
-            {
-                CharacterLogic.instance.ChangeFacing(chara, previousPostition, path[DistanceToGo - 1]);
-            }
-            else
-            {
-                CharacterLogic.instance.ChangeFacing(chara, previousPostition, path[DistanceToGo]);
-            }
+            CharacterLogic.instance.ChangeFacing(chara, previousPostition, path[DistanceToGo]);
+
 
             Tile target = path[DistanceToGo];
             Vector3 targetPos = new Vector3(target.transform.position.x, target.transform.position.y + 1f, target.transform.position.z);
