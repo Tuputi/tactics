@@ -154,8 +154,16 @@ public class UIManager : MonoBehaviour{
     {
        foreach(ButtonScript b in buttons)
        { 
-           b.gameObject.GetComponent<Button>().enabled = activeStatus;
+           b.gameObject.GetComponent<Button>().interactable = activeStatus;
        }
+    }
+
+    public void UnactivateAllButtons()
+    {
+        foreach (ButtonScript b in buttons)
+        {
+            b.gameObject.GetComponent<Button>().interactable = false;
+        }
     }
 
     public void UnselectAllActionButtonsExcept(ButtonScript button)
@@ -184,6 +192,7 @@ public class UIManager : MonoBehaviour{
             t.GetComponentInChildren<OverlayArrow>().RotateArrow();
         }
         SelectionScript.SetNoSelection(true);
+        ActivateButtons(false);
     }
 
     public void CompleteFacing(Tile myTile)

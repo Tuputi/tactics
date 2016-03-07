@@ -29,6 +29,8 @@ public class TurnButton : ButtonScript {
             UnselectButton();
             return;
         }
+        SelectionScript.SetNoSelection(true);
+        UIManager.instance.UnactivateAllButtons();
         TurnManager.instance.FacingPhase();
     }
 

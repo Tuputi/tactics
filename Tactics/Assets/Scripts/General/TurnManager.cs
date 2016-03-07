@@ -182,7 +182,7 @@ public class TurnManager : MonoBehaviour {
         {
             mode = TurnMode.facing;
             UIManager.instance.StartSelectFacingPhase(CurrentlyTakingTurn);
-            UIManager.instance.UpdateButtons();
+            //UIManager.instance.UpdateButtons();
         }
     }
 
