@@ -1488,7 +1488,7 @@ MonoBehaviour:
   hpMax: 100
   mpMax: 100
   speed: 60
-  items: 060000000700000004000000
+  items: 060000000700000004000000090000000a000000
 --- !u!137 &13709008
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1578,6 +1578,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: items.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_Name
       value: mage
       objectReference: {fileID: 0}
@@ -1616,6 +1620,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: inturnmarkerheight
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[3]
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[4]
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

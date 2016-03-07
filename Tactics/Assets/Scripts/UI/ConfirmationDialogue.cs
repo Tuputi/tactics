@@ -52,13 +52,13 @@ public class ConfirmationDialogue : MonoBehaviour{
     private void Show()
     {
         Vector3 position = UIManager.instance.ConvertPositionToScreenPoint(ActionTargetTile.gameObject);
-        if (position.y + templateHeight > Screen.height)
+        if (position.y + 200 > Screen.height)
         {
-            position += new Vector3(0, -templateHeight, 0);
+            position += new Vector3(0, -200, 0);
         }
-        else if((position.y - templateHeight < 0))
+        else if((position.y - 200 < 0))
         {
-            position += new Vector3(0,+templateHeight,0);
+            position += new Vector3(0,+200,0);
         }
  
         DialogueTemplate.transform.position = position;

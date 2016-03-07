@@ -1854,10 +1854,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11464626, guid: ac143f73101875b478a624765fc630ab, type: 2}
-      propertyPath: items.Array.size
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 437734, guid: ac143f73101875b478a624765fc630ab, type: 2}
       propertyPath: m_LocalPosition.x
       value: 578.0469
@@ -1890,11 +1886,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 11464626, guid: ac143f73101875b478a624765fc630ab, type: 2}
-      propertyPath: items.Array.data[7]
-      value: 
-      objectReference: {fileID: 11400000, guid: 5748e91c5156ceb46804edc7ac6c0306,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac143f73101875b478a624765fc630ab, type: 2}
   m_IsPrefabParent: 0
@@ -2113,8 +2104,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 707, y: -368}
-  m_SizeDelta: {x: -1418, y: -737}
+  m_AnchoredPosition: {x: 724, y: -406}
+  m_SizeDelta: {x: -1448, y: -811}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &700889866
 MonoBehaviour:

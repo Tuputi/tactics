@@ -65,4 +65,4 @@ public enum NameType { Rat, Animal};
 //Names of different actions, used to reference to a dictionary of Actions
 public enum ActionType { MeeleeAttack, FireSpell, ShootArrow, Howl, Stab, CastSpell, Bite}
 
-public enum ItemType { Potion, Bomb, Arrow, ArrowWideHit, Gunpowder, Spell, GnarledRoot, BrokenBone, PiercingArrow};
+public enum ItemType { Potion, Bomb, Arrow, ArrowWideHit, Gunpowder, Spell, GnarledRoot, BrokenBone, PiercingArrow, Dandylion, MetalFilings};
