@@ -50,14 +50,15 @@ public class ConfirmationDialogue : MonoBehaviour{
     private void Show()
     {
         Vector3 position = UIManager.instance.ConvertPositionToScreenPoint(ActionTargetTile.gameObject);
-        if (position.y + templateHeight < Screen.height)
+        if (position.y + templateHeight > Screen.height)
         {
-            position += new Vector3(0, templateHeight/2, 0);
+            position += new Vector3(0, Screen.height-(position.y+templateHeight), 0);
         }
-        else
+        else if((position.y - templateHeight < 0))
         {
-            position += new Vector3(0,-templateHeight/2,0);
+            position += new Vector3(0,+templateHeight/2,0);
         }
+ 
         DialogueTemplate.transform.position = position;
         DialogueTemplate.SetActive(true);
 
@@ -80,7 +81,7 @@ public class ConfirmationDialogue : MonoBehaviour{
     public void Close()
     {
         DialogueTemplate.SetActive(false);
-        UIManager.instance.ActivateButtons(true);
+        UIManager.instance.UpdateButtons();
         SelectionScript.SetNoSelection(false);
     }
 
