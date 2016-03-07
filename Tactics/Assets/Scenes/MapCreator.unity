@@ -1655,7 +1655,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11475372, guid: bc56caf5af46eb546a654777b32bea9a, type: 2}
       propertyPath: tileObjects.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 483854, guid: bc56caf5af46eb546a654777b32bea9a, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1693,6 +1693,11 @@ Prefab:
       propertyPath: tileObjects.Array.data[1]
       value: 
       objectReference: {fileID: 11429164, guid: d0450c9f526f1204a8877805a647df9b,
+        type: 2}
+    - target: {fileID: 11475372, guid: bc56caf5af46eb546a654777b32bea9a, type: 2}
+      propertyPath: tileObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 11434564, guid: 2c90c0ca0ca139e48a57444efdf6420c,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc56caf5af46eb546a654777b32bea9a, type: 2}
