@@ -352,7 +352,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22450650, guid: 5ab7b8812c7aaea419cd5c5c589ebe11, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -425.6
+      value: -415.9996
       objectReference: {fileID: 0}
     - target: {fileID: 22450650, guid: 5ab7b8812c7aaea419cd5c5c589ebe11, type: 2}
       propertyPath: m_SizeDelta.x
@@ -360,7 +360,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22450650, guid: 5ab7b8812c7aaea419cd5c5c589ebe11, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 22450650, guid: 5ab7b8812c7aaea419cd5c5c589ebe11, type: 2}
       propertyPath: m_AnchorMin.x
@@ -384,7 +384,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22450650, guid: 5ab7b8812c7aaea419cd5c5c589ebe11, type: 2}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 0.5000002
       objectReference: {fileID: 0}
     - target: {fileID: 11458948, guid: 5ab7b8812c7aaea419cd5c5c589ebe11, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1657,7 +1657,7 @@ RectTransform:
   - {fileID: 532510808}
   - {fileID: 1356009731}
   m_Father: {fileID: 1999599886}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 91, y: 254.94489}
@@ -4146,7 +4146,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -4226,10 +4226,10 @@ RectTransform:
   m_Children:
   - {fileID: 913974312}
   m_Father: {fileID: 1999599886}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -82.999985, y: 70.53811}
+  m_AnchoredPosition: {x: -82.999886, y: 70.538155}
   m_SizeDelta: {x: 287.3, y: 176.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1422622171
@@ -5438,8 +5438,8 @@ RectTransform:
   - {fileID: 807712572}
   - {fileID: 2064864728}
   - {fileID: 1358676002}
-  - {fileID: 545592973}
   - {fileID: 1422622170}
+  - {fileID: 545592973}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0}

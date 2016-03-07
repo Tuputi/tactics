@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour{
 
     UIInventory CurrentUIInventory; 
 
-    GameObject NextTurnButton;
+    public GameObject NextTurnButton;
     public GameObject ActionButtonBase;
     public GameObject BasicButtonBase;
 

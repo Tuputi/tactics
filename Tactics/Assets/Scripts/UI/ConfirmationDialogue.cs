@@ -44,6 +44,8 @@ public class ConfirmationDialogue : MonoBehaviour{
         ConfirmType = type;
         ActionTargetTile = target;
         UIManager.instance.ActivateButtons(false);
+        UIManager.instance.NextTurnButton.GetComponent<Button>().interactable = false;
+
         SelectionScript.SetNoSelection(true);
     }
 
@@ -52,11 +54,11 @@ public class ConfirmationDialogue : MonoBehaviour{
         Vector3 position = UIManager.instance.ConvertPositionToScreenPoint(ActionTargetTile.gameObject);
         if (position.y + templateHeight > Screen.height)
         {
-            position += new Vector3(0, Screen.height-(position.y+templateHeight), 0);
+            position += new Vector3(0, -templateHeight, 0);
         }
         else if((position.y - templateHeight < 0))
         {
-            position += new Vector3(0,+templateHeight/2,0);
+            position += new Vector3(0,+templateHeight,0);
         }
  
         DialogueTemplate.transform.position = position;
@@ -82,6 +84,7 @@ public class ConfirmationDialogue : MonoBehaviour{
     {
         DialogueTemplate.SetActive(false);
         UIManager.instance.UpdateButtons();
+        UIManager.instance.NextTurnButton.GetComponent<Button>().interactable = true;
         SelectionScript.SetNoSelection(false);
     }
 
