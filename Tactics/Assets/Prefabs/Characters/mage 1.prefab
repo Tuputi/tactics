@@ -1463,7 +1463,7 @@ MonoBehaviour:
   characterClass: Mage
   characterID: 2
   profileSprite: {fileID: 21300000, guid: 0af8e777d8c0c2b40a4f3d7c7550945b, type: 3}
-  inturnmarkerheight: 6
+  inturnmarkerheight: 7
   characterEnergy: 8
   movementRange: 4
   rangedRange: 5
@@ -1612,6 +1612,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: movementRange
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: inturnmarkerheight
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

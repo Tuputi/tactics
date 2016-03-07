@@ -38,6 +38,7 @@ public class AiModule : MonoBehaviour {
         if (!TargetWithinAttackRange())
         {
            TurnManager.instance.Move();
+            SelectionScript.SetNoSelection(true);
            waitAMoment = true;        
         }
         else
@@ -56,6 +57,7 @@ public class AiModule : MonoBehaviour {
             currentTime += Time.deltaTime;
             if(currentTime > WaitTime)
             {
+                SelectionScript.SetNoSelection(false);
                 Debug.Log("Done!");
                 currentTime = 0f;
                 waitAMoment = false;
@@ -67,10 +69,12 @@ public class AiModule : MonoBehaviour {
                         break;
                     case TurnManager.TurnMode.move:
                         AiMove();
+                        SelectionScript.SetNoSelection(true);
                         waitingToCompleteMove = true;
                         break;
                     case TurnManager.TurnMode.action:
                         AttackTarget();
+                        SelectionScript.SetNoSelection(true);
                         waitingToCompleteAttack = true;
                         break;
                     case TurnManager.TurnMode.facing:
@@ -88,9 +92,12 @@ public class AiModule : MonoBehaviour {
             if (myCharacter.MoveCompleted)
             {
                 waitingToCompleteMove = false;
+                SelectionScript.SetNoSelection(false);
+
                 if (TargetWithinAttackRange())
                 {
                     TurnManager.instance.Action(currentActionType);
+                    SelectionScript.SetNoSelection(true);
                     waitAMoment = true;
                 }
                 else
@@ -105,6 +112,8 @@ public class AiModule : MonoBehaviour {
             if (myCharacter.AttackAnimationCompleted)
             {
                 waitingToCompleteAttack = false;
+                SelectionScript.SetNoSelection(false);
+
                 EndTurn();
             }
         }
