@@ -148,6 +148,17 @@ public class EditorButtonScript : MonoBehaviour {
         }
     }
 
+    public void TileButton(TileType type)
+    {
+        if (SelectionScript.selectedTiles.Count > 0)
+        {
+            foreach (Tile t in SelectionScript.selectedTiles)
+            {
+                t.SetTileType(type);
+            }
+        }
+    }
+
     public void EmptyButton()
     {
         if (SelectionScript.selectedTiles.Count > 0)

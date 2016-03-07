@@ -73,6 +73,7 @@ public class UIManager : MonoBehaviour{
         StatusTemplate.gameObject.SetActive(false);
 
         MyInTurnMarker = Instantiate(InTurnMarker);
+        MyInTurnMarker.SetActive(false);
 
         inventoryDictionary = new Dictionary<InventoryType, UIInventory>();
         inventoryDictionary.Add(InventoryType.archer, inventoryTemplates[0]);
@@ -379,6 +380,7 @@ public class UIManager : MonoBehaviour{
 
     public void AssignInTurnMaker(Character currentCharacter)
     {
+        MyInTurnMarker.SetActive(true);
         MyInTurnMarker.gameObject.transform.SetParent(currentCharacter.gameObject.transform,false);
         MyInTurnMarker.gameObject.transform.localPosition = new Vector3(0, currentCharacter.inturnmarkerheight, 0);
     }

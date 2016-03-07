@@ -18,6 +18,7 @@ public class PrefabHolder : MonoBehaviour {
     public GameObject Tile_Grass_Prefab;
     public GameObject Tile_Rock_Prefab;
     public GameObject Tile_Water_Prefab;
+    public GameObject Tile_Flower_Prefab;
     public GameObject Tile_Empty_Prefab;
 
     //overlay
@@ -47,7 +48,7 @@ public class PrefabHolder : MonoBehaviour {
 //enums
 
 public enum Facing { Up, Right, Down, Left };
-public enum TileType { None, Grass, Rock, Water };
+public enum TileType { None, Grass, Rock, Water, Flower };
 public enum OverlayType { None, Selected, Arrow, inTurn };
 public enum BehaviourType { agressive, teamPlayer, healWhenHurt}
 public enum ConfirmationType { action, move};

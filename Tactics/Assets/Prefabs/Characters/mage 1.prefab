@@ -1465,7 +1465,7 @@ MonoBehaviour:
   profileSprite: {fileID: 21300000, guid: 0af8e777d8c0c2b40a4f3d7c7550945b, type: 3}
   inturnmarkerheight: 6
   characterEnergy: 8
-  movementRange: 5
+  movementRange: 4
   rangedRange: 5
   TravelSpeed: 0.1
   isAi: 0
@@ -1608,6 +1608,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: FireStatus
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: movementRange
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

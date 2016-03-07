@@ -181,7 +181,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":1,
 			"Column":1,
 			"Height":1,
@@ -192,7 +192,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":1,
 			"Column":2,
 			"Height":1,
@@ -203,7 +203,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":1,
 			"Column":3,
 			"Height":1,
@@ -291,7 +291,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":1,
 			"Column":11,
 			"Height":1,
@@ -302,7 +302,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":1,
 			"Column":12,
 			"Height":1,
@@ -313,7 +313,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":1,
 			"Column":13,
 			"Height":1,
@@ -346,7 +346,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":2,
 			"Column":1,
 			"Height":1,
@@ -395,7 +395,7 @@
 			"Column":5,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":1,
+			"ObjectId":0,
 			"CharacterId":0
 		}
 ,
@@ -467,7 +467,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":2,
 			"Column":12,
 			"Height":1,
@@ -478,7 +478,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":2,
 			"Column":13,
 			"Height":1,
@@ -511,7 +511,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":3,
 			"Column":1,
 			"Height":1,
@@ -569,7 +569,7 @@
 			"TileType":1,
 			"Row":3,
 			"Column":6,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -580,7 +580,7 @@
 			"TileType":1,
 			"Row":3,
 			"Column":7,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -643,7 +643,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":3,
 			"Column":13,
 			"Height":1,
@@ -767,7 +767,7 @@
 			"TileType":1,
 			"Row":4,
 			"Column":9,
-			"Height":1.5,
+			"Height":2,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -808,7 +808,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":4,
 			"Column":13,
 			"Height":1,
@@ -877,7 +877,7 @@
 			"TileType":1,
 			"Row":5,
 			"Column":4,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -921,7 +921,7 @@
 			"TileType":1,
 			"Row":5,
 			"Column":8,
-			"Height":1.5,
+			"Height":2,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -932,7 +932,7 @@
 			"TileType":1,
 			"Row":5,
 			"Column":9,
-			"Height":1.5,
+			"Height":2,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -943,7 +943,7 @@
 			"TileType":1,
 			"Row":5,
 			"Column":10,
-			"Height":1,
+			"Height":2,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -954,7 +954,7 @@
 			"TileType":1,
 			"Row":5,
 			"Column":11,
-			"Height":1,
+			"Height":2,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -965,7 +965,7 @@
 			"TileType":1,
 			"Row":5,
 			"Column":12,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -1042,7 +1042,7 @@
 			"TileType":1,
 			"Row":6,
 			"Column":4,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -1130,7 +1130,7 @@
 			"TileType":1,
 			"Row":6,
 			"Column":12,
-			"Height":1,
+			"Height":2,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -1196,7 +1196,7 @@
 			"TileType":1,
 			"Row":7,
 			"Column":3,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -1295,7 +1295,7 @@
 			"TileType":1,
 			"Row":7,
 			"Column":12,
-			"Height":1,
+			"Height":2,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -1306,7 +1306,7 @@
 			"TileType":1,
 			"Row":7,
 			"Column":13,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -1460,7 +1460,7 @@
 			"TileType":1,
 			"Row":8,
 			"Column":12,
-			"Height":1,
+			"Height":2,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -1616,7 +1616,7 @@
 			"Column":11,
 			"Height":2.5,
 			"Rotation":0,
-			"ObjectId":1,
+			"ObjectId":0,
 			"CharacterId":0
 		}
 ,
@@ -1625,7 +1625,7 @@
 			"TileType":1,
 			"Row":9,
 			"Column":12,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -1790,7 +1790,7 @@
 			"TileType":1,
 			"Row":10,
 			"Column":12,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -1831,7 +1831,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":11,
 			"Column":1,
 			"Height":1,
@@ -1955,7 +1955,7 @@
 			"TileType":1,
 			"Row":11,
 			"Column":12,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -1996,7 +1996,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":12,
 			"Column":1,
 			"Height":1,
@@ -2109,7 +2109,7 @@
 			"TileType":1,
 			"Row":12,
 			"Column":11,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -2128,7 +2128,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":12,
 			"Column":13,
 			"Height":1,
@@ -2161,18 +2161,18 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":13,
 			"Column":1,
 			"Height":1,
 			"Rotation":0,
-			"ObjectId":1,
+			"ObjectId":0,
 			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":13,
 			"Column":2,
 			"Height":1,
@@ -2197,7 +2197,7 @@
 			"TileType":1,
 			"Row":13,
 			"Column":4,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -2208,7 +2208,7 @@
 			"TileType":1,
 			"Row":13,
 			"Column":5,
-			"Height":1,
+			"Height":1.5,
 			"Rotation":0,
 			"ObjectId":0,
 			"CharacterId":0
@@ -2282,7 +2282,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":13,
 			"Column":12,
 			"Height":1,
@@ -2293,7 +2293,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":0,
 			"Row":13,
 			"Column":13,
 			"Height":1,

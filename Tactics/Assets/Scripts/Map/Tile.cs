@@ -115,6 +115,11 @@ public class Tile : MonoBehaviour, System.IComparable
                 movementCost = 2;
                 isWalkable = true;
                 break;
+            case TileType.Flower:
+                prefab = PrefabHolder.instance.Tile_Flower_Prefab;
+                movementCost = 1;
+                isWalkable = true;
+                break;
             default:
                 break;
         }
@@ -180,9 +185,10 @@ public class Tile : MonoBehaviour, System.IComparable
                 tileObjectId = objectID;
                 Vector3 pos = to.gameObject.transform.position;
                 pos += this.transform.position;
-                GameObject go = (GameObject)Instantiate(to.gameObject, pos, Quaternion.identity);
+                GameObject go = (GameObject)Instantiate(to.gameObject);
                 tileObject = go;
                 go.transform.SetParent(this.gameObject.transform);
+                go.transform.localPosition = new Vector3(0, 1f, 0);
                 isWalkable = false;
                 return;
             }

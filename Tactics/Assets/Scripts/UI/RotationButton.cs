@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class RotationButton : ButtonScript {
 
     public List<ButtonScript> toggleGroup;
+    public GameObject originButton;
 
     public override void SetUp()
     {
@@ -23,10 +24,12 @@ public class RotationButton : ButtonScript {
         if (Selected)
         {
             CameraController.rotationOn = false;
+            originButton.SetActive(false);
             UnselectButton();
         }
         else {
             CameraController.rotationOn = true;
+            originButton.SetActive(true);
             SelectButton();
         }
     }
@@ -35,12 +38,15 @@ public class RotationButton : ButtonScript {
     {
         CameraController.rotationOn = false;
         MyImage.sprite = UnselectedButton;
+        originButton.SetActive(false);
         Selected = false;
     }
 
     public override void SelectButton()
     {
         MyImage.sprite = SelectedButton;
+        originButton.SetActive(true);
+
         Selected = true;
         foreach(ButtonScript bs in toggleGroup)
         {

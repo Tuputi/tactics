@@ -12,16 +12,19 @@ MonoBehaviour:
   m_Name: Stab
   m_EditorClassIdentifier: 
   BasicRange: 2
-  EnergyCost: 5
+  TargetAreaSize: 1
+  EnergyCost: 3
   AnimationName: Stab
   UsedWithItems: 0
   attackArea: []
   AttackName: Stab
-  minDamage: 15
-  maxDamage: 30
+  minDamage: 10
+  maxDamage: 15
   MPCost: 0
   HitChance: 100
   actionType: 4
   compatibleItems: 
   ElementalAttributes: 
+  targetAreaType: 3
+  AttackElement: 4
   ActionID: 0

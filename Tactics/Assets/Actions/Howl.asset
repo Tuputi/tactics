@@ -19,10 +19,12 @@ MonoBehaviour:
   attackArea: []
   AttackName: Howl
   minDamage: 10
-  maxDamage: 20
+  maxDamage: 13
   MPCost: 0
   HitChance: 100
   actionType: 3
   compatibleItems: 
   ElementalAttributes: 
+  targetAreaType: 3
+  AttackElement: 4
   ActionID: 0

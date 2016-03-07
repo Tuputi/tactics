@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour {
     public GameObject TiltPoint;
     public static bool rotationOn = false;
     public static bool tiltOn = false;
+    public static bool worldSpace = false;
 
     //touch
     private Vector2 touchStartPos;
@@ -30,12 +31,19 @@ public class CameraController : MonoBehaviour {
         {
             if (Input.touchCount > 0)
             {
+
                 if (Input.touchCount == 1)
                 {
                     if (rotationOn)
                     {
-                        //CentrePoint.gameObject.transform.RotateAround(CentrePoint.gameObject.transform.position, transform.up, Input.GetTouch(0).deltaPosition.y * 0.5f);
-                        CentrePoint.gameObject.transform.RotateAround(new Vector3(7.5f, 6f, 7.5f), transform.up, Input.GetTouch(0).deltaPosition.y * 0.5f);
+                        if (!worldSpace)
+                        {
+                            CentrePoint.gameObject.transform.RotateAround(CentrePoint.gameObject.transform.position, transform.up, Input.GetTouch(0).deltaPosition.y * 0.5f);
+                        }
+                        else
+                        {
+                            CentrePoint.gameObject.transform.RotateAround(new Vector3(7.5f, 6f, 7.5f), transform.up, Input.GetTouch(0).deltaPosition.y * 0.5f);
+                        }
                         return;
                     }
 
