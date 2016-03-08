@@ -203,6 +203,7 @@ public class Character : MonoBehaviour, System.IComparable
 
         if(TurnManager.instance.hasMoved && TurnManager.instance.hasActed)
         {
+            UIManager.instance.NextTurnButton.GetComponent<UnityEngine.UI.Button>().enabled = false;
             TurnManager.instance.FacingPhase();
         }
     }

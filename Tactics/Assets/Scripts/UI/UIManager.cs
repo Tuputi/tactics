@@ -443,7 +443,19 @@ public class UIManager : MonoBehaviour{
     public void ShowAttackName(string attackName)
     {
         AttackNameInstance.SetActive(true);
-        AttackNameText.text = attackName;
+
+        ItemBase testItem = TurnManager.instance.CurrentlyTakingTurn.currentItem;
+        if (testItem != null) 
+        {
+            if (testItem.itemType == ItemType.Spell)
+            {
+                AttackNameText.text = TurnManager.instance.CurrentlyTakingTurn.currentItem.ItemName;
+            }
+        }
+        else
+        {
+            AttackNameText.text = attackName;
+        }
     }
 
     public void HideAttackName()

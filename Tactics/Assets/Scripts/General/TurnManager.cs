@@ -99,6 +99,7 @@ public class TurnManager : MonoBehaviour {
         mode = TurnMode.start;
         hasActed = false;
         hasMoved = false;
+        UIManager.instance.NextTurnButton.GetComponent<UnityEngine.UI.Button>().enabled = true;
         UIManager.instance.UpdateButtons();
         CharacterLogic.instance.CreateAttackList(CurrentlyTakingTurn);
         UIManager.instance.CreateActionButton(CurrentlyTakingTurn.AvailableActions);

@@ -18,7 +18,7 @@ public class ConfirmationDialogue : MonoBehaviour{
     {
         instance = this;
         SituationDesc = DialogueTemplate.transform.FindChild("SituationDesc").GetComponent<Text>();
-        templateHeight = DialogueTemplate.GetComponentInChildren<Image>().GetComponent<RectTransform>().rect.height;
+        templateHeight = DialogueTemplate.GetComponentInChildren<Image>().GetComponent<RectTransform>().rect.height/2;
         if(Application.platform == RuntimePlatform.Android)
         {
             templateHeight *= 3;
@@ -52,13 +52,13 @@ public class ConfirmationDialogue : MonoBehaviour{
     private void Show()
     {
         Vector3 position = UIManager.instance.ConvertPositionToScreenPoint(ActionTargetTile.gameObject);
-        if (position.y + 200 > Screen.height)
+        if (position.y + templateHeight > Screen.height)
         {
-            position += new Vector3(0, -200, 0);
+            position += new Vector3(0, -templateHeight, 0);
         }
-        else if((position.y - 200 < 0))
+        else if((position.y - templateHeight < 0))
         {
-            position += new Vector3(0,+200,0);
+            position += new Vector3(0,+templateHeight, 0);
         }
  
         DialogueTemplate.transform.position = position;
