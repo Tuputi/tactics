@@ -105,7 +105,7 @@ public class ConfirmationDialogue : MonoBehaviour{
                     CameraScript.instance.SetMoveTarget(TurnManager.instance.CurrentlyTakingTurn.gameObject); 
                     TurnManager.instance.CurrentlyTakingTurn.currentAction = null;
                     TurnManager.mode = TurnManager.TurnMode.undecided;   
-                    Debug.Log("Action canceled");
+                    //Debug.Log("Action canceled");
                 }
                 break;
             case ConfirmationType.move:

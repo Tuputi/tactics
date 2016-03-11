@@ -337,31 +337,40 @@ public class Pathfinding : MonoBehaviour {
                 break;
             case TargetAreaType.line:
                 Tile charaOrig = TurnManager.instance.CurrentlyTakingTurn.characterPosition;
-                if (targetTile.yPos < charaOrig.yPos)
+                int changeY = targetTile.yPos - charaOrig.yPos;
+                int changeX = targetTile.xPos - charaOrig.xPos;
+
+                if (changeY >= changeX)
                 {
-                    for (int i = 0; i < range; i++) {
-                        tempList.Add(MapCreator.instance.map[targetTile.xPos, targetTile.yPos - i]);
+                    if (targetTile.yPos < charaOrig.yPos)
+                    {
+                        for (int i = 0; i < range; i++)
+                        {
+                            tempList.Add(MapCreator.instance.map[targetTile.xPos, targetTile.yPos - i]);
+                        }
+                    }
+                    else if (targetTile.yPos > charaOrig.yPos)
+                    {
+                        for (int i = 0; i < range; i++)
+                        {
+                            tempList.Add(MapCreator.instance.map[targetTile.xPos, targetTile.yPos + i]);
+                        }
                     }
                 }
-                else if (targetTile.yPos > charaOrig.yPos)
-                {
-                    for (int i = 0; i < range; i++)
+                if (changeX > changeY) { 
+                    if (targetTile.xPos > charaOrig.xPos)
                     {
-                        tempList.Add(MapCreator.instance.map[targetTile.xPos, targetTile.yPos + i]);
+                        for (int i = 0; i < range; i++)
+                        {
+                            tempList.Add(MapCreator.instance.map[targetTile.xPos + i, targetTile.yPos]);
+                        }
                     }
-                }
-                else if (targetTile.xPos > charaOrig.xPos)
-                {
-                    for (int i = 0; i < range; i++)
+                    else if (targetTile.xPos < charaOrig.xPos)
                     {
-                        tempList.Add(MapCreator.instance.map[targetTile.xPos + i, targetTile.yPos]);
-                    }
-                }
-                else if (targetTile.xPos < charaOrig.xPos)
-                {
-                    for (int i = 0; i < range; i++)
-                    {
-                        tempList.Add(MapCreator.instance.map[targetTile.xPos - i, targetTile.yPos]);
+                        for (int i = 0; i < range; i++)
+                        {
+                            tempList.Add(MapCreator.instance.map[targetTile.xPos - i, targetTile.yPos]);
+                        }
                     }
                 }
                 break;

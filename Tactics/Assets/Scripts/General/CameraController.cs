@@ -38,11 +38,11 @@ public class CameraController : MonoBehaviour {
                     {
                         if (!worldSpace)
                         {
-                            CentrePoint.gameObject.transform.RotateAround(CentrePoint.gameObject.transform.position, transform.up, Input.GetTouch(0).deltaPosition.y * 0.5f);
+                            CentrePoint.gameObject.transform.RotateAround(CentrePoint.gameObject.transform.position, transform.up, Input.GetTouch(0).deltaPosition.x * 0.5f);
                         }
                         else
                         {
-                            CentrePoint.gameObject.transform.RotateAround(new Vector3(7.5f, 6f, 7.5f), transform.up, Input.GetTouch(0).deltaPosition.y * 0.5f);
+                            CentrePoint.gameObject.transform.RotateAround(new Vector3(7.5f, 6f, 7.5f), transform.up, Input.GetTouch(0).deltaPosition.x * 0.5f);
                         }
                         return;
                     }

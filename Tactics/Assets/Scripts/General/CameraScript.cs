@@ -43,7 +43,6 @@ public class CameraScript : MonoBehaviour {
 
     public void SetMoveTarget(GameObject Target)
     {
-
         if (MoveToTargetActive)
         {
             if(moveTargets.Count > 3)

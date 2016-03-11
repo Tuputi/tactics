@@ -88,11 +88,11 @@ public class AttackBase : ActionBaseClass{
         if (TurnManager.instance.CurrentlyTakingTurn.currentItem && UsedWithItems)
         {
             ItemBase ib = TurnManager.instance.CurrentlyTakingTurn.currentItem;
-            Debug.Log(ib.ItemName);
+           // Debug.Log(ib.ItemName);
             if (ib.EffectToTArgetArea > 0)
             {
                 float area = ib.EffectToTArgetArea + TurnManager.instance.CurrentlyTakingTurn.currentAction.TargetAreaSize;
-                Debug.Log("Area is " + area);
+                //Debug.Log("Area is " + area);
                 List<Tile> tempList = Pathfinding.GetTargetArea(targetTile, GetTargetAreaType(), area);
                 foreach (Tile t in tempList)
                 {
@@ -138,14 +138,14 @@ public class AttackBase : ActionBaseClass{
                     if (t.tileCharacter.facing == chara.facing)
                     {
                         damage *= 2;
-                        Debug.Log("backstab");
+                        //Debug.Log("backstab");
                     }
                     
                     //height extra
                     if (System.Math.Abs(t.height - chara.characterPosition.height) > 1 && chara.characterPosition.height > t.height)
                     {
                         damage *= 2;
-                        Debug.Log("heightAdvantage");
+                        //Debug.Log("heightAdvantage");
                     }
                     List<Elements> tempElements = new List<Elements>(ElementalAttributes);
 
@@ -156,7 +156,7 @@ public class AttackBase : ActionBaseClass{
                             if (!tempElements.Contains(element))
                             {
                                 tempElements.Add(element);
-                                Debug.Log("Added " + element);
+                                //Debug.Log("Added " + element);
                             }
                         }
                     }
@@ -169,7 +169,7 @@ public class AttackBase : ActionBaseClass{
                         displayText = DisplayTexts.miss;
                     }
 
-                    Debug.Log("Did " + finalDamage + " to " + t.tileCharacter.characterName);
+                    //Debug.Log("Did " + finalDamage + " to " + t.tileCharacter.characterName);
                     t.tileCharacter.Hp += finalDamage;
                    CharacterLogic.instance.DisplayEffect(t.tileCharacter, finalDamage, displayText);
                     UIManager.instance.AddMagicEffect(t.tileCharacter, AttackElement);
@@ -204,14 +204,14 @@ public class AttackBase : ActionBaseClass{
                 case Resistance.Immune:
                     tempDamage = 0;
                     displayText = DisplayTexts.immune;
-                    Debug.Log("Immunity");
+                   // Debug.Log("Immunity");
                     break;
                 case Resistance.Resistant:
                     tempDamage *= 0.5f;
                     break;
                 case Resistance.Weak:
                     tempDamage *= 1.5f;
-                    Debug.Log("Enemy is weak against " + element);
+                   // Debug.Log("Enemy is weak against " + element);
                     break;
                 default:
                     break;

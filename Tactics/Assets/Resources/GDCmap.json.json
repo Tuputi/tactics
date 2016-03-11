@@ -423,11 +423,11 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":4,
 			"Row":2,
 			"Column":8,
 			"Height":1,
-			"Rotation":0,
+			"Rotation":1,
 			"ObjectId":0,
 			"CharacterId":0
 		}
@@ -588,18 +588,18 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":4,
 			"Row":3,
 			"Column":8,
 			"Height":1,
-			"Rotation":0,
+			"Rotation":3,
 			"ObjectId":0,
 			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":1,
+			"TileType":4,
 			"Row":3,
 			"Column":9,
 			"Height":1,
@@ -720,11 +720,11 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":4,
 			"Row":4,
 			"Column":5,
 			"Height":1.5,
-			"Rotation":0,
+			"Rotation":1,
 			"ObjectId":0,
 			"CharacterId":0
 		}
@@ -757,7 +757,7 @@
 			"Row":4,
 			"Column":8,
 			"Height":1.5,
-			"Rotation":0,
+			"Rotation":1,
 			"ObjectId":0,
 			"CharacterId":0
 		}
@@ -955,7 +955,7 @@
 			"Row":5,
 			"Column":11,
 			"Height":2,
-			"Rotation":0,
+			"Rotation":3,
 			"ObjectId":0,
 			"CharacterId":0
 		}
@@ -1032,7 +1032,7 @@
 			"Row":6,
 			"Column":3,
 			"Height":1,
-			"Rotation":0,
+			"Rotation":2,
 			"ObjectId":0,
 			"CharacterId":0
 		}
@@ -1083,7 +1083,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":4,
 			"Row":6,
 			"Column":8,
 			"Height":3,
@@ -1171,18 +1171,18 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":4,
 			"Row":7,
 			"Column":1,
 			"Height":1,
-			"Rotation":0,
+			"Rotation":3,
 			"ObjectId":0,
 			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":1,
+			"TileType":4,
 			"Row":7,
 			"Column":2,
 			"Height":1,
@@ -1226,7 +1226,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":4,
 			"Row":7,
 			"Column":6,
 			"Height":2.5,
@@ -1395,7 +1395,7 @@
 			"Row":8,
 			"Column":6,
 			"Height":1.5,
-			"Rotation":0,
+			"Rotation":2,
 			"ObjectId":0,
 			"CharacterId":0
 		}
@@ -1919,7 +1919,7 @@
 ,
 		{
 
-			"TileType":1,
+			"TileType":4,
 			"Row":11,
 			"Column":9,
 			"Height":3,
@@ -2220,14 +2220,14 @@
 			"Row":13,
 			"Column":6,
 			"Height":2,
-			"Rotation":0,
+			"Rotation":1,
 			"ObjectId":0,
 			"CharacterId":0
 		}
 ,
 		{
 
-			"TileType":1,
+			"TileType":4,
 			"Row":13,
 			"Column":7,
 			"Height":3,
