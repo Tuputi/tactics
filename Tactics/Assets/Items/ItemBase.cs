@@ -5,10 +5,12 @@ public class ItemBase : ActionBaseClass {
 
     public int ItemCount = 3;
     public string ItemName = "NaN";
-    public int ItemId = 0;
-    public ItemType itemType;
+    //public int ItemId = 0;
     public Sprite ItemSprite;
     public int ItemMaxStackSize;
+
+    //do not cahnge this outside of code
+    public int ItemInstanceID = 0;
 
     public List<ItemType> itemCategories;
 
@@ -21,15 +23,13 @@ public class ItemBase : ActionBaseClass {
     public TargetAreaType targetAreaType = TargetAreaType.none;
 
 
-    //to distinguish between unique items at some point
-    public int ItemInstanceIndex = 0;
 
-    public void Init(int itemCount,string itemName, ItemType ItemType, Sprite itemSprite, int itemMaxStackSize)
+   
+
+    public void Init(int itemCount,string itemName, Sprite itemSprite, int itemMaxStackSize)
     {
         ItemCount = itemCount;
         ItemName = itemName;
-       // ItemId = itemId;
-        itemType = ItemType;
         ItemSprite = itemSprite;
         ItemMaxStackSize = itemMaxStackSize;
     }
@@ -48,9 +48,9 @@ public class ItemBase : ActionBaseClass {
         addElement = new List<Elements>(elements);
     }
 
-    public ItemType GetItemType()
+    public int GetItemId()
     {
-        return itemType;
+        return ItemInstanceID;
     }
 
     public virtual Sprite GetItemSprite(){
@@ -59,7 +59,7 @@ public class ItemBase : ActionBaseClass {
 
     public override void  CompleteAction(Tile TargetTile)
     {
-        TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.Use(itemType);
+        TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.Use(ItemInstanceID);
         CalculateEffect(TargetTile);
     }
 

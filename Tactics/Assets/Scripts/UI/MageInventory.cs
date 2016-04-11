@@ -74,7 +74,7 @@ public class MageInventory : UIInventory {
         {
             if (!slot.isEmpty)
             {
-                ItemBase item = TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetItem(slot.MyItem.itemType);
+                ItemBase item = TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetItem(slot.MyItem.ItemInstanceID);
                 if(item == null)
                 {
                     break;

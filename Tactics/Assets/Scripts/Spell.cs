@@ -9,8 +9,10 @@ public class Spell : ItemBase {
         EffectToTArgetArea = targetArea;
         EffectToRange = range;
         addElement = elementEffects;
-        itemType = ItemType.Spell;
+        itemCategories = new List<ItemType>();
+        itemCategories.Add(ItemType.Spell);
         targetAreaType = tat;
+        ItemInstanceID = -1;
     }
 
 }

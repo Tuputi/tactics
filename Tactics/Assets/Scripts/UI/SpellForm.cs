@@ -57,7 +57,7 @@ public class SpellForm : MonoBehaviour {
         Spell newSpell = ScriptableObject.CreateInstance<Spell>();
         newSpell.SpellInit("TempSpell", area - currentAttack.TargetAreaSize, range - currentAttack.BasicRange, elements, myTat);
         newSpell.ItemName = Spellinterpreter();
-        newSpell.ItemId = -1;
+        newSpell.ItemInstanceID = -1;
         UpdateElementDisplay(newSpell);
         currentSpell = newSpell;
         UpdateSpellDisplay();
@@ -407,6 +407,7 @@ public class SpellForm : MonoBehaviour {
             return;
         }
         CreateASpell();
+        TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.Add(currentSpell);
         TurnManager.instance.Action(UIManager.instance.PendingActionType, currentSpell);
     }
 }

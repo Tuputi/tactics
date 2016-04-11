@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ItemButton : ButtonScript {
 
-    public ItemType itemType;
+    public int itemId;
     public Text CountText;
     public int ItemCount = 3;
 
@@ -25,8 +25,8 @@ public class ItemButton : ButtonScript {
 
     public override void UpdateButton()
     {
-        CountText.text = TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetItemCount(itemType).ToString();
-        if (TurnManager.instance.hasActed || TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetItemCount(itemType) < 1)
+        CountText.text = TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetItemCount(itemId).ToString();
+        if (TurnManager.instance.hasActed || TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetItemCount(itemId) < 1)
         {
             button.interactable = false;
             UnselectButton();
@@ -51,7 +51,7 @@ public class ItemButton : ButtonScript {
 
     public override void SelectAction()
     {
-        TurnManager.instance.Action(itemType);
+        TurnManager.instance.Action(itemId);
         MyImage.sprite = SelectedButton;
         UIManager.instance.UnselectAllActionButtonsExcept(this);
 

@@ -1432,7 +1432,11 @@ MonoBehaviour:
   hpMax: 100
   mpMax: 100
   speed: 60
-  items: 02000000030000000400000008000000
+  items:
+  - {fileID: 11400000, guid: d3f340bfd7241c04b95fa8a90d50e8de, type: 2}
+  - {fileID: 11400000, guid: 41185fb580a59a946b2dbbdc6e55a1f6, type: 2}
+  - {fileID: 11400000, guid: 4918882a998f6ee4f9ad5d53c4c26401, type: 2}
+  - {fileID: 11400000, guid: 5748e91c5156ceb46804edc7ac6c0306, type: 2}
 --- !u!137 &13767498
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1543,8 +1547,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: items.Array.data[3]
-      value: 8
-      objectReference: {fileID: 0}
+      value: 
+      objectReference: {fileID: 11400000, guid: 5748e91c5156ceb46804edc7ac6c0306,
+        type: 2}
     - target: {fileID: 0}
       propertyPath: characterID
       value: 1
@@ -1553,6 +1558,21 @@ Prefab:
       propertyPath: inturnmarkerheight
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d3f340bfd7241c04b95fa8a90d50e8de,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 41185fb580a59a946b2dbbdc6e55a1f6,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4918882a998f6ee4f9ad5d53c4c26401,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 125076}

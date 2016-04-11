@@ -5,7 +5,7 @@ public class ItemList : MonoBehaviour {
 
     public List<ItemBase> items;
 
-    public static Dictionary<ItemType, ItemBase> itemDictionary;
+    public static Dictionary<int, ItemBase> itemDictionary;
 
     void Awake()
     {
@@ -14,16 +14,19 @@ public class ItemList : MonoBehaviour {
 
     public void Init()
     {
-        itemDictionary = new Dictionary<ItemType, ItemBase>();
+        int id = 0;
+        itemDictionary = new Dictionary<int, ItemBase>();
         foreach(ItemBase item in items)
         {
-            itemDictionary.Add(item.itemType, item);
+            item.ItemInstanceID += id;
+            itemDictionary.Add(item.ItemInstanceID, item);
+            id++;
         }
     }
 
-    public static ItemBase GetItem(ItemType itemType)
+    public static ItemBase GetItem(int itemId)
     {
-       return itemDictionary[itemType];
+       return itemDictionary[itemId];
     }
 
 }

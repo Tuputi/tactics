@@ -106,7 +106,7 @@ public class Character : MonoBehaviour, System.IComparable
     private GameObject Weapon;
 
     //lists
-    public List<ItemType> items;
+    public List<ItemBase> items;
   
     
     void Start()
@@ -117,6 +117,7 @@ public class Character : MonoBehaviour, System.IComparable
         elementalResistances.Add(Elements.Water, WaterStatus);
         elementalResistances.Add(Elements.Earth, EarthStatus);
         elementalResistances.Add(Elements.Wind, WindStatus);
+        characterAnimator = this.gameObject.GetComponent<Animator>();
     }
     
 
@@ -170,10 +171,6 @@ public class Character : MonoBehaviour, System.IComparable
 
     public void PlayHurtAnimation()
     {
-        if (characterAnimator == null)
-        {
-            characterAnimator = this.gameObject.GetComponent<Animator>();
-        }
         characterAnimator.SetBool("Hurt", true);
     }
 
@@ -184,11 +181,6 @@ public class Character : MonoBehaviour, System.IComparable
 
     public void PlayAttackanimation(string AttackAnimationName)
     {
-        //AttachWeapon();
-        if (characterAnimator == null)
-        {
-            characterAnimator = this.gameObject.GetComponent<Animator>();
-        }
         characterAnimator.SetBool(AttackAnimationName, true);
         AttackAnimationCompleted = false;
     }
@@ -198,38 +190,19 @@ public class Character : MonoBehaviour, System.IComparable
         Debug.Log(AttackName+" complete");
         AttackAnimationCompleted = true;
         characterAnimator.SetBool(AttackName, false);
-        //RemoveWeapon();
         UIManager.instance.HideAttackName();
-
-        if(TurnManager.instance.hasMoved && TurnManager.instance.hasActed)
+        if (TurnManager.instance.CheckIfTurnDone())
         {
-            UIManager.instance.NextTurnButton.GetComponent<UnityEngine.UI.Button>().enabled = false;
             TurnManager.instance.FacingPhase();
         }
     }
 
-    public void AttachWeapon()
-    {
-        Transform handBone = gameObject.transform.FindChild("Armature/UpperBody/Shoulder_R/Elbow_R/Hand_R").FindChild("Hand_R_1");
-        GameObject newBow = Instantiate(PrefabHolder.instance.Bow);
-        Weapon = newBow;
-       // newBow.transform.position = new Vector3(0, 0, 0);
-        newBow.transform.SetParent(handBone);
-        newBow.transform.localPosition = new Vector3(0, 0, 0);
-        //change rotation as well
-    }
-
-    public void RemoveWeapon()
-    {
-        Destroy(Weapon);
-    }
+   
 
     public void DisplayDamage()
     {
-        Debug.Log("DislayDamage "+ currentItem);
         currentAction.CompleteAction(targetTile);        
         currentAction = null;
-        //currentItem = null;
         targetTile = null;
     }
 
@@ -237,19 +210,11 @@ public class Character : MonoBehaviour, System.IComparable
 
     public void MoveCharacter(Character chara, List<Tile> path)
     {
-        if(characterAnimator == null)
-        {
-            characterAnimator = this.gameObject.GetComponent<Animator>();
-        }
-
         characterAnimator.SetBool("Walking", true);
         MoveCompleted = false;
         DistanceToGo = path.Count - 1;
-        // CameraScript.instance.SetMoveTarget(path[0].gameObject);
         previousPostition = path[DistanceToGo];
         CharacterLogic.instance.SetCharacterPosition(chara, path[0]);
-        //CharacterLogic.instance.ChangeFacing(chara, characterPosition, path[DistanceToGo]);
-
         StartCoroutine(MovePath(chara, path));
     }
 
@@ -281,55 +246,10 @@ public class Character : MonoBehaviour, System.IComparable
         MoveCompleted = true;
         characterAnimator.SetBool("Walking", false);
 
-        if (TurnManager.instance.hasMoved && TurnManager.instance.hasActed)
+        if (TurnManager.instance.CheckIfTurnDone())
         {
             TurnManager.instance.FacingPhase();
         }
     }
 
-}
-
-public class CharacterSave
-{
-    public string name;
-    public int id;
-    public int xPos;
-    public int yPos;
-
-    public CharacterSave(string characterName, int characterId, Tile position)
-    {
-        name = characterName;
-        id = characterId;
-        xPos = position.xPos;
-        yPos = position.yPos;
-
-        //level, equipment, health, etc to be added later
-    }
-
-    public CharacterSave()
-    {
-
-    }
-
-    public JObject JsonSave(int row, int column)
-    {
-        var chara = new JObjectCollection();
-        chara.Add("Name", name);
-        chara.Add("Id", id);
-        chara.Add("xPos", xPos);
-        chara.Add("yPos", yPos);
-
-        return chara;
-    }
-
-
-    //load based on id, then tweak into the 'generated character' that was saved
-    public void JsonLoad(JObject jObject)
-    {
-        this.name = jObject["Name"].Value<string>();
-        this.id = jObject["Id"].Value<int>();
-        this.xPos = jObject["xPos"].Value<int>();
-        this.yPos = jObject["yPos"].Value<int>();
-
-    }
 }

@@ -447,7 +447,7 @@ public class UIManager : MonoBehaviour{
         ItemBase testItem = TurnManager.instance.CurrentlyTakingTurn.currentItem;
         if (testItem != null) 
         {
-            if (testItem.itemType == ItemType.Spell)
+            if (testItem.itemCategories.Contains(ItemType.Spell))
             {
                 AttackNameText.text = TurnManager.instance.CurrentlyTakingTurn.currentItem.ItemName;
             }

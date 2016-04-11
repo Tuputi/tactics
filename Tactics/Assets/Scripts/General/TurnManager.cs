@@ -159,19 +159,24 @@ public class TurnManager : MonoBehaviour {
         }
     }
 
-    public void Action(ItemType it)
+    public void Action(int id)
     {
         CurrentlyTakingTurn.possibleRange.Clear();
         SelectionScript.ClearSelection();
         if (!hasActed)
         {
             mode = TurnMode.action;
-            CharacterLogic.instance.Action(CurrentlyTakingTurn, ItemList.GetItem(it));
+            CharacterLogic.instance.Action(CurrentlyTakingTurn, ItemList.GetItem(id));
         }
         else
         {
             Debug.Log("Has already acted");
         }
+    }
+
+    public bool CheckIfTurnDone()
+    {
+        return TurnManager.instance.hasMoved && TurnManager.instance.hasActed;
     }
 
     public void FacingPhase()
@@ -208,7 +213,7 @@ public class TurnManager : MonoBehaviour {
         CheckIfGameOver();
     }
 
-    public void CheckIfGameOver()
+    public bool CheckIfGameOver()
     {
         bool teamAi = false;
         bool teamB = false;
@@ -229,7 +234,10 @@ public class TurnManager : MonoBehaviour {
         { 
             Debug.Log("Game Over");
             UIManager.instance.DisplayGameOver(teamB);
+            return true;
         }
+
+        return false;
     }
 
 }

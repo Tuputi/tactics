@@ -21,39 +21,33 @@ public class Inventory{
         return inventory.Contains(item);
     }
 
-    public bool Contains(ItemType itemType)
+    public int GetItemCount(int itemIndex)
     {
-        foreach (ItemBase ib in inventory)
-        {
-            if (ib.GetItemType() == itemType)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    //change these to item index
-    public int GetItemCount(ItemType itemType)
-    {
-        int index = inventory.FindIndex(item => (item.GetItemType() == itemType));
+        int index = inventory.FindIndex(item => (item.ItemInstanceID == itemIndex));
         return inventory[index].ItemCount;
     }
 
-
-    public void Use(ItemType itemType)
+    public void Use(int itemId)
     {
-        ItemBase foundItem = inventory.Find(invItem => invItem.GetItemType() == itemType);
+        ItemBase foundItem = inventory.Find(invItem => invItem.ItemInstanceID == itemId);
         foundItem.ItemCount--;
-       /* if(foundItem.ItemCount <= 0)
+
+        //badfix
+        if(itemId == -1)
         {
-            inventory.Remove(foundItem);
-        }*/
+            RemoveItem(itemId);
+        }
     }
 
-    public void AddToCount(ItemType itemType)
+    private void RemoveItem(int itemId)
     {
-        ItemBase foundItem = inventory.Find(invItem => invItem.GetItemType() == itemType);
+        ItemBase foundItem = inventory.Find(invItem => invItem.ItemInstanceID == itemId);
+        inventory.Remove(foundItem);
+    }
+
+    public void AddToCount(int itemID)
+    {
+        ItemBase foundItem = inventory.Find(invItem => invItem.ItemInstanceID == itemID);
         if(foundItem == null)
         {
             Debug.Log("Item not found");
@@ -62,36 +56,15 @@ public class Inventory{
         foundItem.ItemCount++;
     }
 
-    public void Use(int itemID)
-    {
-        ItemBase foundItem = inventory.Find(invItem => invItem.ItemId == itemID);
-        if(foundItem == null)
-        {
-            Debug.Log("ItemID not in inventory");
-            return;
-        }
-        foundItem.ItemCount--;
-        if (foundItem.ItemCount <= 0)
-        {
-            inventory.Remove(foundItem);
-        }
-    }
-
     public List<ItemBase> GetWholeInventory()
     {
         return inventory;
     }
 
-    public void Remove(ItemBase item)
+    public ItemBase GetItem(int itemId)
     {
-        inventory.Remove(item);
-    }
-
-    public ItemBase GetItem(ItemType iT)
-    {
-        ItemBase foundItem = inventory.Find(item => iT == item.itemType);
+        ItemBase foundItem = inventory.Find(item => item.ItemInstanceID == itemId);
         return foundItem;
-
     }
 
 }

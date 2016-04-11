@@ -83,14 +83,14 @@ public class CharacterLogic : MonoBehaviour{
     {
         int id = 0;
         chara.CharacterInventory = new Inventory();
-        foreach (ItemType item in chara.items)
+        foreach (ItemBase item in chara.items)
         {
             ItemBase newItem = ScriptableObject.CreateInstance<ItemBase>();
-            ItemBase template = ItemList.GetItem(item);
-            newItem.Init(template.ItemCount, template.ItemName, template.itemType, template.ItemSprite, template.ItemMaxStackSize);
+            ItemBase template = ItemList.GetItem(item.ItemInstanceID);
+            newItem.Init(template.ItemCount, template.ItemName, template.ItemSprite, template.ItemMaxStackSize);
             newItem.InitEffect(template.EffectToRange, template.EffectToTArgetArea, template.EffectToDamageStatic, template.EffectToDamageMultiplayer, template.targetAreaType);
             newItem.InitElement(template.addElement);
-            newItem.ItemId = id;
+            newItem.ItemInstanceID = id;
             newItem.itemCategories = template.itemCategories;
             id++;
             chara.CharacterInventory.Add(newItem);
@@ -194,9 +194,8 @@ public class CharacterLogic : MonoBehaviour{
     {
         if (chara.currentItem != null)
         {
-            chara.CharacterInventory.Use(chara.currentItem.ItemId);
+            chara.CharacterInventory.Use(chara.currentItem.ItemInstanceID);
         }
-        Debug.Log(chara.currentItem);
 
         chara.possibleRange.Clear();
         SelectionScript.ClearSelection();

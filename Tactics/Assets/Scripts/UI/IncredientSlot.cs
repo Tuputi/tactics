@@ -33,7 +33,7 @@ public class IncredientSlot : MonoBehaviour {
     {
         if (MyItem != null)
         {
-            TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.AddToCount(MyItem.itemType);
+            TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.AddToCount(MyItem.ItemInstanceID);
             parentSpell.parentInventory.UpdateAllItemSlots();
         }
 
@@ -46,7 +46,7 @@ public class IncredientSlot : MonoBehaviour {
         itemSprite.gameObject.SetActive(true);
         itemSprite.sprite = item.ItemSprite;
 
-        TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.Use(MyItem.itemType);
+        TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.Use(MyItem.ItemInstanceID);
         parentSpell.parentInventory.UpdateAllItemSlots();
 
         this.transform.localScale = new Vector3(1, 1, 1);
@@ -56,7 +56,7 @@ public class IncredientSlot : MonoBehaviour {
     {
        if (MyItem != null)
        {
-         TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.AddToCount(MyItem.itemType);
+         TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.AddToCount(MyItem.ItemInstanceID);
          parentSpell.parentInventory.UpdateAllItemSlots();
        }
         
