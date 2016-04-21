@@ -169,6 +169,9 @@ public class Tile : MonoBehaviour, System.IComparable
             case OverlayType.inTurn:
                 overlayPrefab = PrefabHolder.instance.Overlay_inTurn_Prefab;
                 break;
+            case OverlayType.Attack:
+                overlayPrefab = PrefabHolder.instance.Overlay_Attack_Prefab;
+                break;
             default:
                 break;
         }
@@ -250,10 +253,7 @@ public class Tile : MonoBehaviour, System.IComparable
 
     void OnMouseDown()
     {
-        if(this.tileType == TileType.None)
-        {
-            return;
-        }
+        if (this.tileType == TileType.None) return;
 
         if(TurnManager.gameMode == GameMode.Editor)
         {
@@ -269,11 +269,7 @@ public class Tile : MonoBehaviour, System.IComparable
 
     public void SelectThis()
     {
-        if (this.tileType == TileType.None)
-        {
-            return;
-        }
-
+        if (this.tileType == TileType.None) return;
         SelectionScript.SetSelectedTile(this);
     }
 

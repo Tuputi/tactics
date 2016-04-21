@@ -9,6 +9,9 @@ public class SelectionScript : MonoBehaviour {
     private static bool shiftClick = false;
     private static bool noSelection = false;
 
+    private static bool WaitingConfirmation = false;
+    private static Tile tileInMemory = null;
+
 
     void Start()
     {
@@ -17,13 +20,46 @@ public class SelectionScript : MonoBehaviour {
 
     void Update()
     {
-        if(TurnManager.gameMode != GameMode.Editor)
+        if(TurnManager.gameMode == GameMode.Editor)
         {
+            selectMultiple = Input.GetKey(KeyCode.LeftControl);
+            shiftClick = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
             return;
         }
 
-        selectMultiple = Input.GetKey(KeyCode.LeftControl);
-        shiftClick = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        Debug.Log("WaitinConfirmation? "+ WaitingConfirmation);
+        if (WaitingConfirmation)
+        {
+            Debug.Log("DoubleClick status: "+TacticsInput.instance.DoubleClick);
+            if (TacticsInput.instance.TargetChanged)
+            {
+                tileInMemory = null;
+                WaitingConfirmation = false;
+                return;
+            }
+            if (TacticsInput.instance.DoubleClick)
+            {
+                if(TurnManager.mode == TurnManager.TurnMode.move)
+                {
+                    List<Tile> tempPath = Pathfinding.GetPath(TurnManager.instance.CurrentlyTakingTurn.characterPosition, tileInMemory);
+                    CharacterLogic.instance.CompleteMove(TurnManager.instance.CurrentlyTakingTurn, tempPath);
+                    tileInMemory = null;
+                    WaitingConfirmation = false;
+                    TacticsInput.instance.ResetDoubleClick();
+                    //ConfirmationDialogue.instance.Show(ConfirmationType.move, tile);
+                }
+                if (TurnManager.mode == TurnManager.TurnMode.action)
+                {
+                    CharacterLogic.instance.CompleteAction(TurnManager.instance.CurrentlyTakingTurn, tileInMemory);
+                    UIManager.instance.CloseInventoryAfterCompletedAttack();
+                    tileInMemory = null;
+                    WaitingConfirmation = false;
+                    TacticsInput.instance.ResetDoubleClick();
+                    //ConfirmationDialogue.instance.Show(ConfirmationType.action, tile);
+                }
+            }
+        }
+       
     }
 
 
@@ -96,6 +132,8 @@ public class SelectionScript : MonoBehaviour {
     
     static void SetSelectedTileGame(Tile tile)
     {
+        TacticsInput.instance.RegisterClick(tile.gameObject);
+
         if (selectMultiple)
         {
             SetMultipleSelectedTile(tile);
@@ -103,55 +141,42 @@ public class SelectionScript : MonoBehaviour {
         }
        
         //update statusUi
-        if (tile.isOccupied)
-        {
-            UIManager.instance.UpdateStatusWindow(tile.tileCharacter);
-        }
-        else
-        {
-            UIManager.instance.SetStatusWindowActiveStatus(false);  
-        }
+        UIManager.instance.UpdateStatusWindow(tile);
 
-        //move or action?
-        if (TurnManager.mode == TurnManager.TurnMode.move || TurnManager.mode == TurnManager.TurnMode.action)
+
+        if (TurnManager.mode == TurnManager.TurnMode.move)
         {            
             if (TurnManager.instance.CurrentlyTakingTurn.possibleRange.Contains(tile))
             {
                 ClearSelection();
-                foreach (Tile t in TurnManager.instance.CurrentlyTakingTurn.possibleRange)
+                SetSingleSelectedTile(tile);
+                tileInMemory = tile;
+                WaitingConfirmation = true;
+            }
+        }
+        else if (TurnManager.mode == TurnManager.TurnMode.action)
+        {
+            if (TurnManager.instance.CurrentlyTakingTurn.possibleRange.Contains(tile))
+            {
+                ClearSelection();
+                foreach(Tile ti in TurnManager.instance.CurrentlyTakingTurn.possibleRange)
                 {
-                    t.SetOverlayType(OverlayType.None);
+                    SetMultipleSelectedTile(ti, OverlayType.Selected);
                 }
-                if (TurnManager.mode == TurnManager.TurnMode.move)
+                tileInMemory = tile;
+                WaitingConfirmation = true;
+                List<Tile> tempList = TurnManager.instance.CurrentlyTakingTurn.currentAction.DrawTargetArea(tile);
+                if (tempList.Count > 0)
                 {
-                    SetSingleSelectedTile(tile);
-                    ConfirmationDialogue.instance.Show(ConfirmationType.move, tile);
-                }
-                if (TurnManager.mode == TurnManager.TurnMode.action)
-                {
-                    List<Tile> tempList = TurnManager.instance.CurrentlyTakingTurn.currentAction.DrawTargetArea(tile);
-                    if (tempList.Count > 0)
+                    foreach (Tile t in tempList)
                     {
-                        foreach (Tile t in tempList)
+                        SetMultipleSelectedTile(t, OverlayType.Attack);
+                        if (t.isOccupied)
                         {
-                            SetMultipleSelectedTile(t);
-                            if (t.isOccupied)
-                            {
-                                UIManager.instance.UpdateStatusWindow(t.tileCharacter);
-                            }
+                            UIManager.instance.UpdateStatusWindow(t.tileCharacter);
                         }
                     }
-
-                    if (!TurnManager.instance.CurrentlyTakingTurn.isAi)
-                    {
-                        ConfirmationDialogue.instance.Show(ConfirmationType.action, tile);
-                    }
-                    else
-                    {
-                        CharacterLogic.instance.CompleteAction(TurnManager.instance.CurrentlyTakingTurn, tile);
-                        UIManager.instance.CloseInventoryAfterCompletedAttack();
-                    }
-                }
+               }
             }
         }
         else
@@ -159,6 +184,9 @@ public class SelectionScript : MonoBehaviour {
             SetSingleSelectedTile(tile);
         }
     }
+
+
+
 
     static void SetMultipleSelectedTile(Tile tile)
     {
@@ -172,6 +200,17 @@ public class SelectionScript : MonoBehaviour {
             selectedTiles.Add(tile);
             tile.SetOverlayType(OverlayType.Selected);
         }
+    }
+
+    //will not remove tiles, overwrite with something else if "removal" is desired
+    //will ignore invisible tiles
+    static void SetMultipleSelectedTile(Tile tile, OverlayType type)
+    {
+       selectedTiles.Add(tile);
+       if (!(tile.tileType == TileType.None))
+       {
+          tile.SetOverlayType(type);
+       }
     }
 
     static void SetSingleSelectedTile(Tile tile)

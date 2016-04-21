@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bba2d41773d5c3e4e84c27703ee4b4ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageText: {fileID: 149712, guid: cbe23b0540d4bd54bb4eee24c1f39efe, type: 2}
+  DamageText: {fileID: 158814, guid: 5cb1e5d290a7b5c4bbf6ce03aacc0f75, type: 2}
   basicActions:
   - {fileID: 11412558, guid: 1dbe0cbfb3ebf2f44810cf8186416acb, type: 2}
   - {fileID: 11412558, guid: 1dbe0cbfb3ebf2f44810cf8186416acb, type: 2}
@@ -58,13 +58,18 @@ MonoBehaviour:
   Overlay_Selection_Prefab: {fileID: 114286, guid: 9485f15fff0eed447ac14f9ef6c8b70a,
     type: 2}
   Overlay_Arrow_Prefab: {fileID: 138856, guid: 3fb8017a3c7e1ff4caca5b34f252ccc6, type: 2}
-  Overlay_inTurn_Prefab: {fileID: 0}
+  Overlay_Attack_Prefab: {fileID: 153600, guid: b8cf290400a023f4ebfa0b8918ea209d,
+    type: 2}
+  Overlay_inTurn_Prefab: {fileID: 167768, guid: 32628453f434e6a4da3cae2c11b62af7,
+    type: 2}
   tileObjects:
   - {fileID: 11405336, guid: 5fbd037f543e31749a27afce9f9a14e4, type: 2}
+  - {fileID: 11429164, guid: d0450c9f526f1204a8877805a647df9b, type: 2}
+  - {fileID: 11434564, guid: 2c90c0ca0ca139e48a57444efdf6420c, type: 2}
   characters:
-  - {fileID: 11464488, guid: dd5e41933e5d8c8468bb405f9085bb1d, type: 2}
-  - {fileID: 11452688, guid: 7c28a90254be7e349b02d28ab087acde, type: 2}
   - {fileID: 11409324, guid: 2fc8e9a8225bb92448be741e3397b6ed, type: 2}
+  - {fileID: 11452688, guid: 7c28a90254be7e349b02d28ab087acde, type: 2}
+  - {fileID: 11464488, guid: dd5e41933e5d8c8468bb405f9085bb1d, type: 2}
   Bow: {fileID: 140086, guid: baf9059c0d1482b4296bae55d7ce37da, type: 2}
 --- !u!1001 &100100000
 Prefab:

@@ -17,12 +17,11 @@ MonoBehaviour:
   AnimationName: 
   UsedWithItems: 0
   attackArea: []
-  ItemCount: 2
+  ItemCount: 3
   ItemName: Broken Bone
-  ItemId: 0
-  itemType: 7
   ItemSprite: {fileID: 21300000, guid: b0d85cacb5d61064089f5d9b7480b577, type: 3}
   ItemMaxStackSize: 5
+  ItemInstanceID: 12
   itemCategories: 0700000005000000
   EffectToRange: 3
   EffectToTArgetArea: -2
@@ -30,4 +29,3 @@ MonoBehaviour:
   EffectToDamageMultiplayer: 1
   addElement: 02000000
   targetAreaType: 0
-  ItemInstanceIndex: 0

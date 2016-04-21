@@ -21,4 +21,9 @@ public class ChangeSceneScript : MonoBehaviour {
             SceneManager.LoadScene("MapCreator");
         }
     }
+
+    public void LoadSceneByName(string name)
+    {
+        SceneManager.LoadScene(name);
+    }
 }

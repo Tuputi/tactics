@@ -172,6 +172,7 @@ public class CharacterLogic : MonoBehaviour{
         chara.possibleRange.Clear();
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.hasMoved = true;
+        TurnOrderTimeline.MoveATimeCard(chara);
         UIManager.instance.UpdateButtons();
     }
 
@@ -203,10 +204,15 @@ public class CharacterLogic : MonoBehaviour{
         ChangeFacing(chara, chara.characterPosition, tile);
         UIManager.instance.ShowAttackName(chara.currentAction.GetName());
         chara.PlayAttackanimation(chara.currentAction.AnimationName);
+        if (chara.isAi)
+        {
+            chara.GetComponent<AiModule>().WaitingToEndTurn = true;
+        }
         chara.characterEnergy -= chara.currentAction.EnergyCost;
         chara.targetTile = tile;
         TurnManager.mode = TurnManager.TurnMode.end;
         TurnManager.instance.hasActed = true;
+        TurnOrderTimeline.MoveATimeCard(chara);
         UIManager.instance.UpdateButtons();
     }
 

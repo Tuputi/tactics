@@ -26,6 +26,7 @@ public class PrefabHolder : MonoBehaviour {
     public GameObject Overlay_Empty_Prefab;
     public GameObject Overlay_Selection_Prefab;
     public GameObject Overlay_Arrow_Prefab;
+    public GameObject Overlay_Attack_Prefab;
     public GameObject Overlay_inTurn_Prefab;
 
 
@@ -49,7 +50,7 @@ public class PrefabHolder : MonoBehaviour {
 
 public enum Facing { Up, Right, Down, Left };
 public enum TileType { None, Grass, Rock, Water, Flower };
-public enum OverlayType { None, Selected, Arrow, inTurn };
+public enum OverlayType { None, Selected, Arrow, inTurn, Attack };
 public enum BehaviourType { agressive, teamPlayer, healWhenHurt}
 public enum ConfirmationType { action, move};
 public enum GameMode { Editor, Game };

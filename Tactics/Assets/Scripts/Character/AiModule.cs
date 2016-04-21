@@ -15,7 +15,9 @@ public class AiModule : MonoBehaviour {
     private ActionType currentActionType;
     bool waitingToCompleteMove = false;
     bool waitingToCompleteAttack = false;
+    public bool WaitingToEndTurn = false;
     bool waitAMoment = false;
+    private Tile attackTargetTile = null;
 
     float currentTime = 0f;
     float WaitTime = 2f;
@@ -38,7 +40,7 @@ public class AiModule : MonoBehaviour {
         if (!TargetWithinAttackRange())
         {
            TurnManager.instance.Move();
-            SelectionScript.SetNoSelection(true);
+           SelectionScript.SetNoSelection(true);
            waitAMoment = true;        
         }
         else
@@ -109,11 +111,18 @@ public class AiModule : MonoBehaviour {
 
         if (waitingToCompleteAttack)
         {
+            Debug.Log("Artificial doubleclick");
+            SelectionScript.SetNoSelection(false);
+            TacticsInput.instance.ResetDoubleClick();
+            TacticsInput.instance.CreateDoubleClick();
+            waitingToCompleteAttack = false;
+        }
+
+        if (WaitingToEndTurn)
+        {
             if (myCharacter.AttackAnimationCompleted)
             {
-                waitingToCompleteAttack = false;
-                SelectionScript.SetNoSelection(false);
-
+                WaitingToEndTurn = false;
                 EndTurn();
             }
         }
@@ -186,7 +195,7 @@ public class AiModule : MonoBehaviour {
 
     public void AttackTarget()
     {
-        Tile attackTargetTile = null;
+        attackTargetTile = null;
         foreach(Tile t in myCharacter.possibleRange)
         {
             List<Tile> tempRange = new List<Tile>(myCharacter.AvailableActionDictionary[currentActionType].DrawTargetArea(t));
@@ -224,20 +233,6 @@ public class AiModule : MonoBehaviour {
                 bestTile = t;
             }
         }
-        //Debug.Log(bestTile);
-
-        
-        /*tempTotalAttackRange = new List<Tile>();
-        foreach(AttackBase ab in myCharacter.AvailableActions)
-        {
-            foreach(Tile t in ab.CalculateActionRange(myCharacter.characterPosition))
-            {
-                if (!tempTotalAttackRange.Contains(t))
-                {
-                    tempTotalAttackRange.Add(t);
-                }
-            }
-        }*/
       
         List<Tile> foundPath = Pathfinding.GetPath(myCharacter.characterPosition, bestTile);
 

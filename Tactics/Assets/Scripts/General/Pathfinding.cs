@@ -137,6 +137,44 @@ public class Pathfinding : MonoBehaviour {
         return path;
     }
 
+    public static List<Tile> GetTilesInRange(Tile startTile, float maxDepth, PathFindingOptions options)
+    {
+        var result = new List<Tile>();
+        var visitedNodes = new HashSet<Tile>();
+
+        DepthFirst_r(startTile, result, visitedNodes, 0, maxDepth, options);
+
+        return result;
+    }
+
+    private static void DepthFirst_r(Tile current, List<Tile> result, HashSet<Tile> visitedNodes, float currentDepth, float maxDepth, PathFindingOptions options)
+    {
+        // Node has already been visited
+        if (visitedNodes.Contains(current))
+        {
+            return;
+        }
+
+        // Max depths has been reached
+        if(currentDepth >= maxDepth)
+        {
+            return;
+        }
+
+        // Make sure the node can be traversed with regards to the ingame restrictions
+        if(!CheckValidity(current, options))
+        {
+            return;
+        }
+
+        result.Add(current);
+
+        foreach(var neighbour in current.neighbours)
+        {
+            DepthFirst_r(neighbour, result, visitedNodes, currentDepth + 1, maxDepth, options);
+        }
+    }
+
     public static List<Tile> GetPossibleRange(Tile startTile, float energy, bool ignoreMoveCost)
     {
         List<Tile> closedList = new List<Tile>();
@@ -153,27 +191,27 @@ public class Pathfinding : MonoBehaviour {
             closedList.Add(current);
 
             List<Tile> neighbourList = new List<Tile>(current.neighbours);
-            foreach (Tile t in neighbourList)
+            foreach (Tile tile in neighbourList)
             {
-                if (CheckValidity(t, ignoreMoveCost)) //run all additional validitychecks here
+                if (CheckValidity(tile, ignoreMoveCost)) //run all additional validitychecks here
                 {
-                    if (!closedList.Contains(t))
+                    if (!closedList.Contains(tile))
                     {
-                        if (!openList.Contains(t))
+                        if (!openList.Contains(tile))
                         {
-                            t.cameFrom = current;
+                            tile.cameFrom = current;
                             if (ignoreMoveCost)
                             {
-                                t.gCost = 1f + t.cameFrom.gCost;
+                                tile.gCost = 1f + tile.cameFrom.gCost;
                             }
                             else
                             {
-                                float heightcost = System.Math.Abs(t.cameFrom.height - t.height);
-                                t.gCost = t.cameFrom.gCost + t.movementCost + heightcost;
+                                float heightcost = System.Math.Abs(tile.cameFrom.height - tile.height);
+                                tile.gCost = tile.cameFrom.gCost + tile.movementCost + heightcost;
                             }
-                            if (t.gCost >= energy)
+                            if (tile.gCost >= energy)
                             {
-                                remove.Add(t);
+                                remove.Add(tile);
                             }
                         }
                         else
@@ -185,18 +223,18 @@ public class Pathfinding : MonoBehaviour {
                             }
                             else
                             {
-                                float heightcost = System.Math.Abs(current.height - t.height);
-                                newCost += heightcost + t.movementCost;
+                                float heightcost = System.Math.Abs(current.height - tile.height);
+                                newCost += heightcost + tile.movementCost;
                             }
                             
-                            if (newCost < t.gCost)
+                            if (newCost < tile.gCost)
                             {
-                                t.gCost = newCost;
-                                t.cameFrom = current;
+                                tile.gCost = newCost;
+                                tile.cameFrom = current;
                             }
                         }
-                    }else{remove.Add(t);}
-                }else {remove.Add(t);}
+                    }else{remove.Add(tile);}
+                }else {remove.Add(tile);}
             }
             foreach (Tile r in remove)
             {
@@ -219,7 +257,7 @@ public class Pathfinding : MonoBehaviour {
         return possibleTiles;
     }
 
-    static bool CheckValidity(Tile tile, bool ignoreMovement)
+    private static bool CheckValidity(Tile tile, bool ignoreMovement)
     {
         if (!ignoreMovement)
         {
@@ -235,6 +273,32 @@ public class Pathfinding : MonoBehaviour {
                 }
             }
         }
+        return true;
+    }
+
+    // TODO: Rewrite the internal logic of this method
+    private static bool CheckValidity(Tile tile, PathFindingOptions options)
+    {
+        if ((options.IgnoreOccupied))
+        {
+            return true;
+        }
+        else
+        {
+            if (!tile.isWalkable)
+            {
+                return false;
+            }
+
+            if (tile.isOccupied)
+            {
+                if (!(tile.tileCharacter.isAi == TurnManager.instance.CurrentlyTakingTurn.isAi)) //if on opposing team
+                {
+                    return false;
+                }
+            }
+        }
+
         return true;
     }
 

@@ -53,7 +53,7 @@ public class TurnManager : MonoBehaviour {
             }
 
             CharacterLogic.instance.CreateAttackList(chara);
-
+            TurnOrderTimeline.AddATimeCard(chara);
         }
     }
 

@@ -104,6 +104,17 @@ public class UIManager : MonoBehaviour{
         return results.Count > 0;
     }
 
+    public void UpdateStatusWindow(Tile tile)
+    {
+        if (tile.isOccupied)
+        {
+            UpdateStatusWindow(tile.tileCharacter);
+        }
+        else {
+            SetStatusWindowActiveStatus(false);
+        }
+    }
+
     public void UpdateStatusWindow(Character chara)
     {
         StatusTemplate.SetActive(true);
