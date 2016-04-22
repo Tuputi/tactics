@@ -78,13 +78,23 @@ public class AiModule : MonoBehaviour {
                         AttackTarget();
                         SelectionScript.SetNoSelection(true);
                         waitingToCompleteAttack = true;
-                        break;
+                        waitAMoment = true;
+                        return;
                     case TurnManager.TurnMode.facing:
                         break;
                     case TurnManager.TurnMode.end:
                         break;
                     default:
                         break;
+                }
+
+                if (waitingToCompleteAttack)
+                {
+                    Debug.Log("Artificial doubleclick");
+                    SelectionScript.SetNoSelection(false);
+                    TacticsInput.instance.ResetDoubleClick();
+                    TacticsInput.instance.CreateDoubleClick();
+                    waitingToCompleteAttack = false;
                 }
             }
         }
@@ -109,14 +119,7 @@ public class AiModule : MonoBehaviour {
             }
         }
 
-        if (waitingToCompleteAttack)
-        {
-            Debug.Log("Artificial doubleclick");
-            SelectionScript.SetNoSelection(false);
-            TacticsInput.instance.ResetDoubleClick();
-            TacticsInput.instance.CreateDoubleClick();
-            waitingToCompleteAttack = false;
-        }
+      
 
         if (WaitingToEndTurn)
         {
