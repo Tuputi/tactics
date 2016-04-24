@@ -11,18 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 866f388511c79ca43b0e0d2b317ed2e9, type: 3}
   m_Name: MetalFilings
   m_EditorClassIdentifier: 
-  BasicRange: 2
-  TargetAreaSize: 1
-  EnergyCost: 5
-  AnimationName: 
-  UsedWithItems: 0
-  attackArea: []
+  Sprite: {fileID: 21300000, guid: eb704206e70f92542bef9193ff254627, type: 3}
+  Name: 
+  Descriptioin: 
   ItemCount: 3
-  ItemName: Metal Filings
-  ItemId: 0
-  itemType: 10
-  ItemSprite: {fileID: 21300000, guid: eb704206e70f92542bef9193ff254627, type: 3}
   ItemMaxStackSize: 0
+  ItemInstanceID: 18
   itemCategories: 05000000
   EffectToRange: 0
   EffectToTArgetArea: 0
@@ -30,4 +24,3 @@ MonoBehaviour:
   EffectToDamageMultiplayer: 1.5
   addElement: 
   targetAreaType: 0
-  ItemInstanceIndex: 0

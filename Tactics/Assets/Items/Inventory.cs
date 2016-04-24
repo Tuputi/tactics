@@ -4,19 +4,19 @@ using System.Linq;
 
 public class Inventory{
 
-    private List<ItemBase> inventory;
+    private List<Item> inventory;
 
     public Inventory()
     {
-        inventory = new List<ItemBase>();
+        inventory = new List<Item>();
     }
 
-    public void Add(ItemBase item)
+    public void Add(Item item)
     {
         inventory.Add(item);
     }
 
-    public bool Contains(ItemBase item)
+    public bool Contains(Item item)
     {
         return inventory.Contains(item);
     }
@@ -29,7 +29,7 @@ public class Inventory{
 
     public void Use(int itemId)
     {
-        ItemBase foundItem = inventory.Find(invItem => invItem.ItemInstanceID == itemId);
+        Item foundItem = inventory.Find(invItem => invItem.ItemInstanceID == itemId);
         foundItem.ItemCount--;
 
         //badfix
@@ -41,13 +41,13 @@ public class Inventory{
 
     private void RemoveItem(int itemId)
     {
-        ItemBase foundItem = inventory.Find(invItem => invItem.ItemInstanceID == itemId);
+        Item foundItem = inventory.Find(invItem => invItem.ItemInstanceID == itemId);
         inventory.Remove(foundItem);
     }
 
     public void AddToCount(int itemID)
     {
-        ItemBase foundItem = inventory.Find(invItem => invItem.ItemInstanceID == itemID);
+        Item foundItem = inventory.Find(invItem => invItem.ItemInstanceID == itemID);
         if(foundItem == null)
         {
             Debug.Log("Item not found");
@@ -56,14 +56,14 @@ public class Inventory{
         foundItem.ItemCount++;
     }
 
-    public List<ItemBase> GetWholeInventory()
+    public List<Item> GetWholeInventory()
     {
         return inventory;
     }
 
-    public ItemBase GetItem(int itemId)
+    public Item GetItem(int itemId)
     {
-        ItemBase foundItem = inventory.Find(item => item.ItemInstanceID == itemId);
+        Item foundItem = inventory.Find(item => item.ItemInstanceID == itemId);
         return foundItem;
     }
 

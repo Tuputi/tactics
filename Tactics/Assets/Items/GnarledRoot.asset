@@ -11,22 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 866f388511c79ca43b0e0d2b317ed2e9, type: 3}
   m_Name: GnarledRoot
   m_EditorClassIdentifier: 
-  BasicRange: 2
-  TargetAreaSize: 1
-  EnergyCost: 5
-  AnimationName: 
-  UsedWithItems: 0
-  attackArea: []
+  Sprite: {fileID: 21300000, guid: 1bdc647bc46ba9e4bb5fe318883af159, type: 3}
+  Name: 
+  Descriptioin: 
   ItemCount: 4
-  ItemName: Gnarled Root
-  ItemId: 0
-  itemType: 6
-  ItemSprite: {fileID: 21300000, guid: 1bdc647bc46ba9e4bb5fe318883af159, type: 3}
   ItemMaxStackSize: 10
-  itemCategories: 0500000006000000
+  ItemInstanceID: 15
+  itemCategories: 0400000006000000
   EffectToRange: 1
   EffectToTArgetArea: 1
   EffectToDamageStatic: -5
   EffectToDamageMultiplayer: 1
   addElement: 01000000
-  ItemInstanceIndex: 0
+  targetAreaType: 0

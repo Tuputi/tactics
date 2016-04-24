@@ -230,7 +230,7 @@ public class UIManager : MonoBehaviour{
         PendingActionType = at;
         AttackBase abc = ActionList.GetAction(at);
         SetUpUiInventory(invType);
-       foreach(ItemBase item in TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetWholeInventory())
+       foreach(Item item in TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetWholeInventory())
        {
             if (abc.CompatibleItem(item))
             {
@@ -274,11 +274,11 @@ public class UIManager : MonoBehaviour{
         CurrentUIInventory.GetComponent<UIInventory>().CloseInventoryAfterAttack();
     }
 
-    public void DisplayItemInfo(ItemBase item)
+    public void DisplayItemInfo(Item item)
     {
         ItemInfoHolder.SetActive(true);
-        ItemName.text = item.ItemName;
-        ItemImage.sprite = item.ItemSprite;
+        ItemName.text = item.Name;
+        ItemImage.sprite = item.Sprite;
         if(item.EffectToRange < 0)
         {
             ItemEffectOnRange.text = "Range: " + item.EffectToRange.ToString();
@@ -293,7 +293,7 @@ public class UIManager : MonoBehaviour{
         ItemInfoAreaDisplay.instance.LightUpRange(item.targetAreaType, item.EffectToTArgetArea + TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[PendingActionType].TargetAreaSize);
     }
 
-    public void CreateElementDisplay(ItemBase item, GameObject elemHolder)
+    public void CreateElementDisplay(Item item, GameObject elemHolder)
     {
         for(int i = 0; i < elemHolder.transform.childCount; i++)
         {
@@ -455,12 +455,12 @@ public class UIManager : MonoBehaviour{
     {
         AttackNameInstance.SetActive(true);
 
-        ItemBase testItem = TurnManager.instance.CurrentlyTakingTurn.currentItem;
+        Item testItem = TurnManager.instance.CurrentlyTakingTurn.currentItem;
         if (testItem != null) 
         {
             if (testItem.itemCategories.Contains(ItemType.Spell))
             {
-                AttackNameText.text = TurnManager.instance.CurrentlyTakingTurn.currentItem.ItemName;
+                AttackNameText.text = TurnManager.instance.CurrentlyTakingTurn.currentItem.Name;
             }
         }
         else

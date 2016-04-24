@@ -32,7 +32,7 @@ public class SpellForm : MonoBehaviour {
         slot.SelectSlot();
     }
 
-    public void AddIncredient(ItemBase item)
+    public void AddIncredient(Item item)
     {
         foreach(IncredientSlot slot in IncredientSlots)
         {
@@ -44,7 +44,7 @@ public class SpellForm : MonoBehaviour {
         }
     }
 
-    public ItemBase CreateASpell()
+    public Item CreateASpell()
     {
         AttackBase currentAttack = TurnManager.instance.CurrentlyTakingTurn.AvailableActionDictionary[UIManager.instance.PendingActionType];
 
@@ -56,7 +56,7 @@ public class SpellForm : MonoBehaviour {
 
         Spell newSpell = ScriptableObject.CreateInstance<Spell>();
         newSpell.SpellInit("TempSpell", area - currentAttack.TargetAreaSize, range - currentAttack.BasicRange, elements, myTat);
-        newSpell.ItemName = Spellinterpreter();
+        newSpell.Name = Spellinterpreter();
         newSpell.ItemInstanceID = -1;
         UpdateElementDisplay(newSpell);
         currentSpell = newSpell;
@@ -76,7 +76,7 @@ public class SpellForm : MonoBehaviour {
         {
             if (!slot.isEmpty)
             {
-                ItemBase incredient = slot.MyItem;
+                Item incredient = slot.MyItem;
                 range += incredient.EffectToRange;
             }
         }
@@ -139,7 +139,7 @@ public class SpellForm : MonoBehaviour {
         {
             if (!slot.isEmpty)
             {
-                ItemBase incredient = slot.MyItem;
+                Item incredient = slot.MyItem;
                 foreach(Elements element in incredient.addElement)
                 {
                     if (!tempList.Contains(element))
@@ -162,7 +162,7 @@ public class SpellForm : MonoBehaviour {
         {
             if (!slot.isEmpty)
             {
-                ItemBase incredient = slot.MyItem;
+                Item incredient = slot.MyItem;
                 tempRange += incredient.EffectToTArgetArea;
             }
         }
@@ -172,7 +172,7 @@ public class SpellForm : MonoBehaviour {
         return tempRange;
     }
 
-    public void UpdateElementDisplay(ItemBase item)
+    public void UpdateElementDisplay(Item item)
     {
         UIManager.instance.CreateElementDisplay(item, Elementholder);
     }
@@ -226,7 +226,7 @@ public class SpellForm : MonoBehaviour {
 
     public void UpdateSpellDisplay()
     {
-        spellName.text = currentSpell.ItemName;
+        spellName.text = currentSpell.Name;
     }
 
     public string Spellinterpreter()
@@ -242,7 +242,7 @@ public class SpellForm : MonoBehaviour {
         {
             if (!slot.isEmpty)
             {
-                ItemBase incredient = slot.MyItem;
+                Item incredient = slot.MyItem;
                 foreach(Elements element in incredient.addElement)
                 {
                     switch (element)

@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Spell : ItemBase {
+public class Spell : Item {
 
     public void SpellInit(string SpellName, float targetArea, float range, List<Elements> elementEffects, TargetAreaType tat)
     {
-        ItemName = SpellName;
+        Name = SpellName;
         EffectToTArgetArea = targetArea;
         EffectToRange = range;
         addElement = elementEffects;

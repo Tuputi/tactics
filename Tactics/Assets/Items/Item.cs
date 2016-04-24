@@ -1,18 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 [CreateAssetMenu]
-public class ItemBase : ActionBaseClass {
+public class Item : Craftable {
 
     public int ItemCount = 3;
-    public string ItemName = "NaN";
-    //public int ItemId = 0;
-    public Sprite ItemSprite;
     public int ItemMaxStackSize;
 
     //do not cahnge this outside of code
     public int ItemInstanceID = 0;
 
-    public List<ItemType> itemCategories;
+    
 
     [Header("Item effects")]
     public float EffectToRange = 0;
@@ -29,8 +26,8 @@ public class ItemBase : ActionBaseClass {
     public void Init(int itemCount,string itemName, Sprite itemSprite, int itemMaxStackSize)
     {
         ItemCount = itemCount;
-        ItemName = itemName;
-        ItemSprite = itemSprite;
+        Name = itemName;
+        Sprite = itemSprite;
         ItemMaxStackSize = itemMaxStackSize;
     }
 
@@ -54,10 +51,10 @@ public class ItemBase : ActionBaseClass {
     }
 
     public virtual Sprite GetItemSprite(){
-        return ItemSprite;
+        return Sprite;
     }
 
-    public override void  CompleteAction(Tile TargetTile)
+   /* public override void  CompleteAction(Tile TargetTile)
     {
         TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.Use(ItemInstanceID);
         CalculateEffect(TargetTile);
@@ -75,7 +72,7 @@ public class ItemBase : ActionBaseClass {
             targetTile.tileCharacter.Hp += healing;
         }
         return healing;
-    }
+    }*/
 
     public float GetRangeEffect()
     {

@@ -74,13 +74,13 @@ public class MageInventory : UIInventory {
         {
             if (!slot.isEmpty)
             {
-                ItemBase item = TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetItem(slot.MyItem.ItemInstanceID);
+                Item item = TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.GetItem(slot.MyItem.ItemInstanceID);
                 if(item == null)
                 {
                     break;
                 }
                 slot.ClearSlot();
-                slot.AddItem(item, item.ItemSprite, item.ItemCount);
+                slot.AddItem(item, item.Sprite, item.ItemCount);
 
                 if(slot.MyItem.ItemCount <= 0)
                 {

@@ -27,7 +27,7 @@ public class ActionBaseClass : ScriptableObject {
         return Pathfinding.GetPossibleRange(startTile, range, true);
     }
 
-    public virtual List<Tile> CalculateActionRange(Tile startTile, ItemBase ib)
+    public virtual List<Tile> CalculateActionRange(Tile startTile, Item ib)
     {
        float range = BasicRange + ib.GetRangeEffect();
        return Pathfinding.GetPossibleRange(startTile, range, true);

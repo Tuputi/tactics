@@ -53,7 +53,7 @@ public class AttackBase : ActionBaseClass{
         return AttackName;
     }
 
-    public virtual bool CompatibleItem(ItemBase ib)
+    public virtual bool CompatibleItem(Item ib)
     {
         return true;
     }
@@ -63,7 +63,7 @@ public class AttackBase : ActionBaseClass{
         return base.CalculateActionRange(startTile);
     }
 
-    public override List<Tile> CalculateActionRange(Tile startTile, ItemBase ib)
+    public override List<Tile> CalculateActionRange(Tile startTile, Item ib)
     {
         return base.CalculateActionRange(startTile, ib);
     }
@@ -87,7 +87,7 @@ public class AttackBase : ActionBaseClass{
 
         if (TurnManager.instance.CurrentlyTakingTurn.currentItem && UsedWithItems)
         {
-            ItemBase ib = TurnManager.instance.CurrentlyTakingTurn.currentItem;
+            Item ib = TurnManager.instance.CurrentlyTakingTurn.currentItem;
            // Debug.Log(ib.ItemName);
             if (ib.EffectToTArgetArea > 0)
             {

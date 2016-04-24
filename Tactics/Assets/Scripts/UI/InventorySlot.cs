@@ -8,7 +8,7 @@ public class InventorySlot : MonoBehaviour {
     public Text ItemCount;
     public int itemCountInt;
     public bool slotSelected = false;
-    public ItemBase MyItem = null;
+    public Item MyItem = null;
     private Image MySlotImage;
     private Image itemSprite;
     private Image numberBG;
@@ -31,7 +31,7 @@ public class InventorySlot : MonoBehaviour {
         MySlotImage.sprite = EmptySlot;
     }
 
-    public void AddItem(ItemBase item, Sprite sprite, int itemCount){
+    public void AddItem(Item item, Sprite sprite, int itemCount){
         MyItem = item;
 
         if (itemCount > 1)

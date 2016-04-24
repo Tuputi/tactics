@@ -83,11 +83,11 @@ public class CharacterLogic : MonoBehaviour{
     {
         int id = 0;
         chara.CharacterInventory = new Inventory();
-        foreach (ItemBase item in chara.items)
+        foreach (Item item in chara.items)
         {
-            ItemBase newItem = ScriptableObject.CreateInstance<ItemBase>();
-            ItemBase template = ItemList.GetItem(item.ItemInstanceID);
-            newItem.Init(template.ItemCount, template.ItemName, template.ItemSprite, template.ItemMaxStackSize);
+            Item newItem = ScriptableObject.CreateInstance<Item>();
+            Item template = ItemList.GetItem(item.ItemInstanceID);
+            newItem.Init(template.ItemCount, template.Name, template.Sprite, template.ItemMaxStackSize);
             newItem.InitEffect(template.EffectToRange, template.EffectToTArgetArea, template.EffectToDamageStatic, template.EffectToDamageMultiplayer, template.targetAreaType);
             newItem.InitElement(template.addElement);
             newItem.ItemInstanceID = id;
@@ -183,7 +183,7 @@ public class CharacterLogic : MonoBehaviour{
         SelectMultipleTiles(chara.possibleRange);
     }
 
-    public void Action(Character chara, ActionBaseClass ab, ItemBase ib)
+    public void Action(Character chara, ActionBaseClass ab, Item ib)
     {
         chara.currentAction = ab;
         chara.currentItem = ib;

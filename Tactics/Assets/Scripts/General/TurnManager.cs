@@ -144,7 +144,7 @@ public class TurnManager : MonoBehaviour {
         }
     }
 
-    public void Action(ActionType at, ItemBase ib)
+    public void Action(ActionType at, Item ib)
     {
         CurrentlyTakingTurn.possibleRange.Clear();
         SelectionScript.ClearSelection();
@@ -159,7 +159,7 @@ public class TurnManager : MonoBehaviour {
         }
     }
 
-    public void Action(int id)
+   /* public void Action(int id)
     {
         CurrentlyTakingTurn.possibleRange.Clear();
         SelectionScript.ClearSelection();
@@ -172,7 +172,7 @@ public class TurnManager : MonoBehaviour {
         {
             Debug.Log("Has already acted");
         }
-    }
+    }*/
 
     public bool CheckIfTurnDone()
     {

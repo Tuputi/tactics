@@ -51,7 +51,8 @@ public class ItemButton : ButtonScript {
 
     public override void SelectAction()
     {
-        TurnManager.instance.Action(itemId);
+        //TurnManager.instance.Action(itemId);
+        Debug.Log("This should not be called as items are no longer treated as actions");
         MyImage.sprite = SelectedButton;
         UIManager.instance.UnselectAllActionButtonsExcept(this);
 

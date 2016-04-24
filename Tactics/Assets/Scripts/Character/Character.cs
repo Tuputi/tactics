@@ -34,7 +34,7 @@ public class Character : MonoBehaviour, System.IComparable
     [HideInInspector]
     public Tile characterPosition;
     //[HideInInspector]
-    public ItemBase currentItem = null;
+    public Item currentItem = null;
     [HideInInspector]
     public ActionBaseClass currentAction = null;
     [HideInInspector]
@@ -106,7 +106,7 @@ public class Character : MonoBehaviour, System.IComparable
     private GameObject Weapon;
 
     //lists
-    public List<ItemBase> items;
+    public List<Item> items;
   
     
     void Start()

@@ -11,22 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 866f388511c79ca43b0e0d2b317ed2e9, type: 3}
   m_Name: Gunpowder
   m_EditorClassIdentifier: 
-  BasicRange: 2
-  TargetAreaSize: 1
-  EnergyCost: 5
-  AnimationName: 
-  UsedWithItems: 0
-  attackArea: []
+  Sprite: {fileID: 21300000, guid: 3357f5920eec9a244896b6a651952ca9, type: 3}
+  Name: 
+  Descriptioin: 
   ItemCount: 6
-  ItemName: Gunpowder
-  ItemId: 0
-  itemType: 4
-  ItemSprite: {fileID: 21300000, guid: 3357f5920eec9a244896b6a651952ca9, type: 3}
   ItemMaxStackSize: 5
-  itemCategories: 020000000100000004000000
+  ItemInstanceID: 12
+  itemCategories: 020000000300000004000000
   EffectToRange: 0
   EffectToTArgetArea: 1
   EffectToDamageStatic: 0
   EffectToDamageMultiplayer: 2
   addElement: 0000000002000000
-  ItemInstanceIndex: 0
+  targetAreaType: 0

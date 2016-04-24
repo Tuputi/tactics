@@ -7,7 +7,7 @@ public class IncredientSlot : MonoBehaviour {
     public Sprite EmptySlot;
     public Sprite SelectedSlot;
     public bool slotSelected = false;
-    public ItemBase MyItem = null;
+    public Item MyItem = null;
 
     private Image MySlotImage;
     private Image itemSprite;
@@ -29,7 +29,7 @@ public class IncredientSlot : MonoBehaviour {
         parentSpell = parent;
     }
 
-    public void AddItem(ItemBase item)
+    public void AddItem(Item item)
     {
         if (MyItem != null)
         {
@@ -40,11 +40,11 @@ public class IncredientSlot : MonoBehaviour {
         MyItem = item;
         isEmpty = false;
 
-        if (item.ItemSprite == null)
+        if (item.Sprite == null)
             Debug.Log("no sprite");
 
         itemSprite.gameObject.SetActive(true);
-        itemSprite.sprite = item.ItemSprite;
+        itemSprite.sprite = item.Sprite;
 
         TurnManager.instance.CurrentlyTakingTurn.CharacterInventory.Use(MyItem.ItemInstanceID);
         parentSpell.parentInventory.UpdateAllItemSlots();
@@ -71,7 +71,7 @@ public class IncredientSlot : MonoBehaviour {
     {
         if (MyItem != null)
         {
-            Debug.Log("My item is " + MyItem.ItemName + "and it's current itemcount is " + MyItem.ItemCount);
+            Debug.Log("My item is " + MyItem.Name + "and it's current itemcount is " + MyItem.ItemCount);
         }
 
         MyItem = null;

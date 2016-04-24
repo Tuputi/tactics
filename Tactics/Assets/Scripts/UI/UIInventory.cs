@@ -42,7 +42,7 @@ public class UIInventory : MonoBehaviour {
     }
 
 
-    public void AddItem(ItemBase item)
+    public void AddItem(Item item)
     {
         foreach (InventorySlot slot in InventorySlots)
         {

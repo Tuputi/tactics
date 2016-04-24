@@ -11,17 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 866f388511c79ca43b0e0d2b317ed2e9, type: 3}
   m_Name: Bomb
   m_EditorClassIdentifier: 
-  BasicRange: 2
-  attackArea: []
+  Sprite: {fileID: 0}
+  Name: 
+  Descriptioin: 
   ItemCount: 5
-  ItemName: Bomb
-  ItemId: 0
-  itemType: 1
-  ItemSprite: {fileID: 21300000, guid: d63e7f15e4d941e4c90942a97d4620f7, type: 3}
   ItemMaxStackSize: 5
-  itemCategories: 01000000
+  ItemInstanceID: 9
+  itemCategories: 02000000
   EffectToRange: -2
   EffectToTArgetArea: 2
   EffectToDamageStatic: 2
   EffectToDamageMultiplayer: 2
-  ItemInstanceIndex: 0
+  addElement: 
+  targetAreaType: 0

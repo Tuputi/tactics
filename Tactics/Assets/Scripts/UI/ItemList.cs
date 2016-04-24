@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public class ItemList : MonoBehaviour {
 
-    public List<ItemBase> items;
+    public List<Item> items;
 
-    public static Dictionary<int, ItemBase> itemDictionary;
+    public static Dictionary<int, Item> itemDictionary;
 
     void Awake()
     {
@@ -15,8 +15,8 @@ public class ItemList : MonoBehaviour {
     public void Init()
     {
         int id = 0;
-        itemDictionary = new Dictionary<int, ItemBase>();
-        foreach(ItemBase item in items)
+        itemDictionary = new Dictionary<int, Item>();
+        foreach(Item item in items)
         {
             item.ItemInstanceID += id;
             itemDictionary.Add(item.ItemInstanceID, item);
@@ -24,7 +24,7 @@ public class ItemList : MonoBehaviour {
         }
     }
 
-    public static ItemBase GetItem(int itemId)
+    public static Item GetItem(int itemId)
     {
        return itemDictionary[itemId];
     }
