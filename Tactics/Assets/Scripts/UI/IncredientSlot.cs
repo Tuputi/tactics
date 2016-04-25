@@ -17,6 +17,12 @@ public class IncredientSlot : MonoBehaviour {
 
     public bool isEmpty = true;
 
+    void Awake()
+    {
+        itemSprite = transform.FindChild("ItemSprite").GetComponent<Image>();
+        itemSprite.gameObject.SetActive(false);
+    }
+
     public void Init(List<IncredientSlot> toggle, SpellForm parent)
     {
         itemSprite = transform.FindChild("ItemSprite").GetComponent<Image>();
@@ -128,9 +134,12 @@ public class IncredientSlot : MonoBehaviour {
             return;
         }
 
-        foreach (IncredientSlot slot in toggleGroup)
+        if (toggleGroup.Count > 0)
         {
-            slot.UnselectSlot();
+            foreach (IncredientSlot slot in toggleGroup)
+            {
+                slot.UnselectSlot();
+            }
         }
         SelectSlot();
     }

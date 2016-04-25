@@ -31,8 +31,10 @@ public class InventorySlot : MonoBehaviour {
         MySlotImage.sprite = EmptySlot;
     }
 
-    public void AddItem(Item item, Sprite sprite, int itemCount){
-        MyItem = item;
+    public void AddItem(Craftable item){
+        MyItem = item as Item;
+        int itemCount = MyItem.ItemCount;
+        Sprite sprite = item.Sprite;
 
         if (itemCount > 1)
         {

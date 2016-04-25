@@ -80,7 +80,7 @@ public class MageInventory : UIInventory {
                     break;
                 }
                 slot.ClearSlot();
-                slot.AddItem(item, item.Sprite, item.ItemCount);
+                slot.AddItem(item);
 
                 if(slot.MyItem.ItemCount <= 0)
                 {

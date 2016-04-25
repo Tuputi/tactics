@@ -3,7 +3,6 @@ using System.Collections.Generic;
 [CreateAssetMenu]
 public class Item : Craftable {
 
-    public int ItemCount = 3;
     public int ItemMaxStackSize;
 
     //do not cahnge this outside of code

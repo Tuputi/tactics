@@ -8,6 +8,7 @@ public class Craftable : ScriptableObject {
     public Sprite Sprite;
     public string Name;
     public List<ItemType> itemCategories;
+    public int ItemCount = 1;
 
     [TextArea]
     public string Descriptioin;

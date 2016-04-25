@@ -50,12 +50,13 @@ public class DraggableObject : MonoBehaviour {
         {
             dragging = false;
             ReturnToOrigLocation();
-            this.gameObject.GetComponent<InventorySlot>().parentInventory.UnselectSlots();
+            //this.gameObject.GetComponent<InventorySlot>().parentInventory.UnselectSlots();
         }
     }
 
     public void ReturnToOrigLocation()
     {
+        dragging = false;
         transform.localPosition = origPosition;
     }
 

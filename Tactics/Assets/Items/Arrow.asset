@@ -13,11 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sprite: {fileID: 21300000, guid: e5cac8ee5c4c76241bd294f61183d974, type: 3}
   Name: 
-  Descriptioin: 
+  itemCategories: 0300000006000000
   ItemCount: 1
+  Descriptioin: 
   ItemMaxStackSize: 4
   ItemInstanceID: 6
-  itemCategories: 03000000
   EffectToRange: 1
   EffectToTArgetArea: 0
   EffectToDamageStatic: 0
