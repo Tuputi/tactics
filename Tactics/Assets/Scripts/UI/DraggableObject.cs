@@ -58,6 +58,7 @@ public class DraggableObject : MonoBehaviour {
     {
         dragging = false;
         transform.localPosition = origPosition;
+        gameObject.GetComponentInParent<InventorySlot>().UnselectSlot();
     }
 
 }
