@@ -88,6 +88,11 @@ public class InventorySlot : MonoBehaviour {
       parentInventory.SelectASlot(this);
     }
 
+    public void DisplayTinkerInfo()
+    {
+        TinkerItemDisplay.instance.DisplayItemInfo(this.MyItem);
+    }
+
     public void SelectItem()
     {
         TurnManager.instance.Action(UIManager.instance.PendingActionType, MyItem);

@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Container : MonoBehaviour {
+
+public class Container : UIInventory {
 
     public List<Craftable> items;
     public GameObject layoutgroup;
     public GameObject slottemplate;
+
 
     public InventorySlot slot;
 
@@ -25,4 +27,6 @@ public class Container : MonoBehaviour {
             newObj.transform.localScale = new Vector3(1, 1, 1);
         }
     }
+
+   
 }

@@ -11,5 +11,8 @@ public class Craftable : ScriptableObject {
     public int ItemCount = 1;
 
     [TextArea]
-    public string Descriptioin;
+    public string Description;
+
+    [Header("TinkerProperties")]
+    public int PropertPoints = 4;
 }

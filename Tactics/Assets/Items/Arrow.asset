@@ -15,7 +15,8 @@ MonoBehaviour:
   Name: 
   itemCategories: 0300000006000000
   ItemCount: 1
-  Descriptioin: 
+  Description: 
+  PropertPoints: 1
   ItemMaxStackSize: 4
   ItemInstanceID: 6
   EffectToRange: 1

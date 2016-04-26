@@ -52,6 +52,7 @@ public class RecipeSlot : MonoBehaviour {
         itemSprite.gameObject.SetActive(true);
         itemSprite.sprite = item.Sprite;
         this.transform.localScale = new Vector3(1, 1, 1);
+        TinkerItemDisplay.instance.UpdateCraftUI();
     }
 
     public void ClearSlot()
@@ -59,6 +60,7 @@ public class RecipeSlot : MonoBehaviour {
         MyItem = null;
         isEmpty = true;
         itemSprite.gameObject.SetActive(false);
+        TinkerItemDisplay.instance.UpdateCraftUI();
     }
 
     public void SelectItem()

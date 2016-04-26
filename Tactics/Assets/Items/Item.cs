@@ -18,6 +18,8 @@ public class Item : Craftable {
     public List<Elements> addElement;
     public TargetAreaType targetAreaType = TargetAreaType.none;
 
+  
+
 
 
    
