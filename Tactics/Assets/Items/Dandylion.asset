@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Name: Dandylion
   m_EditorClassIdentifier: 
   Sprite: {fileID: 21300000, guid: d9acf33332f212642a58b5a294067172, type: 3}
-  Name: 
-  Descriptioin: 
+  Name: Dandylion
+  itemCategories: 04000000
   ItemCount: 3
+  Description: Flower that blooms during the summer
+  PropertPoints: 4
   ItemMaxStackSize: 10
   ItemInstanceID: 24
-  itemCategories: 04000000
   EffectToRange: 0.5
   EffectToTArgetArea: 2
   EffectToDamageStatic: 0

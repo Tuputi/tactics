@@ -15,4 +15,13 @@ public class Craftable : ScriptableObject {
 
     [Header("TinkerProperties")]
     public int PropertPoints = 4;
+
+    public string GetName()
+    {
+        if (Name.Equals("Category"))
+        {
+            return itemCategories[0].ToString();
+        }
+        return Name;
+    }
 }

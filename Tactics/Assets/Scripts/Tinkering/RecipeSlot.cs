@@ -16,7 +16,7 @@ public class RecipeSlot : MonoBehaviour {
 
     public Craftable accepts;
     private ItemType acceptableType;
-    private bool specificItem = false;
+    public bool specificItem = false;
 
     void Awake()
     {
@@ -30,15 +30,6 @@ public class RecipeSlot : MonoBehaviour {
         isEmpty = true;
         MySlotImage = this.GetComponent<Image>();
         MySlotImage.sprite = EmptySlot;
-
-        if (accepts.Name.Equals("Category"))
-        {
-            acceptableType = accepts.itemCategories[0];
-        }
-        else
-        {
-            specificItem = true;
-        }
     }
 
     public void AddItem(Item item)
@@ -116,13 +107,15 @@ public class RecipeSlot : MonoBehaviour {
             {
                 if(invSlot.MyItem == accepts)
                 {
+                    Debug.Log("specific item accepted");
                     addItem = true;
                 }
             }
             else
             {
-                if (invSlot.MyItem.itemCategories.Contains(acceptableType))
+                if (invSlot.MyItem.itemCategories.Contains(accepts.itemCategories[0]))
                 {
+                    Debug.Log("Category correct");
                     addItem = true;
                 }
             }

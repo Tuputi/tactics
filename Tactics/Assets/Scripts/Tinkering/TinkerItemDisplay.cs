@@ -5,16 +5,14 @@ using UnityEngine.UI;
 public class TinkerItemDisplay : MonoBehaviour {
 
     public Button craftButton;
-    public List<RecipeSlot> recipeSlots;
     public GameObject ItemInfo;
     public GameObject CraftUI;
     public static TinkerItemDisplay instance;
-    public Recipe myRecipe;
-    private int totalPP = 0;
 
     void Awake()
     {
         instance = this;
+        RecipeController.instance.CreateincredientSlots();
         InitiateCraftUI();
     }
 
@@ -29,54 +27,23 @@ public class TinkerItemDisplay : MonoBehaviour {
 
     public void InitiateCraftUI()
     {
-        CraftUI.transform.FindChild("NeedPP").GetComponent<Text>().text = myRecipe.MinimunPropertyPoints.ToString();
+        CraftUI.transform.FindChild("NeedPP").GetComponent<Text>().text = RecipeController.instance.recipe.MinimunPropertyPoints.ToString();
     }
 
     public void UpdateCraftUI()
     {
-        totalPP = 0;
-        foreach (RecipeSlot slot in recipeSlots)
-        {
-            if (!slot.isEmpty)
-            {
-                totalPP += slot.MyItem.PropertPoints;
-                Debug.Log("Total points changed to " + totalPP);
-            }
-        }
-        CraftUI.transform.FindChild("TotalPP").GetComponent<Text>().text = totalPP.ToString();
-    }
-
-  
-
-
-    public bool CheckIfAllSlotsFilled()
-    {
-        foreach (RecipeSlot slot in recipeSlots)
-        {
-            if (slot.isEmpty)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public bool CheckIfEnoughPP()
-    {
-        if(totalPP >= myRecipe.MinimunPropertyPoints)
-        {
-            return true;
-        }
-        return false;
+        CraftUI.transform.FindChild("TotalPP").GetComponent<Text>().text = RecipeController.instance.GetCurrentPPCost().ToString();
     }
 
     public void CheckIfRecipeDone()
     {
-        if( CheckIfAllSlotsFilled() && CheckIfEnoughPP())
+        if(RecipeController.instance.IsPPAboveMinimun() && RecipeController.instance.AllSlotsFilled())
         {
-            Debug.Log("Recipe is done? yes");
+            Debug.Log("Recipe completed succedfully");
         }
         else
-            Debug.Log("Recipe is done? no");
+        {
+            Debug.Log("Recipe not yet complete");
+        }
     }
 }
